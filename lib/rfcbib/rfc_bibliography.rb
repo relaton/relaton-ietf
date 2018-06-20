@@ -1,8 +1,8 @@
 # frozen_string_literal:true
 
-require 'rfcbib/rfc_scrapper'
+require 'rfcbib/scrapper'
 
-module Rfcbib
+module RfcBib
   # RFC bibliography module
   module RfcBibliography
     class << self

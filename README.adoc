@@ -1,0 +1,86 @@
+= Rfcbib
+
+RFCBib is a Ruby gem that search and fetch RFC standards.
+The standards scrape form https://www.rfc-editor.org/search/rfc_search.php
+
+== Installation
+
+Add this line to your application's Gemfile:
+
+[source, ruby]
+----
+gem 'rfcbib'
+----
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install rfcbib
+
+== Usage
+
+=== Search document
+
+[source,ruby]
+----
+item = RfcBib::RfcBibliography.search 'RFC 8341'
+=> #<IsoBibItem::BibliographicItem:0x007fdb0803a0f8>
+
+# Return nil if document doesn't exist.
+RfcBib::RfcBibliography.search '1111'
+=> nil
+----
+
+=== Serialization
+
+[source,ruby]
+----
+item.to_xml
+=>"<bibitem id='RFC8341'>
+  <title format='plain' language='en' script='Latn'>Network Configuration Access Control Model</title>
+  <source type='src'>https://www.rfc-editor.org/info/rfc8341</source>
+  <date type='published'>
+    <on>2018</on>
+  </date>
+  <contributor>
+    <role type='author'/>
+    <person>
+      <name>
+        <completename language='en'>A. Bierman</completename>
+      </name>
+      <affilation>
+        <organization>
+          <name/>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affilation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type='author'/>
+    <person>
+      <name>
+        <completename language='en'>M. Bjorklund</completename>
+      </name>
+      <affilation>
+        <organization>
+          <name/>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affilation>
+    </person>
+  </contributor>
+  <language>en</language>
+</bibitem>"
+----
+
+== Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rfcbib.
+
+== License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

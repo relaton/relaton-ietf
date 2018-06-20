@@ -1,5 +1,4 @@
-require "rfcbib/version"
+# frozen_string_literal: true
 
-module Rfcbib
-  # Your code goes here...
-end
+require 'rfcbib/version'
+require 'rfcbib/rfc_bibliography'
