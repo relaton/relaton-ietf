@@ -5,18 +5,17 @@ require 'nokogiri'
 require 'iso_bib_item'
 
 module RfcBib
+  # rubocop:disable Metrics/ModuleLength
+
   # Scrapper module
   module Scrapper
     class << self
       # @param text [String]
       # @return [IsoBibItem::BibliographicItem]
       def scrape_page(text)
-        # ref = text.downcase.delete ' '
         ref = text.sub(' ', '.') + '.xml'
-        # html = Net::HTTP.get URI("https://www.rfc-editor.org/info/#{ref}")
         uri = URI("https://www.rfc-editor.org/refs/bibxml/reference.#{ref}")
-        xml = Net::HTTP.get uri
-        doc = Nokogiri::HTML xml
+        doc = Nokogiri::HTML Net::HTTP.get(uri)
         @reference = doc.at('//reference')
         return unless @reference
         bib_item
@@ -24,18 +23,23 @@ module RfcBib
 
       private
 
+      # rubocop:disable Metrics/MethodLength
+
       # @return [IsoBibItem::BibliographicItem]
       def bib_item
         IsoBibItem::BibliographicItem.new(
           id: @reference[:anchor],
+          docid: docids,
+          status: status,
           language: [language],
-          # docid: { project_number: reference[:anchor], part_number: '' },
           source: [{ type: 'src', content: @reference[:target] }],
           titles: titles,
           contributors: contributors,
-          dates: dates
+          dates: dates,
+          series: series
         )
       end
+      # rubocop:enable Metrics/MethodLength
 
       # @return [String]
       def language
@@ -50,6 +54,11 @@ module RfcBib
 
       # @return [Array<Hash>]
       def contributors
+        persons + organizations
+      end
+
+      # @return [Array<Hash{Symbol=>IsoBibItem::Person,Symbol=>Array<String>}>]
+      def persons
         @reference.xpath('//front/author').map do |author|
           entity = IsoBibItem::Person.new(
             name: full_name(author),
@@ -58,6 +67,15 @@ module RfcBib
           )
           { entity: entity, roles: [contributor_role(author)] }
         end
+      end
+
+      # @return [Array<Hash{Symbol=>IsoBibItem::Organization,Symbol=>Array<String>}>]
+      def organizations
+        @reference.xpath('//seriesinfo').map do |si|
+          next unless si[:stream]
+          entity = IsoBibItem::Organization.new name: si[:stream]
+          { entity: entity, roles: ['author'] }
+        end.compact
       end
 
       # @param author [Nokogiri::XML::Document]
@@ -113,7 +131,7 @@ module RfcBib
       def affilation(author)
         organization = author.at('//organization')
         IsoBibItem::Affilation.new IsoBibItem::Organization.new(
-          name: organization.text || 'IETF',
+          name: organization.text.empty? ? 'IETF' : organization.text,
           abbreviation: organization[:abbrev] || 'IETF'
         )
       end
@@ -127,7 +145,7 @@ module RfcBib
       #
       # Extract date from reference.
       #
-      # @return [<Type>] <description>
+      # @return [Array<IsoBibItem::BibliographicDate>] published data.
       #
       def dates
         return unless (date = @reference.at '//front/date')
@@ -135,6 +153,52 @@ module RfcBib
         date = Time.parse(d).strftime '%Y-%m-%d'
         [IsoBibItem::BibliographicDate.new(type: 'published', on: date)]
       end
+
+      #
+      # Extract document identifiers from reference
+      #
+      # @return [Array<IsoBibItem::DocumentIdentifier>]
+      #
+      def docids
+        @reference.xpath('//seriesinfo').map do |si|
+          next unless si[:name] == 'DOI'
+          IsoBibItem::DocumentIdentifier.new(
+            id: si[:value],
+            type: si[:name]
+          )
+        end.compact
+      end
+
+      #
+      # Extract series form reference
+      #
+      # @return [Array<IsoBibItem::FormattedString>]
+      #
+      def series
+        @reference.xpath('//seriesinfo').map do |si|
+          next if si[:name] == 'DOI' || si[:stream] || si[:status]
+          IsoBibItem::Series.new(
+            title: IsoBibItem::FormattedString.new(
+              content: si[:name], language: language, script: 'Latn'
+            ),
+            number: si[:value]
+          )
+        end.compact
+      end
+
+      #
+      # extract status
+      #
+      # @return [IsoBibItem::DocumentStatus]
+      #
+      def status
+        st = @reference.at('//seriesinfo[@status]')
+        return unless st
+        IsoBibItem::DocumentStatus.new(
+          IsoBibItem::LocalizedString.new(st[:status])
+        )
+      end
     end
   end
+  # rubocop:enable Metrics/ModuleLength
 end

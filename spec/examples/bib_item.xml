@@ -1,6 +1,7 @@
 <bibitem id="RFC8341">
   <title format="plain" language="en" script="Latn">Network Configuration Access Control Model</title>
   <source type="src">https://www.rfc-editor.org/info/rfc8341</source>
+  <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
   <date type="published">
     <on>2018</on>
   </date>
@@ -12,10 +13,20 @@
       </name>
       <affilation>
         <organization>
-          <name></name>
+          <name>IETF</name>
           <abbreviation>IETF</abbreviation>
         </organization>
       </affilation>
+      <address>
+        <street>Street</street>
+        <city>City</city>
+        <state>Region</state>
+        <country>Country</country>
+        <postcode>123456</postcode>
+      </address>
+      <phone>223322</phone>
+      <email>test@test.net</email>
+      <uri>http://test.net</uri>
     </person>
   </contributor>
   <contributor>
@@ -26,11 +37,35 @@
       </name>
       <affilation>
         <organization>
-          <name></name>
+          <name>IETF</name>
           <abbreviation>IETF</abbreviation>
         </organization>
       </affilation>
+      <address>
+        <street>Street</street>
+        <city>City</city>
+        <state>Region</state>
+        <country>Country</country>
+        <postcode>123456</postcode>
+      </address>
+      <phone>223322</phone>
+      <email>test@test.net</email>
+      <uri>http://test.net</uri>
     </person>
   </contributor>
+  <contributor>
+    <role type="author"/>
+    <organization>
+      <name>ISO</name>
+    </organization>
+  </contributor>
   <language>en</language>
+  <series type="">
+    <title format="plain" language="en" script="Latn">STD</title>
+    <number>91</number>
+  </series>
+  <series type="">
+    <title format="plain" language="en" script="Latn">RFC</title>
+    <number>8341</number>
+  </series>
 </bibitem>
