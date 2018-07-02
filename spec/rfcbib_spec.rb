@@ -19,6 +19,6 @@ RSpec.describe Rfcbib do
     expect(item).to be_instance_of IsoBibItem::BibliographicItem
     file = 'spec/examples/bib_item.xml'
     File.write file, item.to_xml unless File.exist? file
-    expect(item.to_xml).to eq File.read file
+    expect(item.to_xml).to be_equivalent_to File.read file
   end
 end
