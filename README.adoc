@@ -41,7 +41,7 @@ RfcBib::RfcBibliography.search '1111'
 item.to_xml
 =>"<bibitem id='RFC8341'>
   <title format='plain' language='en' script='Latn'>Network Configuration Access Control Model</title>
-  <source type='src'>https://www.rfc-editor.org/info/rfc8341</source>
+  <link type='src'>https://www.rfc-editor.org/info/rfc8341</link>
   <date type='published'>
     <on>2018</on>
   </date>

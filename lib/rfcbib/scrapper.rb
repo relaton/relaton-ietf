@@ -36,7 +36,7 @@ module RfcBib
           docid: docids,
           status: status,
           language: [language],
-          source: [{ type: 'src', content: @reference[:target] }],
+          link: [{ type: 'src', content: @reference[:target] }],
           titles: titles,
           contributors: contributors,
           dates: dates,
