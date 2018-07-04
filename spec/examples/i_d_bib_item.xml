@@ -1,0 +1,26 @@
+<bibitem id="I-D.-burger-xcon-mmodels">
+  <title format="plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
+  <source type="src"/>
+  <date type="published">
+    <on>2004</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename language="en">Eric Burger</completename>
+      </name>
+      <affilation>
+        <organization>
+          <name>IETF</name>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affilation>
+    </person>
+  </contributor>
+  <language>en</language>
+  <series type="">
+    <title format="plain" language="en" script="Latn">Internet-Draft</title>
+    <number>draft--burger-xcon-mmodels-00</number>
+  </series>
+</bibitem>

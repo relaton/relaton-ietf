@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='I-D.-burger-xcon-mmodels'>
+<front>
+<title>Centralized Conferencing (XCON) Media Models</title>
+
+<author initials='E' surname='Burger' fullname='Eric Burger'>
+    <organization />
+</author>
+
+<date month='February' day='10' year='2004' />
+
+<abstract><t>This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</t></abstract>
+
+</front>
+
+<seriesInfo name='Internet-Draft' value='draft--burger-xcon-mmodels-00' />
+<format type='TXT'
+        target='http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt' />
+</reference>
