@@ -14,9 +14,9 @@ module RfcBib
       # @return [IsoBibItem::BibliographicItem]
       def scrape_page(text)
         ref = text.sub(' ', '.') + '.xml'
-        if text.match? /^RFC/
+        if text =~ /^RFC/
           uri = URI("https://www.rfc-editor.org/refs/bibxml/reference.#{ref}")
-        elsif text.match? /^I-D/
+        elsif text =~ /^I-D/
           uri = URI "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.#{ref}"
         end
         doc = Nokogiri::HTML Net::HTTP.get(uri)
