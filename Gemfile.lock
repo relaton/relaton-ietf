@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    rfcbib (0.1.1)
-      iso-bib-item (~> 0.2)
+    rfcbib (0.2.0)
+      iso-bib-item (~> 0.2.0)
 
 GEM
   remote: https://rubygems.org/
