@@ -13,7 +13,7 @@ module RfcBib
       # @param text [String]
       # @return [IsoBibItem::BibliographicItem]
       def scrape_page(text)
-        ref = text.sub(' ', '.') + '.xml'
+        ref = text.sub(/RFC /, "RFC").sub(' ', '.') + '.xml'
         if text =~ /^RFC/
           uri = URI("https://www.rfc-editor.org/refs/bibxml/reference.#{ref}")
         elsif text =~ /^I-D/
