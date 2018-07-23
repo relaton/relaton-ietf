@@ -33,7 +33,7 @@ module RfcBib
       def bib_item
         IsoBibItem::BibliographicItem.new(
           id: @reference[:anchor],
-          docid: docids,
+          docid: docids(@reference[:anchor].sub(/^(RFC)/, "\\1 ")),
           status: status,
           language: [language],
           link: [{ type: 'src', content: @reference[:target] }],
@@ -163,14 +163,15 @@ module RfcBib
       #
       # @return [Array<IsoBibItem::DocumentIdentifier>]
       #
-      def docids
-        @reference.xpath('//seriesinfo').map do |si|
+      def docids(id)
+        ret = @reference.xpath('//seriesinfo').map do |si|
           next unless si[:name] == 'DOI'
           IsoBibItem::DocumentIdentifier.new(
             id: si[:value],
             type: si[:name]
           )
         end.compact
+        ret << IsoBibItem::DocumentIdentifier.new(type: "IETF", id: id)
       end
 
       #
