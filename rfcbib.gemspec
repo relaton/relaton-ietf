@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'RfcBib: retrieve RFC Standards for bibliographic use '\
                        'using the BibliographicItem model'
   spec.homepage      = 'https://github.com/riboseinc/rfcbib'
-  spec.license       = 'MIT'
+  spec.license       = 'BSD-2-Clause'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
