@@ -187,7 +187,8 @@ module RfcBib
             title: IsoBibItem::FormattedString.new(
               content: si[:name], language: language, script: 'Latn'
             ),
-            number: si[:value]
+            number: si[:value],
+            type: "main"
           )
         end.compact
       end
