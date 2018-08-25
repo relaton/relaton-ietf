@@ -66,7 +66,7 @@ module RfcBib
         @reference.xpath('//front/author').map do |author|
           entity = IsoBibItem::Person.new(
             name: full_name(author),
-            affilation: [affilation(author)],
+            affiliation: [affiliation(author)],
             contacts: contacts(author.at('//address'))
           )
           { entity: entity, roles: [contributor_role(author)] }
@@ -132,7 +132,7 @@ module RfcBib
 
       # @param author [Nokogiri::XML::Document]
       # @return [IsoBibItem::Affilation]
-      def affilation(author)
+      def affiliation(author)
         organization = author.at('//organization')
         IsoBibItem::Affilation.new IsoBibItem::Organization.new(
           name: organization.text.empty? ? 'IETF' : organization.text,
@@ -164,14 +164,15 @@ module RfcBib
       # @return [Array<IsoBibItem::DocumentIdentifier>]
       #
       def docids(id)
-        ret = @reference.xpath('//seriesinfo').map do |si|
+        ret = []
+        ret << IsoBibItem::DocumentIdentifier.new(type: "IETF", id: id)
+        ret = ret + @reference.xpath('//seriesinfo').map do |si|
           next unless si[:name] == 'DOI'
           IsoBibItem::DocumentIdentifier.new(
             id: si[:value],
             type: si[:name]
           )
         end.compact
-        ret << IsoBibItem::DocumentIdentifier.new(type: "IETF", id: id)
       end
 
       #
