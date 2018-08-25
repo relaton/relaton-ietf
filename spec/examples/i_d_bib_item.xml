@@ -11,16 +11,16 @@
       <name>
         <completename language="en">Eric Burger</completename>
       </name>
-      <affilation>
+      <affiliation>
         <organization>
           <name>IETF</name>
           <abbreviation>IETF</abbreviation>
         </organization>
-      </affilation>
+      </affiliation>
     </person>
   </contributor>
   <language>en</language>
-  <series type="">
+  <series type="main">
     <title format="plain" language="en" script="Latn">Internet-Draft</title>
     <number>draft--burger-xcon-mmodels-00</number>
   </series>
