@@ -1,5 +1,9 @@
 = Rfcbib
 
+image:https://img.shields.io/gem/v/rfcbib.svg["Gem Version", link="https://rubygems.org/gems/rfcbib"]
+image:https://img.shields.io/travis/riboseinc/rfcbib/master.svg["Build Status", link="https://travis-ci.org/riboseinc/rfcbib"]
+image:https://codeclimate.com/github/riboseinc/rfcbib/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/riboseinc/rfcbib"]
+
 RFCBib is a Ruby gem that search and fetch RFC standards.
 The standards scrape form https://www.rfc-editor.org/search/rfc_search.php
 
