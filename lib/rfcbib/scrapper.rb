@@ -146,6 +146,11 @@ module RfcBib
         author[:role] || 'author'
       end
 
+      def month(mo)
+        return mo if /^\d+$/.match mo
+        Date::MONTHNAMES.index(mo)
+      end
+
       #
       # Extract date from reference.
       #
@@ -153,7 +158,8 @@ module RfcBib
       #
       def dates
         return unless (date = @reference.at '//front/date')
-        d = [date[:year], date[:month], date[:day]].compact.join '-'
+        d = [date[:year], month(date[:month]), 
+             (date[:day] || "01")].compact.join '-'
         date = Time.parse(d).strftime '%Y-%m-%d'
         [IsoBibItem::BibliographicDate.new(type: 'published', on: date)]
       end
