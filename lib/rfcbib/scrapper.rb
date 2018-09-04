@@ -18,6 +18,9 @@ module RfcBib
           uri = URI("https://www.rfc-editor.org/refs/bibxml/reference.#{ref}")
         elsif text =~ /^I-D/
           uri = URI("https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.#{ref}")
+        else
+          warn "#{ref}: not recognised for RFC"
+          return
         end
         doc = Nokogiri::HTML Net::HTTP.get(uri)
         @reference = doc.at('//reference')
