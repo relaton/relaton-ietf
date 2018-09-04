@@ -5,7 +5,8 @@ module Relaton
     class Processor < Relaton::Processor
       def initialize
         @short = :rfcbib
-        @prefix = /^(IETF (Standard )?)?(RFC |I-D\.-)/
+        @prefix = "IETF"
+        @defaultprefix = /^RFC /
       end
 
       def get(code, date, opts)

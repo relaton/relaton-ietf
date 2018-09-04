@@ -174,10 +174,7 @@ module RfcBib
         ret << IsoBibItem::DocumentIdentifier.new(type: "IETF", id: id)
         ret = ret + @reference.xpath('//seriesinfo').map do |si|
           next unless si[:name] == 'DOI'
-          IsoBibItem::DocumentIdentifier.new(
-            id: si[:value],
-            type: si[:name]
-          )
+          IsoBibItem::DocumentIdentifier.new(id: si[:value], type: si[:name])
         end.compact
       end
 
