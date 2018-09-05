@@ -9,20 +9,31 @@ module RfcBib
 
   # Scrapper module
   module Scrapper
+
+    RFC_URI_PATTERN = "https://www.rfc-editor.org/refs/bibxml/reference.CODE"
+    ID_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.CODE"
+
     class << self
       # @param text [String]
       # @return [IsoBibItem::BibliographicItem]
       def scrape_page(text)
-        ref = text.sub(' ', '.') + '.xml'
-        if text =~ /^RFC/
-          uri = URI("https://www.rfc-editor.org/refs/bibxml/reference.#{ref}")
-        elsif text =~ /^I-D/
-          uri = URI("https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.#{ref}")
+
+        # Remove initial "IETF " string if specified
+        ref = text.
+          gsub(/^IETF /, "").
+          sub(' ', '.') + '.xml'
+
+        uri = case ref
+        when /^RFC/
+          RFC_URI_PATTERN.dup
+        when /^I-D/
+          ID_URI_PATTERN.dup
         else
           warn "#{ref}: not recognised for RFC"
           return
         end
-        doc = Nokogiri::HTML Net::HTTP.get(uri)
+
+        doc = Nokogiri::HTML Net::HTTP.get(uri.gsub("CODE", ref))
         @reference = doc.at('//reference')
         return unless @reference
         bib_item
@@ -161,7 +172,7 @@ module RfcBib
       #
       def dates
         return unless (date = @reference.at '//front/date')
-        d = [date[:year], month(date[:month]), 
+        d = [date[:year], month(date[:month]),
              (date[:day] || "01")].compact.join '-'
         date = Time.parse(d).strftime '%Y-%m-%d'
         [IsoBibItem::BibliographicDate.new(type: 'published', on: date)]
