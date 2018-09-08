@@ -25,6 +25,17 @@ RSpec.describe Rfcbib do
     expect(item.to_xml).to be_equivalent_to File.read file
   end
 
+  it 'deals with extraneous prefix' do
+    item = RfcBib::RfcBibliography.search 'W3C 8341'
+    expect(item).to be nil
+  end
+
+  it 'deals with non-existent document' do
+    item = RfcBib::RfcBibliography.search 'RFC 08341'
+    expect(item).to be nil
+  end
+
+
   private
 
   def stub_net_http(file_name)
