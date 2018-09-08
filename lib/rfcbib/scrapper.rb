@@ -33,7 +33,12 @@ module RfcBib
           return
         end
 
-        doc = Nokogiri::HTML Net::HTTP.get(uri.gsub("CODE", ref))
+        uri = uri.gsub("CODE", ref)
+        doc = Nokogiri::HTML Net::HTTP.get(URI(uri))
+        unless doc
+          warn "No document found at #{uri}"
+          return
+        end
         @reference = doc.at('//reference')
         return unless @reference
         bib_item
