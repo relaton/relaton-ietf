@@ -2,21 +2,24 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rfcbib/version'
+require 'ietfbib/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'rfcbib'
-  spec.version       = Rfcbib::VERSION
+  spec.name          = 'ietfbib'
+  spec.version       = IETFBib::VERSION
   spec.authors       = ['Ribose Inc.']
   spec.email         = ['open.source@ribose.com']
 
-  spec.summary       = 'RfcBib: retrieve RFC Standards for bibliographic use '\
+  spec.summary       = 'ietfbib: retrieve IETF Standards for bibliographic use '\
                        'using the BibliographicItem model'
-  spec.description   = 'RfcBib: retrieve RFC Standards for bibliographic use '\
-                       'using the BibliographicItem model'
-  spec.homepage      = 'https://github.com/riboseinc/rfcbib'
+  spec.description   = <<~DESCRIPTION
+                        ietfbib: retrieve IETF Standards for bibliographic use 
+                        using the BibliographicItem model.
+
+                        Formerly known as rfcbib.
+                       DESCRIPTION
+  spec.homepage      = 'https://github.com/riboseinc/ietfbib'
   spec.license       = 'BSD-2-Clause'
-  spec.post_install_message = "The rfcbib gem has been deprecated and has been replaced by ietfbib"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})

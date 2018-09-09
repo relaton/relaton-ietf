@@ -6,7 +6,7 @@ SimpleCov.start do
 end
 
 require 'bundler/setup'
-require 'rfcbib'
+require 'ietfbib'
 require "rspec/matchers"
 require "equivalent-xml"
 

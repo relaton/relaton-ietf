@@ -1,7 +1,7 @@
 require 'relaton/processor'
 
 module Relaton
-  module RfcBib
+  module IETFBib
     class Processor < Relaton::Processor
       def initialize
         @short = :rfcbib
@@ -10,7 +10,7 @@ module Relaton
       end
 
       def get(code, date, opts)
-        ::RfcBib::RfcBibliography.get(code, date, opts)
+        ::IETFBib::RfcBibliography.get(code, date, opts)
       end
     end
   end

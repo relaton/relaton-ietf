@@ -4,7 +4,7 @@ require 'net/http'
 require 'nokogiri'
 require 'iso_bib_item'
 
-module RfcBib
+module IETFBib
   # rubocop:disable Metrics/ModuleLength
 
   # Scrapper module

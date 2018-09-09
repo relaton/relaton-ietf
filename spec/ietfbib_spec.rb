@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require 'rfcbib'
+require 'ietfbib'
 
-RSpec.describe Rfcbib do
+RSpec.describe IETFBib do
   it 'has a version number' do
-    expect(Rfcbib::VERSION).not_to be nil
+    expect(IETFBib::VERSION).not_to be nil
   end
 
   it 'get RFC document' do
     stub_net_http 'rfc_8341'
-    item = RfcBib::RfcBibliography.search 'RFC 8341'
+    item = IETFBib::RfcBibliography.search 'RFC 8341'
     expect(item).to be_instance_of IsoBibItem::BibliographicItem
     file = 'spec/examples/bib_item.xml'
     File.write file, item.to_xml unless File.exist? file
@@ -18,7 +18,7 @@ RSpec.describe Rfcbib do
 
   it 'get internet draft document' do
     stub_net_http 'i_d_burger_xcon_mmodels'
-    item = RfcBib::RfcBibliography.search 'I-D.-burger-xcon-mmodels'
+    item = IETFBib::RfcBibliography.search 'I-D.-burger-xcon-mmodels'
     expect(item).to be_instance_of IsoBibItem::BibliographicItem
     file = 'spec/examples/i_d_bib_item.xml'
     File.write file, item.to_xml unless File.exist? file
@@ -26,12 +26,12 @@ RSpec.describe Rfcbib do
   end
 
   it 'deals with extraneous prefix' do
-    item = RfcBib::RfcBibliography.search 'W3C 8341'
+    item = IETFBib::RfcBibliography.search 'W3C 8341'
     expect(item).to be nil
   end
 
   it 'deals with non-existent document' do
-    item = RfcBib::RfcBibliography.search 'RFC 08341'
+    item = IETFBib::RfcBibliography.search 'RFC 08341'
     expect(item).to be nil
   end
 

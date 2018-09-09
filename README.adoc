@@ -1,10 +1,13 @@
-= Rfcbib
+= Ietfbib
 
 image:https://img.shields.io/gem/v/rfcbib.svg["Gem Version", link="https://rubygems.org/gems/rfcbib"]
 image:https://img.shields.io/travis/riboseinc/rfcbib/master.svg["Build Status", link="https://travis-ci.org/riboseinc/rfcbib"]
 image:https://codeclimate.com/github/riboseinc/rfcbib/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/riboseinc/rfcbib"]
 
-RFCBib is a Ruby gem that search and fetch RFC standards.
+_Formerly known as_ `ietfbib`.
+
+ietfbib is a Ruby gem that search and fetch standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
+
 The standards scrape form https://www.rfc-editor.org/search/rfc_search.php
 
 == Installation
@@ -13,7 +16,7 @@ Add this line to your application's Gemfile:
 
 [source, ruby]
 ----
-gem 'rfcbib'
+gem 'ietfbib'
 ----
 
 And then execute:
@@ -22,7 +25,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rfcbib
+    $ gem install ietfbib
 
 == Usage
 
@@ -30,11 +33,11 @@ Or install it yourself as:
 
 [source,ruby]
 ----
-item = RfcBib::RfcBibliography.search 'RFC 8341'
+item = IETFBib::RfcBibliography.search 'RFC 8341'
 => #<IsoBibItem::BibliographicItem:0x007fdb0803a0f8>
 
 # Return nil if document doesn't exist.
-RfcBib::RfcBibliography.search '1111'
+IETFBib::RfcBibliography.search '1111'
 => nil
 ----
 
@@ -83,7 +86,7 @@ item.to_xml
 
 == Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rfcbib.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ietfbib.
 
 == License
 
