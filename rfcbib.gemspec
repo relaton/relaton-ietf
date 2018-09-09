@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
                        'using the BibliographicItem model'
   spec.homepage      = 'https://github.com/riboseinc/rfcbib'
   spec.license       = 'BSD-2-Clause'
+  spec.post_install_message = "The rfcbib gem has been deprecated and has been replaced by ietfbib"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rfcbib (0.3.0)
+    rfcbib (0.3.1)
       iso-bib-item (~> 0.3.0)
 
 GEM
