@@ -1,10 +1,10 @@
-= Ietfbib
+= ietfbib
 
 image:https://img.shields.io/gem/v/rfcbib.svg["Gem Version", link="https://rubygems.org/gems/rfcbib"]
 image:https://img.shields.io/travis/riboseinc/rfcbib/master.svg["Build Status", link="https://travis-ci.org/riboseinc/rfcbib"]
 image:https://codeclimate.com/github/riboseinc/rfcbib/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/riboseinc/rfcbib"]
 
-_Formerly known as_ `ietfbib`.
+_Formerly known as_ `rfcbib`.
 
 ietfbib is a Ruby gem that search and fetch standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
 
