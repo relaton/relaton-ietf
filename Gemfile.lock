@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ietfbib (0.4.0)
+    ietfbib (0.4.1)
       iso-bib-item (~> 0.3.0)
 
 GEM

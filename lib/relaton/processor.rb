@@ -7,6 +7,7 @@ module Relaton
         @short = :rfcbib
         @prefix = "IETF"
         @defaultprefix = /^RFC /
+        @idtype = "IETF"
       end
 
       def get(code, date, opts)
