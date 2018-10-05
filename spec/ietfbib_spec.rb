@@ -35,6 +35,12 @@ RSpec.describe IETFBib do
     expect(item).to be nil
   end
 
+  it 'create IsoBibItem::BibliographicItem from xml' do
+    xml = File.read 'spec/examples/bib_item.xml'
+    item = IETFBib::XMLParser.from_xml xml
+    expect(item).to be_instance_of IsoBibItem::BibliographicItem
+    expect(item.to_xml).to be_equivalent_to xml
+  end
 
   private
 

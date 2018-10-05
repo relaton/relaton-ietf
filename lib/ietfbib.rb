@@ -2,6 +2,7 @@
 
 require 'ietfbib/version'
 require 'ietfbib/rfc_bibliography'
+require 'ietfbib/xml_parser'
 
 if defined? Relaton
   require_relative 'relaton/processor'

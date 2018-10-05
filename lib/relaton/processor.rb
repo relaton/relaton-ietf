@@ -1,4 +1,5 @@
 require 'relaton/processor'
+require 'ietfbib/xml_parser'
 
 module Relaton
   module IETFBib
@@ -12,6 +13,10 @@ module Relaton
 
       def get(code, date, opts)
         ::IETFBib::RfcBibliography.get(code, date, opts)
+      end
+
+      def from_xml(xml)
+        ::IETFBib::XMLParser.from_xml xml
       end
     end
   end
