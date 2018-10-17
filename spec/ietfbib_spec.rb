@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'ietfbib'
+require 'date'
 
 RSpec.describe IETFBib do
   it 'has a version number' do
@@ -13,7 +14,7 @@ RSpec.describe IETFBib do
     expect(item).to be_instance_of IsoBibItem::BibliographicItem
     file = 'spec/examples/bib_item.xml'
     File.write file, item.to_xml unless File.exist? file
-    expect(item.to_xml).to be_equivalent_to File.read file
+    expect(item.to_xml).to be_equivalent_to File.read(file).sub(/2018-10-04/, Date.today.to_s)
   end
 
   it 'get internet draft document' do
@@ -22,7 +23,7 @@ RSpec.describe IETFBib do
     expect(item).to be_instance_of IsoBibItem::BibliographicItem
     file = 'spec/examples/i_d_bib_item.xml'
     File.write file, item.to_xml unless File.exist? file
-    expect(item.to_xml).to be_equivalent_to File.read file
+    expect(item.to_xml).to be_equivalent_to File.read(file).sub(/2018-10-04/, Date.today.to_s)
   end
 
   it 'deals with extraneous prefix' do
@@ -39,7 +40,7 @@ RSpec.describe IETFBib do
     xml = File.read 'spec/examples/bib_item.xml'
     item = IETFBib::XMLParser.from_xml xml
     expect(item).to be_instance_of IsoBibItem::BibliographicItem
-    expect(item.to_xml).to be_equivalent_to xml
+    expect(item.to_xml).to be_equivalent_to xml.sub(/2018-10-04/, Date.today.to_s)
   end
 
   private
@@ -49,7 +50,7 @@ RSpec.describe IETFBib do
       expect(args[0]).to be_instance_of URI::HTTPS
       file = "spec/examples/#{file_name}.xml"
       File.write file, m.call(*args) unless File.exist? file
-      File.read file
+      File.read(file)
     end
   end
 end
