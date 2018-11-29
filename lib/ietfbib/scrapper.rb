@@ -34,15 +34,20 @@ module IETFBib
         end
 
         uri = uri.gsub("CODE", ref)
-        res = Net::HTTP.get_response(URI(uri))
-        if res.code != "200"
+        begin
+          res = Net::HTTP.get_response(URI(uri))
+          if res.code != "200"
+            warn "No document found at #{uri}"
+            return
+          end
+          doc = Nokogiri::HTML Net::HTTP.get(URI(uri))
+          @reference = doc.at('//reference')
+          return unless @reference
+          bib_item
+        rescue
           warn "No document found at #{uri}"
           return
         end
-        doc = Nokogiri::HTML Net::HTTP.get(URI(uri))
-        @reference = doc.at('//reference')
-        return unless @reference
-        bib_item
       end
 
       private
