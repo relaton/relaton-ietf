@@ -10,7 +10,7 @@ module IETFBib
   # Scrapper module
   module Scrapper
 
-    RFC_URI_PATTERN = "https://www.rfc-editor.org/refs/bibxml/reference.CODE"
+    RFC_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.CODE"
     ID_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.CODE"
 
     class << self
