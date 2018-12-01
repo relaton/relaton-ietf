@@ -46,7 +46,6 @@ module IETFBib
           bib_item
         rescue
           warn "No document found at #{uri}"
-          return
         end
       end
 
