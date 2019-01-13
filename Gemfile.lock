@@ -54,7 +54,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.16)
+  bundler (~> 2.0.1)
   equivalent-xml (~> 0.6)
   ietfbib!
   pry-byebug
@@ -63,4 +63,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   1.17.1
+   2.0.1
