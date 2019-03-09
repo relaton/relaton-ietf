@@ -1,8 +1,8 @@
 = ietfbib
 
 image:https://img.shields.io/gem/v/rfcbib.svg["Gem Version", link="https://rubygems.org/gems/rfcbib"]
-image:https://img.shields.io/travis/riboseinc/rfcbib/master.svg["Build Status", link="https://travis-ci.org/riboseinc/rfcbib"]
-image:https://codeclimate.com/github/riboseinc/rfcbib/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/riboseinc/rfcbib"]
+image:https://img.shields.io/travis/metanorma/ietfbib/master.svg["Build Status", link="https://travis-ci.org/metanorma/ietfbib"]
+image:https://codeclimate.com/github/metanorma/ietfbib/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/metanorma/ietfbib"]
 
 _Formerly known as_ `rfcbib`.
 
