@@ -60,6 +60,7 @@ module IETFBib
           docid: docids(@reference[:anchor].sub(/^(RFC)/, "\\1 ")),
           status: status,
           language: [language],
+          script: ["Latn"],
           link: [{ type: 'src', content: @reference[:target] }],
           titles: titles,
           contributors: contributors,

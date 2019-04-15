@@ -1,10 +1,10 @@
 <bibitem id="I-D.-burger-xcon-mmodels">
-  <fetched>2018-10-04</fetched>
+  <fetched>2019-04-15</fetched>
   <title format="plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="src"/>
   <docidentifier type="IETF">I-D.-burger-xcon-mmodels</docidentifier>
   <date type="published">
-    <on>2004</on>
+    <on>2004-02</on>
   </date>
   <contributor>
     <role type="author"/>
@@ -21,6 +21,7 @@
     </person>
   </contributor>
   <language>en</language>
+  <script>Latn</script>
   <series type="main">
     <title format="plain" language="en" script="Latn">Internet-Draft</title>
     <number>draft--burger-xcon-mmodels-00</number>
