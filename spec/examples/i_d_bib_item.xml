@@ -1,6 +1,6 @@
 <bibitem id="I-D.-burger-xcon-mmodels">
-  <fetched>2019-04-15</fetched>
-  <title format="plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
+  <fetched>2019-06-04</fetched>
+  <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="src"/>
   <docidentifier type="IETF">I-D.-burger-xcon-mmodels</docidentifier>
   <date type="published">
@@ -23,7 +23,7 @@
   <language>en</language>
   <script>Latn</script>
   <series type="main">
-    <title format="plain" language="en" script="Latn">Internet-Draft</title>
+    <title format="text/plain" language="en" script="Latn">Internet-Draft</title>
     <number>draft--burger-xcon-mmodels-00</number>
   </series>
 </bibitem>

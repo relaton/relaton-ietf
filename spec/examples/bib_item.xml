@@ -1,6 +1,6 @@
-<bibitem id="RFC8341">
-  <fetched>2019-04-15</fetched>
-  <title format="plain" language="en" script="Latn">Network Configuration Access Control Model</title>
+<bibdata>
+  <fetched>2019-06-05</fetched>
+  <title format="text/plain" language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF">RFC 8341</docidentifier>
   <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
@@ -38,11 +38,14 @@
   <language>en</language>
   <script>Latn</script>
   <series type="main">
-    <title format="plain" language="en" script="Latn">STD</title>
+    <title format="text/plain" language="en" script="Latn">STD</title>
     <number>91</number>
   </series>
   <series type="main">
-    <title format="plain" language="en" script="Latn">RFC</title>
+    <title format="text/plain" language="en" script="Latn">RFC</title>
     <number>8341</number>
   </series>
-</bibitem>
+  <ext>
+    <doctype>rfc</doctype>
+  </ext>
+</bibdata>

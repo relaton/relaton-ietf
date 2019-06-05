@@ -1,13 +1,13 @@
-= ietfbib
+= RelatonIetf
 
-image:https://img.shields.io/gem/v/rfcbib.svg["Gem Version", link="https://rubygems.org/gems/rfcbib"]
-image:https://img.shields.io/travis/metanorma/ietfbib/master.svg["Build Status", link="https://travis-ci.org/metanorma/ietfbib"]
-image:https://ci.appveyor.com/api/projects/status/eirsba4v3nviejs4?svg=true["Appveyor Build Status", link="https://ci.appveyor.com/project/ribose/ietfbib"]
-image:https://codeclimate.com/github/metanorma/ietfbib/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/metanorma/ietfbib"]
+image:https://img.shields.io/gem/v/relaton-ietf.svg["Gem Version", link="https://rubygems.org/gems/relaton-ietf"]
+image:https://img.shields.io/travis/metanorma/relaton-ietf/master.svg["Build Status", link="https://travis-ci.org/metanorma/relaton-ietf"]
+image:https://ci.appveyor.com/api/projects/status/eirsba4v3nviejs4?svg=true["Appveyor Build Status", link="https://ci.appveyor.com/project/ribose/relaton-ietf"]
+image:https://codeclimate.com/github/metanorma/relaton-ietf/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/metanorma/relaton-ietf"]
 
 _Formerly known as_ `rfcbib`.
 
-ietfbib is a Ruby gem that search and fetch standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
+RelatonIetf is a Ruby gem that search and fetch standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
 
 The standards scrape form https://www.rfc-editor.org/search/rfc_search.php
 
@@ -17,7 +17,7 @@ Add this line to your application's Gemfile:
 
 [source, ruby]
 ----
-gem 'ietfbib'
+gem 'relaton-ietf'
 ----
 
 And then execute:
@@ -26,7 +26,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ietfbib
+    $ gem install relaton-ietf
 
 == Usage
 
@@ -34,11 +34,15 @@ Or install it yourself as:
 
 [source,ruby]
 ----
-item = IETFBib::RfcBibliography.search 'RFC 8341'
-=> #<IsoBibItem::BibliographicItem:0x007fdb0803a0f8>
+require 'relaton_ietf'
+
+item = RelatonIetf::IetfBibliography.search 'RFC 8341'
+=> #<RelatonIetf::IetfBibliographicItem:0x007fd1875e7f58
+...
 
 # Return nil if document doesn't exist.
-IETFBib::RfcBibliography.search '1111'
+RelatonIetf::IetfBibliography.search '1111'
+1111.xml: not recognised for RFC
 => nil
 ----
 
@@ -47,47 +51,73 @@ IETFBib::RfcBibliography.search '1111'
 [source,ruby]
 ----
 item.to_xml
-=>"<bibitem id='RFC8341'>
-  <title format='plain' language='en' script='Latn'>Network Configuration Access Control Model</title>
-  <link type='src'>https://www.rfc-editor.org/info/rfc8341</link>
-  <date type='published'>
-    <on>2018</on>
+=>"<bibitem id="RFC8341">
+  <fetched>2019-06-05</fetched>
+  <title format="text/plain" language="en" script="Latn">Network Configuration Access Control Model</title>
+  <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
+  <docidentifier type="IETF">RFC 8341</docidentifier>
+  <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
+  <date type="published">
+    <on>2018-03</on>
   </date>
   <contributor>
-    <role type='author'/>
+    <role type="author"/>
     <person>
       <name>
-        <completename language='en'>A. Bierman</completename>
+        <completename language="en">A. Bierman</completename>
       </name>
-      <affilation>
+      <affiliation>
         <organization>
-          <name/>
+          <name>IETF</name>
           <abbreviation>IETF</abbreviation>
         </organization>
-      </affilation>
+      </affiliation>
     </person>
   </contributor>
   <contributor>
-    <role type='author'/>
+    <role type="author"/>
     <person>
       <name>
-        <completename language='en'>M. Bjorklund</completename>
+        <completename language="en">M. Bjorklund</completename>
       </name>
-      <affilation>
+      <affiliation>
         <organization>
-          <name/>
+          <name>IETF</name>
           <abbreviation>IETF</abbreviation>
         </organization>
-      </affilation>
+      </affiliation>
     </person>
   </contributor>
   <language>en</language>
+  <script>Latn</script>
+  <series type="main">
+    <title format="text/plain" language="en" script="Latn">STD</title>
+    <number>91</number>
+  </series>
+  <series type="main">
+    <title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>8341</number>
+  </series>
 </bibitem>"
+----
+With `bibdata: true` option XML output wrapped with `bibdata` element and `ext` element added.
+[source,ruby]
+----
+item.to_xml bibdata: true
+=>"<bibdata>
+  <fetched>2019-06-05</fetched>
+  <title format="text/plain" language="en" script="Latn">Network Configuration Access Control Model</title>
+  <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
+  ...
+  <ext>
+    <doctype>rfc</doctype>
+  </ext>
+</bibdata>"
 ----
 
 == Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ietfbib.
+Bug reports and pull requests are welcome on GitHub at https://github.com/metanorma/relaton-ietf.
 
 == License
 

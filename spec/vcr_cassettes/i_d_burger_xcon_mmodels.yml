@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.I-D.-burger-xcon-mmodels.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - xml2rfc.tools.ietf.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 04 Jun 2019 15:44:22 GMT
+      Server:
+      - Apache/2.2.22 (Debian)
+      Last-Modified:
+      - Tue, 10 Feb 2004 08:00:00 GMT
+      Etag:
+      - '"39c37cc-306-3d2fae7a2e000"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '774'
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version='1.0' encoding='UTF-8'?>
+
+        <reference anchor='I-D.-burger-xcon-mmodels'>
+        <front>
+        <title>Centralized Conferencing (XCON) Media Models</title>
+
+        <author initials='E' surname='Burger' fullname='Eric Burger'>
+            <organization />
+        </author>
+
+        <date month='February' day='10' year='2004' />
+
+        <abstract><t>This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</t></abstract>
+
+        </front>
+
+        <seriesInfo name='Internet-Draft' value='draft--burger-xcon-mmodels-00' />
+        <format type='TXT'
+                target='http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt' />
+        </reference>
+    http_version: 
+  recorded_at: Tue, 04 Jun 2019 15:44:22 GMT
+- request:
+    method: get
+    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.I-D.-burger-xcon-mmodels.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - xml2rfc.tools.ietf.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 04 Jun 2019 15:44:23 GMT
+      Server:
+      - Apache/2.2.22 (Debian)
+      Last-Modified:
+      - Tue, 10 Feb 2004 08:00:00 GMT
+      Etag:
+      - '"39c37cc-306-3d2fae7a2e000"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '774'
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version='1.0' encoding='UTF-8'?>
+
+        <reference anchor='I-D.-burger-xcon-mmodels'>
+        <front>
+        <title>Centralized Conferencing (XCON) Media Models</title>
+
+        <author initials='E' surname='Burger' fullname='Eric Burger'>
+            <organization />
+        </author>
+
+        <date month='February' day='10' year='2004' />
+
+        <abstract><t>This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</t></abstract>
+
+        </front>
+
+        <seriesInfo name='Internet-Draft' value='draft--burger-xcon-mmodels-00' />
+        <format type='TXT'
+                target='http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt' />
+        </reference>
+    http_version: 
+  recorded_at: Tue, 04 Jun 2019 15:44:23 GMT
+recorded_with: VCR 5.0.0
