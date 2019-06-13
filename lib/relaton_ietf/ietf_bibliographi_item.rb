@@ -3,8 +3,14 @@ module RelatonIetf
     # @return [String, NilClass]
     attr_reader :doctype
 
+    # @return [Array<String>]
+    attr_reader :keywords
+
+    # @param doctype [String]
+    # @param keywords [Array<String>]
     def initialize(**args)
       @doctype = args.delete :doctype
+      @keywords = args.delete(:keywords) || []
       super
     end
 
@@ -17,6 +23,7 @@ module RelatonIetf
         if opts[:bibdata]
           b.ext do
             b.doctype doctype if doctype
+            keywords.each { |k| b.keyword k }
           end
         end
       end

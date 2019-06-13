@@ -1,0 +1,40 @@
+<bibdata>
+  <fetched>2019-06-12</fetched>
+  <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
+  <uri type="src"/>
+  <docidentifier type="IETF">draft-ietf-acvp-subsha-1.0</docidentifier>
+  <date type="published">
+    <on>2018-11</on>
+  </date>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename language="en">Christopher Celi</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>National Institute of Standards and Technology</name>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affiliation>
+      <address>
+        <street>100 Bureau Drive</street>
+        <city>Gaithersburg</city>
+        <state>MD</state>
+        <country>USA</country>
+        <postcode>20899</postcode>
+      </address>
+      <email>christopher.celi@nist.gov</email>
+    </person>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
+				specification.</abstract>
+  <ext>
+    <doctype>rfc</doctype>
+    <keyword>acvp</keyword>
+    <keyword>crypto</keyword>
+  </ext>
+</bibdata>

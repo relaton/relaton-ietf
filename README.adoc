@@ -115,6 +115,19 @@ item.to_xml bibdata: true
 </bibdata>"
 ----
 
+=== Parse a file locally
+
+[source,ruby]
+----
+item = Relaton::Provider::Ietf.from_rfcxml File.read("rfc.xml")
+=> #<RelatonIetf::IetfBibliographicItem:0x007fa8cda79ab8
+...
+
+item.to_xml bibdata: true
+=>"<bibdata>
+...
+----
+
 == Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/metanorma/relaton-ietf.

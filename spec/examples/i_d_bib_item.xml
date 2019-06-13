@@ -1,5 +1,5 @@
 <bibitem id="I-D.-burger-xcon-mmodels">
-  <fetched>2019-06-04</fetched>
+  <fetched>2019-06-13</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="src"/>
   <docidentifier type="IETF">I-D.-burger-xcon-mmodels</docidentifier>
@@ -22,6 +22,7 @@
   </contributor>
   <language>en</language>
   <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</abstract>
   <series type="main">
     <title format="text/plain" language="en" script="Latn">Internet-Draft</title>
     <number>draft--burger-xcon-mmodels-00</number>

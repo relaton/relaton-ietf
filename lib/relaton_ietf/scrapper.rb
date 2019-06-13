@@ -51,8 +51,6 @@ module RelatonIetf
         end
       end
 
-      private
-
       # rubocop:disable Metrics/MethodLength
 
       # @return [RelatonIetf::IetfBibliographicItem]
@@ -66,13 +64,17 @@ module RelatonIetf
           script: ["Latn"],
           link: [{ type: "src", content: reference[:target] }],
           titles: titles(reference),
+          abstract: abstracts(reference),
           contributors: contributors(reference),
           dates: dates(reference),
           series: series(reference),
           doctype: doctype,
+          keywords: reference.xpath("front/keyword").map(&:text),
         )
       end
       # rubocop:enable Metrics/MethodLength
+
+      private
 
       # @return [String]
       def language(reference)
@@ -83,6 +85,15 @@ module RelatonIetf
       def titles(reference)
         title = reference.at("./front/title")
         [{ content: title.text, language: language(reference), script: "Latn" }]
+      end
+
+      def abstracts(ref)
+        ref.xpath("./front/abstract").map do |a|
+          RelatonBib::FormattedString.new(
+            content: a.text.gsub(/\\n\\t{2,4}/, " ").strip,
+            language: language(ref), script: "Latn"
+          )
+        end
       end
 
       # @return [Array<Hash>]
@@ -205,7 +216,7 @@ module RelatonIetf
       # @return [Array<RelatonBib::DocumentIdentifier>]
       #
       def docids(reference)
-        id = reference[:anchor].sub(/^(RFC)/, "\\1 ")
+        id = (reference[:anchor] || reference[:docName]).sub(/^(RFC)/, "\\1 ")
         ret = []
         ret << RelatonBib::DocumentIdentifier.new(type: "IETF", id: id)
         ret + reference.xpath("./seriesinfo").map do |si|

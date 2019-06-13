@@ -9,3 +9,5 @@ if defined? Relaton
   require_relative "relaton/processor"
   Relaton::Registry.instance.register(Relaton::RelatonIetf::Processor)
 end
+
+require "relaton/provider_ietf"
