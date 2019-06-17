@@ -3,6 +3,7 @@
 require "net/http"
 require "nokogiri"
 require "relaton_bib"
+require "relaton_ietf/ietf_bibliographic_item"
 
 module RelatonIetf
   # rubocop:disable Metrics/ModuleLength

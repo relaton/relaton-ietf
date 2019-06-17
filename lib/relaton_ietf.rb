@@ -2,7 +2,7 @@
 
 require "relaton_ietf/version"
 require "relaton_ietf/ietf_bibliography"
-require "relaton_ietf/ietf_bibliographi_item"
+require "relaton_ietf/ietf_bibliographic_item"
 require "relaton_ietf/xml_parser"
 
 if defined? Relaton
