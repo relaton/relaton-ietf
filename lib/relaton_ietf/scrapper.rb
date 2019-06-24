@@ -47,7 +47,8 @@ module RelatonIetf
 
           bib_item reference, doctype
         rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-               Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError, Net::ProtocolError
+               Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
+               Net::ProtocolError, SocketError
           warn "No document found at #{uri}"
         end
       end

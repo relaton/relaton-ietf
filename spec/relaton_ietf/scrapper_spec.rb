@@ -1,9 +1,18 @@
 RSpec.describe RelatonIetf::Scrapper do
-  it "raise network error" do
-    expect(Net::HTTP).to receive(:get_response).and_raise Timeout::Error
-    expect do
-      RelatonIetf::Scrapper.scrape_page "RFC.001"
-    end.to output(/No document found at/).to_stderr
+  context "raise network error" do
+    it "Timeout::Error" do
+      expect(Net::HTTP).to receive(:get_response).and_raise Timeout::Error
+      expect do
+        RelatonIetf::Scrapper.scrape_page "RFC.001"
+      end.to output(/No document found at/).to_stderr
+    end
+
+    it "SocketError" do
+      expect(Net::HTTP).to receive(:get_response).and_raise SocketError
+      expect do
+        RelatonIetf::Scrapper.scrape_page "RFC.001"
+      end.to output(/No document found at/).to_stderr
+    end
   end
 
   it "returns organization" do
