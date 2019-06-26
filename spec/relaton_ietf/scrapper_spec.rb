@@ -4,14 +4,14 @@ RSpec.describe RelatonIetf::Scrapper do
       expect(Net::HTTP).to receive(:get_response).and_raise Timeout::Error
       expect do
         RelatonIetf::Scrapper.scrape_page "RFC.001"
-      end.to output(/No document found at/).to_stderr
+      end.to raise_error RelatonBib::RequestError
     end
 
     it "SocketError" do
       expect(Net::HTTP).to receive(:get_response).and_raise SocketError
       expect do
         RelatonIetf::Scrapper.scrape_page "RFC.001"
-      end.to output(/No document found at/).to_stderr
+      end.to raise_error RelatonBib::RequestError
     end
   end
 

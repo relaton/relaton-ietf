@@ -30,27 +30,24 @@ module RelatonIetf
           uri = ID_URI_PATTERN.dup
           doctype = "internet-draft"
         else
-          warn "#{ref}: not recognised for RFC"
-          return
+          raise RelatonBib::RequestError, "#{ref}: not recognised for RFC"
         end
 
         uri = uri.gsub("CODE", ref)
-        begin
-          res = Net::HTTP.get_response(URI(uri))
-          if res.code != "200"
-            warn "No document found at #{uri}"
-            return
-          end
-          doc = Nokogiri::HTML Net::HTTP.get(URI(uri))
-          reference = doc.at("//reference")
-          return unless reference
-
-          bib_item reference, doctype
-        rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
-               Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
-               Net::ProtocolError, SocketError
-          warn "No document found at #{uri}"
+        res = Net::HTTP.get_response(URI(uri))
+        if res.code != "200"
+          raise RelatonBib::RequestError, "No document found at #{uri}"
         end
+
+        doc = Nokogiri::HTML Net::HTTP.get(URI(uri))
+        reference = doc.at("//reference")
+        return unless reference
+
+        bib_item reference, doctype
+      rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
+             Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
+             Net::ProtocolError, SocketError
+        raise RelatonBib::RequestError, "No document found at #{uri}"
       end
 
       # rubocop:disable Metrics/MethodLength

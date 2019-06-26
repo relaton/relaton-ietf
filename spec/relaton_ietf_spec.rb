@@ -34,14 +34,16 @@ RSpec.describe RelatonIetf do
   end
 
   it "deals with extraneous prefix" do
-    item = RelatonIetf::IetfBibliography.get "W3C 8341"
-    expect(item).to be nil
+    expect do
+      RelatonIetf::IetfBibliography.get "W3C 8341"
+    end.to raise_error RelatonBib::RequestError
   end
 
   it "deals with non-existent document" do
     VCR.use_cassette "non_existed_doc" do
-      item = RelatonIetf::IetfBibliography.search "RFC 08341"
-      expect(item).to be nil
+      expect do
+        RelatonIetf::IetfBibliography.search "RFC 08341"
+      end.to raise_error RelatonBib::RequestError
     end
   end
 
