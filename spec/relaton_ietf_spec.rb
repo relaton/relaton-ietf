@@ -33,6 +33,19 @@ RSpec.describe RelatonIetf do
     end
   end
 
+  it "get best current practise" do
+    VCR.use_cassette "bcp_47" do
+      item = RelatonIetf::IetfBibliography.get "BCP 47"
+      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      file = "spec/examples/bcp_47.xml"
+      xml = item.to_xml bibdata: true
+      File.write file, xml unless File.exist? file
+      expect(xml).to be_equivalent_to File.read(file).sub(
+        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
+      )
+    end
+  end
+
   it "deals with extraneous prefix" do
     expect do
       RelatonIetf::IetfBibliography.get "W3C 8341"
@@ -47,10 +60,19 @@ RSpec.describe RelatonIetf do
     end
   end
 
-  it "create RelatonIetf::IetfBibliographicItem from xml" do
-    xml = File.read "spec/examples/bib_item.xml"
-    item = RelatonIetf::XMLParser.from_xml xml
-    expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
-    expect(item.to_xml bibdata: true).to be_equivalent_to xml
+  context "create RelatonIetf::IetfBibliographicItem from xml" do
+    it "RFC" do
+      xml = File.read "spec/examples/bib_item.xml"
+      item = RelatonIetf::XMLParser.from_xml xml
+      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(item.to_xml bibdata: true).to be_equivalent_to xml
+    end
+
+    it "BCP" do
+      xml = File.read "spec/examples/bcp_47.xml"
+      item = RelatonIetf::XMLParser.from_xml xml
+      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(item.to_xml bibdata: true).to be_equivalent_to xml
+    end
   end
 end

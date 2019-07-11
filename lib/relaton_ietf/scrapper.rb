@@ -12,68 +12,115 @@ module RelatonIetf
   module Scrapper
     RFC_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.CODE"
     ID_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.CODE"
+    BCP_URI_PATTERN = "https://www.rfc-editor.org/info/CODE"
 
     class << self
+      # rubocop:disable Metrics/MethodLength
+
       # @param text [String]
+      # @param is_relation [TrueClass, FalseClass]
       # @return [RelatonIetf::IetfBibliographicItem]
-      def scrape_page(text)
+      def scrape_page(text, is_relation = false)
         # Remove initial "IETF " string if specified
-        ref = text.
-          gsub(/^IETF /, "").
-          sub(" ", ".") + ".xml"
+        ref = text.gsub(/^IETF /, "")
 
         case ref
-        when /^RFC/
-          uri = RFC_URI_PATTERN.dup
-          doctype = "rfc"
-        when /^I-D/
-          uri = ID_URI_PATTERN.dup
-          doctype = "internet-draft"
+        when /^RFC/ then rfc_item RFC_URI_PATTERN.dup, ref, is_relation
+        when /^I-D/ then rfc_item ID_URI_PATTERN.dup, ref, is_relation
+        when /^BCP/ then bcp_item BCP_URI_PATTERN.dup, ref
         else
           raise RelatonBib::RequestError, "#{ref}: not recognised for RFC"
         end
-
-        uri = uri.gsub("CODE", ref)
-        res = Net::HTTP.get_response(URI(uri))
-        if res.code != "200"
-          raise RelatonBib::RequestError, "No document found at #{uri}"
-        end
-
-        doc = Nokogiri::HTML Net::HTTP.get(URI(uri))
-        reference = doc.at("//reference")
-        return unless reference
-
-        bib_item reference, doctype
       rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
              Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
              Net::ProtocolError, SocketError
-        raise RelatonBib::RequestError, "No document found at #{uri}"
+        raise RelatonBib::RequestError, "No document found for #{ref} reference."
       end
 
-      # rubocop:disable Metrics/MethodLength
-
+      # @param reference [String]
       # @return [RelatonIetf::IetfBibliographicItem]
-      def bib_item(reference, doctype)
-        RelatonIetf::IetfBibliographicItem.new(
-          fetched: Date.today.to_s,
+      def fetch_rfc(reference, is_relation = false)
+        return unless reference
+
+        ietf_item(
+          is_relation: is_relation,
           id: reference[:anchor],
           docid: docids(reference),
           status: status(reference),
           language: [language(reference)],
-          script: ["Latn"],
           link: [{ type: "src", content: reference[:target] }],
           titles: titles(reference),
           abstract: abstracts(reference),
           contributors: contributors(reference),
           dates: dates(reference),
           series: series(reference),
-          doctype: doctype,
           keywords: reference.xpath("front/keyword").map(&:text),
         )
       end
       # rubocop:enable Metrics/MethodLength
 
       private
+
+      # @param attrs [Hash]
+      # @return [RelatonIetf::IetfBibliographicItem]
+      def ietf_item(**attrs)
+        attrs[:fetched] = Date.today.to_s unless attrs.delete(:is_relation)
+        attrs[:script] = ["Latn"]
+        attrs[:doctype] = "standard"
+        RelatonIetf::IetfBibliographicItem.new **attrs
+      end
+
+      # @param uri_template [String]
+      # @param ref [String]
+      # @return [RelatonIetf::IetfBibliographicItem]
+      def rfc_item(uri_template, ref, is_relation)
+        uri = uri_template.sub "CODE", ref.sub(/\s|\u00a0/, ".") + ".xml"
+        doc = Nokogiri::XML get_page(uri)
+        fetch_rfc doc.at("//reference"), is_relation
+      end
+
+      # @param uri_template [String]
+      # @param reference [String]
+      # @return [RelatonIetf::IetfBibliographicItem]
+      def bcp_item(uri_template, reference)
+        uri = uri_template.sub "CODE", reference.sub(" ", "").downcase
+        doc = Nokogiri::HTML get_page(uri)
+        ietf_item(
+          id: reference,
+          docid: [RelatonBib::DocumentIdentifier.new(type: "IETF", id: reference)],
+          language: ["en"],
+          link: [{ type: "src", content: uri }],
+          relations: fetch_relations(doc),
+          # titles: titles(reference),
+          # abstract: abstracts(reference),
+          # contributors: contributors(reference),
+          # dates: dates(reference),
+          # series: series(reference),
+          # keywords: reference.xpath("front/keyword").map(&:text),
+        )
+      end
+
+      def fetch_relations(doc)
+        doc.xpath("//table/tr/td/a[contains(., 'RFC')]").map do |r|
+          RelatonBib::DocumentRelation.new(
+            type: "merges",
+            bibitem: scrape_page(r.text, true),
+          )
+        end
+      end
+
+      def get_page(uri)
+        res = Net::HTTP.get_response(URI(uri))
+        if res.code != "200"
+          raise RelatonBib::RequestError, "No document found at #{uri}"
+        end
+
+        res.body
+      end
+
+      def make_uri(uri_template, reference)
+        uri_template.gsub("CODE", reference)
+      end
 
       # @return [String]
       def language(reference)
@@ -86,6 +133,7 @@ module RelatonIetf
         [{ content: title.text, language: language(reference), script: "Latn" }]
       end
 
+      # @return [Array<RelatonBib::FormattedString>]
       def abstracts(ref)
         ref.xpath("./front/abstract").map do |a|
           RelatonBib::FormattedString.new(
@@ -232,7 +280,7 @@ module RelatonIetf
       # @return [Array<RelatonBib::Series>]
       #
       def series(reference)
-        reference.xpath("./seriesinfo").map do |si|
+        reference.xpath("./seriesInfo").map do |si|
           next if si[:name] == "DOI" || si[:stream] || si[:status]
 
           RelatonBib::Series.new(
