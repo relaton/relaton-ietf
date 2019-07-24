@@ -49,10 +49,10 @@ module RelatonIetf
           status: status(reference),
           language: [language(reference)],
           link: [{ type: "src", content: reference[:target] }],
-          titles: titles(reference),
+          title: titles(reference),
           abstract: abstracts(reference),
-          contributors: contributors(reference),
-          dates: dates(reference),
+          contributor: contributors(reference),
+          date: dates(reference),
           series: series(reference),
           keywords: reference.xpath("front/keyword").map(&:text),
         )
@@ -90,13 +90,7 @@ module RelatonIetf
           docid: [RelatonBib::DocumentIdentifier.new(type: "IETF", id: reference)],
           language: ["en"],
           link: [{ type: "src", content: uri }],
-          relations: fetch_relations(doc),
-          # titles: titles(reference),
-          # abstract: abstracts(reference),
-          # contributors: contributors(reference),
-          # dates: dates(reference),
-          # series: series(reference),
-          # keywords: reference.xpath("front/keyword").map(&:text),
+          relation: fetch_relations(doc),
         )
       end
 
@@ -154,9 +148,9 @@ module RelatonIetf
           entity = RelatonBib::Person.new(
             name: full_name(author, reference),
             affiliation: [affiliation(author)],
-            contacts: contacts(author.at("./address")),
+            contact: contacts(author.at("./address")),
           )
-          { entity: entity, roles: [contributor_role(author)] }
+          { entity: entity, role: [contributor_role(author)] }
         end
       end
 
@@ -166,7 +160,7 @@ module RelatonIetf
           next unless si[:stream]
 
           entity = RelatonBib::Organization.new name: si[:stream]
-          { entity: entity, roles: ["author"] }
+          { entity: entity, role: ["author"] }
         end.compact
       end
 
@@ -176,7 +170,7 @@ module RelatonIetf
       def full_name(author, ref)
         RelatonBib::FullName.new(
           completename: localized_string(author[:fullname], ref),
-          initials: [localized_string(author[:initials], ref)],
+          initial: [localized_string(author[:initials], ref)],
           surname: [localized_string(author[:surname], ref)],
         )
       end
