@@ -128,6 +128,22 @@ item.to_xml bibdata: true
 ...
 ----
 
+=== Create bibliographic item form YAML
+[source,ruby]
+----
+hash = YAML.load_file 'spec/examples/ietf_bib_item.yml'
+=> {"id"=>"RFC 8341",
+...
+
+bib_hash = RelatonIetf::HashConverter.hash_to_bib hash
+=> {:id=>"RFC 8341",
+...
+
+RelatonIetf::IetfBibliographicItem.new bib_hash
+=> #<RelatonIetf::IetfBibliographicItem:0x007f9a929dde40
+...
+----
+
 == Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/metanorma/relaton-ietf.

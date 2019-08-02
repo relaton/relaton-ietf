@@ -1,0 +1,61 @@
+id: RFC 8341
+
+title:
+  - content: Network Configuration Access Control Model
+    language: en
+    script: Latn
+
+type: standard
+
+docid:
+  - id: RFC 8341
+    type: IETF
+
+language:
+  - en
+
+script:
+  - Latn
+
+date:
+  - type: published
+    value: "2018-03"
+
+abstract:
+  - content: The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.This document obsoletes RFC 6536.
+    language: en
+    script: Latn
+    format: text/plain
+
+contributor:
+  - person:
+      name:
+        completename:
+          content: M. Bjorklund
+          language: en
+      affiliation:
+        - organization:
+            name: IETF
+            abbreviation: IETF
+    role:
+      - author
+  
+link:
+  - type: "src"
+    content: https://www.rfc-editor.org/info/rfc8341
+
+series:
+  - type: main
+    title:
+      content: STD
+      language: en
+      script: Latn
+      format: text/plain
+    number: serie1234
+    partnumber: "91"
+
+doctype: standard
+
+keyword:
+  - acvp
+  - crypto

@@ -54,7 +54,7 @@ module RelatonIetf
           contributor: contributors(reference),
           date: dates(reference),
           series: series(reference),
-          keywords: reference.xpath("front/keyword").map(&:text),
+          keyword: reference.xpath("front/keyword").map(&:text),
         )
       end
       # rubocop:enable Metrics/MethodLength
@@ -112,9 +112,9 @@ module RelatonIetf
         res.body
       end
 
-      def make_uri(uri_template, reference)
-        uri_template.gsub("CODE", reference)
-      end
+      # def make_uri(uri_template, reference)
+      #   uri_template.gsub("CODE", reference)
+      # end
 
       # @return [String]
       def language(reference)
@@ -160,7 +160,7 @@ module RelatonIetf
           next unless si[:stream]
 
           entity = RelatonBib::Organization.new name: si[:stream]
-          { entity: entity, role: ["author"] }
+          { entity: entity, role: [type: "author"] }
         end.compact
       end
 
@@ -226,9 +226,9 @@ module RelatonIetf
       end
 
       # @param author [Nokogiri::XML::Document]
-      # @return [String]
+      # @return [Hash]
       def contributor_role(author)
-        author[:role] || "author"
+        { type: author[:role] || "author" }
       end
 
       def month(mon)
@@ -260,7 +260,7 @@ module RelatonIetf
         id = (reference[:anchor] || reference[:docName]).sub(/^(RFC)/, "\\1 ")
         ret = []
         ret << RelatonBib::DocumentIdentifier.new(type: "IETF", id: id)
-        ret + reference.xpath("./seriesinfo").map do |si|
+        ret + reference.xpath("./seriesInfo").map do |si|
           next unless si[:name] == "DOI"
 
           RelatonBib::DocumentIdentifier.new(id: si[:value], type: si[:name])
