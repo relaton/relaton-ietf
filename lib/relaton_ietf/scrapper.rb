@@ -33,7 +33,7 @@ module RelatonIetf
         end
       rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
              Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
-             Net::ProtocolError, SocketError
+             Net::ProtocolError, SocketError, OpenSSL::SSL::SSLError
         raise RelatonBib::RequestError, "No document found for #{ref} reference."
       end
 
