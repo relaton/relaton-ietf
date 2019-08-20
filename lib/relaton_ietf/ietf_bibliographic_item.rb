@@ -28,5 +28,13 @@ module RelatonIetf
         end
       end
     end
+
+    # @return [Hash]
+    def to_hash
+      hash = super
+      hash["doctype"] = doctype if doctype
+      hash["keyword"] = single_element_array(keyword) if keyword&.any?
+      hash
+    end
   end
 end
