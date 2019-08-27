@@ -6,9 +6,9 @@ require "relaton_ietf/ietf_bibliographic_item"
 require "relaton_ietf/xml_parser"
 require "relaton_ietf/hash_converter"
 
-if defined? Relaton
-  require_relative "relaton/processor"
-  Relaton::Registry.instance.register(Relaton::RelatonIetf::Processor)
-end
+# if defined? Relaton
+#   require_relative "relaton_ietf/processor"
+#   Relaton::Registry.instance.register(RelatonIetf::Processor)
+# end
 
 require "relaton/provider_ietf"
