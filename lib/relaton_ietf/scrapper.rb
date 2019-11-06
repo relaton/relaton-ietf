@@ -38,8 +38,10 @@ module RelatonIetf
       end
 
       # @param reference [String]
+      # @param is_relation [TrueClass, FalseClass]
+      # @param url [String, NilClass]
       # @return [RelatonIetf::IetfBibliographicItem]
-      def fetch_rfc(reference, is_relation = false)
+      def fetch_rfc(reference, is_relation = false, url = nil)
         return unless reference
 
         ietf_item(
@@ -48,7 +50,7 @@ module RelatonIetf
           docid: docids(reference),
           status: status(reference),
           language: [language(reference)],
-          link: [{ type: "src", content: reference[:target] }],
+          link: link(reference, url),
           title: titles(reference),
           abstract: abstracts(reference),
           contributor: contributors(reference),
@@ -60,6 +62,13 @@ module RelatonIetf
       # rubocop:enable Metrics/MethodLength
 
       private
+
+      def link(reference, url)
+        l = []
+        l << { type: "xml", content: url } if url
+        l << { type: "src", content: reference[:target] } if reference[:target]
+        l
+      end
 
       # @param attrs [Hash]
       # @return [RelatonIetf::IetfBibliographicItem]
@@ -76,7 +85,7 @@ module RelatonIetf
       def rfc_item(uri_template, ref, is_relation)
         uri = uri_template.sub "CODE", ref.sub(/\s|\u00a0/, ".") + ".xml"
         doc = Nokogiri::XML get_page(uri)
-        fetch_rfc doc.at("//reference"), is_relation
+        fetch_rfc doc.at("//reference"), is_relation, uri
       end
 
       # @param uri_template [String]

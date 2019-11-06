@@ -1,7 +1,6 @@
 <bibdata>
-  <fetched>2019-07-11</fetched>
+  <fetched>2019-11-06</fetched>
   <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
-  <uri type="src"/>
   <docidentifier type="IETF">draft-ietf-acvp-subsha-1.0</docidentifier>
   <date type="published">
     <on>2018-11</on>
