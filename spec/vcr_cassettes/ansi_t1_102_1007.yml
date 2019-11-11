@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.ANSI.T1-102.1987.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - xml2rfc.tools.ietf.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Nov 2019 15:47:28 GMT
+      Server:
+      - Apache/2.2.22 (Debian)
+      Last-Modified:
+      - Mon, 29 Jul 2013 17:31:11 GMT
+      Etag:
+      - '"39d60ef-156-4e2a9dbc035c0"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '342'
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding='UTF-8'?>
+
+        <reference anchor="ANSI.T1-102.1987">
+        <front>
+        <title>Telecommunications - Digital Hierarchy - Electrical Interfaces</title>
+        <author>
+        <organization>American National Standards Institute</organization>
+        </author>
+        <date month="" year="1987" />
+        </front>
+
+        <seriesInfo name="ANSI" value="T1" />
+
+        </reference>
+    http_version: 
+  recorded_at: Fri, 08 Nov 2019 15:47:28 GMT
+recorded_with: VCR 5.0.0

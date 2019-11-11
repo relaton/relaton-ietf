@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml4/reference.W3C.CR-CDR-20070718.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - xml2rfc.tools.ietf.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Nov 2019 15:40:51 GMT
+      Server:
+      - Apache/2.2.22 (Debian)
+      Last-Modified:
+      - Tue, 17 Jul 2007 22:00:00 GMT
+      Etag:
+      - '"39d1946-339-4357cb2deb800"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '825'
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version='1.0' encoding='UTF-8'?>
+
+        <reference anchor='W3C.CR-CDR-20070718'
+                   target='http://www.w3.org/TR/2007/CR-CDR-20070718'>
+        <front>
+        <title>Compound Document by Reference Framework 1.0</title>
+
+        <author initials='J.' surname='Quint' fullname='Julien Quint'>
+            <organization />
+        </author>
+
+        <author initials='D.' surname='Appelquist' fullname='Daniel Appelquist'>
+            <organization />
+        </author>
+
+        <author initials='L.' surname='Pajunen' fullname='Lasse Pajunen'>
+            <organization />
+        </author>
+
+        <author initials='T.' surname='Mehrvarz' fullname='Timur Mehrvarz'>
+            <organization />
+        </author>
+
+        <date month='July' day='18' year='2007' />
+        </front>
+
+        <seriesInfo name='World Wide Web Consortium CR' value='CR-CDR-20070718' />
+        <format type='HTML' target='http://www.w3.org/TR/2007/CR-CDR-20070718' />
+        </reference>
+    http_version: 
+  recorded_at: Fri, 08 Nov 2019 15:40:51 GMT
+recorded_with: VCR 5.0.0

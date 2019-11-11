@@ -10,8 +10,8 @@ module RelatonIetf
 
   # Scrapper module
   module Scrapper
-    RFC_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.CODE"
-    ID_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.CODE"
+    RFC_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml"
+    # ID_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.CODE"
     BCP_URI_PATTERN = "https://www.rfc-editor.org/info/CODE"
 
     class << self
@@ -25,15 +25,20 @@ module RelatonIetf
         ref = text.gsub(/^IETF /, "")
 
         case ref
-        when /^RFC/ then rfc_item RFC_URI_PATTERN.dup, ref, is_relation
-        when /^I-D/ then rfc_item ID_URI_PATTERN.dup, ref, is_relation
+        when /^RFC/ then rfc_item [""], ref, is_relation
+        when /^I-D/ then rfc_item ["3"], ref, is_relation
+        when /^W3C/ then rfc_item ["4", "2"], ref, is_relation
+        when /^(ANSI|CCITT|FIPS|IANA|ISO|ITU|NIST|OASIS|PKCS)/
+          rfc_item ["2"], ref, is_relation
+        when /^(3GPP|SDO-3GPP)/ then rfc_item ["5"], ref, is_relation
+        when /^IEEE/ then rfc_item ["6", "2"], ref, is_relation
         when /^BCP/ then bcp_item BCP_URI_PATTERN.dup, ref
         else
           raise RelatonBib::RequestError, "#{ref}: not recognised for RFC"
         end
       rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
              Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
-             Net::ProtocolError, SocketError, OpenSSL::SSL::SSLError
+             Net::ProtocolError, SocketError
         raise RelatonBib::RequestError, "No document found for #{ref} reference."
       end
 
@@ -79,13 +84,23 @@ module RelatonIetf
         RelatonIetf::IetfBibliographicItem.new **attrs
       end
 
-      # @param uri_template [String]
+      # @param uri_nums [Array<String>]
       # @param ref [String]
       # @return [RelatonIetf::IetfBibliographicItem]
-      def rfc_item(uri_template, ref, is_relation)
-        uri = uri_template.sub "CODE", ref.sub(/\s|\u00a0/, ".") + ".xml"
-        doc = Nokogiri::XML get_page(uri)
-        fetch_rfc doc.at("//reference"), is_relation, uri
+      def rfc_item(uri_nums, ref, is_relation)
+        uri = nil
+        error = nil
+        uri_nums.each do |n|
+          uri = "#{RFC_URI_PATTERN}#{n}/reference.#{ref.sub(/\s|\u00a0/, ".")}.xml"
+          begin
+            doc = Nokogiri::XML get_page(uri)
+            resp = fetch_rfc doc.at("//reference"), is_relation, uri
+            return resp if resp
+          rescue RelatonBib::RequestError => e
+            error = e
+          end
+        end
+        raise error
       end
 
       # @param uri_template [String]
@@ -255,7 +270,7 @@ module RelatonIetf
       def dates(reference)
         return unless (date = reference.at "./front/date")
 
-        d = [date[:year], month(date[:month]),
+        d = [date[:year], month(date[:month]) || "01",
              (date[:day] || "01")].compact.join "-"
         date = Time.parse(d).strftime "%Y-%m-%d"
         [RelatonBib::BibliographicDate.new(type: "published", on: date)]

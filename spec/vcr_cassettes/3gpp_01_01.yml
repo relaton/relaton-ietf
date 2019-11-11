@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml5/reference.3GPP.01.01.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - xml2rfc.tools.ietf.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 08 Nov 2019 16:07:17 GMT
+      Server:
+      - Apache/2.2.22 (Debian)
+      Last-Modified:
+      - Fri, 26 Sep 2003 07:00:00 GMT
+      Etag:
+      - '"39d23a4-1a9-3c83618ccdc00"'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '425'
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version='1.0' encoding='UTF-8'?>
+
+        <reference anchor='3GPP.01.01'>
+        <front>
+        <title>Technical Specifications and Technical Reports for a GERAN-based 3GPP system</title>
+        <author><organization>3GPP</organization></author>
+        <date day='26' month='September' year='2003' />
+        </front>
+
+        <seriesInfo name='3GPP TS' value='01.01 3.1.0' />
+        <format type='HTML' target='http://www.3gpp.org/ftp/Specs/html-info/0101.htm' />
+        </reference>
+    http_version: 
+  recorded_at: Fri, 08 Nov 2019 16:07:18 GMT
+recorded_with: VCR 5.0.0
