@@ -62,11 +62,18 @@ module RelatonIetf
           date: dates(reference),
           series: series(reference),
           keyword: reference.xpath("front/keyword").map(&:text),
+          doctype: doctype(reference[:anchor])
         )
       end
       # rubocop:enable Metrics/MethodLength
 
       private
+
+      # @param anchor [String]
+      # @return [String]
+      def doctype(anchor)
+        anchor =~ /I-D/ ? "internet-draft" : "rfc"
+      end
 
       def link(reference, url)
         l = []
@@ -80,7 +87,6 @@ module RelatonIetf
       def ietf_item(**attrs)
         attrs[:fetched] = Date.today.to_s unless attrs.delete(:is_relation)
         attrs[:script] = ["Latn"]
-        attrs[:doctype] = "standard"
         RelatonIetf::IetfBibliographicItem.new **attrs
       end
 
@@ -111,10 +117,12 @@ module RelatonIetf
         doc = Nokogiri::HTML get_page(uri)
         ietf_item(
           id: reference,
+          title: [content: ""],
           docid: [RelatonBib::DocumentIdentifier.new(type: "IETF", id: reference)],
           language: ["en"],
           link: [{ type: "src", content: uri }],
           relation: fetch_relations(doc),
+          doctype: "rfc"
         )
       end
 

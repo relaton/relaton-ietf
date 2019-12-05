@@ -54,7 +54,7 @@ series:
   number: serie1234
   partnumber: "91"
 
-doctype: standard
+doctype: rfc
 
 keyword:
   - acvp

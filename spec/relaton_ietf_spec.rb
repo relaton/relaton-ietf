@@ -2,10 +2,17 @@
 
 require "relaton_ietf"
 require "date"
+require "jing"
 
 RSpec.describe RelatonIetf do
   it "has a version number" do
     expect(RelatonIetf::VERSION).not_to be nil
+  end
+
+  it "returs grammar hash" do
+    hash = RelatonIetf.grammar_hash
+    expect(hash).to be_instance_of String
+    expect(hash.size).to eq 32
   end
 
   it "get RFC document" do
@@ -18,6 +25,9 @@ RSpec.describe RelatonIetf do
       expect(xml).to be_equivalent_to File.read(file).sub(
         %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
       )
+      schema = Jing.new "spec/examples/isobib.rng"
+      errors = schema.validate file
+      expect(errors).to eq []
     end
   end
 
@@ -26,10 +36,14 @@ RSpec.describe RelatonIetf do
       item = RelatonIetf::IetfBibliography.search "I-D.-burger-xcon-mmodels"
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
       file = "spec/examples/i_d_bib_item.xml"
-      File.write file, item.to_xml unless File.exist? file
-      expect(item.to_xml).to be_equivalent_to File.read(file).sub(
+      xml = item.to_xml bibdata: true
+      File.write file, xml unless File.exist? file
+      expect(xml).to be_equivalent_to File.read(file).sub(
         %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
       )
+      schema = Jing.new "spec/examples/isobib.rng"
+      errors = schema.validate file
+      expect(errors).to eq []
     end
   end
 
@@ -78,6 +92,9 @@ RSpec.describe RelatonIetf do
       expect(xml).to be_equivalent_to File.read(file).sub(
         %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
       )
+      schema = Jing.new "spec/examples/isobib.rng"
+      errors = schema.validate file
+      expect(errors).to eq []
     end
   end
 

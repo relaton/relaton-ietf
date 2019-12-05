@@ -32,7 +32,7 @@
   <abstract format="text/plain" language="en" script="Latn">This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
 				specification.</abstract>
   <ext>
-    <doctype>standard</doctype>
+    <doctype>rfc</doctype>
     <keyword>acvp</keyword>
     <keyword>crypto</keyword>
   </ext>
