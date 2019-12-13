@@ -5,6 +5,7 @@ module RelatonIetf
     class << self
       def from_xml(xml)
         doc = Nokogiri::XML(xml)
+        doc.remove_namespaces!
         ietfitem = doc.at("/bibitem|/bibdata")
         RelatonIetf::IetfBibliographicItem.new(item_data(ietfitem))
       end
