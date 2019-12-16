@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    relaton-ietf (0.7.0)
+    relaton-ietf (0.7.1)
       relaton-bib (~> 0.4.0)
 
 GEM
@@ -35,7 +35,7 @@ GEM
       pry (~> 0.10)
     public_suffix (4.0.1)
     rake (10.5.0)
-    relaton-bib (0.4.0)
+    relaton-bib (0.4.1)
       addressable
       nokogiri
     rspec (3.8.0)
