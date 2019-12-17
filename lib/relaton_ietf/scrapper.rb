@@ -52,6 +52,7 @@ module RelatonIetf
         ietf_item(
           is_relation: is_relation,
           id: reference[:anchor],
+          type: "standard",
           docid: docids(reference),
           status: status(reference),
           language: [language(reference)],
