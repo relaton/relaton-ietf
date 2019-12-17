@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    relaton-ietf (0.7.1)
+    relaton-ietf (0.7.2)
       relaton-bib (~> 0.4.0)
 
 GEM
