@@ -62,6 +62,7 @@ module RelatonIetf
           contributor: contributors(reference),
           date: dates(reference),
           series: series(reference),
+          place: ["Fremont, CA"],
           keyword: reference.xpath("front/keyword").map(&:text),
           doctype: doctype(reference[:anchor])
         )

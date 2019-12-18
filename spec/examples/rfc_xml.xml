@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2019-12-17</fetched>
+  <fetched>2019-12-18</fetched>
   <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
   <docidentifier type="IETF">draft-ietf-acvp-subsha-1.0</docidentifier>
   <date type="published">
@@ -31,6 +31,7 @@
   <script>Latn</script>
   <abstract format="text/plain" language="en" script="Latn">This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
 				specification.</abstract>
+  <place>Fremont, CA</place>
   <ext>
     <doctype>rfc</doctype>
     <keyword>acvp</keyword>

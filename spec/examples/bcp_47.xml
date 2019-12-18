@@ -1,5 +1,5 @@
 <bibdata>
-  <fetched>2019-12-17</fetched>
+  <fetched>2019-12-18</fetched>
   <title format="text/plain"></title>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
   <docidentifier type="IETF">BCP 47</docidentifier>
@@ -54,6 +54,7 @@
         <title format="text/plain" language="en" script="Latn">RFC</title>
         <number>4647</number>
       </series>
+      <place>Fremont, CA</place>
     </bibitem>
   </relation>
   <relation type="merges">
@@ -87,6 +88,7 @@
         <title format="text/plain" language="en" script="Latn">RFC</title>
         <number>3066</number>
       </series>
+      <place>Fremont, CA</place>
     </bibitem>
   </relation>
   <relation type="merges">
@@ -138,6 +140,7 @@
         <title format="text/plain" language="en" script="Latn">RFC</title>
         <number>5646</number>
       </series>
+      <place>Fremont, CA</place>
     </bibitem>
   </relation>
   <relation type="merges">
@@ -185,6 +188,7 @@
         <title format="text/plain" language="en" script="Latn">RFC</title>
         <number>4646</number>
       </series>
+      <place>Fremont, CA</place>
     </bibitem>
   </relation>
   <ext>
