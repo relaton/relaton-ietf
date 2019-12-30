@@ -1,8 +1,9 @@
 <bibdata type="standard">
-  <fetched>2019-12-18</fetched>
+  <fetched>2019-12-30</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="xml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.-burger-xcon-mmodels.xml</uri>
   <docidentifier type="IETF">I-D.-burger-xcon-mmodels</docidentifier>
+  <docidentifier type="rfc-anchor">I-D.-burger-xcon-mmodels</docidentifier>
   <date type="published">
     <on>2004-02</on>
   </date>

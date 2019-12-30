@@ -295,6 +295,9 @@ module RelatonIetf
         id = (reference[:anchor] || reference[:docName]).sub(/^(RFC)/, "\\1 ")
         ret = []
         ret << RelatonBib::DocumentIdentifier.new(type: "IETF", id: id)
+        if (id = reference[:anchor])
+          ret << RelatonBib::DocumentIdentifier.new(type: "rfc-anchor", id: id)
+        end
         ret + reference.xpath("./seriesInfo").map do |si|
           next unless si[:name] == "DOI"
 

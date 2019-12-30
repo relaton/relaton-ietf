@@ -1,5 +1,5 @@
 <bibdata>
-  <fetched>2019-12-18</fetched>
+  <fetched>2019-12-30</fetched>
   <title format="text/plain"></title>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
   <docidentifier type="IETF">BCP 47</docidentifier>
@@ -11,6 +11,7 @@
       <uri type="xml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4647.xml</uri>
       <uri type="src">https://www.rfc-editor.org/info/rfc4647</uri>
       <docidentifier type="IETF">RFC 4647</docidentifier>
+      <docidentifier type="rfc-anchor">RFC4647</docidentifier>
       <docidentifier type="DOI">10.17487/RFC4647</docidentifier>
       <date type="published">
         <on>2006-09</on>
@@ -63,6 +64,7 @@
       <uri type="xml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3066.xml</uri>
       <uri type="src">https://www.rfc-editor.org/info/rfc3066</uri>
       <docidentifier type="IETF">RFC 3066</docidentifier>
+      <docidentifier type="rfc-anchor">RFC3066</docidentifier>
       <docidentifier type="DOI">10.17487/RFC3066</docidentifier>
       <date type="published">
         <on>2001-01</on>
@@ -97,6 +99,7 @@
       <uri type="xml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5646.xml</uri>
       <uri type="src">https://www.rfc-editor.org/info/rfc5646</uri>
       <docidentifier type="IETF">RFC 5646</docidentifier>
+      <docidentifier type="rfc-anchor">RFC5646</docidentifier>
       <docidentifier type="DOI">10.17487/RFC5646</docidentifier>
       <date type="published">
         <on>2009-09</on>
@@ -149,6 +152,7 @@
       <uri type="xml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.4646.xml</uri>
       <uri type="src">https://www.rfc-editor.org/info/rfc4646</uri>
       <docidentifier type="IETF">RFC 4646</docidentifier>
+      <docidentifier type="rfc-anchor">RFC4646</docidentifier>
       <docidentifier type="DOI">10.17487/RFC4646</docidentifier>
       <date type="published">
         <on>2006-09</on>

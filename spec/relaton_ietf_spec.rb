@@ -15,19 +15,21 @@ RSpec.describe RelatonIetf do
     expect(hash.size).to eq 32
   end
 
-  it "get RFC document" do
-    VCR.use_cassette "rfc_8341" do
-      item = RelatonIetf::IetfBibliography.search "RFC 8341"
-      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
-      file = "spec/examples/bib_item.xml"
-      xml = item.to_xml bibdata: true
-      File.write file, xml unless File.exist? file
-      expect(xml).to be_equivalent_to File.read(file).sub(
-        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
-      )
-      schema = Jing.new "spec/examples/isobib.rng"
-      errors = schema.validate file
-      expect(errors).to eq []
+  context "get RFC document" do
+    it "RFC 8341" do
+      VCR.use_cassette "rfc_8341" do
+        item = RelatonIetf::IetfBibliography.search "RFC 8341"
+        expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+        file = "spec/examples/bib_item.xml"
+        xml = item.to_xml bibdata: true
+        File.write file, xml, encoding: "utf-8" unless File.exist? file
+        expect(xml).to be_equivalent_to File.read(file, encoding: "utf-8").sub(
+          %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
+        )
+        schema = Jing.new "spec/examples/isobib.rng"
+        errors = schema.validate file
+        expect(errors).to eq []
+      end
     end
   end
 
