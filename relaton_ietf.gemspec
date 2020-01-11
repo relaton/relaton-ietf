@@ -40,5 +40,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "ruby-jing"
 
-  spec.add_dependency "relaton-bib", "~> 0.4.0"
+  spec.add_dependency "relaton-bib", "~> 0.5.0"
 end
