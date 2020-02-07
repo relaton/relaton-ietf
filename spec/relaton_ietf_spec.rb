@@ -49,6 +49,14 @@ RSpec.describe RelatonIetf do
     end
   end
 
+  it "get internet draft document with version" do
+    VCR.use_cassette "I-D.abarth-cake-02" do
+      item = RelatonIetf::IetfBibliography.get "I-D.abarth-cake-02"
+      expect(item.docidentifier.detect {|di| di.type == "Internet-Draft"}.id).to eq "draft-abarth-cake-02"
+      expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq "http://www.ietf.org/internet-drafts/draft-abarth-cake-02.txt"
+    end
+  end
+
   it "get WC3 document" do
     VCR.use_cassette "w3c_cr_cdr_20070718" do
       item = RelatonIetf::IetfBibliography.search "W3C CR-CDR-20070718"
