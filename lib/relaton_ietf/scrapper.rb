@@ -45,18 +45,19 @@ module RelatonIetf
       # @param reference [String]
       # @param is_relation [TrueClass, FalseClass]
       # @param url [String, NilClass]
+      # @param ver [String, NilClass] Internet Draft version
       # @return [RelatonIetf::IetfBibliographicItem]
-      def fetch_rfc(reference, is_relation = false, url = nil)
+      def fetch_rfc(reference, is_relation = false, url = nil, ver = nil)
         return unless reference
 
         ietf_item(
           is_relation: is_relation,
           id: reference[:anchor],
           type: "standard",
-          docid: docids(reference),
+          docid: docids(reference, ver),
           status: status(reference),
           language: [language(reference)],
-          link: link(reference, url),
+          link: link(reference, url, ver),
           title: titles(reference),
           abstract: abstracts(reference),
           contributor: contributors(reference),
@@ -77,10 +78,20 @@ module RelatonIetf
         anchor =~ /I-D/ ? "internet-draft" : "rfc"
       end
 
-      def link(reference, url)
+      # @param reference [Nokogiri::XML::Element]
+      # @param url [String]
+      # @param ver [String, NilClass] Internet Draft version
+      # @return [Array<Hash>]
+      def link(reference, url, ver)
         l = []
         l << { type: "xml", content: url } if url
         l << { type: "src", content: reference[:target] } if reference[:target]
+        if reference[:anchor] =~ /^I-D/
+          reference.xpath("format").each do |f|
+            c = ver ? f[:target].sub(/(?<=-)\d{2}(?=\.)/, ver) : f[:target]
+            l << { type: f[:type], content: c }
+          end
+        end
         l
       end
 
@@ -99,10 +110,13 @@ module RelatonIetf
         uri = nil
         error = nil
         uri_nums.each do |n|
+          /(?<=-)(?<ver>\d{2})$/ =~ ref
+          ref.sub! /-\d{2}/, "" if ver && n == "3"
+
           uri = "#{RFC_URI_PATTERN}#{n}/reference.#{ref.sub(/\s|\u00a0/, ".")}.xml"
           begin
             doc = Nokogiri::XML get_page(uri)
-            resp = fetch_rfc doc.at("//reference"), is_relation, uri
+            resp = fetch_rfc doc.at("//reference"), is_relation, uri, ver
             return resp if resp
           rescue RelatonBib::RequestError => e
             error = e
@@ -289,9 +303,12 @@ module RelatonIetf
       #
       # Extract document identifiers from reference
       #
+      # @param reference [Nokogiri::XML::Element]
+      # @param ver [String, NilClass] Internet Draft version
+      #
       # @return [Array<RelatonBib::DocumentIdentifier>]
       #
-      def docids(reference)
+      def docids(reference, ver)
         id = (reference[:anchor] || reference[:docName]).sub(/^(RFC)/, "\\1 ")
         ret = []
         ret << RelatonBib::DocumentIdentifier.new(type: "IETF", id: id)
@@ -299,9 +316,11 @@ module RelatonIetf
           ret << RelatonBib::DocumentIdentifier.new(type: "rfc-anchor", id: id)
         end
         ret + reference.xpath("./seriesInfo").map do |si|
-          next unless si[:name] == "DOI"
+          next unless ["DOI", "Internet-Draft"].include? si[:name]
 
-          RelatonBib::DocumentIdentifier.new(id: si[:value], type: si[:name])
+          id = si[:value]
+          id.sub! /(?<=-)\d{2}$/, ver if ver && si[:name] == "Internet-Draft"
+          RelatonBib::DocumentIdentifier.new(id: id, type: si[:name])
         end.compact
       end
 
