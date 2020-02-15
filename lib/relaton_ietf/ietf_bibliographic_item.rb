@@ -10,7 +10,7 @@ module RelatonIetf
     # @param keyword [Array<String>]
     def initialize(**args)
       @doctype = args.delete :doctype
-      @keyword = args.delete(:keyword) || []
+      # @keyword = args.delete(:keyword) || []
       super
     end
 
@@ -23,7 +23,7 @@ module RelatonIetf
         if opts[:bibdata]
           b.ext do
             b.doctype doctype if doctype
-            keyword.each { |k| b.keyword k }
+            # keyword.each { |k| b.keyword k }
           end
         end
       end
@@ -33,7 +33,7 @@ module RelatonIetf
     def to_hash
       hash = super
       hash["doctype"] = doctype if doctype
-      hash["keyword"] = single_element_array(keyword) if keyword&.any?
+      # hash["keyword"] = single_element_array(keyword) if keyword&.any?
       hash
     end
   end
