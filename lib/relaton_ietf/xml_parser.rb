@@ -7,7 +7,11 @@ module RelatonIetf
         doc = Nokogiri::XML(xml)
         doc.remove_namespaces!
         ietfitem = doc.at("/bibitem|/bibdata")
-        RelatonIetf::IetfBibliographicItem.new(item_data(ietfitem))
+        if ietfitem
+          RelatonIetf::IetfBibliographicItem.new(item_data(ietfitem))
+        elsif
+          warn "[relato-ietf] can't find bibitem or bibdata element in the XML"
+        end
       end
 
       private
