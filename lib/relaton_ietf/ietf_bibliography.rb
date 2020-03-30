@@ -14,10 +14,14 @@ module RelatonIetf
 
       # @param code [String] the ISO standard Code to look up (e..g "ISO 9000")
       # @param year [String] the year the standard was published (optional)
-      # @param opts [Hash] options; restricted to :all_parts if all-parts reference is required
+      # @param opts [Hash] options; restricted to :all_parts if all-parts
+      #   reference is required
       # @return [RelatonIetf::IetfBibliographicItem] Relaton of reference
       def get(code, _year = nil, _opts = {})
-        search code
+        warn "[relaton-ietf] (\"#{code}\") fetching..."
+        result = search code
+        warn "[relaton-ietf] (\"#{code}\") found #{result.docidentifier.first.id}"
+        result
       end
     end
   end

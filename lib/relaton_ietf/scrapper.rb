@@ -264,14 +264,14 @@ module RelatonIetf
       end
 
       # @param author [Nokogiri::XML::Document]
-      # @return [RelatonBib::Affilation]
+      # @return [RelatonBib::Affiliation]
       def affiliation(author)
         organization = author.at("./organization")
         org = RelatonBib::Organization.new(
           name: organization.text.empty? ? "IETF" : organization.text,
           abbreviation: organization[:abbrev] || "IETF",
         )
-        RelatonBib::Affilation.new organization: org
+        RelatonBib::Affiliation.new organization: org
       end
 
       # @param author [Nokogiri::XML::Document]

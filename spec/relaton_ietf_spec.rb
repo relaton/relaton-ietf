@@ -24,7 +24,8 @@ RSpec.describe RelatonIetf do
         xml = item.to_xml bibdata: true
         File.write file, xml, encoding: "utf-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "utf-8").sub(
-          %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
+          %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
+          "<fetched>#{Date.today}</fetched>",
         )
         schema = Jing.new "spec/examples/isobib.rng"
         errors = schema.validate file
@@ -41,7 +42,8 @@ RSpec.describe RelatonIetf do
       xml = item.to_xml bibdata: true
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file).sub(
-        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
+        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
+        "<fetched>#{Date.today}</fetched>",
       )
       schema = Jing.new "spec/examples/isobib.rng"
       errors = schema.validate file
@@ -52,8 +54,11 @@ RSpec.describe RelatonIetf do
   it "get internet draft document with version" do
     VCR.use_cassette "I-D.abarth-cake-02" do
       item = RelatonIetf::IetfBibliography.get "I-D.abarth-cake-02"
-      expect(item.docidentifier.detect {|di| di.type == "Internet-Draft"}.id).to eq "draft-abarth-cake-02"
-      expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq "http://www.ietf.org/internet-drafts/draft-abarth-cake-02.txt"
+      expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id).
+        to eq "draft-abarth-cake-02"
+      expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq(
+        "http://www.ietf.org/internet-drafts/draft-abarth-cake-02.txt",
+      )
     end
   end
 
@@ -100,7 +105,8 @@ RSpec.describe RelatonIetf do
       xml = item.to_xml bibdata: true
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file).sub(
-        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>}, "<fetched>#{Date.today}</fetched>"
+        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
+        "<fetched>#{Date.today}</fetched>",
       )
       schema = Jing.new "spec/examples/isobib.rng"
       errors = schema.validate file
@@ -127,20 +133,21 @@ RSpec.describe RelatonIetf do
       xml = File.read "spec/examples/bib_item.xml"
       item = RelatonIetf::XMLParser.from_xml xml
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
-      expect(item.to_xml bibdata: true).to be_equivalent_to xml
+      expect(item.to_xml(bibdata: true)).to be_equivalent_to xml
     end
 
     it "BCP" do
       xml = File.read "spec/examples/bcp_47.xml"
       item = RelatonIetf::XMLParser.from_xml xml
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
-      expect(item.to_xml bibdata: true).to be_equivalent_to xml
+      expect(item.to_xml(bibdata: true)).to be_equivalent_to xml
     end
 
     it "warn if XML doesn't have bibitem or bibdata element" do
       item = ""
-      expect { item = RelatonIetf::XMLParser.from_xml "" }.to output(/can't find bibitem/)
-        .to_stderr
+      expect { item = RelatonIetf::XMLParser.from_xml "" }.to output(
+        /can't find bibitem/,
+      ).to_stderr
       expect(item).to be_nil
     end
   end
