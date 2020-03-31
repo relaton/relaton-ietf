@@ -65,7 +65,7 @@ module RelatonIetf
           series: series(reference),
           place: ["Fremont, CA"],
           keyword: reference.xpath("front/keyword").map(&:text),
-          doctype: doctype(reference[:anchor])
+          doctype: doctype(reference[:anchor]),
         )
       end
       # rubocop:enable Metrics/MethodLength
@@ -138,7 +138,7 @@ module RelatonIetf
           language: ["en"],
           link: [{ type: "src", content: uri }],
           relation: fetch_relations(doc),
-          doctype: "rfc"
+          doctype: "rfc",
         )
       end
 
@@ -268,7 +268,7 @@ module RelatonIetf
       def affiliation(author)
         organization = author.at("./organization")
         org = RelatonBib::Organization.new(
-          name: (organization.nil? || organization.text.empty?) ? "IETF" : organization.text,
+          name: organization.nil? || organization.text.empty? ? "IETF" : organization.text,
           abbreviation: organization.nil? ? "IETF" : (organization[:abbrev] || "IETF"),
         )
         RelatonBib::Affiliation.new organization: org

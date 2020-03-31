@@ -27,6 +27,21 @@ RSpec.describe RelatonIetf::Scrapper do
       to be_instance_of RelatonBib::Organization
   end
 
+  it "returns default affiliation" do
+    doc = Nokogiri::XML <<~END_XML
+      <author fullname="Arthur son of Uther Pendragon" asciiFullname="Arthur son of Uther Pendragon">
+        <address>
+          <postal/>
+          <email>arthur.pendragon@ribose.com</email>
+          <uri>http://camelot.gov.example</uri>
+        </address>
+      </author>"
+    END_XML
+    author = doc.at "/author"
+    expect(RelatonIetf::Scrapper.send(:affiliation, author)).
+      to be_instance_of RelatonBib::Affiliation
+  end
+
   it "returns contacts" do
     doc = Nokogiri::XML <<~END_XML
       <reference anchor="RFC8341" target="https://www.rfc-editor.org/info/rfc8341">
