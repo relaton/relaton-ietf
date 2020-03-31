@@ -268,8 +268,8 @@ module RelatonIetf
       def affiliation(author)
         organization = author.at("./organization")
         org = RelatonBib::Organization.new(
-          name: organization.text.empty? ? "IETF" : organization.text,
-          abbreviation: organization[:abbrev] || "IETF",
+          name: (organization.nil? || organization.text.empty?) ? "IETF" : organization.text,
+          abbreviation: organization.nil? ? "IETF" : (organization[:abbrev] || "IETF"),
         )
         RelatonBib::Affiliation.new organization: org
       end
