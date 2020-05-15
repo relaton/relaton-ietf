@@ -268,7 +268,7 @@ module RelatonIetf
       def affiliation(author)
         organization = author.at("./organization")
         org = RelatonBib::Organization.new(
-          name: organization.nil? || organization.text.empty? ? "IETF" : organization.text,
+          name: organization.nil? || organization&.text&.empty? ? "IETF" : organization.text,
           abbreviation: organization.nil? ? "IETF" : (organization[:abbrev] || "IETF"),
         )
         RelatonBib::Affiliation.new organization: org
@@ -281,6 +281,7 @@ module RelatonIetf
       end
 
       def month(mon)
+        return 1 if !mon || mon.empty?
         return mon if /^\d+$/ =~ mon
 
         Date::MONTHNAMES.index(mon)
@@ -294,8 +295,8 @@ module RelatonIetf
       def dates(reference)
         return unless (date = reference.at "./front/date")
 
-        d = [date[:year], month(date[:month]) || "01",
-             (date[:day] || "01")].compact.join "-"
+        d = [date[:year], month(date[:month]),
+             (date[:day] || 1)].compact.join "-"
         date = Time.parse(d).strftime "%Y-%m-%d"
         [RelatonBib::BibliographicDate.new(type: "published", on: date)]
       end
