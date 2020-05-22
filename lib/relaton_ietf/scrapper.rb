@@ -204,12 +204,12 @@ module RelatonIetf
 
       # @return [Array<Hash{Symbol=>RelatonBib::Organization,Symbol=>Array<String>}>]
       def organizations(reference)
-        reference.xpath("./seriesinfo").map do |si|
-          next unless si[:stream]
+        publisher = { entity: new_org, role: [type: "publisher"] }
+        reference.xpath("./seriesinfo").reduce([publisher]) do |mem, si|
+          next mem unless si[:stream]
 
-          entity = RelatonBib::Organization.new name: si[:stream]
-          { entity: entity, role: [type: "author"] }
-        end.compact
+          mem << { entity: new_org(si[:stream]), role: [type: "author"] }
+        end
       end
 
       # @param author [Nokogiri::XML::Document]
@@ -267,11 +267,16 @@ module RelatonIetf
       # @return [RelatonBib::Affiliation]
       def affiliation(author)
         organization = author.at("./organization")
-        org = RelatonBib::Organization.new(
-          name: organization.nil? || organization&.text&.empty? ? "IETF" : organization.text,
-          abbreviation: organization.nil? ? "IETF" : (organization[:abbrev] || "IETF"),
-        )
+        org = if organization.nil? || organization&.text&.empty?
+                new_org
+              else
+                new_org organization.text, organization[:abbrev]
+              end
         RelatonBib::Affiliation.new organization: org
+      end
+
+      def new_org(name = "Internet Engineering Task Force", abbr = "IETF")
+        RelatonBib::Organization.new name: name, abbreviation: abbr
       end
 
       # @param author [Nokogiri::XML::Document]
