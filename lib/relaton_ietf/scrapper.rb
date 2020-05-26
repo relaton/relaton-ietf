@@ -192,7 +192,8 @@ module RelatonIetf
 
       # @return [Array<Hash{Symbol=>RelatonBib::Person,Symbol=>Array<String>}>]
       def persons(reference)
-        reference.xpath("./front/author").map do |author|
+        reference.xpath("./front/author[@surname]|./front/author[@fullname]").
+          map do |author|
           entity = RelatonBib::Person.new(
             name: full_name(author, reference),
             affiliation: [affiliation(author)],
@@ -216,17 +217,21 @@ module RelatonIetf
       # @param ref [Nokogiri::XML::Document]
       # @return [RelatonBib::FullName]
       def full_name(author, ref)
+        lang = language ref
         RelatonBib::FullName.new(
-          completename: localized_string(author[:fullname], ref),
-          initial: [localized_string(author[:initials], ref)],
-          surname: [localized_string(author[:surname], ref)],
+          completename: localized_string(author[:fullname], lang),
+          initial: [localized_string(author[:initials], lang)].compact,
+          surname: localized_string(author[:surname], lang),
         )
       end
 
       # @param content [String]
+      # @param lang [String]
       # @return [RelatonBib::LocalizedString]
-      def localized_string(content, ref)
-        RelatonBib::LocalizedString.new(content, language(ref))
+      def localized_string(content, lang)
+        return unless content
+
+        RelatonBib::LocalizedString.new(content, lang)
       end
 
       # @param postal [Nokogiri::XML::Document]
@@ -275,6 +280,9 @@ module RelatonIetf
         RelatonBib::Affiliation.new organization: org
       end
 
+      # @param name [String]
+      # @param abbr [String]
+      # @return [RelatonBib::Organization]
       def new_org(name = "Internet Engineering Task Force", abbr = "IETF")
         RelatonBib::Organization.new name: name, abbreviation: abbr
       end
