@@ -91,6 +91,12 @@
     </define>
     <define name="sections">
       <element name="sections">
+        <zeroOrMore>
+          <choice>
+            <ref name="note"/>
+            <ref name="admonition"/>
+          </choice>
+        </zeroOrMore>
         <ref name="clause"/>
         <optional>
           <choice>
@@ -263,6 +269,8 @@
         <value>publicly-available-specification</value>
         <value>international-workshop-agreement</value>
         <value>guide</value>
+        <value>amendment</value>
+        <value>technical-corrigendum</value>
       </choice>
     </define>
     <define name="structuredidentifier">
@@ -510,7 +518,7 @@
         </attribute>
       </optional>
       <oneOrMore>
-        <ref name="paragraph-with-footnote"/>
+        <ref name="BasicBlock"/>
       </oneOrMore>
     </element>
   </define>

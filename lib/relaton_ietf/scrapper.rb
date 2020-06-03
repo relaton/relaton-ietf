@@ -314,6 +314,8 @@ module RelatonIetf
         [RelatonBib::BibliographicDate.new(type: "published", on: date)]
       end
 
+      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+
       #
       # Extract document identifiers from reference
       #
@@ -337,6 +339,7 @@ module RelatonIetf
           RelatonBib::DocumentIdentifier.new(id: id, type: si[:name])
         end.compact
       end
+      # enable Metrics/MethodLength, Metrics/AbcSize
 
       #
       # Extract series form reference
