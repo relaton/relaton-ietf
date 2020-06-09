@@ -212,7 +212,7 @@ module RelatonIetf
           mem << { entity: new_org(si[:stream], nil), role: [type: "author"] }
         end
         orgs + reference.xpath(
-          "front/author/organization[string-length(.) > 0]",
+          "front/author[not(@surname)][not(@fullname)]/organization",
         ).map do |org|
           { entity: new_org(org.text, nil), role: [type: "author"] }
         end

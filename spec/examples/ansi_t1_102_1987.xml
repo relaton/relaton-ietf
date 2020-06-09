@@ -1,0 +1,33 @@
+<bibdata type="standard">
+  <fetched>2020-06-09</fetched>
+  <title format="text/plain" language="en" script="Latn">Telecommunications - Digital Hierarchy - Electrical Interfaces</title>
+  <uri type="xml">https://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.ANSI.T1-102.1987.xml</uri>
+  <docidentifier type="IETF">ANSI.T1-102.1987</docidentifier>
+  <docidentifier type="rfc-anchor">ANSI.T1-102.1987</docidentifier>
+  <date type="published">
+    <on>1987-01</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>
+    </organization>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <organization>
+      <name>American National Standards Institute</name>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <series type="main">
+    <title format="text/plain" language="en" script="Latn">ANSI</title>
+    <number>T1</number>
+  </series>
+  <place>Fremont, CA</place>
+  <ext>
+    <doctype>rfc</doctype>
+  </ext>
+</bibdata>

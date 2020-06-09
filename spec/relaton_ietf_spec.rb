@@ -78,8 +78,13 @@ RSpec.describe RelatonIetf do
 
   it "get ANSI document" do
     VCR.use_cassette "ansi_t1_102_1007" do
+      file = "spec/examples/ansi_t1_102_1987.xml"
       item = RelatonIetf::IetfBibliography.search "ANSI T1-102.1987"
+      xml = item.to_xml bibdata: true
+      File.write file, xml, ecoding: "UTF-8" unless File.exist? file
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8").
+        gsub /(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s
     end
   end
 

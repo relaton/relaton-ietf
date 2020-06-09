@@ -33,12 +33,6 @@
       <abbreviation>IETF</abbreviation>
     </organization>
   </contributor>
-  <contributor>
-    <role type="author"/>
-    <organization>
-      <name>National Institute of Standards and Technology</name>
-    </organization>
-  </contributor>
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/plain" language="en" script="Latn">This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
