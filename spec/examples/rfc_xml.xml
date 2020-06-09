@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2020-05-22</fetched>
+  <fetched>2020-06-09</fetched>
   <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
   <docidentifier type="IETF">draft-ietf-acvp-subsha-1.0</docidentifier>
   <date type="published">
@@ -31,6 +31,12 @@
     <organization>
       <name>Internet Engineering Task Force</name>
       <abbreviation>IETF</abbreviation>
+    </organization>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <organization>
+      <name>National Institute of Standards and Technology</name>
     </organization>
   </contributor>
   <language>en</language>

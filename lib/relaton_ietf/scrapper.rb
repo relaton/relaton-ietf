@@ -206,10 +206,15 @@ module RelatonIetf
       # @return [Array<Hash{Symbol=>RelatonBib::Organization,Symbol=>Array<String>}>]
       def organizations(reference)
         publisher = { entity: new_org, role: [type: "publisher"] }
-        reference.xpath("./seriesinfo").reduce([publisher]) do |mem, si|
+        orgs = reference.xpath("./seriesinfo").reduce([publisher]) do |mem, si|
           next mem unless si[:stream]
 
-          mem << { entity: new_org(si[:stream]), role: [type: "author"] }
+          mem << { entity: new_org(si[:stream], nil), role: [type: "author"] }
+        end
+        orgs + reference.xpath(
+          "front/author/organization[string-length(.) > 0]",
+        ).map do |org|
+          { entity: new_org(org.text, nil), role: [type: "author"] }
         end
       end
 
