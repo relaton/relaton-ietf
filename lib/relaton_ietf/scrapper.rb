@@ -330,7 +330,8 @@ module RelatonIetf
       # @return [Array<RelatonBib::DocumentIdentifier>]
       #
       def docids(reference, ver)
-        id = (reference[:anchor] || reference[:docName]).sub(/^(RFC)/, "\\1 ")
+        id = (reference[:anchor] || reference[:docName] || reference[:number]).
+          sub(/^(RFC)/, "\\1 ")
         ret = []
         ret << RelatonBib::DocumentIdentifier.new(type: "IETF", id: id)
         if (id = reference[:anchor])
