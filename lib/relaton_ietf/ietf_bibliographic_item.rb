@@ -8,11 +8,11 @@ module RelatonIetf
 
     # @param doctype [String]
     # @param keyword [Array<String>]
-    def initialize(**args)
-      @doctype = args.delete :doctype
-      # @keyword = args.delete(:keyword) || []
-      super
-    end
+    # def initialize(**args)
+    #   @doctype = args.delete :doctype
+    #   # @keyword = args.delete(:keyword) || []
+    #   super
+    # end
 
     # @param builder
     # @param opts [Hash]
