@@ -8,11 +8,10 @@ module RelatonIetf
 
     # @param doctype [String]
     # @param keyword [Array<String>]
-    # def initialize(**args)
-    #   @doctype = args.delete :doctype
-    #   # @keyword = args.delete(:keyword) || []
-    #   super
-    # end
+    def initialize(**args)
+      @doctype = args.delete :doctype
+      super
+    end
 
     # @param builder
     # @param opts [Hash]
@@ -20,10 +19,9 @@ module RelatonIetf
     def to_xml(builder = nil, **opts)
       opts[:date_format] ||= :short
       super builder, **opts do |b|
-        if opts[:bibdata]
+        if opts[:bibdata] && doctype
           b.ext do
             b.doctype doctype if doctype
-            # keyword.each { |k| b.keyword k }
           end
         end
       end
