@@ -1,5 +1,7 @@
 module RelatonIetf
   class IetfBibliographicItem < RelatonBib::BibliographicItem
+    DOCTYPES = %w[rfc internet-draft].freeze
+
     # @return [String, NilClass]
     attr_reader :doctype
 
@@ -9,8 +11,11 @@ module RelatonIetf
     # @param doctype [String]
     # @param keyword [Array<String>]
     def initialize(**args)
-      @doctype = args.delete :doctype
+      if args[:doctype] && !DOCTYPES.include?(args[:doctype])
+        warn "[relaton-ietf] WARNING: invalid doctype #{args[:doctype]}"
+      end
       super
+      # @doctype = args[:doctype]
     end
 
     # @param builder
