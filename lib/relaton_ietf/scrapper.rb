@@ -111,7 +111,10 @@ module RelatonIetf
         error = nil
         uri_nums.each do |n|
           /(?<=-)(?<ver>\d{2})$/ =~ ref
-          ref.sub! /-\d{2}/, "" if ver && n == "3"
+          if n == "3"
+            ref.sub! /-\d{2}/, "" if ver
+            ref.sub! /(?<=I-D\.)draft-/, ""
+          end
 
           uri = "#{RFC_URI_PATTERN}#{n}/reference.#{ref.sub(/\s|\u00a0/, ".")}.xml"
           begin

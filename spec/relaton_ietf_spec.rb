@@ -62,6 +62,15 @@ RSpec.describe RelatonIetf do
     end
   end
 
+  it "get internet draft document by I-D.draft-* reference" do
+    VCR.use_cassette "I-D.draft-ietf-calext-eventpub-extensions" do
+      item = RelatonIetf::IetfBibliography.get "I-D.draft-ietf-calext-eventpub-extensions"
+      expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id).to eq(
+        "draft-ietf-calext-eventpub-extensions-15"
+      )
+    end
+  end
+
   it "get WC3 document" do
     VCR.use_cassette "w3c_cr_cdr_20070718" do
       item = RelatonIetf::IetfBibliography.search "W3C CR-CDR-20070718"
