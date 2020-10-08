@@ -17,12 +17,15 @@ module RelatonIetf
       super
     end
 
-    # @param builder
     # @param opts [Hash]
+    # @option opts [Nokogiri::XML::Builder] :builder XML builder
+    # @option opts [Boolean] :bibdata
     # @option opts [Symbol, NilClass] :date_format (:short), :full
-    def to_xml(builder = nil, **opts)
+    # @option opts [String, Symbol] :lang language
+    # @return [String] XML
+    def to_xml(**opts)
       opts[:date_format] ||= :short
-      super builder, **opts
+      super **opts
     end
   end
 end
