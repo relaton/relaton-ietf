@@ -65,7 +65,7 @@ RSpec.describe RelatonIetf do
   it "get internet draft document by I-D.draft-* reference" do
     VCR.use_cassette "I-D.draft-ietf-calext-eventpub-extensions" do
       item = RelatonIetf::IetfBibliography.get(
-        "I-D.draft-ietf-calext-eventpub-extensions"
+        "I-D.draft-ietf-calext-eventpub-extensions-15"
       )
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
         .to eq("draft-ietf-calext-eventpub-extensions-15")

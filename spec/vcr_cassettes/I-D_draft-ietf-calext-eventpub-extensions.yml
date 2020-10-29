@@ -21,17 +21,17 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 16 Jul 2020 14:25:57 GMT
+      - Thu, 29 Oct 2020 20:50:50 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Last-Modified:
-      - Tue, 08 Oct 2019 07:00:00 GMT
+      - Fri, 16 Oct 2020 07:00:00 GMT
       Etag:
-      - '"39c297f-41e-59460b780dc00"'
+      - '"39c297f-41f-5b1c450271c00"'
       Accept-Ranges:
       - bytes
       Content-Length:
-      - '1054'
+      - '1055'
       Content-Type:
       - application/xml
     body:
@@ -47,17 +47,17 @@ http_interactions:
             <organization />
         </author>
 
-        <date month='October' day='8' year='2019' />
+        <date month='October' day='16' year='2020' />
 
         <abstract><t>This specification updates RFC5545 by introducing a number of new iCalendar properties and components which are of particular use for event publishers and in social networking.  This specification also defines a new STRUCTURED-DATA property for iCalendar RFC5545 to allow for data that is directly pertinent to an event or task to be included with the calendar data.</t></abstract>
 
         </front>
 
-        <seriesInfo name='Internet-Draft' value='draft-ietf-calext-eventpub-extensions-15' />
+        <seriesInfo name='Internet-Draft' value='draft-ietf-calext-eventpub-extensions-16' />
         <format type='TXT'
-                target='http://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-15.txt' />
+                target='http://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-16.txt' />
         <format type='PDF'
-                target='http://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-15.pdf' />
+                target='http://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-16.pdf' />
         </reference>
-  recorded_at: Thu, 16 Jul 2020 14:25:58 GMT
+  recorded_at: Thu, 29 Oct 2020 20:50:50 GMT
 recorded_with: VCR 6.0.0

@@ -21,7 +21,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Fri, 08 Nov 2019 16:30:16 GMT
+      - Thu, 29 Oct 2020 20:50:52 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Vary:
@@ -48,9 +48,8 @@ http_interactions:
         and try again.\n\n  \n\n</p>\n<p>\nIf you think this is a server error, please
         contact\nthe <a href=\"mailto:webmaster@tools.ietf.org\">webmaster</a>.\n\n</p>\n\n<h2>Error
         404</h2>\n<address>\n  <a href=\"/\">xml2rfc.tools.ietf.org</a><br />\n  \n
-        \ <span>Fri Nov  8 08:30:16 2019<br />\n  Apache/2.2.22 (Debian)</span>\n</address>\n</body>\n</html>\n\n"
-    http_version: 
-  recorded_at: Fri, 08 Nov 2019 16:30:16 GMT
+        \ <span>Thu Oct 29 13:50:52 2020<br />\n  Apache/2.2.22 (Debian)</span>\n</address>\n</body>\n</html>\n\n"
+  recorded_at: Thu, 29 Oct 2020 20:50:52 GMT
 - request:
     method: get
     uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml2/reference.W3C.CR-rdf-schema.xml
@@ -72,7 +71,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 08 Nov 2019 16:30:18 GMT
+      - Thu, 29 Oct 2020 20:50:53 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Last-Modified:
@@ -104,6 +103,6 @@ http_interactions:
           <seriesInfo name="W3C" value="CR-rdf-schema"/>
         </reference>
 
-    http_version: 
-  recorded_at: Fri, 08 Nov 2019 16:30:19 GMT
-recorded_with: VCR 5.0.0
+  recorded_at: Thu, 29 Oct 2020 20:50:53 GMT
+recorded_with: VCR 6.0.0
+...
