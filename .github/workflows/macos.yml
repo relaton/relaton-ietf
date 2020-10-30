@@ -27,6 +27,7 @@ jobs:
         run: |
           sudo gem install bundler --force
           bundle config set build.debase --with-cflags="-Wno-error=implicit-function-declaration"
+          bundle config set build.ruby-debug-ide --with-cflags="-Wno-error=implicit-function-declaration"
           bundle install --jobs 4 --retry 3
       - name: Run specs
         run: |
