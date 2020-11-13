@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 29 Oct 2020 20:50:58 GMT
+      - Tue, 10 Nov 2020 21:59:11 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Last-Modified:
@@ -50,5 +50,5 @@ http_interactions:
          <seriesInfo name='IEEE' value='730-2014' />
          <seriesInfo name='DOI' value='10.1109/ieeestd.2014.6835311' />
         </reference>
-  recorded_at: Thu, 29 Oct 2020 20:50:58 GMT
+  recorded_at: Tue, 10 Nov 2020 21:59:11 GMT
 recorded_with: VCR 6.0.0

@@ -21,7 +21,7 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Thu, 29 Oct 2020 20:51:07 GMT
+      - Tue, 10 Nov 2020 21:59:19 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Vary:
@@ -48,6 +48,6 @@ http_interactions:
         and try again.\n\n  \n\n</p>\n<p>\nIf you think this is a server error, please
         contact\nthe <a href=\"mailto:webmaster@tools.ietf.org\">webmaster</a>.\n\n</p>\n\n<h2>Error
         404</h2>\n<address>\n  <a href=\"/\">xml2rfc.tools.ietf.org</a><br />\n  \n
-        \ <span>Thu Oct 29 13:51:07 2020<br />\n  Apache/2.2.22 (Debian)</span>\n</address>\n</body>\n</html>\n\n"
-  recorded_at: Thu, 29 Oct 2020 20:51:07 GMT
+        \ <span>Tue Nov 10 13:59:19 2020<br />\n  Apache/2.2.22 (Debian)</span>\n</address>\n</body>\n</html>\n\n"
+  recorded_at: Tue, 10 Nov 2020 21:59:19 GMT
 recorded_with: VCR 6.0.0
