@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 Nov 2020 21:59:04 GMT
+      - Thu, 26 Nov 2020 20:57:38 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Last-Modified:
@@ -57,5 +57,5 @@ http_interactions:
         <format type='TXT'
                 target='http://www.ietf.org/internet-drafts/draft-abarth-cake-01.txt' />
         </reference>
-  recorded_at: Tue, 10 Nov 2020 21:59:04 GMT
+  recorded_at: Thu, 26 Nov 2020 20:57:39 GMT
 recorded_with: VCR 6.0.0

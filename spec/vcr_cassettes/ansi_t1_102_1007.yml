@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 10 Nov 2020 21:59:09 GMT
+      - Thu, 26 Nov 2020 20:57:44 GMT
       Server:
       - Apache/2.2.22 (Debian)
       Last-Modified:
@@ -51,5 +51,5 @@ http_interactions:
         <seriesInfo name="ANSI" value="T1" />
 
         </reference>
-  recorded_at: Tue, 10 Nov 2020 21:59:10 GMT
+  recorded_at: Thu, 26 Nov 2020 20:57:44 GMT
 recorded_with: VCR 6.0.0
