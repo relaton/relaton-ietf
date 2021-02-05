@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml4/reference.W3C.CR-CDR-20070718.xml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.W3C.CR-CDR-20070718.xml
     body:
       encoding: US-ASCII
       string: ''
@@ -14,28 +14,60 @@ http_interactions:
       User-Agent:
       - Ruby
       Host:
-      - xml2rfc.tools.ietf.org
+      - raw.githubusercontent.com
   response:
     status:
       code: 200
       message: OK
     headers:
-      Date:
-      - Thu, 26 Nov 2020 20:57:41 GMT
-      Server:
-      - Apache/2.2.22 (Debian)
-      Last-Modified:
-      - Tue, 17 Jul 2007 22:00:00 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '399'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - max-age=300
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
       Etag:
-      - '"39d1946-339-4357cb2deb800"'
+      - W/"64c46154942dad677baec7226ae10aef1d0112e8d88a2fcf8a56710d2ce13fb5"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Github-Request-Id:
+      - A3BA:F77B:3C004:441F7:601D9A79
       Accept-Ranges:
       - bytes
-      Content-Length:
-      - '825'
-      Content-Type:
-      - application/xml
+      Date:
+      - Fri, 05 Feb 2021 19:20:27 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-hhn4031-HHN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1612552827.940046,VS0,VE231
+      Vary:
+      - Authorization,Accept-Encoding, Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fastly-Request-Id:
+      - dfde109cad926b1e7994868159ad12c235f0928a
+      Expires:
+      - Fri, 05 Feb 2021 19:25:27 GMT
+      Source-Age:
+      - '0'
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <?xml version='1.0' encoding='UTF-8'?>
 
@@ -66,5 +98,5 @@ http_interactions:
         <seriesInfo name='World Wide Web Consortium CR' value='CR-CDR-20070718' />
         <format type='HTML' target='http://www.w3.org/TR/2007/CR-CDR-20070718' />
         </reference>
-  recorded_at: Thu, 26 Nov 2020 20:57:41 GMT
+  recorded_at: Fri, 05 Feb 2021 19:20:27 GMT
 recorded_with: VCR 6.0.0

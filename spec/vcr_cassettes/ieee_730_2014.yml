@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml6/reference.IEEE.730_2014.xml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.IEEE.730_2014.xml
     body:
       encoding: US-ASCII
       string: ''
@@ -14,28 +14,60 @@ http_interactions:
       User-Agent:
       - Ruby
       Host:
-      - xml2rfc.tools.ietf.org
+      - raw.githubusercontent.com
   response:
     status:
       code: 200
       message: OK
     headers:
-      Date:
-      - Thu, 26 Nov 2020 20:57:46 GMT
-      Server:
-      - Apache/2.2.22 (Debian)
-      Last-Modified:
-      - Fri, 24 Jul 2015 07:36:53 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '478'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - max-age=300
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
       Etag:
-      - '"39a7ffd-324-51b9a11512f40"'
+      - W/"f18f247fb82bcbaaac6f8109e52506415372409b17f0c026eeee0cc12bbe369f"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Github-Request-Id:
+      - D1CE:6C18:81A2C1:889125:601DD067
       Accept-Ranges:
       - bytes
-      Content-Length:
-      - '804'
-      Content-Type:
-      - application/xml
+      Date:
+      - Fri, 05 Feb 2021 23:10:32 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-hhn4026-HHN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1612566631.449430,VS0,VE670
+      Vary:
+      - Authorization,Accept-Encoding, Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fastly-Request-Id:
+      - bdcead87cff2d822d4ba8994e6ac5e434194aa40
+      Expires:
+      - Fri, 05 Feb 2021 23:15:32 GMT
+      Source-Age:
+      - '0'
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <reference anchor='IEEE.730_2014' target='http://ieeexplore.ieee.org/servlet/opac?punumber=6835309'>
          <front>
@@ -50,5 +82,5 @@ http_interactions:
          <seriesInfo name='IEEE' value='730-2014' />
          <seriesInfo name='DOI' value='10.1109/ieeestd.2014.6835311' />
         </reference>
-  recorded_at: Thu, 26 Nov 2020 20:57:46 GMT
+  recorded_at: Fri, 05 Feb 2021 23:10:32 GMT
 recorded_with: VCR 6.0.0

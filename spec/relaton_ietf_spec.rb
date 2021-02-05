@@ -75,14 +75,14 @@ RSpec.describe RelatonIetf do
   it "get WC3 document" do
     VCR.use_cassette "w3c_cr_cdr_20070718" do
       item = RelatonIetf::IetfBibliography.search "W3C CR-CDR-20070718"
-      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(item.docidentifier[0].id).to eq "W3C.CR-CDR-20070718"
     end
   end
 
   it "get WC3 document form the second page" do
     VCR.use_cassette "w3c_cr_rdf_schema" do
       item = RelatonIetf::IetfBibliography.search "W3C CR-rdf-schema"
-      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(item.docidentifier[0].id).to eq "W3C.CR-rdf-schema"
     end
   end
 
@@ -101,14 +101,14 @@ RSpec.describe RelatonIetf do
   it "get 3GPP document" do
     VCR.use_cassette "3gpp_01_01" do
       item = RelatonIetf::IetfBibliography.search "3GPP 01.01"
-      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(item.docidentifier[0].id).to eq "3GPP.01.01"
     end
   end
 
   it "get IEEE document" do
     VCR.use_cassette "ieee_730_2014" do
       item = RelatonIetf::IetfBibliography.search "IEEE 730_2014"
-      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(item.docidentifier[0].id).to eq "IEEE.730_2014"
     end
   end
 
@@ -130,9 +130,11 @@ RSpec.describe RelatonIetf do
   end
 
   it "deals with extraneous prefix" do
-    expect do
-      RelatonIetf::IetfBibliography.get "CN 8341"
-    end.to raise_error RelatonBib::RequestError
+    VCR.use_cassette "error" do
+      expect do
+        RelatonIetf::IetfBibliography.get "CN 8341"
+      end.to raise_error RelatonBib::RequestError
+    end
   end
 
   it "deals with non-existent document" do

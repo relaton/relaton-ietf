@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.abarth-cake.xml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.I-D.abarth-cake.xml
     body:
       encoding: US-ASCII
       string: ''
@@ -14,28 +14,60 @@ http_interactions:
       User-Agent:
       - Ruby
       Host:
-      - xml2rfc.tools.ietf.org
+      - raw.githubusercontent.com
   response:
     status:
       code: 200
       message: OK
     headers:
-      Date:
-      - Thu, 26 Nov 2020 20:57:38 GMT
-      Server:
-      - Apache/2.2.22 (Debian)
-      Last-Modified:
-      - Fri, 04 Mar 2011 23:00:00 GMT
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '611'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cache-Control:
+      - max-age=300
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
       Etag:
-      - '"39c37d5-3ef-49db01b059c00"'
+      - W/"6345e72d27a1c5710f75c256986615beb7becf4cf40434b30cff4aebf76f8b5d"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Github-Request-Id:
+      - C7FE:5B1A:40393F:43C93B:601D9A10
       Accept-Ranges:
       - bytes
-      Content-Length:
-      - '1007'
-      Content-Type:
-      - application/xml
+      Date:
+      - Fri, 05 Feb 2021 19:18:41 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-hhn4033-HHN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1612552721.934758,VS0,VE222
+      Vary:
+      - Authorization,Accept-Encoding, Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fastly-Request-Id:
+      - 7665f1c5b407630861eddf8af37715d7c03e277b
+      Expires:
+      - Fri, 05 Feb 2021 19:23:41 GMT
+      Source-Age:
+      - '0'
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         <?xml version='1.0' encoding='UTF-8'?>
 
@@ -57,5 +89,5 @@ http_interactions:
         <format type='TXT'
                 target='http://www.ietf.org/internet-drafts/draft-abarth-cake-01.txt' />
         </reference>
-  recorded_at: Thu, 26 Nov 2020 20:57:39 GMT
+  recorded_at: Fri, 05 Feb 2021 19:18:41 GMT
 recorded_with: VCR 6.0.0
