@@ -24,8 +24,6 @@ http_interactions:
       - keep-alive
       Content-Length:
       - '14'
-      Content-Type:
-      - text/plain; charset=utf-8
       Content-Security-Policy:
       - default-src 'none'; style-src 'unsafe-inline'; sandbox
       Strict-Transport-Security:
@@ -36,34 +34,36 @@ http_interactions:
       - deny
       X-Xss-Protection:
       - 1; mode=block
+      Content-Type:
+      - text/plain; charset=utf-8
       X-Github-Request-Id:
-      - 8614:2859:B20E3:BC825:601DD261
+      - 816A:B525:1E20A6:20C065:602D3A43
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 05 Feb 2021 23:18:58 GMT
+      - Wed, 17 Feb 2021 15:46:12 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-hhn4072-HHN
+      - cache-hhn4040-HHN
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1612567138.839679,VS0,VE245
+      - S1613576772.116769,VS0,VE220
       Vary:
       - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 7588f3aeba87eed8f2eb26829fc85928d6fad162
+      - 9c9775dbf06a87882b19bb9380c17abda11a32ba
       Expires:
-      - Fri, 05 Feb 2021 23:23:58 GMT
+      - Wed, 17 Feb 2021 15:51:12 GMT
       Source-Age:
       - '0'
     body:
       encoding: UTF-8
       string: '404: Not Found'
-  recorded_at: Fri, 05 Feb 2021 23:18:58 GMT
+  recorded_at: Wed, 17 Feb 2021 15:46:12 GMT
 recorded_with: VCR 6.0.0

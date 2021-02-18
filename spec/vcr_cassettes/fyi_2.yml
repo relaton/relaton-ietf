@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.FYI.0002.xml
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - raw.githubusercontent.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '566'
+      Cache-Control:
+      - max-age=300
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Etag:
+      - W/"711a9a7274dcad62cf8520b1a1e34fa217304b0e9c3afb0f109a4c42e94f5866"
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Github-Request-Id:
+      - 6738:6F23:1D420D:22D232:602EA266
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Thu, 18 Feb 2021 17:22:51 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-hhn4046-HHN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Timer:
+      - S1613668971.737365,VS0,VE349
+      Vary:
+      - Authorization,Accept-Encoding
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Fastly-Request-Id:
+      - 550a18def4673866d90d4ec39719d37e3b7feb77
+      Expires:
+      - Thu, 18 Feb 2021 17:27:51 GMT
+      Source-Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <referencegroup anchor="FYI2" target="https://www.rfc-editor.org/info/fyi2">
+        <!-- reference.RFC.1470.xml -->
+        <reference  anchor='RFC1470' target='https://www.rfc-editor.org/info/rfc1470'>
+        <front>
+        <title>FYI on a Network Management Tool Catalog: Tools for Monitoring and Debugging TCP/IP Internets and Interconnected Devices</title>
+        <author initials='R.' surname='Enger' fullname='R. Enger'><organization /></author>
+        <author initials='J.' surname='Reynolds' fullname='J. Reynolds'><organization /></author>
+        <date year='1993' month='June' />
+        <abstract><t>The goal of this FYI memo is to provide an update to FYI 2, RFC 1147 [1], which provided practical information to site administrators and network managers.  This memo provides information for the Internet community.  It does not specify an Internet standard.</t></abstract>
+        </front>
+        <seriesInfo name='FYI' value='2'/>
+        <seriesInfo name='RFC' value='1470'/>
+        <seriesInfo name='DOI' value='10.17487/RFC1470'/>
+        </reference>
+        </referencegroup>
+  recorded_at: Thu, 18 Feb 2021 17:22:50 GMT
+recorded_with: VCR 6.0.0

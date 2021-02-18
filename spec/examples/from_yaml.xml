@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2020-02-15</fetched>
+  <fetched>2021-02-18</fetched>
   <title format="text/plain" language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF">RFC 8341</docidentifier>
@@ -23,6 +23,11 @@
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/plain" language="en" script="Latn">The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.This document obsoletes RFC 6536.</abstract>
+  <relation type="includes">
+    <bibitem>
+      <formattedref format="text/plain">RFC 5636</formattedref>
+    </bibitem>
+  </relation>
   <series type="main">
     <title format="text/plain" language="en" script="Latn">STD</title>
     <number>serie1234</number>

@@ -23,13 +23,13 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '478'
-      Content-Type:
-      - text/plain; charset=utf-8
+      - '469'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
       - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
       Etag:
       - W/"f18f247fb82bcbaaac6f8109e52506415372409b17f0c026eeee0cc12bbe369f"
       Strict-Transport-Security:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - D1CE:6C18:81A2C1:889125:601DD067
+      - A470:19E6:CE963:F4EE4:602D3A3E
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 05 Feb 2021 23:10:32 GMT
+      - Wed, 17 Feb 2021 15:46:07 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-hhn4026-HHN
+      - cache-hhn4028-HHN
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1612566631.449430,VS0,VE670
+      - S1613576767.093301,VS0,VE253
       Vary:
-      - Authorization,Accept-Encoding, Accept-Encoding
+      - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - bdcead87cff2d822d4ba8994e6ac5e434194aa40
+      - 604016aee72f59cd22c1417332091f1112558436
       Expires:
-      - Fri, 05 Feb 2021 23:15:32 GMT
+      - Wed, 17 Feb 2021 15:51:07 GMT
       Source-Age:
       - '0'
     body:
@@ -82,5 +82,5 @@ http_interactions:
          <seriesInfo name='IEEE' value='730-2014' />
          <seriesInfo name='DOI' value='10.1109/ieeestd.2014.6835311' />
         </reference>
-  recorded_at: Fri, 05 Feb 2021 23:10:32 GMT
+  recorded_at: Wed, 17 Feb 2021 15:46:07 GMT
 recorded_with: VCR 6.0.0

@@ -129,6 +129,20 @@ RSpec.describe RelatonIetf do
     end
   end
 
+  it "get FYI" do
+    VCR.use_cassette "fyi_2" do
+      item = RelatonIetf::IetfBibliography.get "FYI 2"
+      expect(item.docidentifier[0].id).to eq "FYI2"
+    end
+  end
+
+  it "get STD" do
+    VCR.use_cassette "std_3" do
+      item = RelatonIetf::IetfBibliography.get "STD 3"
+      expect(item.docidentifier[0].id).to eq "STD3"
+    end
+  end
+
   it "deals with extraneous prefix" do
     VCR.use_cassette "error" do
       expect do

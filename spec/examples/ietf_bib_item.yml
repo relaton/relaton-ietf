@@ -39,6 +39,13 @@ contributor:
         name: IETF
         abbreviation: IETF
   role: author
+
+relation:
+  type: includes
+  bibitem:
+    formattedref:
+      content: RFC 5636
+      format: text/plain
   
 link:
   type: "src"

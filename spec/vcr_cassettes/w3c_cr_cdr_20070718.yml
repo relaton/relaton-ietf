@@ -23,13 +23,13 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '399'
-      Content-Type:
-      - text/plain; charset=utf-8
+      - '395'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
       - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
       Etag:
       - W/"64c46154942dad677baec7226ae10aef1d0112e8d88a2fcf8a56710d2ce13fb5"
       Strict-Transport-Security:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - A3BA:F77B:3C004:441F7:601D9A79
+      - 8806:23C3:8DF7A:9F840:602D3A3C
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 05 Feb 2021 19:20:27 GMT
+      - Wed, 17 Feb 2021 15:46:04 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-hhn4031-HHN
+      - cache-hhn4059-HHN
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1612552827.940046,VS0,VE231
+      - S1613576764.361854,VS0,VE352
       Vary:
-      - Authorization,Accept-Encoding, Accept-Encoding
+      - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - dfde109cad926b1e7994868159ad12c235f0928a
+      - 81e213bde06ce27764a98a08d87aadae341ac872
       Expires:
-      - Fri, 05 Feb 2021 19:25:27 GMT
+      - Wed, 17 Feb 2021 15:51:04 GMT
       Source-Age:
       - '0'
     body:
@@ -98,5 +98,5 @@ http_interactions:
         <seriesInfo name='World Wide Web Consortium CR' value='CR-CDR-20070718' />
         <format type='HTML' target='http://www.w3.org/TR/2007/CR-CDR-20070718' />
         </reference>
-  recorded_at: Fri, 05 Feb 2021 19:20:27 GMT
+  recorded_at: Wed, 17 Feb 2021 15:46:04 GMT
 recorded_with: VCR 6.0.0

@@ -11,22 +11,18 @@ module RelatonIetf
   # Scrapper module
   module Scrapper
     GH_URL = "https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference."
-    RFC_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml"
-    # ID_URI_PATTERN = "https://xml2rfc.tools.ietf.org/public/rfc/bibxml-ids/reference.CODE"
     BCP_URI_PATTERN = "https://www.rfc-editor.org/info/CODE"
 
     class << self
-      # rubocop:disable Metrics/MethodLength
-
       # @param text [String]
       # @param is_relation [TrueClass, FalseClass]
       # @return [RelatonIetf::IetfBibliographicItem]
       def scrape_page(text, is_relation = false)
         # Remove initial "IETF " string if specified
         ref = text.gsub(/^IETF /, "")
-        if ref.match? /^BCP/ then bcp_item BCP_URI_PATTERN.dup, ref
-        else rfc_item ref, is_relation
-        end
+        /^(RFC|BCP|FYI|STD)\s(?<num>\d+)/ =~ ref
+        ref.sub! /(?<=^(?:RFC|BCP|FYI|STD)\s)(\d+)/, num.rjust(4, "0") if num
+        rfc_item ref, is_relation
       rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
              Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
              Net::ProtocolError, SocketError
@@ -38,7 +34,7 @@ module RelatonIetf
       # @param url [String, NilClass]
       # @param ver [String, NilClass] Internet Draft version
       # @return [RelatonIetf::IetfBibliographicItem]
-      def fetch_rfc(reference, is_relation = false, url = nil, ver = nil) # rubocop:disable Metrics/AbcSize
+      def fetch_rfc(reference, is_relation = false, url = nil, ver = nil) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         return unless reference
 
         ietf_item(
@@ -50,8 +46,10 @@ module RelatonIetf
           language: [language(reference)],
           link: link(reference, url, ver),
           title: titles(reference),
+          formattedref: formattedref(reference),
           abstract: abstracts(reference),
           contributor: contributors(reference),
+          relation: relations(reference),
           date: dates(reference),
           series: series(reference),
           place: ["Fremont, CA"],
@@ -59,7 +57,6 @@ module RelatonIetf
           doctype: doctype(reference[:anchor])
         )
       end
-      # rubocop:enable Metrics/MethodLength
 
       private
 
@@ -105,35 +102,19 @@ module RelatonIetf
 
         uri = "#{GH_URL}#{ref.sub(/\s|\u00a0/, '.')}.xml"
         doc = Nokogiri::XML get_page(uri)
-        fetch_rfc doc.at("//reference"), is_relation, uri, ver
+        fetch_rfc doc.at("/referencegroup", "/reference"), is_relation, uri, ver
       end
 
-      # @param uri_template [String]
-      # @param reference [String]
-      # @return [RelatonIetf::IetfBibliographicItem]
-      def bcp_item(uri_template, reference) # rubocop:disable Metrics/MethodLength
-        uri = uri_template.sub "CODE", reference.sub(" ", "").downcase
-        doc = Nokogiri::HTML get_page(uri)
-        ietf_item(
-          id: reference,
-          title: [content: ""],
-          docid: [RelatonBib::DocumentIdentifier.new(type: "IETF", id: reference)],
-          language: ["en"],
-          link: [{ type: "src", content: uri }],
-          relation: fetch_relations(doc),
-          doctype: "rfc"
-        )
-      end
-
-      def fetch_relations(doc)
-        doc.xpath("//table/tr/td/a[contains(., 'RFC')]").map do |r|
-          RelatonBib::DocumentRelation.new(
-            type: "merges",
-            bibitem: scrape_page(r.text, true)
-          )
+      # @param reference [Nokogiri::XML::Element]
+      # @return [Hash]
+      def relations(reference)
+        reference.xpath("reference").map do |ref|
+          { type: "includes", bibitem: fetch_rfc(ref, true) }
         end
       end
 
+      # @param uri [String]
+      # @return [String] HTTP response body
       def get_page(uri)
         res = Net::HTTP.get_response(URI(uri))
         if res.code != "200"
@@ -143,17 +124,30 @@ module RelatonIetf
         res.body
       end
 
+      # @param reference [Nokogiri::XML::Element]
       # @return [String]
       def language(reference)
         reference[:lang] || "en"
       end
 
+      # @param reference [Nokogiri::XML::Element]
       # @return [Array<Hash>]
       def titles(reference)
-        title = reference.at("./front/title")
-        [{ content: title.text, language: language(reference), script: "Latn" }]
+        reference.xpath("./front/title").map do |title|
+          { content: title.text, language: language(reference), script: "Latn" }
+        end
       end
 
+      # @param reference [Nokogiri::XML::Element]
+      # @return [RelatonBib::FormattedRef, nil]
+      def formattedref(reference)
+        return if reference.at "./fornt/title"
+
+        cont = (reference[:anchor] || reference[:docName] || reference[:number])
+        RelatonBib::FormattedRef.new content: cont, language: language(reference), script: "Latn" if cont
+      end
+
+      # @param reference [Nokogiri::XML::Element]
       # @return [Array<RelatonBib::FormattedString>]
       def abstracts(ref)
         ref.xpath("./front/abstract").map do |a|
@@ -164,11 +158,13 @@ module RelatonIetf
         end
       end
 
+      # @param reference [Nokogiri::XML::Element]
       # @return [Array<Hash>]
       def contributors(reference)
         persons(reference) + organizations(reference)
       end
 
+      # @param reference [Nokogiri::XML::Element]
       # @return [Array<Hash{Symbol=>RelatonBib::Person,Symbol=>Array<String>}>]
       def persons(reference)
         reference.xpath("./front/author[@surname]|./front/author[@fullname]")
@@ -182,6 +178,7 @@ module RelatonIetf
         end
       end
 
+      # @param reference [Nokogiri::XML::Element]
       # @return [Array<Hash{Symbol=>RelatonBib::Organization,Symbol=>Array<String>}>]
       def organizations(reference)
         publisher = { entity: new_org, role: [type: "publisher"] }
@@ -197,8 +194,8 @@ module RelatonIetf
         end
       end
 
-      # @param author [Nokogiri::XML::Document]
-      # @param ref [Nokogiri::XML::Document]
+      # @param author [Nokogiri::XML::Element]
+      # @param ref [Nokogiri::XML::Element]
       # @return [RelatonBib::FullName]
       def full_name(author, ref)
         lang = language ref
@@ -218,7 +215,7 @@ module RelatonIetf
         RelatonBib::LocalizedString.new(content, lang)
       end
 
-      # @param postal [Nokogiri::XML::Document]
+      # @param postal [Nokogiri::XML::Element]
       # @return [Array<RelatonBib::Address, RelatonBib::Phone>]
       def contacts(addr)
         contacts = []
@@ -232,7 +229,7 @@ module RelatonIetf
         contacts
       end
 
-      # @param postal [Nokogiri::XML::Document]
+      # @param postal [Nokogiri::XML::Element]
       # @rerurn [RelatonBib::Address]
       def address(postal) # rubocop:disable Metrics/CyclomaticComplexity
         RelatonBib::Address.new(
@@ -252,7 +249,7 @@ module RelatonIetf
         contacts << RelatonBib::Contact.new(type: type, value: value.text)
       end
 
-      # @param author [Nokogiri::XML::Document]
+      # @param author [Nokogiri::XML::Element]
       # @return [RelatonBib::Affiliation]
       def affiliation(author)
         organization = author.at("./organization")
@@ -287,6 +284,7 @@ module RelatonIetf
       #
       # Extract date from reference.
       #
+      # @param reference [Nokogiri::XML::Element]
       # @return [Array<RelatonBib::BibliographicDate>] published data.
       #
       def dates(reference)
@@ -298,8 +296,6 @@ module RelatonIetf
         [RelatonBib::BibliographicDate.new(type: "published", on: date)]
       end
 
-      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-
       #
       # Extract document identifiers from reference
       #
@@ -308,7 +304,7 @@ module RelatonIetf
       #
       # @return [Array<RelatonBib::DocumentIdentifier>]
       #
-      def docids(reference, ver) # rubocop:disable Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+      def docids(reference, ver) # rubocop:disable Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity,Metrics/AbcSize
         id = (reference[:anchor] || reference[:docName] || reference[:number])
         ret = []
         if id
@@ -327,11 +323,10 @@ module RelatonIetf
           RelatonBib::DocumentIdentifier.new(id: id, type: si[:name])
         end.compact
       end
-      # enable Metrics/MethodLength, Metrics/AbcSize
 
       #
       # Extract series form reference
-      # @param reference [Nokogiri::XML::Document]
+      # @param reference [Nokogiri::XML::Element]
       #
       # @return [Array<RelatonBib::Series>]
       #
@@ -351,7 +346,7 @@ module RelatonIetf
 
       #
       # extract status
-      # @param reference [Nokogiri::XML::Document]
+      # @param reference [Nokogiri::XML::Element]
       #
       # @return [RelatonBib::DocumentStatus]
       #

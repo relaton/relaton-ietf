@@ -23,13 +23,13 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '611'
-      Content-Type:
-      - text/plain; charset=utf-8
+      - '605'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
       - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
       Etag:
       - W/"6345e72d27a1c5710f75c256986615beb7becf4cf40434b30cff4aebf76f8b5d"
       Strict-Transport-Security:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - C7FE:5B1A:40393F:43C93B:601D9A10
+      - 8DD6:75BF:1A753F:1ECBB0:602D3A39
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 05 Feb 2021 19:18:41 GMT
+      - Wed, 17 Feb 2021 15:46:03 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-hhn4033-HHN
+      - cache-hhn4066-HHN
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1612552721.934758,VS0,VE222
+      - S1613576763.684480,VS0,VE333
       Vary:
-      - Authorization,Accept-Encoding, Accept-Encoding
+      - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 7665f1c5b407630861eddf8af37715d7c03e277b
+      - 93330c4a5b93a16bba498d87de695c417537e73c
       Expires:
-      - Fri, 05 Feb 2021 19:23:41 GMT
+      - Wed, 17 Feb 2021 15:51:03 GMT
       Source-Age:
       - '0'
     body:
@@ -89,5 +89,5 @@ http_interactions:
         <format type='TXT'
                 target='http://www.ietf.org/internet-drafts/draft-abarth-cake-01.txt' />
         </reference>
-  recorded_at: Fri, 05 Feb 2021 19:18:41 GMT
+  recorded_at: Wed, 17 Feb 2021 15:46:02 GMT
 recorded_with: VCR 6.0.0
