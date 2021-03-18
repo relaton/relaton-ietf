@@ -9,7 +9,7 @@ module RelatonIetf
       # @param item_hash [Hash]
       # @return [RelatonIetf::IetfBibliographicItem]
       def bib_item(item_hash)
-        IetfBibliographicItem.new item_hash
+        IetfBibliographicItem.new **item_hash
       end
     end
   end

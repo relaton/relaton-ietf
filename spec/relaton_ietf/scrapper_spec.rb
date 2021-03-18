@@ -84,7 +84,7 @@ RSpec.describe RelatonIetf::Scrapper do
   it "return hash" do
     yaml = YAML.load_file "spec/examples/ietf_bib_item.yml"
     hash = RelatonIetf::HashConverter.hash_to_bib yaml
-    item = RelatonIetf::IetfBibliographicItem.new hash
+    item = RelatonIetf::IetfBibliographicItem.new **hash
     yaml["fetched"] = Date.today.to_s
     expect(item.to_hash).to eq yaml
   end
