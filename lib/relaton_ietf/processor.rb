@@ -27,8 +27,7 @@ module RelatonIetf
     # @param hash [Hash]
     # @return [RelatonIetf::IetfBibliographicItem]
     def hash_to_bib(hash)
-      item_hash = ::RelatonIetf::HashConverter.hash_to_bib(hash)
-      ::RelatonIetf::IetfBibliographicItem.new item_hash
+      ::RelatonIetf::IetfBibliographicItem.from_hash hash
     end
 
     # Returns hash of XML grammar
