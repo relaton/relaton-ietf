@@ -102,11 +102,7 @@ hash = YAML.load_file 'spec/examples/ietf_bib_item.yml'
 => {"id"=>"RFC 8341",
 ...
 
-bib_hash = RelatonIetf::HashConverter.hash_to_bib hash
-=> {:id=>"RFC 8341",
-...
-
-RelatonIetf::IetfBibliographicItem.new bib_hash
+RelatonIetf::IetfBibliographicItem.from_hash hash
 => #<RelatonIetf::IetfBibliographicItem:0x007f9a929dde40
 ...
 ----
