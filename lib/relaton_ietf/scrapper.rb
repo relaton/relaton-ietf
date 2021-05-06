@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "net/http"
-require "nokogiri"
 require "relaton_bib"
 require "relaton_ietf/ietf_bibliographic_item"
 
@@ -17,16 +16,16 @@ module RelatonIetf
       # @param text [String]
       # @param is_relation [TrueClass, FalseClass]
       # @return [RelatonIetf::IetfBibliographicItem]
-      def scrape_page(text, is_relation = false)
+      def scrape_page(text, is_relation: false)
         # Remove initial "IETF " string if specified
         ref = text.gsub(/^IETF /, "")
-        /^(RFC|BCP|FYI|STD)\s(?<num>\d+)/ =~ ref
+        /^(?:RFC|BCP|FYI|STD)\s(?<num>\d+)/ =~ ref
         ref.sub! /(?<=^(?:RFC|BCP|FYI|STD)\s)(\d+)/, num.rjust(4, "0") if num
         rfc_item ref, is_relation
       rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
              Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
              Net::ProtocolError, SocketError
-        raise RelatonBib::RequestError, "No document found for #{ref} reference."
+        raise RelatonBib::RequestError, "No document found for #{ref} reference"
       end
 
       # @param reference [Nokogiri::XML::Element, nil]
@@ -34,7 +33,7 @@ module RelatonIetf
       # @param url [String, NilClass]
       # @param ver [String, NilClass] Internet Draft version
       # @return [RelatonIetf::IetfBibliographicItem]
-      def fetch_rfc(reference, is_relation = false, url = nil, ver = nil) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      def fetch_rfc(reference, is_relation: false, url: nil, ver: nil) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         return unless reference
 
         ietf_item(
@@ -54,7 +53,7 @@ module RelatonIetf
           series: series(reference),
           place: ["Fremont, CA"],
           keyword: reference.xpath("front/keyword").map(&:text),
-          doctype: doctype(reference[:anchor])
+          doctype: doctype(reference[:anchor]),
         )
       end
 
@@ -92,6 +91,7 @@ module RelatonIetf
       end
 
       # @param ref [String]
+      # @param is_relation [Boolen, nil]
       # @return [RelatonIetf::IetfBibliographicItem]
       def rfc_item(ref, is_relation)
         /(?<=-)(?<ver>\d{2})$/ =~ ref
@@ -102,14 +102,15 @@ module RelatonIetf
 
         uri = "#{GH_URL}#{ref.sub(/\s|\u00a0/, '.')}.xml"
         doc = Nokogiri::XML get_page(uri)
-        fetch_rfc doc.at("/referencegroup", "/reference"), is_relation, uri, ver
+        r = doc.at("/referencegroup", "/reference")
+        fetch_rfc r, is_relation: is_relation, url: uri, ver: ver
       end
 
       # @param reference [Nokogiri::XML::Element]
       # @return [Hash]
       def relations(reference)
         reference.xpath("reference").map do |ref|
-          { type: "includes", bibitem: fetch_rfc(ref, true) }
+          { type: "includes", bibitem: fetch_rfc(ref, is_relation: true) }
         end
       end
 
@@ -117,9 +118,10 @@ module RelatonIetf
       # @return [String] HTTP response body
       def get_page(uri)
         res = Net::HTTP.get_response(URI(uri))
-        if res.code != "200"
-          raise RelatonBib::RequestError, "No document found at #{uri}"
-        end
+        return unless res.code == "200"
+
+        #   raise RelatonBib::RequestError, "No document found at #{uri}"
+        # end
 
         res.body
       end
@@ -144,7 +146,11 @@ module RelatonIetf
         return if reference.at "./fornt/title"
 
         cont = (reference[:anchor] || reference[:docName] || reference[:number])
-        RelatonBib::FormattedRef.new content: cont, language: language(reference), script: "Latn" if cont
+        if cont
+          RelatonBib::FormattedRef.new(
+            content: cont, language: language(reference), script: "Latn",
+          )
+        end
       end
 
       # @param reference [Nokogiri::XML::Element]
@@ -172,14 +178,15 @@ module RelatonIetf
           entity = RelatonBib::Person.new(
             name: full_name(author, reference),
             affiliation: [affiliation(author)],
-            contact: contacts(author.at("./address"))
+            contact: contacts(author.at("./address")),
           )
           { entity: entity, role: [contributor_role(author)] }
         end
       end
 
       # @param reference [Nokogiri::XML::Element]
-      # @return [Array<Hash{Symbol=>RelatonBib::Organization,Symbol=>Array<String>}>]
+      # @return [Array<Hash{Symbol=>RelatonBib::Organization,
+      #   Symbol=>Array<String>}>]
       def organizations(reference)
         publisher = { entity: new_org, role: [type: "publisher"] }
         orgs = reference.xpath("./seriesinfo").reduce([publisher]) do |mem, si|
@@ -188,7 +195,7 @@ module RelatonIetf
           mem << { entity: new_org(si[:stream], nil), role: [type: "author"] }
         end
         orgs + reference.xpath(
-          "front/author[not(@surname)][not(@fullname)]/organization"
+          "front/author[not(@surname)][not(@fullname)]/organization",
         ).map do |org|
           { entity: new_org(org.text, nil), role: [type: "author"] }
         end
@@ -202,7 +209,7 @@ module RelatonIetf
         RelatonBib::FullName.new(
           completename: localized_string(author[:fullname], lang),
           initial: [localized_string(author[:initials], lang)].compact,
-          surname: localized_string(author[:surname], lang)
+          surname: localized_string(author[:surname], lang),
         )
       end
 
@@ -237,7 +244,7 @@ module RelatonIetf
           city: postal.at("./city")&.text,
           postcode: postal.at("./code")&.text,
           country: postal.at("./country")&.text,
-          state: postal.at("./region")&.text
+          state: postal.at("./region")&.text,
         )
       end
 
@@ -309,7 +316,7 @@ module RelatonIetf
         ret = []
         if id
           ret << RelatonBib::DocumentIdentifier.new(
-            type: "IETF", id: id.sub(/^(RFC)/, "\\1 ")
+            type: "IETF", id: id.sub(/^(RFC)/, "\\1 "),
           )
         end
         if (id = reference[:anchor])
@@ -336,10 +343,10 @@ module RelatonIetf
 
           RelatonBib::Series.new(
             title: RelatonBib::TypedTitleString.new(
-              content: si[:name], language: language(reference), script: "Latn"
+              content: si[:name], language: language(reference), script: "Latn",
             ),
             number: si[:value],
-            type: "main"
+            type: "main",
           )
         end.compact
       end

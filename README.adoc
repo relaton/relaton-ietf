@@ -33,19 +33,30 @@ Or install it yourself as:
 
 == Usage
 
-=== Search document
+=== Fetching documents
 
 [source,ruby]
 ----
 require 'relaton_ietf'
 
-item = RelatonIetf::IetfBibliography.search 'RFC 8341'
+# Fetch RFC document
+item = RelatonIetf::IetfBibliography.get 'IETF RFC 8341'
+[relaton-ietf] ("IETF RFC 8341") fetching...
+[relaton-ietf] ("IETF RFC 8341") found RFC 8341
 => #<RelatonIetf::IetfBibliographicItem:0x007fd1875e7f58
 ...
 
+# Fetch Internet-Draft document
+RelatonIetf::IetfBibliography.get 'IETF I-D.abarth-cake-02'
+[relaton-ietf] ("IETF I-D.abarth-cake-02") fetching...
+[relaton-ietf] ("IETF I-D.abarth-cake-02") found I-D.abarth-cake
+=> #<RelatonIetf::IetfBibliographicItem:0x00007fa7c81688f8
+...
+
 # Return nil if document doesn't exist.
-RelatonIetf::IetfBibliography.search '1111'
-RelatonBib::RequestError: 1111: not recognised for RFC
+RelatonIetf::IetfBibliography.get 'IETF 1111'
+[relaton-ietf] ("IETF 1111") fetching...
+[relaton-ietf] ("IETF 1111") not found
 => nil
 ----
 

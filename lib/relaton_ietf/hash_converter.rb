@@ -5,7 +5,7 @@ module RelatonIetf
       # Ovverides superclass's method
       #
       # @param item [Hash]
-      # @retirn [RelatonIec::IecBibliographicItem]
+      # @retirn [RelatonIetf::IetfBibliographicItem]
       def bib_item(item)
         IetfBibliographicItem.new(**item)
       end

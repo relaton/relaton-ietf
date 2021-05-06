@@ -25,7 +25,7 @@ RSpec.describe RelatonIetf do
         File.write file, xml, encoding: "utf-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "utf-8").sub(
           %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
-          "<fetched>#{Date.today}</fetched>"
+          "<fetched>#{Date.today}</fetched>",
         )
         schema = Jing.new "spec/examples/isobib.rng"
         errors = schema.validate file
@@ -43,7 +43,7 @@ RSpec.describe RelatonIetf do
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file).sub(
         %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
-        "<fetched>#{Date.today}</fetched>"
+        "<fetched>#{Date.today}</fetched>",
       )
       schema = Jing.new "spec/examples/isobib.rng"
       errors = schema.validate file
@@ -57,7 +57,7 @@ RSpec.describe RelatonIetf do
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
         .to eq "draft-abarth-cake-02"
       expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq(
-        "http://www.ietf.org/internet-drafts/draft-abarth-cake-02.txt"
+        "http://www.ietf.org/internet-drafts/draft-abarth-cake-02.txt",
       )
     end
   end
@@ -65,7 +65,7 @@ RSpec.describe RelatonIetf do
   it "get internet draft document by I-D.draft-* reference" do
     VCR.use_cassette "I-D.draft-ietf-calext-eventpub-extensions" do
       item = RelatonIetf::IetfBibliography.get(
-        "I-D.draft-ietf-calext-eventpub-extensions-15"
+        "I-D.draft-ietf-calext-eventpub-extensions-15",
       )
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
         .to eq("draft-ietf-calext-eventpub-extensions-15")
@@ -121,7 +121,7 @@ RSpec.describe RelatonIetf do
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file).sub(
         %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
-        "<fetched>#{Date.today}</fetched>"
+        "<fetched>#{Date.today}</fetched>",
       )
       schema = Jing.new "spec/examples/isobib.rng"
       errors = schema.validate file
@@ -147,15 +147,14 @@ RSpec.describe RelatonIetf do
     VCR.use_cassette "error" do
       expect do
         RelatonIetf::IetfBibliography.get "CN 8341"
-      end.to raise_error RelatonBib::RequestError
+      end.to output(/not found/).to_stderr
     end
   end
 
   it "deals with non-existent document" do
     VCR.use_cassette "non_existed_doc" do
-      expect do
-        RelatonIetf::IetfBibliography.search "RFC 08341"
-      end.to raise_error RelatonBib::RequestError
+      item = RelatonIetf::IetfBibliography.get "RFC 08341"
+      expect(item).to be_nil
     end
   end
 
@@ -177,7 +176,7 @@ RSpec.describe RelatonIetf do
     it "warn if XML doesn't have bibitem or bibdata element" do
       item = ""
       expect { item = RelatonIetf::XMLParser.from_xml "" }.to output(
-        /can't find bibitem/
+        /can't find bibitem/,
       ).to_stderr
       expect(item).to be_nil
     end

@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '563'
+      - '550'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"a145780b5f95d7bf8b84528223c6fe6b003a6ce55aaef33bfcd77c71344c3bac"
+      - W/"9e7c74a4ddcb4574131601a0a1abc7df73701a4768c84b2e9ae0e1226aa5b04d"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - F99E:170A:101E36C:10D70EC:6053AFD1
+      - 23EE:A149:176C60:1DAD13:6093C367
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 18 Mar 2021 19:53:53 GMT
+      - Thu, 06 May 2021 10:22:31 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie21636-VIE
+      - cache-hhn4078-HHN
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1616097233.367127,VS0,VE309
+      - S1620296552.697029,VS0,VE300
       Vary:
       - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 7ebaa6c12d751edaf3b576192b4811983e188e15
+      - bdcf59dbf44413b3ee081920ac709625fda5b52d
       Expires:
-      - Thu, 18 Mar 2021 19:58:53 GMT
+      - Thu, 06 May 2021 10:27:31 GMT
       Source-Age:
       - '0'
     body:
@@ -74,22 +74,15 @@ http_interactions:
         <reference anchor='I-D.ietf-calext-eventpub-extensions'>
         <front>
         <title>Event Publishing Extensions to iCalendar</title>
-
         <author initials='M' surname='Douglass' fullname='Michael Douglass'>
-            <organization />
+        <organization />
         </author>
-
-        <date month='January' day='13' year='2021' />
-
-        <abstract><t>This specification updates RFC5545 by introducing a number of new iCalendar properties and components which are of particular use for event publishers and in social networking.  This specification also defines a new STRUCTURED-DATA property for iCalendar RFC5545 to allow for data that is directly pertinent to an event or task to be included with the calendar data.</t></abstract>
-
+        <date year='2021' month='March' day='26' />
+        <abstract><t>This specification updates RFC5545 by introducing a number of new iCalendar properties and components which are of particular use for event publishers and in social networking.</t><t> This specification also defines a new STRUCTURED-DATA property for iCalendar RFC5545 to allow for data that is directly pertinent to an event or task to be included with the calendar data.</t></abstract>
         </front>
-
-        <seriesInfo name='Internet-Draft' value='draft-ietf-calext-eventpub-extensions-18' />
-        <format type='TXT'
-                target='http://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-18.txt' />
-        <format type='PDF'
-                target='http://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-18.pdf' />
+        <seriesInfo name='Internet-Draft' value='draft-ietf-calext-eventpub-extensions-19'/>
+        <format type='TXT' target='https://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-19.txt'/>
+        <format type='PDF' target='https://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-19.pdf'/>
         </reference>
-  recorded_at: Thu, 18 Mar 2021 19:53:53 GMT
+  recorded_at: Thu, 06 May 2021 10:22:32 GMT
 recorded_with: VCR 6.0.0
