@@ -92,7 +92,7 @@ item.to_xml bibdata: true
 
 === Typed links
 
-IETF documents may have `src`, `xml`, and `doi` type link.
+IETF documents may have `src`, `xml`, and `doi` link type.
 
 [source,ruby]
 ----
