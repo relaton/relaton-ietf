@@ -37,33 +37,33 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       X-Github-Request-Id:
-      - 1128:11766:3A8CB2:40D6A3:612767D1
+      - 4978:659C:8CF305:9431E0:615EC1E9
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 26 Aug 2021 10:07:13 GMT
+      - Thu, 07 Oct 2021 09:46:17 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-muc13955-MUC
+      - cache-muc13923-MUC
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1629972433.096057,VS0,VE442
+      - S1633599977.204098,VS0,VE273
       Vary:
-      - Authorization,Accept-Encoding
+      - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - ec2c0c3acc9d55b442b62ee9610dcde517acbbf1
+      - e3a4b8f162cfa44e9c2e430dd6686f56d60458ba
       Expires:
-      - Thu, 26 Aug 2021 10:12:13 GMT
+      - Thu, 07 Oct 2021 09:51:17 GMT
       Source-Age:
       - '0'
     body:
       encoding: UTF-8
       string: '404: Not Found'
-  recorded_at: Thu, 26 Aug 2021 10:07:13 GMT
+  recorded_at: Thu, 07 Oct 2021 09:46:17 GMT
 recorded_with: VCR 6.0.0

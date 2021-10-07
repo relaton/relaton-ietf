@@ -90,6 +90,17 @@ item.to_xml bibdata: true
 </bibdata>"
 ----
 
+=== Typed links
+
+IETF documents may have `src`, `xml`, and `doi` type link.
+
+[source,ruby]
+----
+item.link
+=> [#<RelatonBib::TypedUri:0x00007fe8b287a120 @content=#<Addressable::URI:0x7e4 URI:https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8341.xml>, @type="xml">,
+ #<RelatonBib::TypedUri:0x00007fe8b2237ec0 @content=#<Addressable::URI:0x7f8 URI:https://www.rfc-editor.org/info/rfc8341>, @type="src">]
+----
+
 === Parse a file locally
 
 [source,ruby]

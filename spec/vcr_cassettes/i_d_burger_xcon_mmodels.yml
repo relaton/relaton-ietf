@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - B6C8:11766:3A8BA7:40D581:612767C9
+      - 920A:1752:FD24BB:109C06F:615EC1E1
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 26 Aug 2021 10:07:06 GMT
+      - Thu, 07 Oct 2021 09:46:09 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-muc13949-MUC
+      - cache-muc13968-MUC
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1629972426.901954,VS0,VE356
+      - S1633599970.556855,VS0,VE360
       Vary:
-      - Authorization,Accept-Encoding
+      - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - eab9370888de22a2d6940aac97d4e67819dbd328
+      - 1897c9b1afd16cc8ca521c290b5c9faa9f73aa15
       Expires:
-      - Thu, 26 Aug 2021 10:12:06 GMT
+      - Thu, 07 Oct 2021 09:51:09 GMT
       Source-Age:
       - '0'
     body:
@@ -89,5 +89,5 @@ http_interactions:
         <format type='TXT'
                 target='http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt' />
         </reference>
-  recorded_at: Thu, 26 Aug 2021 10:07:06 GMT
+  recorded_at: Thu, 07 Oct 2021 09:46:09 GMT
 recorded_with: VCR 6.0.0

@@ -10,7 +10,7 @@ module RelatonIetf
   # Scrapper module
   module Scrapper
     GH_URL = "https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference."
-    BCP_URI_PATTERN = "https://www.rfc-editor.org/info/CODE"
+    # BCP_URI_PATTERN = "https://www.rfc-editor.org/info/CODE"
 
     class << self
       # @param text [String]
