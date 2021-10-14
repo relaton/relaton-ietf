@@ -21,7 +21,7 @@ module RelatonIetf
     # @return [RelatonIetf::IetfBibliographicItem]
     def self.from_hash(hash)
       item_hash = ::RelatonIetf::HashConverter.hash_to_bib(hash)
-      new **item_hash
+      new(**item_hash)
     end
 
     # @param opts [Hash]
@@ -32,7 +32,7 @@ module RelatonIetf
     # @return [String] XML
     def to_xml(**opts)
       opts[:date_format] ||= :short
-      super **opts
+      super(**opts)
     end
   end
 end
