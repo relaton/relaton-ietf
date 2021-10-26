@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2021-10-13</fetched>
+  <fetched>2021-10-26</fetched>
   <title format="text/plain" language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.8341.xml</uri>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
@@ -10,6 +10,13 @@
   <date type="published">
     <on>2018-03</on>
   </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>
+    </organization>
+  </contributor>
   <contributor>
     <role type="author"/>
     <person>
@@ -29,8 +36,8 @@
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/html" language="en" script="Latn">
-    <t>The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.</t>
-    <t>This document obsoletes RFC 6536.</t>
+    <p>The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.</p>
+    <p>This document obsoletes RFC 6536.</p>
   </abstract>
   <series type="main">
     <title format="text/plain" language="en" script="Latn">STD</title>

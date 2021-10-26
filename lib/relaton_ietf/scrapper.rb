@@ -174,9 +174,10 @@ module RelatonIetf
 
     # @param reference [Nokogiri::XML::Element]
     # @return [Array<Hash>]
-    # def contributors(reference)
-    #   persons(reference) + organizations(reference)
-    # end
+    def contributors(reference)
+      [{ entity: new_org("Internet Engineering Task Force", "IETF"), role: [type: "publisher"] }] + super
+      # persons(reference) + organizations(reference)
+    end
 
     # @param reference [Nokogiri::XML::Element]
     # @return [Array<Hash{Symbol=>RelatonBib::Person,Symbol=>Array<String>}>]
@@ -185,7 +186,7 @@ module RelatonIetf
     #     .map do |author|
     #     entity = RelatonBib::Person.new(
     #       name: full_name(author, reference),
-    #       affiliation: [affiliation(author)],
+    #       affiliation: affiliation(author),
     #       contact: contacts(author.at("./address")),
     #     )
     #     { entity: entity, role: [contributor_role(author)] }

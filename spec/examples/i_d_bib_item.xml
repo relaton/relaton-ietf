@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2021-10-13</fetched>
+  <fetched>2021-10-26</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.I-D.-burger-xcon-mmodels.xml</uri>
   <uri type="TXT">http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt</uri>
@@ -11,6 +11,13 @@
     <on>2004-02</on>
   </date>
   <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>
+    </organization>
+  </contributor>
+  <contributor>
     <role type="author"/>
     <person>
       <name>
@@ -21,7 +28,7 @@
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/html" language="en" script="Latn">
-    <t>This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</t>
+    <p>This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</p>
   </abstract>
   <series type="main">
     <title format="text/plain" language="en" script="Latn">Internet-Draft</title>

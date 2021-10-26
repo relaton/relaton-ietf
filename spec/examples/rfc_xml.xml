@@ -1,10 +1,17 @@
 <bibdata type="standard">
-  <fetched>2021-10-13</fetched>
+  <fetched>2021-10-26</fetched>
   <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
   <docidentifier type="IETF">draft-ietf-acvp-subsha-1.0</docidentifier>
   <date type="published">
     <on>2018-11</on>
   </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>
+    </organization>
+  </contributor>
   <contributor>
     <role type="editor"/>
     <person>
@@ -29,8 +36,8 @@
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/html" language="en" script="Latn">
-			<t>This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
-				specification.</t>
+			<p>This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
+				specification.</p>
 		</abstract>
   <place>Fremont, CA</place>
   <keyword>acvp</keyword>
