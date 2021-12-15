@@ -3,11 +3,12 @@ require "relaton_ietf/xml_parser"
 
 module RelatonIetf
   class Processor < Relaton::Processor
-    def initialize
+    def initialize # rubocop:disable Lint/MissingSuper
       @short = :relaton_ietf
       @prefix = "IETF"
       @defaultprefix = /^RFC /
       @idtype = "IETF"
+      @datasets = %w[ietf-rfcsubseries]
     end
 
     # @param code [String]
@@ -16,6 +17,20 @@ module RelatonIetf
     # @return [RelatonIetf::IetfBibliographicItem]
     def get(code, date, opts)
       ::RelatonIetf::IetfBibliography.get(code, date, opts)
+    end
+
+    #
+    # Fetch all the documents from https://www.rfc-editor.org/rfc-index.xml
+    #
+    # @param [String] _source source name
+    # @param [Hash] opts
+    # @option opts [String] :output directory to output documents
+    # @option opts [String] :format
+    #
+    def fetch_data(source, opts)
+      case source
+      when "ietf-rfcsubseries" then RfcIndexEntry.fetch(**opts)
+      end
     end
 
     # @param xml [String]
