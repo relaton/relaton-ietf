@@ -6,7 +6,7 @@ require "relaton_ietf/ietf_bibliographic_item"
 require "relaton_ietf/xml_parser"
 require "relaton_ietf/hash_converter"
 require "relaton_ietf/committee"
-require "relaton_ietf/rfc_index_fetcher"
+require "relaton_ietf/data_fetcher"
 
 require "relaton/provider_ietf"
 

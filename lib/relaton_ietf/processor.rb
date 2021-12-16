@@ -28,9 +28,7 @@ module RelatonIetf
     # @option opts [String] :format
     #
     def fetch_data(source, opts)
-      case source
-      when "ietf-rfcsubseries" then RfcIndexEntry.fetch(**opts)
-      end
+      RfcIndexEntry.fetch(source, **opts)
     end
 
     # @param xml [String]

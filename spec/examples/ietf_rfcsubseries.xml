@@ -1,0 +1,64 @@
+<rfc-index xmlns="http://www.rfc-editor.org/rfc-index" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rfc-editor.org/rfc-index http://www.rfc-editor.org/rfc-index.xsd">
+  <bcp-entry>
+    <doc-id>BCP0001</doc-id>
+  </bcp-entry>
+  <bcp-entry>
+    <doc-id>BCP0002</doc-id>
+  </bcp-entry>
+  <bcp-entry>
+    <doc-id>BCP0003</doc-id>
+    <is-also>
+      <doc-id>RFC1915</doc-id>
+    </is-also>
+  </bcp-entry>
+  <bcp-entry>
+    <doc-id>BCP0004</doc-id>
+    <is-also>
+      <doc-id>RFC1917</doc-id>
+    </is-also>
+  </bcp-entry>
+  <bcp-entry>
+    <doc-id>BCP0005</doc-id>
+    <is-also>
+      <doc-id>RFC1918</doc-id>
+    </is-also>
+  </bcp-entry>
+  <bcp-entry>
+    <doc-id>BCP0006</doc-id>
+    <is-also>
+      <doc-id>RFC1930</doc-id>
+      <doc-id>RFC6996</doc-id>
+      <doc-id>RFC7300</doc-id>
+    </is-also>
+  </bcp-entry>
+  <fyi-entry>
+    <doc-id>FYI0002</doc-id>
+    <is-also>
+      <doc-id>RFC1470</doc-id>
+    </is-also>
+  </fyi-entry>
+  <fyi-entry>
+    <doc-id>FYI0003</doc-id>
+    <is-also>
+      <doc-id>RFC1175</doc-id>
+    </is-also>
+  </fyi-entry>
+  <std-entry>
+    <doc-id>STD0001</doc-id>
+    <title>
+      [STD number 1 is retired. It was "Internet Official Protocol Standards". See BCP 9 / RFC 7100 for more information.]
+    </title>
+  </std-entry>
+  <std-entry>
+    <doc-id>STD0002</doc-id>
+    <title>[Reserved for Assigned Numbers. See RFC 1700 and RFC 3232.]</title>
+  </std-entry>
+  <std-entry>
+    <doc-id>STD0003</doc-id>
+    <title>Requirements for Internet Hosts</title>
+    <is-also>
+      <doc-id>RFC1122</doc-id>
+      <doc-id>RFC1123</doc-id>
+    </is-also>
+  </std-entry>    
+</rfc-index>

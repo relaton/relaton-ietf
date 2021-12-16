@@ -14,23 +14,12 @@ module RelatonIetf
     end
 
     #
-    # Check if document has icluddes
+    # Document id
     #
-    # @return [Boolean] true if has includes
+    # @return [Strinng] document id
     #
-    def has_also?
-      @is_also.any?
-    end
-
-    #
-    # File name for document
-    #
-    # @param [String] dir output directory
-    #
-    # @return [String] file name
-    #
-    def filename(dir = "")
-      File.join dir, "#{@doc_id}.xml"
+    def docnumber
+      @doc_id
     end
 
     #
@@ -42,10 +31,10 @@ module RelatonIetf
     #
     def self.parse(doc)
       doc_id = doc.at("./xmlns:doc-id")
-      return unless doc_id
+      is_also = doc.xpath("./xmlns:is-also/xmlns:doc-id").map &:text
+      return unless doc_id && is_also.any?
 
       name = doc.name.split("-").first
-      is_also = doc.xpath("./xmlns:is-also/xmlns:doc-id").map &:text
       new(name, doc_id.text, is_also)
     end
 
@@ -65,7 +54,7 @@ module RelatonIetf
             xml["xi"].send("include", href: "https://www.rfc-editor.org/refs/bibxml/reference.RFC.#{num}.xml")
           end
         end
-      end.to_xml
+      end.doc.root.to_xml
     end
   end
 end
