@@ -1,3 +1,6 @@
+require "rubygems"
+require "rubygems/package"
+require "zlib"
 require "relaton_ietf/rfc_index_entry"
 
 module RelatonIetf
@@ -37,20 +40,42 @@ module RelatonIetf
     end
 
     #
-    # Parse documents
+    # Fetch documents
     #
     def fetch
       case @source
       when "ietf-rfcsubseries" then fetch_ieft_rfcsubseries
+      when "ietf-internet-drafts" then fetch_ieft_internet_drafts
       end
     end
 
+    #
+    # Fetches ietf-rfcsubseries documents
+    #
     def fetch_ieft_rfcsubseries
       uri = URI "https://www.rfc-editor.org/rfc-index.xml"
       resp = Net::HTTP.get uri
       index = Nokogiri::XML(resp).at("/xmlns:rfc-index")
       index.xpath("xmlns:bcp-entry|xmlns:fyi-entry|xmlns:std-entry").each do |doc|
         save_doc RfcIndexEntry.parse(doc)
+      end
+    end
+
+    #
+    # Fetches ietf-internet-drafts documents
+    #
+    def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength
+      gz = OpenURI.open_uri("https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz")
+      z = Zlib::GzipReader.new(gz)
+      io = StringIO.new(z.read)
+      # File.write "bibxml3.tar", z.read, encoding: "UTF-8"
+      z.close
+      Gem::Package::TarReader.new io do |tar|
+        tar.each do |tarfile|
+          next if tarfile.directory?
+
+          save_doc RelatonBib::BibXMLParser.parse(tarfile.read)
+        end
       end
     end
 
@@ -84,7 +109,9 @@ module RelatonIetf
     # @return [String] file name
     #
     def file_name(entry)
-      name = entry.docnumber.gsub(/[\s,:\/]/, "_").squeeze("_").upcase
+      id = entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.id
+      id ||= entry.docnumber
+      name = id.gsub(/[\s,:\/]/, "_").squeeze("_").upcase
       File.join @output, "#{name}.#{@ext}"
     end
   end

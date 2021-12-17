@@ -8,7 +8,7 @@ module RelatonIetf
       @prefix = "IETF"
       @defaultprefix = /^RFC /
       @idtype = "IETF"
-      @datasets = %w[ietf-rfcsubseries]
+      @datasets = %w[ietf-rfcsubseries ietf-internet-drafts]
     end
 
     # @param code [String]

@@ -133,6 +133,29 @@ RelatonIetf::IetfBibliographicItem.from_hash hash
 ...
 ----
 
+=== Fetch data
+
+There is a IETF datasets what can be converted into RelatonXML/BibXML/BibYAML formats:
+
+- `ietf-rfcsubseries` - https://www.rfc-editor.org/rfc-index.xml
+- `ietf-internet-drafts` - https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz
+
+The method `RelatonIetf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.
+Arguments:
+
+- `source` - dataset name (`ietf-rfcsubseries` or `ietf-internet-drafts`)
+- `output` - folder to save documents (default './data').
+- `format` - format in which the documents are saved. Possimle formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
+
+[source,ruby]
+----
+RelatonIetf::DataFetcher.fetch "ietf-internet-drafts"
+Started at: 2021-12-17 10:23:20 +0100
+Stopped at: 2021-12-17 10:29:19 +0100
+Done in: 360 sec.
+=> nil
+----
+
 == Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/metanorma/relaton-ietf.
