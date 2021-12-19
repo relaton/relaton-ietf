@@ -137,15 +137,27 @@ RelatonIetf::IetfBibliographicItem.from_hash hash
 
 There is a IETF datasets what can be converted into RelatonXML/BibXML/BibYAML formats:
 
-- `ietf-rfcsubseries` - https://www.rfc-editor.org/rfc-index.xml
+- `ietf-rfcsubseries` - https://www.rfc-editor.org/rfc-index.xml (`<bcp-entry>`, `<fyi-entry>`, `<std-entry>`)
 - `ietf-internet-drafts` - https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz
+- `ietf-rfc-entries` - https://www.rfc-editor.org/rfc-index.xml (`<rfc-entry>`)
 
 The method `RelatonIetf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.
+
 Arguments:
 
 - `source` - dataset name (`ietf-rfcsubseries` or `ietf-internet-drafts`)
 - `output` - folder to save documents (default './data').
 - `format` - format in which the documents are saved. Possimle formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
+
+For `ietf-rfcsubseries` dataset only special XML format is supported:
+
+[sourse.xml]
+----
+<referencegroup anchor="BCP14" target="https://www.rfc-editor.org/info/bcp14">
+  <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.2119.xml" />
+  <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.8174.xml" />
+</referencegroup>
+----
 
 [source,ruby]
 ----

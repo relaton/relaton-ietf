@@ -2,6 +2,7 @@ require "rubygems"
 require "rubygems/package"
 require "zlib"
 require "relaton_ietf/rfc_index_entry"
+require "relaton_ietf/rfc_entry"
 
 module RelatonIetf
   class DataFetcher
@@ -16,8 +17,8 @@ module RelatonIetf
     def initialize(source, output, format)
       @source = source
       @output = output
-      @format = source == "ietf-rfcsubseries" ? "xml" : format
-      @ext = @format.sub(/^bib/, "")
+      @format = source == "ietf-rfcsubseries" ? "rfcxml" : format
+      @ext = @format.sub(/^bib|^rfc/, "")
       @files = []
     end
 
@@ -46,6 +47,7 @@ module RelatonIetf
       case @source
       when "ietf-rfcsubseries" then fetch_ieft_rfcsubseries
       when "ietf-internet-drafts" then fetch_ieft_internet_drafts
+      when "ietf-rfc-entries" then fetch_ieft_rfcs
       end
     end
 
@@ -53,10 +55,7 @@ module RelatonIetf
     # Fetches ietf-rfcsubseries documents
     #
     def fetch_ieft_rfcsubseries
-      uri = URI "https://www.rfc-editor.org/rfc-index.xml"
-      resp = Net::HTTP.get uri
-      index = Nokogiri::XML(resp).at("/xmlns:rfc-index")
-      index.xpath("xmlns:bcp-entry|xmlns:fyi-entry|xmlns:std-entry").each do |doc|
+      rfc_index.xpath("xmlns:bcp-entry|xmlns:fyi-entry|xmlns:std-entry").each do |doc|
         save_doc RfcIndexEntry.parse(doc)
       end
     end
@@ -68,7 +67,6 @@ module RelatonIetf
       gz = OpenURI.open_uri("https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz")
       z = Zlib::GzipReader.new(gz)
       io = StringIO.new(z.read)
-      # File.write "bibxml3.tar", z.read, encoding: "UTF-8"
       z.close
       Gem::Package::TarReader.new io do |tar|
         tar.each do |tarfile|
@@ -77,6 +75,17 @@ module RelatonIetf
           save_doc RelatonBib::BibXMLParser.parse(tarfile.read)
         end
       end
+    end
+
+    def fetch_ieft_rfcs
+      rfc_index.xpath("xmlns:rfc-entry").each do |doc|
+        save_doc RfcEntry.parse(doc)
+      end
+    end
+
+    def rfc_index
+      uri = URI "https://www.rfc-editor.org/rfc-index.xml"
+      Nokogiri::XML(Net::HTTP.get(uri)).at("/xmlns:rfc-index")
     end
 
     #
@@ -90,6 +99,7 @@ module RelatonIetf
       c = case @format
           when "xml" then entry.to_xml(bibdata: true)
           when "yaml" then entry.to_hash.to_yaml
+          when "rfcxml" then entry.to_xml
           else entry.send("to_#{@format}")
           end
       file = file_name entry
@@ -109,7 +119,9 @@ module RelatonIetf
     # @return [String] file name
     #
     def file_name(entry)
-      id = entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.id
+      id = if entry.respond_to? :docidentifier
+             entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.id
+           end
       id ||= entry.docnumber
       name = id.gsub(/[\s,:\/]/, "_").squeeze("_").upcase
       File.join @output, "#{name}.#{@ext}"

@@ -11,6 +11,12 @@ RSpec.describe RelatonIetf::DataFetcher do
   #   end
   # end
 
+  # it "fetch ietf-rfc-entries" do
+  #   VCR.use_cassette "ietf_rfc_entries" do
+  #     RelatonIetf::DataFetcher.fetch "ietf-rfc-entries"
+  #   end
+  # end
+
   it "create output dir and run fetcher" do
     expect(Dir).to receive(:exist?).with("dir").and_return(false)
     expect(FileUtils).to receive(:mkdir_p).with("dir")
@@ -33,7 +39,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(subject.instance_variable_get(:@ext)).to eq "xml"
       expect(subject.instance_variable_get(:@files)).to eq []
       expect(subject.instance_variable_get(:@output)).to eq "dir"
-      expect(subject.instance_variable_get(:@format)).to eq "xml"
+      expect(subject.instance_variable_get(:@format)).to eq "rfcxml"
       expect(subject.instance_variable_get(:@source)).to eq "ietf-rfcsubseries"
       expect(subject).to be_instance_of(RelatonIetf::DataFetcher)
     end
@@ -75,6 +81,32 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(Gem::Package::TarReader).to receive(:new).with(:io).and_yield(tar)
       expect(RelatonBib::BibXMLParser).to receive(:parse).with(:xml).and_return(:bib)
       expect(subject).to receive(:save_doc).with(:bib)
+      subject.fetch
+    end
+  end
+
+  context "instance ietf-rfc-entries" do
+    subject { RelatonIetf::DataFetcher.new("ietf-rfc-entries", "dir", "bibxml") }
+
+    before do
+      xml = File.read "spec/examples/ietf_rfcsubseries.xml"
+      allow(Net::HTTP).to receive(:get).and_return(xml)
+    end
+
+    it "initialize fetcher" do
+      expect(subject.instance_variable_get(:@ext)).to eq "xml"
+      expect(subject.instance_variable_get(:@files)).to eq []
+      expect(subject.instance_variable_get(:@output)).to eq "dir"
+      expect(subject.instance_variable_get(:@format)).to eq "bibxml"
+      expect(subject.instance_variable_get(:@source)).to eq "ietf-rfc-entries"
+      expect(subject).to be_instance_of(RelatonIetf::DataFetcher)
+    end
+
+    it "fetch data" do
+      expect(subject).to receive(:save_doc).with(:bib).exactly(1).times
+      expect(RelatonIetf::RfcEntry).to receive(:parse)
+        .with(kind_of(Nokogiri::XML::Element))
+        .and_return(:bib).exactly(1).times
       subject.fetch
     end
   end

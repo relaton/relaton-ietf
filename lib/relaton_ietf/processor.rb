@@ -8,7 +8,7 @@ module RelatonIetf
       @prefix = "IETF"
       @defaultprefix = /^RFC /
       @idtype = "IETF"
-      @datasets = %w[ietf-rfcsubseries ietf-internet-drafts]
+      @datasets = %w[ietf-rfcsubseries ietf-internet-drafts ietf-rfc-entries]
     end
 
     # @param code [String]
@@ -22,13 +22,13 @@ module RelatonIetf
     #
     # Fetch all the documents from https://www.rfc-editor.org/rfc-index.xml
     #
-    # @param [String] _source source name
+    # @param [String] source source name
     # @param [Hash] opts
     # @option opts [String] :output directory to output documents
     # @option opts [String] :format
     #
     def fetch_data(source, opts)
-      RfcIndexEntry.fetch(source, **opts)
+      DataFetcher.fetch(source, **opts)
     end
 
     # @param xml [String]
