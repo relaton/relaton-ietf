@@ -41,7 +41,7 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(did.size).to be 2
       expect(did[0]).to be_instance_of RelatonBib::DocumentIdentifier
       expect(did[0].type).to eq "IETF"
-      expect(did[0].id).to eq "IETF RFC1139"
+      expect(did[0].id).to eq "IETF RFC 1139"
       expect(did[1].type).to eq "DOI"
       expect(did[1].id).to eq "10.17487/RFC1139"
     end

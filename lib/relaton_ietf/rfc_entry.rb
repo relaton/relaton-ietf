@@ -73,7 +73,7 @@ module RelatonIetf
     # @return [String] PubID
     #
     def pub_id
-      "IETF #{code}"
+      "IETF #{code.sub(/^(RFC)(\d+)/, '\1 \2')}"
     end
 
     #
