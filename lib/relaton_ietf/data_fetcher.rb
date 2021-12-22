@@ -120,10 +120,10 @@ module RelatonIetf
     #
     def file_name(entry)
       id = if entry.respond_to? :docidentifier
-             entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.id
+             entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.id&.downcase
            end
-      id ||= entry.docnumber
-      name = id.gsub(/[\s,:\/]/, "_").squeeze("_").upcase
+      id ||= entry.docnumber.upcase
+      name = id.gsub(/[\s,:\/]/, "_").squeeze("_")
       File.join @output, "#{name}.#{@ext}"
     end
   end
