@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - A0D6:6604:E14C61:EAD299:61BA0802
+      - 190A:8A45:9D167A:A476C4:61C46058
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 15 Dec 2021 15:21:38 GMT
+      - Thu, 23 Dec 2021 11:41:12 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510020-SOF
+      - cache-sof1510063-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1639581698.411772,VS0,VE389
+      - S1640259672.308928,VS0,VE354
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - ebb2dc295a860d9f83372543c9891f2a59e260a8
+      - '0480f57087fbd7a7cc582a5bd8e8ac74ece2b794'
       Expires:
-      - Wed, 15 Dec 2021 15:26:38 GMT
+      - Thu, 23 Dec 2021 11:46:12 GMT
       Source-Age:
       - '0'
     body:
@@ -84,5 +84,5 @@ http_interactions:
         <format type='TXT' target='https://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-19.txt'/>
         <format type='PDF' target='https://www.ietf.org/internet-drafts/draft-ietf-calext-eventpub-extensions-19.pdf'/>
         </reference>
-  recorded_at: Wed, 15 Dec 2021 15:21:38 GMT
+  recorded_at: Thu, 23 Dec 2021 11:41:12 GMT
 recorded_with: VCR 6.0.0

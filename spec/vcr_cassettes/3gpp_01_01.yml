@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - D838:835B:DF9F0B:E91EAA:61BA0805
+      - F3FE:53CB:3ED833:43E8B1:61C4605A
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 15 Dec 2021 15:21:41 GMT
+      - Thu, 23 Dec 2021 11:41:14 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510048-SOF
+      - cache-sof1510037-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1639581701.179793,VS0,VE348
+      - S1640259674.407616,VS0,VE332
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 65378b28d02247a31557f9b7efc656db3756d55b
+      - a4e5764becb0083a45e26835ac859f22d35441fc
       Expires:
-      - Wed, 15 Dec 2021 15:26:41 GMT
+      - Thu, 23 Dec 2021 11:46:14 GMT
       Source-Age:
       - '0'
     body:
@@ -81,5 +81,5 @@ http_interactions:
         <seriesInfo name='3GPP TS' value='01.01 3.1.0' />
         <format type='HTML' target='http://www.3gpp.org/ftp/Specs/html-info/0101.htm' />
         </reference>
-  recorded_at: Wed, 15 Dec 2021 15:21:41 GMT
+  recorded_at: Thu, 23 Dec 2021 11:41:14 GMT
 recorded_with: VCR 6.0.0

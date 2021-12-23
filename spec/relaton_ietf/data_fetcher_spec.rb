@@ -151,6 +151,7 @@ RSpec.describe RelatonIetf::DataFetcher do
     end
 
     it " downcase file name for ID" do
+      subject.instance_variable_set(:@source, "ietf-internet-drafts")
       docid = double("docid", type: "Internet-Draft", id: "I-D.3gpp-collaboration")
       id_entry = double("entry", docidentifier: [docid])
       expect(subject.file_name(id_entry)).to eq "dir/i-d.3gpp-collaboration.xml"
