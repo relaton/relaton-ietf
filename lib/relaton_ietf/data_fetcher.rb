@@ -17,7 +17,7 @@ module RelatonIetf
     def initialize(source, output, format)
       @source = source
       @output = output
-      @format = source == "ietf-rfcsubseries" ? "rfcxml" : format
+      @format = format
       @ext = @format.sub(/^bib|^rfc/, "")
       @files = []
     end
@@ -99,7 +99,6 @@ module RelatonIetf
       c = case @format
           when "xml" then entry.to_xml(bibdata: true)
           when "yaml" then entry.to_hash.to_yaml
-          when "rfcxml" then entry.to_xml
           else entry.send("to_#{@format}")
           end
       file = file_name entry

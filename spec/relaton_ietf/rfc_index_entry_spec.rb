@@ -4,12 +4,14 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
     let(:doc_id) { double "doc_id", text: "RFC0001" }
     let(:adid) { double "adid", text: "RFC0002" }
 
-    it "return instance" do
+    it "create and run parser" do
+      parser = double "parser"
+      expect(parser).to receive(:parse).and_return(:bibitem)
       expect(RelatonIetf::RfcIndexEntry).to receive(:new)
-        .with("bcp", "RFC0001", ["RFC0002"]).and_return(:parser)
+        .with("bcp", "RFC0001", ["RFC0002"]).and_return(parser)
       expect(doc).to receive(:at).with("./xmlns:doc-id").and_return(doc_id)
       expect(doc).to receive(:xpath).with("./xmlns:is-also/xmlns:doc-id").and_return([adid])
-      expect(RelatonIetf::RfcIndexEntry.parse(doc)).to eq :parser
+      expect(RelatonIetf::RfcIndexEntry.parse(doc)).to eq :bibitem
     end
 
     it "return nil if doc-id not found" do
@@ -38,16 +40,44 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
   context "instance methods" do
     subject { RelatonIetf::RfcIndexEntry.new "bcp", "RFC0001", ["RFC0002"] }
 
+    it "parse" do
+      expect(subject).to receive(:docnumber)
+      expect(subject).to receive(:parse_docid)
+      expect(subject).to receive(:parse_link)
+      expect(subject).to receive(:formattedref)
+      expect(subject).to receive(:parse_relation)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).and_return(:bibitem)
+      expect(subject.parse).to be :bibitem
+    end
+
     it "docnumber" do
       expect(subject.docnumber).to eq "RFC0001"
     end
 
-    it "to_xml" do
-      expect(subject.to_xml).to be_equivalent_to <<~XML
-        <referencegroup xmlns:xi="http://www.w3.org/2001/XInclude" anchor="BCP1" target="https://www.rfc-editor.org/info/bcp1">
-          <xi:include href="https://www.rfc-editor.org/refs/bibxml/reference.RFC.0002.xml"/>
-        </referencegroup>
-      XML
+    it "parse docid" do
+      expect(RelatonBib::DocumentIdentifier).to receive(:new)
+        .with(type: "IETF", id: "IETF BCP 1").and_return(:id1)
+      expect(RelatonBib::DocumentIdentifier).to receive(:new)
+        .with(type: "rfc-anchor", id: "BCP1").and_return(:id2)
+      expect(subject.parse_docid).to eq %i[id1 id2]
+    end
+
+    it "parse link" do
+      expect(RelatonBib::TypedUri).to receive(:new)
+        .with(type: "src", content: "https://www.rfc-editor.org/info/bcp1").and_return(:uri)
+      expect(subject.parse_link).to eq [:uri]
+    end
+
+    it "formattedref" do
+      expect(RelatonBib::FormattedRef).to receive(:new)
+        .with(content: "BCP1", language: "en", script: "Latn")
+        .and_return(:formattedref)
+      expect(subject.formattedref).to be :formattedref
+    end
+
+    it "parse relation" do
+      expect(RelatonIetf::IetfBibliography).to receive(:get).with("RFC 0002").and_return(:bibitem)
+      expect(subject.parse_relation).to eq [{ bibitem: :bibitem, type: "includes" }]
     end
   end
 end

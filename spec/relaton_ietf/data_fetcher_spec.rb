@@ -1,7 +1,7 @@
 RSpec.describe RelatonIetf::DataFetcher do
   # it "fetch rfc index" do
   #   VCR.use_cassette "ietf_rfc_index" do
-  #     RelatonIetf::DataFetcher.fetch "ietf-rfcsubseries"
+  #     RelatonIetf::DataFetcher.fetch "ietf-rfcsubseries", format: "bibxml"
   #   end
   # end
 
@@ -36,10 +36,10 @@ RSpec.describe RelatonIetf::DataFetcher do
     end
 
     it "initialize fetcher" do
-      expect(subject.instance_variable_get(:@ext)).to eq "xml"
+      expect(subject.instance_variable_get(:@ext)).to eq "yaml"
       expect(subject.instance_variable_get(:@files)).to eq []
       expect(subject.instance_variable_get(:@output)).to eq "dir"
-      expect(subject.instance_variable_get(:@format)).to eq "rfcxml"
+      expect(subject.instance_variable_get(:@format)).to eq "yaml"
       expect(subject.instance_variable_get(:@source)).to eq "ietf-rfcsubseries"
       expect(subject).to be_instance_of(RelatonIetf::DataFetcher)
     end

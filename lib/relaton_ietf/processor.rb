@@ -6,7 +6,7 @@ module RelatonIetf
     def initialize # rubocop:disable Lint/MissingSuper
       @short = :relaton_ietf
       @prefix = "IETF"
-      @defaultprefix = /^RFC /
+      @defaultprefix = /^(IETF|RFC|BCP)\s/
       @idtype = "IETF"
       @datasets = %w[ietf-rfcsubseries ietf-internet-drafts ietf-rfc-entries]
     end
