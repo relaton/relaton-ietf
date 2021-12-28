@@ -54,14 +54,14 @@ module RelatonIetf
 
     def parse_docid
       [
-        RelatonBib::DocumentIdentifier.new(type: "IETF", id: pub_id),
-        RelatonBib::DocumentIdentifier.new(type: "rfc-anchor", id: anchor),
+        RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "rfc-anchor", id: anchor),
+        # RelatonBib::DocumentIdentifier.new(type: "rfc-anchor", id: anchor),
       ]
     end
 
-    def pub_id
-      "IETF #{@name.upcase} #{@shortnum}"
-    end
+    # def pub_id
+    #   "IETF #{@name.upcase} #{@shortnum}"
+    # end
 
     def anchor
       "#{@name.upcase}#{@shortnum}"
