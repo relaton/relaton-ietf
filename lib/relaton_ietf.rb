@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require "net/http"
+require "relaton_bib"
 require "relaton_ietf/version"
+require "relaton_ietf/bibxml_parser"
 require "relaton_ietf/ietf_bibliography"
 require "relaton_ietf/ietf_bibliographic_item"
 require "relaton_ietf/xml_parser"
