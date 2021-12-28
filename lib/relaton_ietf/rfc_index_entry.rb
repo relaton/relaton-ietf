@@ -54,8 +54,7 @@ module RelatonIetf
 
     def parse_docid
       [
-        RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "rfc-anchor", id: anchor),
-        # RelatonBib::DocumentIdentifier.new(type: "rfc-anchor", id: anchor),
+        RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "anchor", id: anchor),
       ]
     end
 
