@@ -56,8 +56,10 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
 
     it "parse docid" do
       expect(RelatonBib::DocumentIdentifier).to receive(:new)
-        .with(type: "IETF", scope: "anchor", id: "BCP1").and_return(:id1)
-      expect(subject.parse_docid).to eq %i[id1]
+        .with(type: "IETF", id: "BCP 1").and_return(:id1)
+      expect(RelatonBib::DocumentIdentifier).to receive(:new)
+        .with(type: "IETF", scope: "anchor", id: "RFC0001").and_return(:id2)
+      expect(subject.parse_docid).to eq %i[id1 id2]
     end
 
     it "parse link" do

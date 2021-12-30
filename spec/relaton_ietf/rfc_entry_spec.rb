@@ -38,12 +38,15 @@ RSpec.describe RelatonIetf::RfcEntry do
     it "parse docid" do
       did = subject.parse_docid
       expect(did).to be_instance_of Array
-      expect(did.size).to be 2
+      expect(did.size).to be 3
       expect(did[0]).to be_instance_of RelatonBib::DocumentIdentifier
       expect(did[0].type).to eq "IETF"
-      expect(did[0].id).to eq "IETF RFC 1139"
-      expect(did[1].type).to eq "DOI"
-      expect(did[1].id).to eq "10.17487/RFC1139"
+      expect(did[0].id).to eq "RFC 1139"
+      expect(did[1].type).to eq "IETF"
+      expect(did[1].id).to eq "RFC1139"
+      expect(did[1].scope).to eq "anchor"
+      expect(did[2].type).to eq "DOI"
+      expect(did[2].id).to eq "10.17487/RFC1139"
     end
 
     it "parse title" do

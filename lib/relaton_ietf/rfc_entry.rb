@@ -51,7 +51,10 @@ module RelatonIetf
     # @return [Array<RelatonBib::DocumentIdettifier>] document identifiers
     #
     def parse_docid
-      ids = [RelatonBib::DocumentIdentifier.new(id: pub_id, type: "IETF")]
+      ids = [
+        RelatonBib::DocumentIdentifier.new(id: pub_id, type: "IETF"),
+        RelatonBib::DocumentIdentifier.new(id: code, type: "IETF", scope: "anchor"),
+      ]
       doi = @doc.at("./xmlns:doi").text
       ids << RelatonBib::DocumentIdentifier.new(id: doi, type: "DOI")
       ids
@@ -73,7 +76,8 @@ module RelatonIetf
     # @return [String] PubID
     #
     def pub_id
-      "IETF #{code.sub(/^(RFC)(\d+)/, '\1 \2')}"
+      /^RFC(?<num>\d+)$/ =~ code
+      "RFC #{num.sub(/^0+/, '')}"
     end
 
     #
