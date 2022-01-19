@@ -138,7 +138,7 @@ RelatonIetf::IetfBibliographicItem.from_hash hash
 There is a IETF datasets what can be converted into RelatonXML/BibXML/BibYAML formats:
 
 - `ietf-rfcsubseries` - https://www.rfc-editor.org/rfc-index.xml (`<bcp-entry>`, `<fyi-entry>`, `<std-entry>`)
-- `ietf-internet-drafts` - https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz
+- `ietf-internet-drafts` - converts files from local directory `./bibxml-ids`. Use `rsync -avcizxL rsync.ietf.org::bibxml-ids ./bibxml-ids` command to fetch the files.
 - `ietf-rfc-entries` - https://www.rfc-editor.org/rfc-index.xml (`<rfc-entry>`)
 
 The method `RelatonIetf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.

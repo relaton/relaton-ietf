@@ -66,20 +66,22 @@ RSpec.describe RelatonIetf::DataFetcher do
     end
 
     it "fetch data" do
-      expect(OpenURI).to receive(:open_uri).with("https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz").and_return(:gz)
-      gzr = double("gz_reader")
-      expect(gzr).to receive(:read).and_return(:tarh)
-      expect(gzr).to receive(:close)
-      expect(Zlib::GzipReader).to receive(:new).with(:gz).and_return(gzr)
-      expect(StringIO).to receive(:new).with(:tarh).and_return(:io)
-      tarfile1 = double("tarfile1")
-      expect(tarfile1).to receive(:directory?).and_return(true)
-      tarfile2 = double("tarfile2")
-      expect(tarfile2).to receive(:directory?).and_return(false)
-      expect(tarfile2).to receive(:read).and_return(:xml)
-      tar = [tarfile1, tarfile2]
-      expect(Gem::Package::TarReader).to receive(:new).with(:io).and_yield(tar)
-      expect(RelatonBib::BibXMLParser).to receive(:parse).with(:xml).and_return(:bib)
+      # expect(OpenURI).to receive(:open_uri).with("https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz").and_return(:gz)
+      # gzr = double("gz_reader")
+      # expect(gzr).to receive(:read).and_return(:tarh)
+      # expect(gzr).to receive(:close)
+      # expect(Zlib::GzipReader).to receive(:new).with(:gz).and_return(gzr)
+      # expect(StringIO).to receive(:new).with(:tarh).and_return(:io)
+      # tarfile1 = double("tarfile1")
+      # expect(tarfile1).to receive(:directory?).and_return(true)
+      # tarfile2 = double("tarfile2")
+      # expect(tarfile2).to receive(:directory?).and_return(false)
+      # expect(tarfile2).to receive(:read).and_return(:xml)
+      # tar = [tarfile1, tarfile2]
+      # expect(Gem::Package::TarReader).to receive(:new).with(:io).and_yield(tar)
+      expect(Dir).to receive(:[]).with("bibxml-ids/*.xml").and_return([:file])
+      expect(File).to receive(:read).with(:file, encoding: "UTF-8").and_return(:xml)
+      expect(RelatonIetf::BibXMLParser).to receive(:parse).with(:xml).and_return(:bib)
       expect(subject).to receive(:save_doc).with(:bib)
       subject.fetch
     end

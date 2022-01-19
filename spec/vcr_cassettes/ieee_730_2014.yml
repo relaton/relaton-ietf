@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - B572:FC3F:80D2FA:86B75F:61CD9E10
+      - 8926:5142:8B0B9E:A80A67:61E7F8A5
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 30 Dec 2021 11:54:57 GMT
+      - Wed, 19 Jan 2022 11:40:21 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510043-SOF
+      - cache-sof1510050-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1640865297.967288,VS0,VE317
+      - S1642592421.261113,VS0,VE407
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - a97a781950606bf5c3897828fdfdfcc51ad43917
+      - b39bde830e7d377efd7e77465155c2a361395588
       Expires:
-      - Thu, 30 Dec 2021 11:59:57 GMT
+      - Wed, 19 Jan 2022 11:45:21 GMT
       Source-Age:
       - '0'
     body:
@@ -82,5 +82,5 @@ http_interactions:
          <seriesInfo name='IEEE' value='730-2014' />
          <seriesInfo name='DOI' value='10.1109/ieeestd.2014.6835311' />
         </reference>
-  recorded_at: Thu, 30 Dec 2021 11:54:57 GMT
+  recorded_at: Wed, 19 Jan 2022 11:40:21 GMT
 recorded_with: VCR 6.0.0

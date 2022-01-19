@@ -19,7 +19,7 @@ module RelatonIetf
     #
     # @param [Nokogiri::XML::Element] doc document
     #
-    # @return [RelatonIetf:RfcIndexEntry, nil]
+    # @return [RelatonIetf:IetfBibliographicItem, nil]
     #
     def self.parse(doc)
       doc_id = doc.at("./xmlns:doc-id")
