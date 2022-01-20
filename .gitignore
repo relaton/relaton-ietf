@@ -6,6 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+/bibxml-ids/
 .vscode/
 
 # rspec failure tracking

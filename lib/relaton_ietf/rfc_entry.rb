@@ -41,8 +41,23 @@ module RelatonIetf
         abstract: parse_abstract,
         relation: parse_relation,
         status: parse_status,
+        series: parse_series,
         editorialgroup: parse_editorialgroup,
       )
+    end
+
+    #
+    # Parse series
+    #
+    # @return [Array<RelatonBib::Series>] series
+    #
+    def parse_series
+      title = RelatonBib::TypedTitleString.new(content: "RFC")
+      @doc.xpath("./xmlns:is-also/xmlns:doc-id").map do |s|
+        /^(?<name>\D+)(?<num>\d+)/ =~ s.text
+        t = RelatonBib::TypedTitleString.new(content: name)
+        RelatonBib::Series.new title: t, number: num.gsub(/^0+/, "")
+      end + [RelatonBib::Series.new(title: title, number: docnum)]
     end
 
     #
@@ -76,8 +91,16 @@ module RelatonIetf
     # @return [String] PubID
     #
     def pub_id
-      /^RFC(?<num>\d+)$/ =~ code
-      "RFC #{num.sub(/^0+/, '')}"
+      "RFC #{docnum}"
+    end
+
+    #
+    # Parse document number
+    #
+    # @return [String] document number
+    #
+    def docnum
+      /\d+$/.match(code).to_s.sub(/^0+/, "")
     end
 
     #

@@ -21,7 +21,7 @@ RSpec.describe RelatonIetf::RfcEntry do
 
     it "parse doc" do
       expect(subject).to receive(:parse_docid)
-      expect(subject).to receive(:code)
+      expect(subject).to receive(:code).twice
       expect(subject).to receive(:parse_title)
       expect(subject).to receive(:parse_link)
       expect(subject).to receive(:parse_date)
@@ -112,6 +112,17 @@ RSpec.describe RelatonIetf::RfcEntry do
 
     it "parse status" do
       expect(subject.parse_status.stage.value).to eq "PROPOSED STANDARD"
+    end
+
+    it "parse series" do
+      ser = subject.parse_series
+      expect(ser).to be_instance_of Array
+      expect(ser.size).to be 2
+      expect(ser[0]).to be_instance_of RelatonBib::Series
+      expect(ser[0].title.title.content).to eq "BCP"
+      expect(ser[0].number).to eq "26"
+      expect(ser[1].title.title.content).to eq "RFC"
+      expect(ser[1].number).to eq "1139"
     end
 
     it "parse editorialgroup" do

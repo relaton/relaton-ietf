@@ -91,6 +91,9 @@
       <doc-id>RFC1574</doc-id>
       <doc-id>RFC1575</doc-id>
     </obsoleted-by>
+    <is-also>
+      <doc-id>BCP0026</doc-id>
+    </is-also>      
     <current-status>PROPOSED STANDARD</current-status>
     <publication-status>PROPOSED STANDARD</publication-status>
     <stream>IETF</stream>
