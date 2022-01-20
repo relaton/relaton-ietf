@@ -168,7 +168,10 @@ module RelatonIetf
     #
     def parse_abstract
       @doc.xpath("./xmlns:abstract").map do |c|
-        RelatonBib::FormattedString.new(content: c.text, language: "en",
+        content = c.xpath("./xmlns:p").map do |p|
+          "<#{p.name}>#{p.text.strip}</#{p.name}>"
+        end.join
+        RelatonBib::FormattedString.new(content: content, language: "en",
                                         script: "Latn", format: "text/html")
       end
     end
