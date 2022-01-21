@@ -145,8 +145,11 @@ module RelatonIetf
     def parse_contributor
       @doc.xpath("./xmlns:author").map do |contributor|
         n = contributor.at("./xmlns:name").text
-        name = RelatonBib::LocalizedString.new( n,  "en",  "Latn")
-        fname = RelatonBib::FullName.new(completename: name)
+        int, snm = n.split
+        initial = [RelatonBib::LocalizedString.new(int, "en", "Latn")]
+        surname = RelatonBib::LocalizedString.new(snm, "en", "Latn")
+        name = RelatonBib::LocalizedString.new(n, "en", "Latn")
+        fname = RelatonBib::FullName.new(completename: name, initial: initial, surname: surname)
         person = RelatonBib::Person.new(name: fname)
         RelatonBib::ContributionInfo.new(entity: person, role: [{ type: "author" }])
       end
