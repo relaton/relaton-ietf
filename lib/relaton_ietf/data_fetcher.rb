@@ -83,6 +83,9 @@ module RelatonIetf
     def fetch_ieft_rfcs
       rfc_index.xpath("xmlns:rfc-entry").each do |doc|
         save_doc RfcEntry.parse(doc)
+      rescue StandardError => e
+        warn "Error parsing #{doc.at('./xmlns:doc-id').text}: #{e.message}"
+        warn e.backtrace[0..5].join("\n")
       end
     end
 

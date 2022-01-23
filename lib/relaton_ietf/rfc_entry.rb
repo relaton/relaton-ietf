@@ -142,17 +142,64 @@ module RelatonIetf
     #
     # @return [Array<RelatonBib::ContributionInfo>] document contributors
     #
-    def parse_contributor
-      @doc.xpath("./xmlns:author").map do |contributor|
+    def parse_contributor # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
+      @doc.xpath("./xmlns:author").map do |contributor| # rubocop:disable Metrics/BlockLength
         n = contributor.at("./xmlns:name").text
-        int, snm = n.split
-        initial = [RelatonBib::LocalizedString.new(int, "en", "Latn")]
-        surname = RelatonBib::LocalizedString.new(snm, "en", "Latn")
-        name = RelatonBib::LocalizedString.new(n, "en", "Latn")
-        fname = RelatonBib::FullName.new(completename: name, initial: initial, surname: surname)
-        person = RelatonBib::Person.new(name: fname)
-        RelatonBib::ContributionInfo.new(entity: person, role: [{ type: "author" }])
+        case n
+        when "ISO"
+          entity = RelatonBib::Organization.new(abbrev: n, name: "International Organization for Standardization")
+        when "International Organization for Standardization"
+          entity = RelatonBib::Organization.new(abbrev: "ISO", name: n)
+        when "IAB"
+          entity = RelatonBib::Organization.new(abbrev: n, name: "Internet Architecture Board")
+        when "IESG"
+          entity = RelatonBib::Organization.new(abbrev: n, name: "Internet Engineering Steering Group")
+        when "Internet Engineering Steering Group", "Federal Networking Council", "Internet Architecture Board",
+          "Internet Activities Board", "Defense Advanced Research Projects Agency", "National Science Foundation",
+          "National Research Council", "National Bureau of Standards"
+          abbr = n.split.map { |w| w[0] if w[0] == w[0].upcase }.join
+          entity = RelatonBib::Organization.new(abbrev: abbr, name: n)
+        when "IETF Secretariat"
+          entity = RelatonBib::Organization.new(abbrev: "IETF", name: n)
+        when "Audio-Video Transport Working Group", /North American Directory Forum/, "EARN Staff",
+          "Vietnamese Standardization Working Group", "ACM SIGUCCS", "ESCC X.500/X.400 Task Force",
+          "Sun Microsystems", "NetBIOS Working Group in the Defense Advanced Research Projects Agency",
+          "End-to-End Services Task Force", "Network Technical Advisory Group", "Bolt Beranek",
+          "Newman Laboratories", "Gateway Algorithms and Data Structures Task Force",
+          "Network Information Center. Stanford Research Institute", "RFC Editor",
+          "Information Sciences Institute University of Southern California"
+          entity = RelatonBib::Organization.new(name: n)
+        when "Internet Assigned Numbers Authority (IANA)"
+          entity = RelatonBib::Organization.new(abbrev: "IANA", name: "Internet Assigned Numbers Authority")
+        when "ESnet Site Coordinating Comittee (ESCC)"
+          entity = RelatonBib::Organization.new(abbrev: "ESCC", name: "ESnet Site Coordinating Comittee")
+        when "Energy Sciences Network (ESnet)"
+          entity = RelatonBib::Organization.new(abbrev: "ESnet", name: "Energy Sciences Network")
+        when "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
+          entity = RelatonBib::Organization.new(abbrev: "CCITT", name: n)
+        else
+          # int, snm = n.split
+          /^(?:(?<int>(?:\p{Lu}+(?:-\w|\(\w\))?\.{0,2}[-\s]?)+)\s)?(?<snm>[[:alnum:]\s'-.]+)$/ =~ n
+          surname = RelatonBib::LocalizedString.new(snm, "en", "Latn")
+          name = RelatonBib::LocalizedString.new(n, "en", "Latn")
+          fname = RelatonBib::FullName.new(completename: name, initial: initials(int), surname: surname)
+          entity = RelatonBib::Person.new(name: fname)
+        end
+        RelatonBib::ContributionInfo.new(entity: entity, role: [{ type: "author" }])
       end
+    end
+
+    #
+    # Ctreat initials
+    #
+    # @param [String] int
+    #
+    # @return [Array<RelatonBib::LocalizedString>]
+    #
+    def initials(int)
+      return [] unless int
+
+      int.split(/\.-?\s?|\s/).map { |i| RelatonBib::LocalizedString.new i, "en", "Latn" }
     end
 
     #
