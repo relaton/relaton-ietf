@@ -3,8 +3,6 @@ module RelatonIetf
     include RelatonBib::BibXMLParser
     extend BibXMLParser
 
-    FLAVOR = "IETF".freeze
-
     # @param attrs [Hash]
     # @return [RelatonIetf::IetfBibliographicItem]
     def bib_item(**attrs)
@@ -13,6 +11,21 @@ module RelatonIetf
         attrs[:place] = ["Fremont, CA"]
       end
       RelatonIetf::IetfBibliographicItem.new(**attrs)
+    end
+
+    #
+    # Extract document identifier type form identifier
+    #
+    # @param [String] id identifier
+    #
+    # @return [String] type
+    #
+    def pubid_type(id)
+      type = super
+      case type
+      when "BCP", "FYI", "STD", "RFC" then "RFC"
+      else "IETF"
+      end
     end
 
     # @param [RelatonBib::WorkGroup]

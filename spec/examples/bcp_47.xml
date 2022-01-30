@@ -1,10 +1,10 @@
 <bibdata type="standard">
-  <fetched>2022-01-11</fetched>
+  <fetched>2022-01-27</fetched>
   <formattedref format="text/plain" language="en" script="Latn">BCP47</formattedref>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.BCP.0047.xml</uri>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
-  <docidentifier type="IETF">BCP 47</docidentifier>
-  <docidentifier type="IETF" scope="anchor">BCP47</docidentifier>
+  <docidentifier type="RFC">BCP 47</docidentifier>
+  <docidentifier type="RFC" scope="anchor">BCP47</docidentifier>
   <docnumber>BCP47</docnumber>
   <contributor>
     <role type="publisher"/>
@@ -19,8 +19,8 @@
     <bibitem type="standard">
       <title format="text/plain" language="en" script="Latn">Matching of Language Tags</title>
       <uri type="src">https://www.rfc-editor.org/info/rfc4647</uri>
-      <docidentifier type="IETF">RFC 4647</docidentifier>
-      <docidentifier type="IETF" scope="anchor">RFC4647</docidentifier>
+      <docidentifier type="RFC">RFC 4647</docidentifier>
+      <docidentifier type="RFC" scope="anchor">RFC4647</docidentifier>
       <docidentifier type="DOI">10.17487/RFC4647</docidentifier>
       <docnumber>RFC4647</docnumber>
       <date type="published">
@@ -68,8 +68,8 @@
     <bibitem type="standard">
       <title format="text/plain" language="en" script="Latn">Tags for Identifying Languages</title>
       <uri type="src">https://www.rfc-editor.org/info/rfc5646</uri>
-      <docidentifier type="IETF">RFC 5646</docidentifier>
-      <docidentifier type="IETF" scope="anchor">RFC5646</docidentifier>
+      <docidentifier type="RFC">RFC 5646</docidentifier>
+      <docidentifier type="RFC" scope="anchor">RFC5646</docidentifier>
       <docidentifier type="DOI">10.17487/RFC5646</docidentifier>
       <docnumber>RFC5646</docnumber>
       <date type="published">

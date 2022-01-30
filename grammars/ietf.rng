@@ -459,14 +459,9 @@
         <ref name="section-title"/>
       </optional>
       <group>
-        <group>
-          <zeroOrMore>
-            <ref name="BasicBlock"/>
-          </zeroOrMore>
-          <zeroOrMore>
-            <ref name="note"/>
-          </zeroOrMore>
-        </group>
+        <zeroOrMore>
+          <ref name="BasicBlock"/>
+        </zeroOrMore>
         <zeroOrMore>
           <choice>
             <ref name="clause-subsection"/>
@@ -508,14 +503,9 @@
           <ref name="section-title"/>
         </optional>
         <group>
-          <group>
-            <zeroOrMore>
-              <ref name="BasicBlock"/>
-            </zeroOrMore>
-            <zeroOrMore>
-              <ref name="note"/>
-            </zeroOrMore>
-          </group>
+          <zeroOrMore>
+            <ref name="BasicBlock"/>
+          </zeroOrMore>
           <zeroOrMore>
             <ref name="clause-subsection"/>
           </zeroOrMore>
@@ -547,14 +537,9 @@
         <ref name="section-title"/>
       </optional>
       <group>
-        <group>
-          <zeroOrMore>
-            <ref name="BasicBlock"/>
-          </zeroOrMore>
-          <zeroOrMore>
-            <ref name="note"/>
-          </zeroOrMore>
-        </group>
+        <zeroOrMore>
+          <ref name="BasicBlock"/>
+        </zeroOrMore>
         <zeroOrMore>
           <ref name="content-subsection"/>
         </zeroOrMore>
@@ -602,7 +587,10 @@
     </define>
   </include>
   <define name="TextElement" combine="choice">
-    <ref name="bcp14"/>
+    <choice>
+      <ref name="bcp14"/>
+      <ref name="review"/>
+    </choice>
   </define>
   <define name="bcp14">
     <element name="bcp14">
@@ -842,7 +830,7 @@
         </element>
       </optional>
       <optional>
-        <element name="toc">
+        <element name="tocinclude">
           <text/>
         </element>
       </optional>
