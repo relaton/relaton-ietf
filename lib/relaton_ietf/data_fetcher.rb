@@ -64,17 +64,6 @@ module RelatonIetf
     # Fetches ietf-internet-drafts documents
     #
     def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength
-      # gz = OpenURI.open_uri("https://www.ietf.org/lib/dt/sprint/bibxml-ids.tgz")
-      # z = Zlib::GzipReader.new(gz)
-      # io = StringIO.new(z.read)
-      # z.close
-      # Gem::Package::TarReader.new io do |tar|
-      #   tar.each do |tarfile|
-      #     next if tarfile.directory?
-
-      #     save_doc BibXMLParser.parse(tarfile.read)
-      #   end
-      # end
       Dir["bibxml-ids/*.xml"].each do |file|
         save_doc BibXMLParser.parse(File.read(file, encoding: "UTF-8"))
       end

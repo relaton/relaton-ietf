@@ -1,8 +1,8 @@
 <bibdata type="standard">
-  <fetched>2022-01-28</fetched>
+  <fetched>2022-02-05</fetched>
   <title format="text/plain" language="en" script="Latn">Telecommunications - Digital Hierarchy - Electrical Interfaces</title>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.ANSI.T1-102.1987.xml</uri>
-  <docidentifier type="IETF">ANSI T1-102.1987</docidentifier>
+  <docidentifier type="IETF" primary="true">ANSI T1-102.1987</docidentifier>
   <docidentifier type="IETF" scope="anchor">ANSI.T1-102.1987</docidentifier>
   <docnumber>T1-102.1987</docnumber>
   <date type="published">

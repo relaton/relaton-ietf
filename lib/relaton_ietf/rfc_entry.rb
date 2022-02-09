@@ -67,7 +67,7 @@ module RelatonIetf
     #
     def parse_docid
       ids = [
-        RelatonBib::DocumentIdentifier.new(id: pub_id, type: "IETF"),
+        RelatonBib::DocumentIdentifier.new(id: pub_id, type: "IETF", primary: true),
         RelatonBib::DocumentIdentifier.new(id: code, type: "IETF", scope: "anchor"),
       ]
       doi = @doc.at("./xmlns:doi").text

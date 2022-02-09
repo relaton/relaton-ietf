@@ -1,9 +1,9 @@
 <bibdata type="standard">
-  <fetched>2022-01-28</fetched>
+  <fetched>2022-02-05</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.I-D.-burger-xcon-mmodels.xml</uri>
   <uri type="TXT">http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt</uri>
-  <docidentifier type="IETF">I-D -burger-xcon-mmodels</docidentifier>
+  <docidentifier type="IETF" primary="true">I-D -burger-xcon-mmodels</docidentifier>
   <docidentifier type="IETF" scope="anchor">I-D.-burger-xcon-mmodels</docidentifier>
   <docidentifier type="Internet-Draft">draft--burger-xcon-mmodels-00</docidentifier>
   <docnumber>I-D.-burger-xcon-mmodels</docnumber>
