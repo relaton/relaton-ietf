@@ -11,6 +11,7 @@ type: standard
 docid:
   id: RFC 8341
   type: IETF
+  primary: true
 
 language: en
 

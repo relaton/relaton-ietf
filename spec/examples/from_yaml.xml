@@ -1,8 +1,8 @@
 <bibdata type="standard">
-  <fetched>2021-02-18</fetched>
+  <fetched>2022-02-09</fetched>
   <title format="text/plain" language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
-  <docidentifier type="IETF">RFC 8341</docidentifier>
+  <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
   <date type="published">
     <on>2018-03</on>
   </date>
