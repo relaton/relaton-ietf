@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2022-02-05</fetched>
+  <fetched>2022-02-11</fetched>
   <title format="text/plain" language="en" script="Latn">Telecommunications - Digital Hierarchy - Electrical Interfaces</title>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.ANSI.T1-102.1987.xml</uri>
   <docidentifier type="IETF" primary="true">ANSI T1-102.1987</docidentifier>
@@ -27,7 +27,6 @@
     <title format="text/plain" language="en" script="Latn">ANSI</title>
     <number>T1</number>
   </series>
-  <place>Fremont, CA</place>
   <ext>
     <doctype>rfc</doctype>
   </ext>

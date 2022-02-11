@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2022-02-05</fetched>
+  <fetched>2022-02-11</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.I-D.-burger-xcon-mmodels.xml</uri>
   <uri type="TXT">http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt</uri>
@@ -30,7 +30,6 @@
   <abstract format="text/html" language="en" script="Latn">
     <p>This document describes various models for endpoint control of media policy for centralized conferencing services. The models include detailed mixer control, as in H.248, individual end-point negotiation, and participant roles, as in MSCML.</p>
   </abstract>
-  <place>Fremont, CA</place>
   <ext>
     <doctype>internet-draft</doctype>
   </ext>

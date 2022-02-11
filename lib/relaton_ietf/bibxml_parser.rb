@@ -8,7 +8,7 @@ module RelatonIetf
     def bib_item(**attrs)
       unless attrs.delete(:is_relation)
         attrs[:fetched] = Date.today.to_s
-        attrs[:place] = ["Fremont, CA"]
+        # attrs[:place] = ["Fremont, CA"]
       end
       RelatonIetf::IetfBibliographicItem.new(**attrs)
     end

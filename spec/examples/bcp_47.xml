@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2022-02-05</fetched>
+  <fetched>2022-02-11</fetched>
   <formattedref format="text/plain" language="en" script="Latn">BCP47</formattedref>
   <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.BCP.0047.xml</uri>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
@@ -113,7 +113,6 @@
       </series>
     </bibitem>
   </relation>
-  <place>Fremont, CA</place>
   <ext>
     <doctype>rfc</doctype>
   </ext>
