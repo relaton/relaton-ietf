@@ -256,11 +256,13 @@ module RelatonIetf
     # @return [RelatonBib::EditorialGroup] document editorial group
     #
     def parse_editorialgroup
-      tc = @doc.xpath("./xmlns:wg_acronym").map do |wg|
+      tc = @doc.xpath("./xmlns:wg_acronym").each_with_object([]) do |wg, arr|
+        next if wg.text == "NON WORKING GROUP"
+
         wg = RelatonBib::WorkGroup.new(name: wg.text)
-        RelatonBib::TechnicalCommittee.new(wg)
+        arr << RelatonBib::TechnicalCommittee.new(wg)
       end
-      RelatonBib::EditorialGroup.new(tc)
+      RelatonBib::EditorialGroup.new(tc) if tc.any?
     end
   end
 end

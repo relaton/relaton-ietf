@@ -131,4 +131,16 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(eg.technical_committee[0].workgroup.name).to eq "osigen"
     end
   end
+
+  it "skip NON WORKING GROUP" do
+    doc = Nokogiri::XML <<~XML
+      <rfc-index xmlns="http://www.rfc-editor.org/rfc-index">
+        <rfc-entry>
+          <wg_acronym>NON WORKING GROUP</wg_acronym>
+        </rfc-entry>
+      </rfc-index>
+    XML
+    rfc_entry = RelatonIetf::RfcEntry.new doc.at("/xmlns:rfc-index/xmlns:rfc-entry")
+    expect(rfc_entry.parse_editorialgroup).to be_nil
+  end
 end
