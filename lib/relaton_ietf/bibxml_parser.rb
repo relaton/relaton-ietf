@@ -37,10 +37,14 @@ module RelatonIetf
     # @param reference [Nokogiri::XML::Element]
     # @return [Array<Hash>]
     def contributors(reference)
-      [{
-        entity: new_org("Internet Engineering Task Force", "IETF"),
-        role: [type: "publisher"],
-      }] + super
+      contribs = []
+      unless reference[:anchor]&.match?(/^I-D/)
+        contribs << {
+          entity: new_org("Internet Engineering Task Force", "IETF"),
+          role: [type: "publisher"],
+        }
+      end
+      contribs + super
       # persons(reference) + organizations(reference)
     end
   end
