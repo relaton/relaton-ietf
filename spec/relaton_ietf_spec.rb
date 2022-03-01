@@ -42,7 +42,7 @@ RSpec.describe RelatonIetf do
       xml = item.to_xml bibdata: true
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file).sub(
-        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
+        %r{<fetched>\d{4}-\d{2}-\d{2}</fetched>},
         "<fetched>#{Date.today}</fetched>",
       )
       schema = Jing.new "spec/examples/isobib.rng"
@@ -120,7 +120,7 @@ RSpec.describe RelatonIetf do
       xml = item.to_xml bibdata: true
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file).sub(
-        %r{<fetched>\d\d\d\d-\d\d-\d\d</fetched>},
+        %r{<fetched>\d{4}-\d{2}-\d{2}</fetched>},
         "<fetched>#{Date.today}</fetched>",
       )
       schema = Jing.new "spec/examples/isobib.rng"

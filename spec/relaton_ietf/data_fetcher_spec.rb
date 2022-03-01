@@ -152,7 +152,7 @@ RSpec.describe RelatonIetf::DataFetcher do
         .to output(/File dir\/RFC0001.xml already exists/).to_stderr
     end
 
-    it " downcase file name for ID" do
+    it "downcase file name for ID" do
       subject.instance_variable_set(:@source, "ietf-internet-drafts")
       docid = double("docid", type: "Internet-Draft", id: "I-D.3gpp-collaboration")
       id_entry = double("entry", docidentifier: [docid])

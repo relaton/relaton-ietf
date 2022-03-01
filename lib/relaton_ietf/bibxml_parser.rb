@@ -24,6 +24,7 @@ module RelatonIetf
       type = super
       case type
       when "BCP", "FYI", "STD", "RFC" then "RFC"
+      when "Internet-Draft" then type
       else "IETF"
       end
     end
