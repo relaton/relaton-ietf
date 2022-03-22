@@ -38,7 +38,7 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
   end
 
   context "instance methods" do
-    subject { RelatonIetf::RfcIndexEntry.new "bcp", "RFC0001", ["RFC0002"] }
+    subject { RelatonIetf::RfcIndexEntry.new "bcp", "BCP0001", ["RFC0002"] }
 
     it "parse" do
       expect(subject).to receive(:docnumber)
@@ -51,14 +51,14 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
     end
 
     it "docnumber" do
-      expect(subject.docnumber).to eq "RFC0001"
+      expect(subject.docnumber).to eq "BCP0001"
     end
 
     it "parse docid" do
       expect(RelatonBib::DocumentIdentifier).to receive(:new)
         .with(type: "IETF", id: "BCP 1", primary: true).and_return(:id1)
       expect(RelatonBib::DocumentIdentifier).to receive(:new)
-        .with(type: "IETF", scope: "anchor", id: "RFC0001").and_return(:id2)
+        .with(type: "IETF", scope: "anchor", id: "BCP1").and_return(:id2)
       expect(subject.parse_docid).to eq %i[id1 id2]
     end
 

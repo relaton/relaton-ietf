@@ -62,7 +62,7 @@
     </is-also>
   </std-entry>
   <rfc-entry>
-  <doc-id>RFC1139</doc-id>
+    <doc-id>RFC0139</doc-id>
     <title>Echo function for ISO 8473</title>
     <author>
       <name>R.A. Hagens</name>

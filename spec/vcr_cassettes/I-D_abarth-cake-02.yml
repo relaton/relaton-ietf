@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - '09E0:54D1:17F4F22:1989438:621CC612'
+      - 910A:7C16:56C987:5F7AFD:62374982
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 28 Feb 2022 12:54:42 GMT
+      - Sun, 20 Mar 2022 15:34:27 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6366-VIE
+      - cache-sof1510047-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1646052882.282224,VS0,VE358
+      - S1647790467.720068,VS0,VE290
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - e65e8849dc24dc8d1be5b3e899659f1a13f34309
+      - 7436950defc02abb9f32cf6d3e2f01f1bfcb7674
       Expires:
-      - Mon, 28 Feb 2022 12:59:42 GMT
+      - Sun, 20 Mar 2022 15:39:27 GMT
       Source-Age:
       - '0'
     body:
@@ -89,5 +89,5 @@ http_interactions:
         <format type='TXT'
                 target='http://www.ietf.org/internet-drafts/draft-abarth-cake-01.txt' />
         </reference>
-  recorded_at: Mon, 28 Feb 2022 12:54:42 GMT
+  recorded_at: Sun, 20 Mar 2022 15:34:27 GMT
 recorded_with: VCR 6.0.0

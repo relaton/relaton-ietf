@@ -41,9 +41,9 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(did.size).to be 3
       expect(did[0]).to be_instance_of RelatonBib::DocumentIdentifier
       expect(did[0].type).to eq "IETF"
-      expect(did[0].id).to eq "RFC 1139"
+      expect(did[0].id).to eq "RFC 139"
       expect(did[1].type).to eq "IETF"
-      expect(did[1].id).to eq "RFC1139"
+      expect(did[1].id).to eq "RFC139"
       expect(did[1].scope).to eq "anchor"
       expect(did[2].type).to eq "DOI"
       expect(did[2].id).to eq "10.17487/RFC1139"
@@ -64,7 +64,7 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(link.size).to be 1
       expect(link[0]).to be_instance_of RelatonBib::TypedUri
       expect(link[0].type).to eq "src"
-      expect(link[0].content.to_s).to eq "https://www.rfc-editor.org/info/rfc1139"
+      expect(link[0].content.to_s).to eq "https://www.rfc-editor.org/info/rfc139"
     end
 
     it "parse date" do
@@ -122,7 +122,7 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(ser[0].title.title.content).to eq "BCP"
       expect(ser[0].number).to eq "26"
       expect(ser[1].title.title.content).to eq "RFC"
-      expect(ser[1].number).to eq "1139"
+      expect(ser[1].number).to eq "139"
     end
 
     it "parse editorialgroup" do

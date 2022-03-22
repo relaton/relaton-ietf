@@ -19,7 +19,7 @@ module RelatonIetf
     #
     # @param [Nokogiri::XML::Element] doc document
     #
-    # @return [RelatonIetf:IetfBibliographicItem, nil]
+    # @return [RelatonIetf::IetfBibliographicItem, nil]
     #
     def self.parse(doc)
       doc_id = doc.at("./xmlns:doc-id")
@@ -55,7 +55,7 @@ module RelatonIetf
     def parse_docid
       [
         RelatonBib::DocumentIdentifier.new(type: "IETF", id: pub_id, primary: true),
-        RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "anchor", id: @doc_id),
+        RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "anchor", id: anchor),
       ]
     end
 

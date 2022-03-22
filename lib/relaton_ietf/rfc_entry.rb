@@ -68,7 +68,7 @@ module RelatonIetf
     def parse_docid
       ids = [
         RelatonBib::DocumentIdentifier.new(id: pub_id, type: "IETF", primary: true),
-        RelatonBib::DocumentIdentifier.new(id: code, type: "IETF", scope: "anchor"),
+        RelatonBib::DocumentIdentifier.new(id: anchor, type: "IETF", scope: "anchor"),
       ]
       doi = @doc.at("./xmlns:doi").text
       ids << RelatonBib::DocumentIdentifier.new(id: doi, type: "DOI")
@@ -113,13 +113,21 @@ module RelatonIetf
     end
 
     #
+    # Create acnhor
+    #
+    # @return [String] anchor
+    #
+    def anchor
+      "RFC#{docnum}"
+    end
+
+    #
     # Create link
     #
     # @return [Array<RelatonBib::TypedUri>] 
     #
     def parse_link
-      num = code[-4..-1].sub(/^0+/, "")
-      url = "https://www.rfc-editor.org/info/rfc#{num}"
+      url = "https://www.rfc-editor.org/info/rfc#{docnum}"
       [RelatonBib::TypedUri.new(content: url, type: "src")]
     end
 

@@ -135,7 +135,7 @@ RelatonIetf::IetfBibliographicItem.from_hash hash
 
 === Fetch data
 
-There is a IETF datasets what can be converted into RelatonXML/BibXML/BibYAML formats:
+There are IETF datasets what can be converted into RelatonXML/BibXML/BibYAML formats:
 
 - `ietf-rfcsubseries` - https://www.rfc-editor.org/rfc-index.xml (`<bcp-entry>`, `<fyi-entry>`, `<std-entry>`)
 - `ietf-internet-drafts` - converts files from local directory `./bibxml-ids`. Use `rsync -avcizxL rsync.ietf.org::bibxml-ids ./bibxml-ids` command to fetch the files.
