@@ -78,9 +78,9 @@ module RelatonIetf
     end
 
     def parse_relation
-      @is_also.map do |ref|
+      @is_also.each_with_object([]) do |ref, a|
         bib = IetfBibliography.get ref.sub(/^(RFC)(\d+)/, '\1 \2')
-        { type: "includes", bibitem: bib }
+        a << { type: "includes", bibitem: bib } if bib
       end
     end
   end
