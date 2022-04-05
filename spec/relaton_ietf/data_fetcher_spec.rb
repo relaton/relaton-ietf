@@ -79,11 +79,52 @@ RSpec.describe RelatonIetf::DataFetcher do
       # expect(tarfile2).to receive(:read).and_return(:xml)
       # tar = [tarfile1, tarfile2]
       # expect(Gem::Package::TarReader).to receive(:new).with(:io).and_yield(tar)
-      expect(Dir).to receive(:[]).with("bibxml-ids/*.xml").and_return([:file])
-      expect(File).to receive(:read).with(:file, encoding: "UTF-8").and_return(:xml)
+      expect(Dir).to receive(:[]).with("bibxml-ids/*.xml").and_return(["bibxml-ids/reference.I-D.draft-collins-pfr-00.xml"])
+      expect(File).to receive(:read).with("bibxml-ids/reference.I-D.draft-collins-pfr-00.xml", encoding: "UTF-8").and_return(:xml)
       expect(RelatonIetf::BibXMLParser).to receive(:parse).with(:xml).and_return(:bib)
       expect(subject).to receive(:save_doc).with(:bib)
+      expect(subject).to receive(:update_versions).with ["draft-collins-pfr-00"]
       subject.fetch
+    end
+
+    it "update versions" do
+      expect(Dir).to receive(:[]).with("dir/*.yaml").and_return(["dir/draft-collins-pfr-00.yaml"])
+      relation = double("relation")
+      expect(relation).to receive(:<<).with(:relation)
+      bib = double("bib", relation: relation)
+      expect(subject).to receive(:read_doc).with("dir/draft-collins-pfr-00.yaml").and_return(bib)
+      expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr-01").and_return(:fref)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref).and_return(:bibitem)
+      expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "updatedBy", bibitem: :bibitem).and_return(:relation)
+      expect(subject).to receive(:save_doc).with(bib, check_duplicate: false)
+      subject.update_versions ["draft-collins-pfr-01"]
+    end
+  end
+
+  context "read doc" do
+    it "yaml" do
+      file = "dir/reference.I-D.draft-collins-pfr-00.yaml"
+      fetcher = RelatonIetf::DataFetcher.new "ietf-internet-drafts", "dir", "yaml"
+      expect(File).to receive(:read).with(file, encoding: "UTF-8").and_return(:yaml)
+      expect(YAML).to receive(:safe_load).with(:yaml).and_return(:hash)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:from_hash).with(:hash).and_return(:bib)
+      expect(fetcher.read_doc(file)).to be :bib
+    end
+
+    it "xml" do
+      file = "dir/reference.I-D.draft-collins-pfr-00.xml"
+      fetcher = RelatonIetf::DataFetcher.new "ietf-internet-drafts", "dir", "xml"
+      expect(File).to receive(:read).with(file, encoding: "UTF-8").and_return(:xml)
+      expect(RelatonIetf::XMLParser).to receive(:from_xml).with(:xml).and_return(:bib)
+      expect(fetcher.read_doc(file)).to be :bib
+    end
+
+    it "bibxml" do
+      file = "dir/reference.I-D.draft-collins-pfr-00.xml"
+      fetcher = RelatonIetf::DataFetcher.new "ietf-internet-drafts", "dir", "bibxml"
+      expect(File).to receive(:read).with(file, encoding: "UTF-8").and_return(:xml)
+      expect(RelatonIetf::BibXMLParser).to receive(:parse).with(:xml).and_return(:bib)
+      expect(fetcher.read_doc(file)).to be :bib
     end
   end
 

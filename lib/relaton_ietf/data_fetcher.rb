@@ -64,11 +64,69 @@ module RelatonIetf
     # Fetches ietf-internet-drafts documents
     #
     def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength
-      Dir["bibxml-ids/*.xml"].each do |file|
-        save_doc BibXMLParser.parse(File.read(file, encoding: "UTF-8"))
+      versions = Dir["bibxml-ids/*.xml"].each_with_object([]) do |path, vers|
+        file = File.basename path, ".xml"
+        if file.include?("D.draft-")
+          vers << file.sub(/^reference\.I-D\./, "")
+        end
+        save_doc BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
+      end
+      update_versions(versions) if versions.any? && @format != "bibxml"
+    end
+
+    #
+    # Updates I-D's versions
+    #
+    # @param [Array<String>] versions list of versions
+    #
+    def update_versions(versions) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      Dir["#{@output}/*.#{@ext}"].each do |file|
+        match = /(?<id>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
+        if match
+          bib = read_doc(file)
+          bib_versions = versions.select { |ref| ref.include? match[:id] }
+          lv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i < match[:ver].to_i }
+          hv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i > match[:ver].to_i }
+          bib.relation << version_relation(lv.last, "updates") if lv.any?
+          bib.relation << version_relation(hv.first, "updatedBy") if hv.any?
+          save_doc bib, check_duplicate: false if lv.any? || hv.any?
+        end
       end
     end
 
+    #
+    # Create bibitem relation
+    #
+    # @param [String] ref reference
+    # @param [String] type relation type
+    #
+    # @return [RelatonBib::DocumentRelation] relation
+    #
+    def version_relation(ref, type)
+      fref = RelatonBib::FormattedRef.new content: ref
+      bibitem = IetfBibliographicItem.new formattedref: fref
+      RelatonBib::DocumentRelation.new(type: type, bibitem: bibitem)
+    end
+
+    #
+    # Redad saved documents
+    #
+    # @param [String] file path to file
+    #
+    # @return [RelatonIetf::IetfBibliographicItem] bibliographic item
+    #
+    def read_doc(file)
+      doc = File.read(file, encoding: "UTF-8")
+      case @format
+      when "xml" then XMLParser.from_xml(doc)
+      when "yaml" then IetfBibliographicItem.from_hash YAML.safe_load(doc)
+      else BibXMLParser.parse(doc)
+      end
+    end
+
+    #
+    # Fetches ietf-rfc-entries documents
+    #
     def fetch_ieft_rfcs
       rfc_index.xpath("xmlns:rfc-entry").each do |doc|
         save_doc RfcEntry.parse(doc)
@@ -78,6 +136,11 @@ module RelatonIetf
       end
     end
 
+    #
+    # Get RFC index
+    #
+    # @return [Nokogiri::XML::Document] RFC index
+    #
     def rfc_index
       uri = URI "https://www.rfc-editor.org/rfc-index.xml"
       Nokogiri::XML(Net::HTTP.get(uri)).at("/xmlns:rfc-index")
@@ -87,8 +150,9 @@ module RelatonIetf
     # Save document to file
     #
     # @param [RelatonIetf::RfcIndexEntry, nil] rfc index entry
+    # @param [Boolean] check_duplicate check for duplicate
     #
-    def save_doc(entry) # rubocop:disable Metrics/MethodLength
+    def save_doc(entry, check_duplicate: true) # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
       return unless entry
 
       c = case @format
@@ -97,9 +161,9 @@ module RelatonIetf
           else entry.send("to_#{@format}")
           end
       file = file_name entry
-      if @files.include? file
+      if check_duplicate && @files.include?(file)
         warn "File #{file} already exists. Document: #{entry.docnumber}"
-      else
+      elsif check_duplicate
         @files << file
       end
       File.write file, c, encoding: "UTF-8"
