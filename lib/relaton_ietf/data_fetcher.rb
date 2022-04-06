@@ -80,18 +80,42 @@ module RelatonIetf
     # @param [Array<String>] versions list of versions
     #
     def update_versions(versions) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      series = ""
+      bib_versions = []
       Dir["#{@output}/*.#{@ext}"].each do |file|
-        match = /(?<id>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
+        match = /(?<series>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
         if match
-          bib = read_doc(file)
-          bib_versions = versions.select { |ref| ref.include? match[:id] }
+          if series != match[:series]
+            bib_versions = versions.select { |ref| ref.include? match[:series] }
+            create_series match[:series], bib_versions
+          end
           lv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i < match[:ver].to_i }
           hv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i > match[:ver].to_i }
-          bib.relation << version_relation(lv.last, "updates") if lv.any?
-          bib.relation << version_relation(hv.first, "updatedBy") if hv.any?
-          save_doc bib, check_duplicate: false if lv.any? || hv.any?
+          if lv.any? || hv.any?
+            bib = read_doc(file)
+            bib.relation << version_relation(lv.last, "updates") if lv.any?
+            bib.relation << version_relation(hv.first, "updatedBy") if hv.any?
+            save_doc bib, check_duplicate: false
+          end
+          series = match[:series]
         end
       end
+    end
+
+    #
+    # Create unversioned bibliographic item
+    #
+    # @param [String] ref reference
+    # @param [Array<String>] versions list of versions
+    #
+    def create_series(ref, versions)
+      return if versions.size < 2
+
+      fref = RelatonBib::FormattedRef.new content: ref
+      rel = versions.map do |v|
+        version_relation v, "includes"
+      end
+      save_doc IetfBibliographicItem.new(formattedref: fref, relation: rel)
     end
 
     #
@@ -176,11 +200,11 @@ module RelatonIetf
     #
     # @return [String] file name
     #
-    def file_name(entry)
+    def file_name(entry) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       id = if entry.respond_to? :docidentifier
              entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.id
            end
-      id ||= entry.docnumber
+      id ||= entry.docnumber || entry.formattedref.content
       if @source == "ietf-internet-drafts" then id.downcase!
       else id.upcase!
       end

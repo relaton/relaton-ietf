@@ -99,6 +99,17 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(subject).to receive(:save_doc).with(bib, check_duplicate: false)
       subject.update_versions ["draft-collins-pfr-01"]
     end
+
+    it "create unversioned doc" do
+      expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr").and_return(:sref)
+      expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr-00").and_return(:fref)
+      expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr-01").and_return(:fref)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref).and_return(:bibitem).twice
+      expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "includes", bibitem: :bibitem).and_return(:rel1, :rel2)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :sref, relation:[:rel1, :rel2]).and_return(:sbib)
+      expect(subject).to receive(:save_doc).with(:sbib)
+      subject.create_series "draft-collins-pfr", ["draft-collins-pfr-00", "draft-collins-pfr-01"]
+    end
   end
 
   context "read doc" do
