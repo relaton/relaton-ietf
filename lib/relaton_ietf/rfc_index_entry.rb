@@ -3,12 +3,13 @@ module RelatonIetf
     #
     # Document parser initalization
     #
-    # @param [String] name document type name
+    # @param [Nokogiri::XML::Element] doc document
     # @param [String] doc_id document id
     # @param [Array<String>] is_also included document ids
     #
-    def initialize(name, doc_id, is_also)
-      @name = name
+    def initialize(doc, doc_id, is_also)
+      @doc = doc
+      @name = doc.name.split("-").first
       @shortnum = doc_id[-4..-1].sub(/^0+/, "")
       @doc_id = doc_id
       @is_also = is_also
@@ -26,8 +27,7 @@ module RelatonIetf
       is_also = doc.xpath("./xmlns:is-also/xmlns:doc-id").map &:text
       return unless doc_id && is_also.any?
 
-      name = doc.name.split("-").first
-      new(name, doc_id.text, is_also).parse
+      new(doc, doc_id.text, is_also).parse
     end
 
     def parse
@@ -79,7 +79,9 @@ module RelatonIetf
 
     def parse_relation
       @is_also.each_with_object([]) do |ref, a|
-        bib = IetfBibliography.get ref.sub(/^(RFC)(\d+)/, '\1 \2')
+        # bib = IetfBibliography.get ref.sub(/^(RFC)(\d+)/, '\1 \2')
+        ref_doc = @doc.at "/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='#{ref}']]"
+        bib = RfcEntry.parse ref_doc
         a << { type: "includes", bibitem: bib } if bib
       end
     end

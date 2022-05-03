@@ -8,7 +8,7 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       parser = double "parser"
       expect(parser).to receive(:parse).and_return(:bibitem)
       expect(RelatonIetf::RfcIndexEntry).to receive(:new)
-        .with("bcp", "RFC0001", ["RFC0002"]).and_return(parser)
+        .with(doc, "RFC0001", ["RFC0002"]).and_return(parser)
       expect(doc).to receive(:at).with("./xmlns:doc-id").and_return(doc_id)
       expect(doc).to receive(:xpath).with("./xmlns:is-also/xmlns:doc-id").and_return([adid])
       expect(RelatonIetf::RfcIndexEntry.parse(doc)).to eq :bibitem
@@ -30,7 +30,20 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
   end
 
   it "initialize" do
-    subj = RelatonIetf::RfcIndexEntry.new "bcp", "RFC0001", ["RFC0002"]
+    idx = Nokogiri::XML <<-XML
+      <rfc-index xmlns="http://www.rfc-editor.org/rfc-index">
+        <bcp-entry>
+          <doc-id>BCP0006</doc-id>
+          <is-also>
+            <doc-id>RFC1930</doc-id>
+            <doc-id>RFC6996</doc-id>
+            <doc-id>RFC7300</doc-id>
+          </is-also>
+        </bcp-entry>
+      </rfc-index>
+    XML
+    doc = idx.at "/xmlns:rfc-index/xmlns:bcp-entry"
+    subj = RelatonIetf::RfcIndexEntry.new doc, "RFC0001", ["RFC0002"]
     expect(subj.instance_variable_get(:@name)).to eq "bcp"
     expect(subj.instance_variable_get(:@shortnum)).to eq "1"
     expect(subj.instance_variable_get(:@doc_id)).to eq "RFC0001"
@@ -38,7 +51,9 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
   end
 
   context "instance methods" do
-    subject { RelatonIetf::RfcIndexEntry.new "bcp", "BCP0001", ["RFC0002"] }
+    let(:doc) { double "doc", name: "bcp-entry" }
+
+    subject { RelatonIetf::RfcIndexEntry.new doc, "BCP0001", ["RFC0002"] }
 
     it "parse" do
       expect(subject).to receive(:docnumber)
@@ -76,8 +91,9 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
     end
 
     it "parse relation" do
-      expect(RelatonIetf::IetfBibliography).to receive(:get).with("RFC 0002").and_return(:bibitem)
-      expect(subject.parse_relation).to eq [{ bibitem: :bibitem, type: "includes" }]
+      expect(doc).to receive(:at).with("/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='RFC0002']]").and_return(:ref_doc)
+      expect(RelatonIetf::RfcEntry).to receive(:parse).with(:ref_doc).and_return(:bib)
+      expect(subject.parse_relation).to eq [{ bibitem: :bib, type: "includes" }]
     end
   end
 end
