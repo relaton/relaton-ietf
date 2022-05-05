@@ -38,7 +38,7 @@ module RelatonIetf
       # doc = Nokogiri::XML get_page(uri)
       # r = doc.at("/referencegroup", "/reference")
       # fetch_rfc r, is_relation: is_relation, url: uri, ver: ver
-      BibXMLParser.parse get_page(uri), url: uri, is_relation: is_relation, ver: ver
+      BibXMLParser.parse get_page(uri), is_relation: is_relation, ver: ver
     end
 
     # @param uri [String]

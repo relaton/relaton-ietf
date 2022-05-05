@@ -1,7 +1,6 @@
 <bibdata type="standard">
-  <fetched>2022-02-11</fetched>
+  <fetched>2022-05-05</fetched>
   <formattedref format="text/plain" language="en" script="Latn">BCP47</formattedref>
-  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.BCP.0047.xml</uri>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
   <docidentifier type="RFC" primary="true">BCP 47</docidentifier>
   <docidentifier type="RFC" scope="anchor">BCP47</docidentifier>
