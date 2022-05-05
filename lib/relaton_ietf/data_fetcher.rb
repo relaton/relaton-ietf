@@ -63,13 +63,19 @@ module RelatonIetf
     #
     # Fetches ietf-internet-drafts documents
     #
-    def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength
+    def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       versions = Dir["bibxml-ids/*.xml"].each_with_object([]) do |path, vers|
         file = File.basename path, ".xml"
         if file.include?("D.draft-")
           vers << file.sub(/^reference\.I-D\./, "")
+          /(?<ver>\d+)$/ =~ file
         end
-        save_doc BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
+        bib = BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
+        if ver
+          version = RelatonBib::BibliographicItem::Version.new nil, [ver]
+          bib.instance_variable_set :@version, version
+        end
+        save_doc bib
       end
       update_versions(versions) if versions.any? && @format != "bibxml"
     end
