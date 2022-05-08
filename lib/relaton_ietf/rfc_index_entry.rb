@@ -81,7 +81,11 @@ module RelatonIetf
       @is_also.each_with_object([]) do |ref, a|
         # bib = IetfBibliography.get ref.sub(/^(RFC)(\d+)/, '\1 \2')
         ref_doc = @doc.at "/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='#{ref}']]"
-        bib = RfcEntry.parse ref_doc
+        bib = if ref_doc then RfcEntry.parse ref_doc
+              else
+                fref = RelatonBib::FormattedRef.new content: ref
+                IetfBibliographicItem.new formattedref: fref
+              end
         a << { type: "includes", bibitem: bib } if bib
       end
     end

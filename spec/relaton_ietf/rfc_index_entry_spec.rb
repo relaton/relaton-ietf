@@ -90,10 +90,23 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(subject.formattedref).to be :formattedref
     end
 
-    it "parse relation" do
-      expect(doc).to receive(:at).with("/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='RFC0002']]").and_return(:ref_doc)
-      expect(RelatonIetf::RfcEntry).to receive(:parse).with(:ref_doc).and_return(:bib)
-      expect(subject.parse_relation).to eq [{ bibitem: :bib, type: "includes" }]
+    context "parse relation" do
+      it "with metadata" do
+        expect(doc).to receive(:at).with("/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='RFC0002']]").and_return(:ref_doc)
+        expect(RelatonIetf::RfcEntry).to receive(:parse).with(:ref_doc).and_return(:bib)
+        expect(subject.parse_relation).to eq [{ bibitem: :bib, type: "includes" }]
+      end
+
+      it "without metadata" do
+        expect(doc).to receive(:at).with("/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='RFC0002']]").and_return nil
+        rel = subject.parse_relation
+        expect(rel).to be_instance_of Array
+        expect(rel.size).to eq 1
+        expect(rel.first[:type]).to eq "includes"
+        expect(rel.first[:bibitem]).to be_instance_of RelatonIetf::IetfBibliographicItem
+        expect(rel.first[:bibitem].formattedref).to be_instance_of RelatonBib::FormattedRef
+        expect(rel.first[:bibitem].formattedref.content).to eq "RFC0002"
+      end
     end
   end
 end
