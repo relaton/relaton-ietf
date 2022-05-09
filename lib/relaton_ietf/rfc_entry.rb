@@ -243,7 +243,8 @@ module RelatonIetf
       types = { "updates" => "updates", "obsoleted-by" => "obsoletedBy"}
       @doc.xpath("./xmlns:updates/xmlns:doc-id|./xmlns:obsoleted-by/xmlns:doc-id").map do |r|
         fref = RelatonBib::FormattedRef.new(content: r.text)
-        bib = IetfBibliographicItem.new(formattedref: fref)
+        docid = RelatonBib::DocumentIdentifier.new type: "IETF", id: r.text, primary: true
+        bib = IetfBibliographicItem.new(formattedref: fref, docid: [docid])
         RelatonBib::DocumentRelation.new(type: types[r.parent.name], bibitem: bib)
       end
     end

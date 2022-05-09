@@ -118,10 +118,11 @@ module RelatonIetf
       return if versions.size < 2
 
       fref = RelatonBib::FormattedRef.new content: ref
+      docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref
       rel = versions.map do |v|
         version_relation v, "includes"
       end
-      save_doc IetfBibliographicItem.new(formattedref: fref, relation: rel)
+      save_doc IetfBibliographicItem.new(formattedref: fref, docid: [docid], relation: rel)
     end
 
     #
@@ -134,7 +135,8 @@ module RelatonIetf
     #
     def version_relation(ref, type)
       fref = RelatonBib::FormattedRef.new content: ref
-      bibitem = IetfBibliographicItem.new formattedref: fref
+      docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref
+      bibitem = IetfBibliographicItem.new formattedref: fref, docid: [docid]
       RelatonBib::DocumentRelation.new(type: type, bibitem: bibitem)
     end
 

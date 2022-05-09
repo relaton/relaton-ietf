@@ -108,6 +108,9 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(rel[0]).to be_instance_of RelatonBib::DocumentRelation
       expect(rel[0].type).to eq "obsoletedBy"
       expect(rel[0].bibitem.formattedref.content).to eq "RFC1574"
+      expect(rel[0].bibitem.docidentifier[0].id).to eq "RFC1574"
+      expect(rel[0].bibitem.docidentifier[0].type).to eq "IETF"
+      expect(rel[0].bibitem.docidentifier[0].primary).to be true
     end
 
     it "parse status" do

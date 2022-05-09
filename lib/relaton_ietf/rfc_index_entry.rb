@@ -30,6 +30,11 @@ module RelatonIetf
       new(doc, doc_id.text, is_also).parse
     end
 
+    #
+    # Parse document
+    #
+    # @return [RelatonIetf::IetfBibliographicItem] bib item
+    #
     def parse
       IetfBibliographicItem.new(
         docnumber: docnumber,
@@ -44,14 +49,19 @@ module RelatonIetf
     end
 
     #
-    # Document id
+    # Document number
     #
-    # @return [Strinng] document id
+    # @return [Strinng] document number
     #
     def docnumber
       @doc_id
     end
 
+    #
+    # Create docidentifiers
+    #
+    # @return [Array<RelatonBib::DocumentIdentifier>] docidentifiers
+    #
     def parse_docid
       [
         RelatonBib::DocumentIdentifier.new(type: "IETF", id: pub_id, primary: true),
@@ -59,34 +69,55 @@ module RelatonIetf
       ]
     end
 
+    #
+    # Create pub_id
+    #
+    # @return [String] pub_id
+    #
     def pub_id
       "#{@name.upcase} #{@shortnum}"
     end
 
+    #
+    # Create anchor
+    #
+    # @return [String] anchor
+    #
     def anchor
       "#{@name.upcase}#{@shortnum}"
     end
 
+    #
+    # Create link
+    #
+    # @return [Array<RelatonBib::TypedUri>] 
+    #
     def parse_link
       [RelatonBib::TypedUri.new(type: "src", content: "https://www.rfc-editor.org/info/#{@name}#{@shortnum}")]
     end
 
+    #
+    # Create formatted reference
+    #
+    # @return [RelatonBib::FormattedRef] 
+    #
     def formattedref
       RelatonBib::FormattedRef.new(
         content: anchor, language: "en", script: "Latn",
       )
     end
 
+    #
+    # Create relations
+    #
+    # @return [Array<Hash>] relations
+    #
     def parse_relation
-      @is_also.each_with_object([]) do |ref, a|
-        # bib = IetfBibliography.get ref.sub(/^(RFC)(\d+)/, '\1 \2')
-        ref_doc = @doc.at "/xmlns:rfc-index/xmlns:rfc-entry[xmlns:doc-id[text()='#{ref}']]"
-        bib = if ref_doc then RfcEntry.parse ref_doc
-              else
-                fref = RelatonBib::FormattedRef.new content: ref
-                IetfBibliographicItem.new formattedref: fref
-              end
-        a << { type: "includes", bibitem: bib } if bib
+      @is_also.map do |ref|
+        fref = RelatonBib::FormattedRef.new content: ref
+        docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: ref, primary: true)
+        bib = IetfBibliographicItem.new formattedref: fref, docid: [docid]
+        { type: "includes", bibitem: bib }
       end
     end
   end

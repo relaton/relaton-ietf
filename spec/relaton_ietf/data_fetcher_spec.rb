@@ -84,7 +84,8 @@ RSpec.describe RelatonIetf::DataFetcher do
       bib = double("bib", relation: relation)
       expect(subject).to receive(:read_doc).with("dir/draft-collins-pfr-00.yaml").and_return(bib)
       expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr-01").and_return(:fref)
-      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref).and_return(:bibitem)
+      expect(RelatonBib::DocumentIdentifier).to receive(:new).with(type: "Internet-Draft", id: "draft-collins-pfr-01").and_return(:id)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref, docid: [:id]).and_return(:bibitem)
       expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "updatedBy", bibitem: :bibitem).and_return(:relation)
       expect(subject).to receive(:save_doc).with(bib, check_duplicate: false)
       subject.update_versions ["draft-collins-pfr-01"]
@@ -94,11 +95,21 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr").and_return(:sref)
       expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr-00").and_return(:fref)
       expect(RelatonBib::FormattedRef).to receive(:new).with(content: "draft-collins-pfr-01").and_return(:fref)
-      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref).and_return(:bibitem).twice
-      expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "includes", bibitem: :bibitem).and_return(:rel1, :rel2)
-      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :sref, relation:[:rel1, :rel2]).and_return(:sbib)
+      expect(RelatonBib::DocumentIdentifier).to receive(:new).with(type: "Internet-Draft", id: "draft-collins-pfr").and_return(:id)
+      expect(RelatonBib::DocumentIdentifier).to receive(:new).with(type: "Internet-Draft", id: "draft-collins-pfr-00").and_return(:id1)
+      expect(RelatonBib::DocumentIdentifier).to receive(:new).with(type: "Internet-Draft", id: "draft-collins-pfr-01").and_return(:id2)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref, docid: [:id1]).and_return(:bibitem1)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref, docid: [:id2]).and_return(:bibitem2)
+      expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "includes", bibitem: :bibitem1).and_return(:rel1)
+      expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "includes", bibitem: :bibitem2).and_return(:rel2)
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :sref, docid: [:id], relation:[:rel1, :rel2]).and_return(:sbib)
       expect(subject).to receive(:save_doc).with(:sbib)
       subject.create_series "draft-collins-pfr", ["draft-collins-pfr-00", "draft-collins-pfr-01"]
+    end
+
+    it "create version relation" do
+      rel = subject.version_relation "draft-collins-pfr-00", "includes"
+      expect(rel).to be_instance_of(RelatonBib::DocumentRelation)
     end
   end
 
