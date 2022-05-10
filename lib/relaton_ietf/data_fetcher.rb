@@ -94,6 +94,7 @@ module RelatonIetf
           if series != match[:series]
             bib_versions = versions.select { |ref| ref.include? match[:series] }
             create_series match[:series], bib_versions
+            series = match[:series]
           end
           lv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i < match[:ver].to_i }
           hv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i > match[:ver].to_i }
@@ -103,7 +104,6 @@ module RelatonIetf
             bib.relation << version_relation(hv.first, "updatedBy") if hv.any?
             save_doc bib, check_duplicate: false
           end
-          series = match[:series]
         end
       end
     end
@@ -114,15 +114,18 @@ module RelatonIetf
     # @param [String] ref reference
     # @param [Array<String>] versions list of versions
     #
-    def create_series(ref, versions)
+    def create_series(ref, versions) # rubocop:disable Metrics/AbcSize
       return if versions.size < 2
 
+      vs = versions.sort_by { |v| v.match(/\d+$/).to_s.to_i }
       fref = RelatonBib::FormattedRef.new content: ref
-      docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref
-      rel = versions.map do |v|
-        version_relation v, "includes"
-      end
-      save_doc IetfBibliographicItem.new(formattedref: fref, docid: [docid], relation: rel)
+      docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref, primary: true
+      rel = vs.map { |v| version_relation v, "includes" }
+      last_v = HashConverter.hash_to_bib YAML.load_file("#{@output}/#{vs.last}.#{@ext}")
+      bib = IetfBibliographicItem.new(
+        title: last_v[:title], abstract: last_v[:abstract], formattedref: fref, docid: [docid], relation: rel,
+      )
+      save_doc bib
     end
 
     #
@@ -135,7 +138,7 @@ module RelatonIetf
     #
     def version_relation(ref, type)
       fref = RelatonBib::FormattedRef.new content: ref
-      docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref
+      docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref, primary: true
       bibitem = IetfBibliographicItem.new formattedref: fref, docid: [docid]
       RelatonBib::DocumentRelation.new(type: type, bibitem: bibitem)
     end
