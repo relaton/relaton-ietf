@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.BCP.0047.xml
+    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/BCP0047.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '928'
+      - '294'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"12de140a9d7cca7f7fd75762c6f5cdcc6263fd25793663cb2bbecee12cefe452"
+      - W/"1a6ae2b67654ba9447e6c3ac5d84f69eed155504a473fb57a5dbb3db4b50e435"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,62 +41,79 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - AFB0:B4EE:3D8546:4254F4:62794CD5
+      - 62DC:0783:8E1352:978C97:62A33B91
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 09 May 2022 17:18:14 GMT
+      - Fri, 10 Jun 2022 12:39:46 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6350-VIE
+      - cache-vie6328-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1652116694.738145,VS0,VE287
+      - S1654864786.877774,VS0,VE174
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 66cc18de0c9a412457d7341e8b9ed9c178904ba2
+      - 38a5273ae8a4e9c7575388c46c2dc1c52a23760b
       Expires:
-      - Mon, 09 May 2022 17:23:14 GMT
+      - Fri, 10 Jun 2022 12:44:46 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
-        <?xml version="1.0" encoding="UTF-8"?>
-        <referencegroup anchor="BCP47" target="https://www.rfc-editor.org/info/bcp47">
-        <!-- reference.RFC.4647.xml -->
-        <reference  anchor='RFC4647' target='https://www.rfc-editor.org/info/rfc4647'>
-        <front>
-        <title>Matching of Language Tags</title>
-        <author initials='A.' surname='Phillips' fullname='A. Phillips'><organization /></author>
-        <author initials='M.' surname='Davis' fullname='M. Davis'><organization /></author>
-        <date year='2006' month='September' />
-        <abstract><t>This document describes a syntax, called a &quot;language-range&quot;, for specifying items in a user's list of language preferences.  It also describes different mechanisms for comparing and matching these to language tags.  Two kinds of matching mechanisms, filtering and lookup, are defined.  Filtering produces a (potentially empty) set of language tags, whereas lookup produces a single language tag. Possible applications include language negotiation or content selection.  This document, in combination with RFC 4646, replaces RFC 3066, which replaced RFC 1766.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t></abstract>
-        </front>
-        <seriesInfo name='BCP' value='47'/>
-        <seriesInfo name='RFC' value='4647'/>
-        <seriesInfo name='DOI' value='10.17487/RFC4647'/>
-        </reference>
-        <!-- reference.RFC.5646.xml -->
-        <reference  anchor='RFC5646' target='https://www.rfc-editor.org/info/rfc5646'>
-        <front>
-        <title>Tags for Identifying Languages</title>
-        <author initials='A.' surname='Phillips' fullname='A. Phillips' role='editor'><organization /></author>
-        <author initials='M.' surname='Davis' fullname='M. Davis' role='editor'><organization /></author>
-        <date year='2009' month='September' />
-        <abstract><t>This document describes the structure, content, construction, and semantics of language tags for use in cases where it is desirable to indicate the language used in an information object.  It also describes how to register values for use in language tags and the creation of user-defined extensions for private interchange.  This document  specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t></abstract>
-        </front>
-        <seriesInfo name='BCP' value='47'/>
-        <seriesInfo name='RFC' value='5646'/>
-        <seriesInfo name='DOI' value='10.17487/RFC5646'/>
-        </reference>
-        </referencegroup>
-  recorded_at: Mon, 09 May 2022 17:18:13 GMT
+        ---
+        id: BCP47
+        link:
+        - content: https://www.rfc-editor.org/info/bcp47
+          type: src
+        type: standard
+        docid:
+        - id: BCP 47
+          type: IETF
+          primary: true
+        - id: BCP47
+          type: IETF
+          scope: anchor
+        docnumber: BCP0047
+        language:
+        - en
+        script:
+        - Latn
+        formattedref:
+          content: BCP47
+          language:
+          - en
+          script:
+          - Latn
+          format: text/plain
+        relation:
+        - type: includes
+          bibitem:
+            id: RFC4647
+            docid:
+            - id: RFC4647
+              type: IETF
+              primary: true
+            formattedref:
+              content: RFC4647
+              format: text/plain
+        - type: includes
+          bibitem:
+            id: RFC5646
+            docid:
+            - id: RFC5646
+              type: IETF
+              primary: true
+            formattedref:
+              content: RFC5646
+              format: text/plain
+  recorded_at: Fri, 10 Jun 2022 12:39:45 GMT
 recorded_with: VCR 6.1.0

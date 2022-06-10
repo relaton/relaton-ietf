@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.FYI.0002.xml
+    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/FYI0002.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '566'
+      - '274'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"711a9a7274dcad62cf8520b1a1e34fa217304b0e9c3afb0f109a4c42e94f5866"
+      - W/"2fafa31adc7e644c8f79db44fecdb60c10753e0354f16762468f329c12c8adc5"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,49 +41,69 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 568E:1442:D64186:E82948:62794CD6
+      - '0848:4110:98EB54:A2E9B1:62A35C57'
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 09 May 2022 17:18:14 GMT
+      - Fri, 10 Jun 2022 14:59:35 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6360-VIE
+      - cache-vie6369-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1652116695.586455,VS0,VE281
+      - S1654873176.794809,VS0,VE161
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 3e7f703d185bcba37890885e7fcb3a481dc6c553
+      - 170670a5ffa9a0bd4a7a5edae2d2ebb82117cbad
       Expires:
-      - Mon, 09 May 2022 17:23:14 GMT
+      - Fri, 10 Jun 2022 15:04:35 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
-        <?xml version="1.0" encoding="UTF-8"?>
-        <referencegroup anchor="FYI2" target="https://www.rfc-editor.org/info/fyi2">
-        <!-- reference.RFC.1470.xml -->
-        <reference  anchor='RFC1470' target='https://www.rfc-editor.org/info/rfc1470'>
-        <front>
-        <title>FYI on a Network Management Tool Catalog: Tools for Monitoring and Debugging TCP/IP Internets and Interconnected Devices</title>
-        <author initials='R.' surname='Enger' fullname='R. Enger'><organization /></author>
-        <author initials='J.' surname='Reynolds' fullname='J. Reynolds'><organization /></author>
-        <date year='1993' month='June' />
-        <abstract><t>The goal of this FYI memo is to provide an update to FYI 2, RFC 1147 [1], which provided practical information to site administrators and network managers.  This memo provides information for the Internet community.  It does not specify an Internet standard.</t></abstract>
-        </front>
-        <seriesInfo name='FYI' value='2'/>
-        <seriesInfo name='RFC' value='1470'/>
-        <seriesInfo name='DOI' value='10.17487/RFC1470'/>
-        </reference>
-        </referencegroup>
-  recorded_at: Mon, 09 May 2022 17:18:14 GMT
+        ---
+        id: FYI2
+        link:
+        - content: https://www.rfc-editor.org/info/fyi2
+          type: src
+        type: standard
+        docid:
+        - id: FYI 2
+          type: IETF
+          primary: true
+        - id: FYI2
+          type: IETF
+          scope: anchor
+        docnumber: FYI0002
+        language:
+        - en
+        script:
+        - Latn
+        formattedref:
+          content: FYI2
+          language:
+          - en
+          script:
+          - Latn
+          format: text/plain
+        relation:
+        - type: includes
+          bibitem:
+            id: RFC1470
+            docid:
+            - id: RFC1470
+              type: IETF
+              primary: true
+            formattedref:
+              content: RFC1470
+              format: text/plain
+  recorded_at: Fri, 10 Jun 2022 14:59:35 GMT
 recorded_with: VCR 6.1.0

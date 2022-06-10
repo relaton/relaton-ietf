@@ -67,3 +67,6 @@ doctype: rfc
 keyword:
   - acvp
   - crypto
+
+editorialgroup:
+- name: netconf

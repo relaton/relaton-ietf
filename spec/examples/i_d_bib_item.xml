@@ -1,10 +1,10 @@
 <bibdata type="standard">
-  <fetched>2022-05-05</fetched>
+  <fetched>2022-06-09</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
-  <uri type="TXT">http://www.ietf.org/internet-drafts/draft--burger-xcon-mmodels-00.txt</uri>
-  <docidentifier type="Internet-Draft" primary="true">draft--burger-xcon-mmodels-00</docidentifier>
-  <docidentifier type="IETF" scope="anchor">I-D.-burger-xcon-mmodels</docidentifier>
-  <docnumber>I-D.-burger-xcon-mmodels</docnumber>
+  <uri type="TXT">https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt</uri>
+  <docidentifier type="Internet-Draft" primary="true">draft-burger-xcon-mmodels-00</docidentifier>
+  <docidentifier type="IETF" scope="anchor">I-D.burger-xcon-mmodels</docidentifier>
+  <docnumber>I-D.burger-xcon-mmodels</docnumber>
   <date type="published">
     <on>2004-02</on>
   </date>
@@ -14,8 +14,16 @@
       <name>
         <completename language="en">Eric Burger</completename>
       </name>
+      <affiliation>
+        <organization>
+          <name>SnowShore Networks</name>
+        </organization>
+      </affiliation>
     </person>
   </contributor>
+  <version>
+    <draft>00</draft>
+  </version>
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/html" language="en" script="Latn">
@@ -23,7 +31,7 @@
   </abstract>
   <series type="main">
     <title format="text/plain" language="en" script="Latn">Internet-Draft</title>
-    <number>draft--burger-xcon-mmodels-00</number>
+    <number>draft-burger-xcon-mmodels-00</number>
   </series>
   <ext>
     <doctype>internet-draft</doctype>

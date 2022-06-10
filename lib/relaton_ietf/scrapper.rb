@@ -5,7 +5,9 @@ module RelatonIetf
   module Scrapper
     extend Scrapper
 
-    GH_URL = "https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference."
+    IDS = "https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/"
+    RFC = "https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcs/main/data/"
+    RSS = "https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/"
 
     # @param text [String]
     # @param is_relation [TrueClass, FalseClass]
@@ -13,8 +15,7 @@ module RelatonIetf
     def scrape_page(text, is_relation: false)
       # Remove initial "IETF " string if specified
       ref = text.gsub(/^IETF /, "")
-      /^(?:RFC|BCP|FYI|STD)\s(?<num>\d+)/ =~ ref
-      ref.sub!(/(?<=^(?:RFC|BCP|FYI|STD)\s)(\d+)/, num.rjust(4, "0")) if num
+      ref.sub!(/(?<=^(?:RFC|BCP|FYI|STD))\s(\d+)/) { $1.rjust 4, "0" }
       rfc_item ref, is_relation
     rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
            Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
@@ -28,17 +29,19 @@ module RelatonIetf
     # @param is_relation [Boolen, nil]
     # @return [RelatonIetf::IetfBibliographicItem]
     def rfc_item(ref, is_relation)
-      /(?<=-)(?<ver>\d{2})$/ =~ ref
-      if /^I-D/.match? ref
-        ref.sub!(/-\d{2}/, "") if ver
-        ref.sub!(/(?<=I-D\.)draft-/, "")
-      end
+      ghurl = case ref
+              when /^RFC/ then RFC
+              when /^(?:BCP|FYI|STD)/ then RSS
+              when /^I-D/
+                ref.sub!(/^I-D\./, "")
+                IDS
+              else return
+              end
 
-      uri = "#{GH_URL}#{ref.sub(/\s|\u00a0/, '.')}.xml"
-      # doc = Nokogiri::XML get_page(uri)
-      # r = doc.at("/referencegroup", "/reference")
-      # fetch_rfc r, is_relation: is_relation, url: uri, ver: ver
-      BibXMLParser.parse get_page(uri), is_relation: is_relation, ver: ver
+      uri = "#{ghurl}#{ref.sub(/\s|\u00a0/, '.')}.yaml"
+      # BibXMLParser.parse get_page(uri), is_relation: is_relation, ver: ver
+      resp = get_page uri
+      IetfBibliographicItem.from_hash YAML.safe_load(resp) if resp
     end
 
     # @param uri [String]

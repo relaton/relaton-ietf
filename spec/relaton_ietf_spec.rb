@@ -36,15 +36,14 @@ RSpec.describe RelatonIetf do
 
   it "get internet draft document" do
     VCR.use_cassette "i_d_burger_xcon_mmodels" do
-      item = RelatonIetf::IetfBibliography.search "I-D.-burger-xcon-mmodels"
+      item = RelatonIetf::IetfBibliography.search "I-D.draft-burger-xcon-mmodels-00"
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
       file = "spec/examples/i_d_bib_item.xml"
-      xml = item.to_xml bibdata: true
+      xml = item.to_xml(bibdata: true)
+        .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
       File.write file, xml unless File.exist? file
-      expect(xml).to be_equivalent_to File.read(file).sub(
-        %r{<fetched>\d{4}-\d{2}-\d{2}</fetched>},
-        "<fetched>#{Date.today}</fetched>",
-      )
+      expect(xml).to be_equivalent_to File.read(file)
+        .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
       schema = Jing.new "spec/examples/isobib.rng"
       errors = schema.validate file
       expect(errors).to eq []
@@ -52,63 +51,23 @@ RSpec.describe RelatonIetf do
   end
 
   it "get internet draft document with version" do
-    VCR.use_cassette "I-D.abarth-cake-02" do
-      item = RelatonIetf::IetfBibliography.get "I-D.abarth-cake-02"
+    VCR.use_cassette "i_d_abarth_cake_01" do
+      item = RelatonIetf::IetfBibliography.get "I-D.draft-abarth-cake-01"
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
-        .to eq "draft-abarth-cake-02"
+        .to eq "draft-abarth-cake-01"
       expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq(
-        "http://www.ietf.org/internet-drafts/draft-abarth-cake-02.txt",
+        "https://www.ietf.org/archive/id/draft-abarth-cake-01.txt",
       )
     end
   end
 
   it "get internet draft document by I-D.draft-* reference" do
-    VCR.use_cassette "I-D.draft-ietf-calext-eventpub-extensions" do
+    VCR.use_cassette "i_d_draft_ietf_calext_eventpub_extensions" do
       item = RelatonIetf::IetfBibliography.get(
         "I-D.draft-ietf-calext-eventpub-extensions-15",
       )
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
         .to eq("draft-ietf-calext-eventpub-extensions-15")
-    end
-  end
-
-  it "get WC3 document" do
-    VCR.use_cassette "w3c_cr_cdr_20070718" do
-      item = RelatonIetf::IetfBibliography.search "W3C CR-CDR-20070718"
-      expect(item.docidentifier[0].id).to eq "W3C CR-CDR-20070718"
-    end
-  end
-
-  it "get WC3 document form the second page" do
-    VCR.use_cassette "w3c_cr_rdf_schema" do
-      item = RelatonIetf::IetfBibliography.search "W3C CR-rdf-schema"
-      expect(item.docidentifier[0].id).to eq "W3C CR-rdf-schema"
-    end
-  end
-
-  it "get ANSI document" do
-    VCR.use_cassette "ansi_t1_102_1007" do
-      file = "spec/examples/ansi_t1_102_1987.xml"
-      item = RelatonIetf::IetfBibliography.search "ANSI T1-102.1987"
-      xml = item.to_xml bibdata: true
-      File.write file, xml, ecoding: "UTF-8" unless File.exist? file
-      expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
-      expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
-        .gsub(/(?<=<fetched>)\d{4}-\d{2}-\d{2}/, Date.today.to_s)
-    end
-  end
-
-  it "get 3GPP document" do
-    VCR.use_cassette "3gpp_01_01" do
-      item = RelatonIetf::IetfBibliography.search "3GPP 01.01"
-      expect(item.docidentifier[0].id).to eq "3GPP 01.01"
-    end
-  end
-
-  it "get IEEE document" do
-    VCR.use_cassette "ieee_730_2014" do
-      item = RelatonIetf::IetfBibliography.search "IEEE 730_2014"
-      expect(item.docidentifier[0].id).to eq "IEEE 730_2014"
     end
   end
 
@@ -153,7 +112,7 @@ RSpec.describe RelatonIetf do
 
   it "deals with non-existent document" do
     VCR.use_cassette "non_existed_doc" do
-      item = RelatonIetf::IetfBibliography.get "RFC 08341"
+      item = RelatonIetf::IetfBibliography.get "RFC 0"
       expect(item).to be_nil
     end
   end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.08341.xml
+    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcs/main/data/RFC0000.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -37,33 +37,33 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       X-Github-Request-Id:
-      - 8D44:7770:23B489C:2564662:62794CD8
+      - E09E:E6EA:907FED:9A6F05:62A364FD
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 09 May 2022 17:18:16 GMT
+      - Fri, 10 Jun 2022 15:36:29 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6346-VIE
+      - cache-vie6342-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1652116696.295382,VS0,VE252
+      - S1654875390.727822,VS0,VE167
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 5e4ec958749ee18dbe643c7b629fab0d77f8e1e4
+      - 4391e4680718d1d5295df73aebffdba2a45bbe6c
       Expires:
-      - Mon, 09 May 2022 17:23:16 GMT
+      - Fri, 10 Jun 2022 15:41:29 GMT
       Source-Age:
       - '0'
     body:
       encoding: UTF-8
       string: '404: Not Found'
-  recorded_at: Mon, 09 May 2022 17:18:16 GMT
+  recorded_at: Fri, 10 Jun 2022 15:36:29 GMT
 recorded_with: VCR 6.1.0

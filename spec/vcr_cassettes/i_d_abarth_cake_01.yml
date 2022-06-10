@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-burger-xcon-mmodels-00.yaml
+    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-abarth-cake-01.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '654'
+      - '723'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"fd75e6b561e07af510aea3d6df2944b332cb86826499e5881d8fae86652e369a"
+      - W/"7ce49763c54dd923f7977b8925cefe02ee8ed0e261fa25be8090319d53ac815e"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,92 +41,83 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - C756:F86A:4293CA:473B2B:62A335BB
+      - E74A:B7F8:90A23F:9A1CF5:62A33930
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 10 Jun 2022 12:14:51 GMT
+      - Fri, 10 Jun 2022 12:29:36 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6378-VIE
+      - cache-vie6328-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1654863291.315847,VS0,VE262
+      - S1654864176.140899,VS0,VE287
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - d799cba64e0588d243c5f4d3a7a8188168b3ed65
+      - 4312c423d5cbf536d65cdd19e0333360eb1dc48a
       Expires:
-      - Fri, 10 Jun 2022 12:19:51 GMT
+      - Fri, 10 Jun 2022 12:34:36 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
-        id: draft-burger-xcon-mmodels-00
+        id: draft-abarth-cake-01
         title:
-        - content: Centralized Conferencing (XCON) Media Models
+        - content: Origin Cookies
           language:
           - en
           script:
           - Latn
           format: text/plain
         link:
-        - content: https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt
+        - content: https://www.ietf.org/archive/id/draft-abarth-cake-01.txt
           type: TXT
         type: standard
         docid:
-        - id: draft-burger-xcon-mmodels-00
+        - id: draft-abarth-cake-01
           type: Internet-Draft
           primary: true
-        - id: I-D.burger-xcon-mmodels
+        - id: I-D.abarth-cake
           type: IETF
           scope: anchor
-        docnumber: I-D.burger-xcon-mmodels
+        docnumber: I-D.abarth-cake
         date:
         - type: published
-          value: '2004-02-10'
+          value: 2011-03
         contributor:
         - person:
             name:
-              initial:
-              - content: E.
-                language:
-                - en
-              surname:
-                content: Burger
-                language:
-                - en
               completename:
-                content: Eric Burger
+                content: Adam Barth
                 language:
                 - en
-            affiliation:
-            - organization:
-                name:
-                - SnowShore Networks
           role:
           - author
         version:
           draft:
-          - '00'
-        revdate: '2004-02-10'
+          - '01'
+        revdate: 2011-03
         language:
         - en
         script:
         - Latn
         abstract:
-        - content: "<p>This document describes various models for endpoint control of media
-            policy for centralized conferencing services. The models include detailed mixer
-            control, as in H.248, individual end-point negotiation, and participant roles,
-            as in MSCML.</p>"
+        - content: "<p>This document defines the Origin attribute for cookies, which lets
+            servers harmonize the security policy of their cookies with the widely used same-origin
+            policy. Origin cookies provide both confidentiality and integrity, unlike the
+            Secure attribute, which provides only confidentiality.Editorial Note (To be removed
+            by RFC Editor) If you have suggestions for improving this document, please send
+            email to &lt;mailto:http-state@ietf.org&gt;. Further Working Group information
+            is available from &lt;https://tools.ietf.org/wg/httpstate/&gt;.</p>"
           language:
           - en
           script:
@@ -141,8 +132,8 @@ http_interactions:
             script:
             - Latn
             format: text/plain
-          number: draft-burger-xcon-mmodels-00
+          number: draft-abarth-cake-01
         fetched: '2022-06-09'
         doctype: internet-draft
-  recorded_at: Fri, 10 Jun 2022 12:14:51 GMT
+  recorded_at: Fri, 10 Jun 2022 12:29:36 GMT
 recorded_with: VCR 6.1.0

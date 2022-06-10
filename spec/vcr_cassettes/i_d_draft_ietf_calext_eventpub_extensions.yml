@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-burger-xcon-mmodels-00.yaml
+    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-ietf-calext-eventpub-extensions-15.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '654'
+      - '792'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"fd75e6b561e07af510aea3d6df2944b332cb86826499e5881d8fae86652e369a"
+      - W/"9f056a713536c6fec664dabd21c558ae979c92ef62ee53828606a7ee7ef371d9"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,97 +41,119 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - C756:F86A:4293CA:473B2B:62A335BB
+      - 12C8:10208:1E0388:21D551:62A339D2
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 10 Jun 2022 12:14:51 GMT
+      - Fri, 10 Jun 2022 12:32:19 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6378-VIE
+      - cache-vie6340-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1654863291.315847,VS0,VE262
+      - S1654864339.802957,VS0,VE255
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - d799cba64e0588d243c5f4d3a7a8188168b3ed65
+      - 7175d8eb56007a547762f68efb67db19dd73eac7
       Expires:
-      - Fri, 10 Jun 2022 12:19:51 GMT
+      - Fri, 10 Jun 2022 12:37:19 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
-        id: draft-burger-xcon-mmodels-00
+        id: draft-ietf-calext-eventpub-extensions-15
         title:
-        - content: Centralized Conferencing (XCON) Media Models
+        - content: Event Publishing Extensions to iCalendar
           language:
           - en
           script:
           - Latn
           format: text/plain
         link:
-        - content: https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt
+        - content: https://www.ietf.org/archive/id/draft-ietf-calext-eventpub-extensions-15.txt
           type: TXT
         type: standard
         docid:
-        - id: draft-burger-xcon-mmodels-00
+        - id: draft-ietf-calext-eventpub-extensions-15
           type: Internet-Draft
           primary: true
-        - id: I-D.burger-xcon-mmodels
+        - id: I-D.ietf-calext-eventpub-extensions
           type: IETF
           scope: anchor
-        docnumber: I-D.burger-xcon-mmodels
+        docnumber: I-D.ietf-calext-eventpub-extensions
         date:
         - type: published
-          value: '2004-02-10'
+          value: 2019-10
         contributor:
         - person:
             name:
               initial:
-              - content: E.
+              - content: M.
                 language:
                 - en
               surname:
-                content: Burger
+                content: Douglass
                 language:
                 - en
               completename:
-                content: Eric Burger
+                content: Michael Douglass
                 language:
                 - en
             affiliation:
             - organization:
                 name:
-                - SnowShore Networks
+                - Spherical Cow Group
           role:
           - author
         version:
           draft:
-          - '00'
-        revdate: '2004-02-10'
+          - '15'
+        revdate: 2019-10
         language:
         - en
         script:
         - Latn
         abstract:
-        - content: "<p>This document describes various models for endpoint control of media
-            policy for centralized conferencing services. The models include detailed mixer
-            control, as in H.248, individual end-point negotiation, and participant roles,
-            as in MSCML.</p>"
+        - content: "<p>This specification updates RFC5545 by introducing a number of new iCalendar
+            properties and components which are of particular use for event publishers and
+            in social networking. This specification also defines a new STRUCTURED-DATA property
+            for iCalendar RFC5545 to allow for data that is directly pertinent to an event
+            or task to be included with the calendar data.</p>"
           language:
           - en
           script:
           - Latn
           format: text/html
+        relation:
+        - type: updates
+          bibitem:
+            id: draft-ietf-calext-eventpub-extensions-14
+            docid:
+            - id: draft-ietf-calext-eventpub-extensions-14
+              type: Internet-Draft
+              primary: true
+            formattedref:
+              content: draft-ietf-calext-eventpub-extensions-14
+              format: text/plain
+        - type: updatedBy
+          bibitem:
+            id: draft-ietf-calext-eventpub-extensions-16
+            docid:
+            - id: draft-ietf-calext-eventpub-extensions-16
+              type: Internet-Draft
+              primary: true
+            formattedref:
+              content: draft-ietf-calext-eventpub-extensions-16
+              format: text/plain
         series:
         - type: main
           title:
@@ -141,8 +163,8 @@ http_interactions:
             script:
             - Latn
             format: text/plain
-          number: draft-burger-xcon-mmodels-00
+          number: draft-ietf-calext-eventpub-extensions-15
         fetched: '2022-06-09'
         doctype: internet-draft
-  recorded_at: Fri, 10 Jun 2022 12:14:51 GMT
+  recorded_at: Fri, 10 Jun 2022 12:32:18 GMT
 recorded_with: VCR 6.1.0
