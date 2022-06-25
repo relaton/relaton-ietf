@@ -1,5 +1,5 @@
 <bibdata type="standard">
-  <fetched>2022-06-09</fetched>
+  <fetched>2022-06-23</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="TXT">https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt</uri>
   <docidentifier type="Internet-Draft" primary="true">draft-burger-xcon-mmodels-00</docidentifier>
@@ -22,7 +22,7 @@
     </person>
   </contributor>
   <version>
-    <draft>00</draft>
+    <draft>["00"]</draft>
   </version>
   <language>en</language>
   <script>Latn</script>

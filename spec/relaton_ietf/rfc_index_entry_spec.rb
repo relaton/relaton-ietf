@@ -56,6 +56,10 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
     subject { RelatonIetf::RfcIndexEntry.new doc, "BCP0001", ["RFC0002"] }
 
     it "parse" do
+      date = double "date"
+      expect(date).to receive(:to_s).and_return("2018-01-01")
+      expect(Date).to receive(:today).and_return(date)
+      expect(subject).to receive(:make_title)
       expect(subject).to receive(:docnumber)
       expect(subject).to receive(:parse_docid)
       expect(subject).to receive(:parse_link)
@@ -63,6 +67,28 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(subject).to receive(:parse_relation)
       expect(RelatonIetf::IetfBibliographicItem).to receive(:new).and_return(:bibitem)
       expect(subject.parse).to be :bibitem
+    end
+
+    context "make_title" do
+      it "BCP" do
+        title = subject.make_title
+        expect(title).to be_instance_of Array
+        expect(title.length).to eq 1
+        expect(title.first).to be_instance_of RelatonBib::TypedTitleString
+        expect(title.first.title.content).to eq "Best Current Practice 1"
+      end
+
+      it "FYI" do
+        subject.instance_variable_set :@name, "fyi"
+        title = subject.make_title
+        expect(title.first.title.content).to eq "For Your Information 1"
+      end
+
+      it "STD" do
+        subject.instance_variable_set :@name, "std"
+        title = subject.make_title
+        expect(title.first.title.content).to eq "Internet Standard technical specification 1"
+      end
     end
 
     it "docnumber" do

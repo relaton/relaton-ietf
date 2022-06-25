@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 62DC:0783:8E1352:978C97:62A33B91
+      - 2A42:617D:A493BE:AECF70:62B4893C
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 10 Jun 2022 12:39:46 GMT
+      - Thu, 23 Jun 2022 15:39:40 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6328-VIE
+      - cache-vie6364-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1654864786.877774,VS0,VE174
+      - S1655998781.575097,VS0,VE229
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 38a5273ae8a4e9c7575388c46c2dc1c52a23760b
+      - c7f9b2c8602f3b1b22232d55868daf9a17f276ec
       Expires:
-      - Fri, 10 Jun 2022 12:44:46 GMT
+      - Thu, 23 Jun 2022 15:44:40 GMT
       Source-Age:
       - '0'
     body:
@@ -115,5 +115,5 @@ http_interactions:
             formattedref:
               content: RFC5646
               format: text/plain
-  recorded_at: Fri, 10 Jun 2022 12:39:45 GMT
+  recorded_at: Thu, 23 Jun 2022 15:39:40 GMT
 recorded_with: VCR 6.1.0

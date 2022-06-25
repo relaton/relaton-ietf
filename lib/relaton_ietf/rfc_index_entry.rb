@@ -35,8 +35,10 @@ module RelatonIetf
     #
     # @return [RelatonIetf::IetfBibliographicItem] bib item
     #
-    def parse
+    def parse # rubocop:disable Metrics/MethodLength
       IetfBibliographicItem.new(
+        fetched: Date.today.to_s,
+        title: make_title,
         docnumber: docnumber,
         type: "standard",
         docid: parse_docid,
@@ -46,6 +48,15 @@ module RelatonIetf
         formattedref: formattedref,
         relation: parse_relation,
       )
+    end
+
+    def make_title
+      t = case @name
+          when "bcp" then "Best Current Practice #{@shortnum}"
+          when "fyi" then "For Your Information #{@shortnum}"
+          when "std" then "Internet Standard technical specification #{@shortnum}"
+          end
+      [RelatonBib::TypedTitleString.new(content: t, language: "en", script: "Latn")]
     end
 
     #
