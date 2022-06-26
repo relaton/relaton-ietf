@@ -69,8 +69,8 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(Dir).to receive(:[]).with("bibxml-ids/*.xml").and_return(["bibxml-ids/reference.I-D.draft-collins-pfr-00.xml"])
       expect(File).to receive(:read).with("bibxml-ids/reference.I-D.draft-collins-pfr-00.xml", encoding: "UTF-8").and_return(:xml)
       bib = double("bib")
-      expect(bib).to receive(:instance_variable_set).with(:@version, :ver)
-      expect(RelatonBib::BibliographicItem::Version).to receive(:new).with(nil, ["00"]).and_return(:ver)
+      expect(bib).to receive(:instance_variable_set).with(:@version, [:ver])
+      expect(RelatonBib::BibliographicItem::Version).to receive(:new).with(nil, "00").and_return(:ver)
       expect(RelatonIetf::BibXMLParser).to receive(:parse).with(:xml).and_return(bib)
       expect(subject).to receive(:save_doc).with(bib)
       expect(subject).to receive(:update_versions).with ["draft-collins-pfr-00"]

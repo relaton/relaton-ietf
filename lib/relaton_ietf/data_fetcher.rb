@@ -72,8 +72,8 @@ module RelatonIetf
         end
         bib = BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
         if ver
-          version = RelatonBib::BibliographicItem::Version.new nil, [ver]
-          bib.instance_variable_set :@version, version
+          version = RelatonBib::BibliographicItem::Version.new nil, ver
+          bib.instance_variable_set :@version, [version]
         end
         save_doc bib
       end
