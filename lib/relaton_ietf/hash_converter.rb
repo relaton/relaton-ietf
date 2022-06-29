@@ -14,7 +14,7 @@ module RelatonIetf
       def editorialgroup_hash_to_bib(ret)
         return unless ret[:editorialgroup]
 
-        technical_committee = array(ret[:editorialgroup]).map do |wg|
+        technical_committee = RelatonBib.array(ret[:editorialgroup]).map do |wg|
           Committee.new RelatonBib::WorkGroup.new(**wg)
         end
         ret[:editorialgroup] = RelatonBib::EditorialGroup.new technical_committee
