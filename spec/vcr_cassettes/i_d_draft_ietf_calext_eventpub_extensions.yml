@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-ietf-calext-eventpub-extensions-15.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/draft-ietf-calext-eventpub-extensions-15.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"fe50e338ad1f563247361c30ccce4d92a60c1b245efe88265a584a5548241c2c"
+      - W/"fed04d76b70b351d7a512ac31f7677075b863c12e06a883a7a83bab1d479a9f3"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 2DD4:13DF9:A5AEE8:AFEB84:62B4893B
+      - 6880:2FA0:2F0958:33DB70:62BD67FC
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:40 GMT
+      - Thu, 30 Jun 2022 09:08:12 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6346-VIE
+      - cache-vie6339-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998780.986179,VS0,VE264
+      - S1656580093.712544,VS0,VE250
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 69d2131e8b69636bf8d7b1abf616d39aa5941f73
+      - ae1f847c2ba18c3752e5492eb1a67d11db8cca34
       Expires:
-      - Thu, 23 Jun 2022 15:44:40 GMT
+      - Thu, 30 Jun 2022 09:13:12 GMT
       Source-Age:
       - '0'
     body:
@@ -115,8 +115,7 @@ http_interactions:
           role:
           - author
         version:
-          draft:
-          - '15'
+        - draft: '15'
         revdate: 2019-10
         language:
         - en
@@ -164,7 +163,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-ietf-calext-eventpub-extensions-15
-        fetched: '2022-06-22'
+        fetched: '2022-06-29'
         doctype: internet-draft
-  recorded_at: Thu, 23 Jun 2022 15:39:40 GMT
+  recorded_at: Thu, 30 Jun 2022 09:08:12 GMT
 recorded_with: VCR 6.1.0

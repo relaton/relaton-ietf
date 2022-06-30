@@ -21,7 +21,8 @@ module RelatonIetf
         warn "[relaton-ietf] (\"#{code}\") fetching..."
         result = search code
         if result
-          warn "[relaton-ietf] (\"#{code}\") found #{result.docidentifier.first.id}"
+          docid = result.docidentifier.detect(&:primary) || result.docidentifier.first
+          warn "[relaton-ietf] (\"#{code}\") found #{docid.id}"
         else
           warn "[relaton-ietf] (\"#{code}\") not found"
         end

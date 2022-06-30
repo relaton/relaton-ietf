@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/STD0003.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/STD0003.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '288'
+      - '326'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"e1077fbfa199a3f5fab67fec6cd8c08bb3c3d0a1c209b16bf7bf4433218bd0e5"
+      - W/"b1dd5a6d7d126dfc5b8d8657efcbfe24c658b038cdff63a6ea0050494eb2ac46"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 738C:1822:A62A03:B08556:62B4893D
+      - C282:CC37:AB12A:13C460:62BD6A65
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:41 GMT
+      - Thu, 30 Jun 2022 09:18:29 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6370-VIE
+      - cache-vie6346-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998781.284101,VS0,VE208
+      - S1656580709.434020,VS0,VE179
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 0a8e6ad021aae214d3d9399f05bee535f0ed6077
+      - c80c6a8349f029b6cd282ef4b3b65aca1ee2b657
       Expires:
-      - Thu, 23 Jun 2022 15:44:41 GMT
+      - Thu, 30 Jun 2022 09:23:29 GMT
       Source-Age:
       - '0'
     body:
@@ -71,6 +71,13 @@ http_interactions:
       string: |
         ---
         id: STD3
+        title:
+        - content: Internet Standard technical specification 3
+          language:
+          - en
+          script:
+          - Latn
+          format: text/plain
         link:
         - content: https://www.rfc-editor.org/info/std3
           type: src
@@ -87,13 +94,6 @@ http_interactions:
         - en
         script:
         - Latn
-        formattedref:
-          content: STD3
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
         relation:
         - type: includes
           bibitem:
@@ -115,5 +115,6 @@ http_interactions:
             formattedref:
               content: RFC1123
               format: text/plain
-  recorded_at: Thu, 23 Jun 2022 15:39:41 GMT
+        fetched: '2022-06-29'
+  recorded_at: Thu, 30 Jun 2022 09:18:29 GMT
 recorded_with: VCR 6.1.0

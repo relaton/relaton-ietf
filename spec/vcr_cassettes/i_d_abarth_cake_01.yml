@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-abarth-cake-01.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/draft-abarth-cake-01.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '722'
+      - '723'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"b051e69b24fd6e543a44b6f40337fecc8fc44beb68fb632efe0cb23d1b699204"
+      - W/"de9c168a5530fe041a5c27f13f9392909981c2f8e6d139744855355494661183"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 41BE:130F7:69389:CD6CD:62B4893B
+      - 3EBE:12637:1833D87:19F4853:62BD67E5
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:39 GMT
+      - Thu, 30 Jun 2022 09:07:49 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6345-VIE
+      - cache-vie6341-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998780.575264,VS0,VE258
+      - S1656580069.314301,VS0,VE250
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - e446e589607380e9fd455705c4d0ee327e974333
+      - ec0574ecffca5e9bb90bec1a3d8561f4bdb1d797
       Expires:
-      - Thu, 23 Jun 2022 15:44:39 GMT
+      - Thu, 30 Jun 2022 09:12:49 GMT
       Source-Age:
       - '0'
     body:
@@ -103,8 +103,7 @@ http_interactions:
           role:
           - author
         version:
-          draft:
-          - '01'
+        - draft: '01'
         revdate: 2011-03
         language:
         - en
@@ -133,7 +132,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-abarth-cake-01
-        fetched: '2022-06-22'
+        fetched: '2022-06-29'
         doctype: internet-draft
-  recorded_at: Thu, 23 Jun 2022 15:39:39 GMT
+  recorded_at: Thu, 30 Jun 2022 09:07:49 GMT
 recorded_with: VCR 6.1.0

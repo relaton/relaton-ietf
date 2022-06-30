@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/draft-burger-xcon-mmodels-00.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/draft-burger-xcon-mmodels-00.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '653'
+      - '654'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"e5275779c1ff35fb9ac5f93d5e13b35908146727ce5b5c5ff4536b5c11197e48"
+      - W/"9432112d38f7fe4f06b4b507951019ff974be702acd40a97f1595b956996cff4"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - AC1A:F617:7AEDB4:834875:62B4893B
+      - 299A:5594:1C165A1:1E2263B:62BD6794
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:39 GMT
+      - Thu, 30 Jun 2022 09:06:28 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6331-VIE
+      - cache-vie6335-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998779.115177,VS0,VE303
+      - S1656579989.674187,VS0,VE238
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - ab016a88da1a55494fe999652c517fc76f3d2de7
+      - b6ba073ac606d8ebba9a7442d2fcc9df9095ea3d
       Expires:
-      - Thu, 23 Jun 2022 15:44:39 GMT
+      - Thu, 30 Jun 2022 09:11:28 GMT
       Source-Age:
       - '0'
     body:
@@ -115,8 +115,7 @@ http_interactions:
           role:
           - author
         version:
-          draft:
-          - '00'
+        - draft: '00'
         revdate: '2004-02-10'
         language:
         - en
@@ -142,7 +141,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-burger-xcon-mmodels-00
-        fetched: '2022-06-22'
+        fetched: '2022-06-29'
         doctype: internet-draft
-  recorded_at: Thu, 23 Jun 2022 15:39:39 GMT
+  recorded_at: Thu, 30 Jun 2022 09:06:28 GMT
 recorded_with: VCR 6.1.0

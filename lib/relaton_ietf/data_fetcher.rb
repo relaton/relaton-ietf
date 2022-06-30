@@ -33,7 +33,7 @@ module RelatonIetf
     def self.fetch(source, output: "data", format: "yaml")
       t1 = Time.now
       puts "Started at: #{t1}"
-      FileUtils.mkdir_p output unless Dir.exist? output
+      FileUtils.mkdir_p output # unless Dir.exist? output
       new(source, output, format).fetch
       t2 = Time.now
       puts "Stopped at: #{t2}"

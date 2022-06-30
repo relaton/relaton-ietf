@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/BCP0047.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/BCP0047.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '294'
+      - '325'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"1a6ae2b67654ba9447e6c3ac5d84f69eed155504a473fb57a5dbb3db4b50e435"
+      - W/"12fd49d125b1adbc74d793ae1049ef5579e2e0920c8ac9df1cebe4d30a7d5c07"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 2A42:617D:A493BE:AECF70:62B4893C
+      - 77BA:6964:1B43821:1D21DAA:62BD681F
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:40 GMT
+      - Thu, 30 Jun 2022 09:08:47 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6364-VIE
+      - cache-vie6361-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998781.575097,VS0,VE229
+      - S1656580127.414330,VS0,VE171
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - c7f9b2c8602f3b1b22232d55868daf9a17f276ec
+      - 871c6e42b924ab35d12f6bec42b51d17e0840cee
       Expires:
-      - Thu, 23 Jun 2022 15:44:40 GMT
+      - Thu, 30 Jun 2022 09:13:47 GMT
       Source-Age:
       - '0'
     body:
@@ -71,6 +71,13 @@ http_interactions:
       string: |
         ---
         id: BCP47
+        title:
+        - content: Best Current Practice 47
+          language:
+          - en
+          script:
+          - Latn
+          format: text/plain
         link:
         - content: https://www.rfc-editor.org/info/bcp47
           type: src
@@ -87,13 +94,6 @@ http_interactions:
         - en
         script:
         - Latn
-        formattedref:
-          content: BCP47
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
         relation:
         - type: includes
           bibitem:
@@ -115,5 +115,6 @@ http_interactions:
             formattedref:
               content: RFC5646
               format: text/plain
-  recorded_at: Thu, 23 Jun 2022 15:39:40 GMT
+        fetched: '2022-06-29'
+  recorded_at: Thu, 30 Jun 2022 09:08:47 GMT
 recorded_with: VCR 6.1.0

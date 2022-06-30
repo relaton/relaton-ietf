@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcs/main/data/RFC8341.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcs/main/data/RFC8341.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '787'
+      - '786'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"8e7425d51bc68a9fab8ca52eb449f875bfedd263acf06336cb61b81ab3b3b5e2"
+      - W/"fa2a9ffc0c10599a6eb343b3e3157c836457d44567a2f3418afc4a366bbcc95b"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 3D94:BC73:112C8:12DEC:62B4893E
+      - 8304:917E:C793DE:E13C05:62BD6B3E
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:43 GMT
+      - Thu, 30 Jun 2022 09:22:06 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6366-VIE
+      - cache-vie6330-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998783.955076,VS0,VE174
+      - S1656580927.572538,VS0,VE191
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 6ea9a1a45f7ff751f1c30f6be19d0b221bd2f803
+      - 56f38eef25337840d7c9cb6ad07ac1dfe5ae4ffb
       Expires:
-      - Thu, 23 Jun 2022 15:44:43 GMT
+      - Thu, 30 Jun 2022 09:27:06 GMT
       Source-Age:
       - '0'
     body:
@@ -164,12 +164,12 @@ http_interactions:
             content: RFC
             format: text/plain
           number: '8341'
-        fetched: '2022-06-23'
+        fetched: '2022-06-29'
         keyword:
         - NETCONF RESTCONF
         - YANG
         - XML
         editorialgroup:
         - name: netconf
-  recorded_at: Thu, 23 Jun 2022 15:39:43 GMT
+  recorded_at: Thu, 30 Jun 2022 09:22:06 GMT
 recorded_with: VCR 6.1.0

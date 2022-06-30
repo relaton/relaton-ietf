@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/FYI0002.yaml
+    uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/FYI0002.yaml
     body:
       encoding: US-ASCII
       string: ''
@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '274'
+      - '300'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"2fafa31adc7e644c8f79db44fecdb60c10753e0354f16762468f329c12c8adc5"
+      - W/"4c96d27a1ebebe37d98ead95c83b500ffb6344df4aaf79f266b27c659a653b87"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 6D16:617D:A493D2:AECF80:62B4893C
+      - 29FA:4801:671B22:6DF2DE:62BD68ED
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Jun 2022 15:39:41 GMT
+      - Thu, 30 Jun 2022 09:12:14 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6355-VIE
+      - cache-vie6348-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1655998781.988360,VS0,VE163
+      - S1656580334.844098,VS0,VE169
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 5b3f2020e5cbba709d937081a83200ed99fc14c3
+      - 4944e91014cc7ea90f79187b97dee1a96ffa0ddf
       Expires:
-      - Thu, 23 Jun 2022 15:44:41 GMT
+      - Thu, 30 Jun 2022 09:17:14 GMT
       Source-Age:
       - '0'
     body:
@@ -71,6 +71,13 @@ http_interactions:
       string: |
         ---
         id: FYI2
+        title:
+        - content: For Your Information 2
+          language:
+          - en
+          script:
+          - Latn
+          format: text/plain
         link:
         - content: https://www.rfc-editor.org/info/fyi2
           type: src
@@ -87,13 +94,6 @@ http_interactions:
         - en
         script:
         - Latn
-        formattedref:
-          content: FYI2
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
         relation:
         - type: includes
           bibitem:
@@ -105,5 +105,6 @@ http_interactions:
             formattedref:
               content: RFC1470
               format: text/plain
-  recorded_at: Thu, 23 Jun 2022 15:39:41 GMT
+        fetched: '2022-06-29'
+  recorded_at: Thu, 30 Jun 2022 09:12:13 GMT
 recorded_with: VCR 6.1.0

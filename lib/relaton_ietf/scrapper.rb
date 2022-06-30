@@ -5,18 +5,17 @@ module RelatonIetf
   module Scrapper
     extend Scrapper
 
-    IDS = "https://raw.githubusercontent.com/ietf-ribose/relaton-data-ids/main/data/"
-    RFC = "https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcs/main/data/"
-    RSS = "https://raw.githubusercontent.com/ietf-ribose/relaton-data-rfcsubseries/main/data/"
+    IDS = "https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/"
+    RFC = "https://raw.githubusercontent.com/relaton/relaton-data-rfcs/main/data/"
+    RSS = "https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/"
 
     # @param text [String]
-    # @param is_relation [TrueClass, FalseClass]
     # @return [RelatonIetf::IetfBibliographicItem]
-    def scrape_page(text, is_relation: false)
+    def scrape_page(text)
       # Remove initial "IETF " string if specified
       ref = text.gsub(/^IETF /, "")
       ref.sub!(/(?<=^(?:RFC|BCP|FYI|STD))\s(\d+)/) { $1.rjust 4, "0" }
-      rfc_item ref, is_relation
+      rfc_item ref
     rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
            Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
            Net::ProtocolError, SocketError
@@ -26,9 +25,8 @@ module RelatonIetf
     private
 
     # @param ref [String]
-    # @param is_relation [Boolen, nil]
     # @return [RelatonIetf::IetfBibliographicItem]
-    def rfc_item(ref, is_relation)
+    def rfc_item(ref) # rubocop:disable Metrics/MethodLength
       ghurl = case ref
               when /^RFC/ then RFC
               when /^(?:BCP|FYI|STD)/ then RSS
