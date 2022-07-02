@@ -92,7 +92,7 @@ module RelatonIetf
         match = /(?<series>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
         if match
           if series != match[:series]
-            bib_versions = versions.select { |ref| ref.include? match[:series] }
+            bib_versions = versions.grep(/^#{match[:series]}-\d{2}/)
             create_series match[:series], bib_versions
             series = match[:series]
           end
@@ -114,7 +114,7 @@ module RelatonIetf
     # @param [String] ref reference
     # @param [Array<String>] versions list of versions
     #
-    def create_series(ref, versions) # rubocop:disable Metrics/AbcSize
+    def create_series(ref, versions) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       return if versions.size < 2
 
       vs = versions.sort_by { |v| v.match(/\d+$/).to_s.to_i }
@@ -123,7 +123,8 @@ module RelatonIetf
       rel = vs.map { |v| version_relation v, "includes" }
       last_v = HashConverter.hash_to_bib YAML.load_file("#{@output}/#{vs.last}.#{@ext}")
       bib = IetfBibliographicItem.new(
-        title: last_v[:title], abstract: last_v[:abstract], formattedref: fref, docid: [docid], relation: rel,
+        title: last_v[:title], abstract: last_v[:abstract], formattedref: fref,
+        fetched: Date.today.to_s, docid: [docid], relation: rel
       )
       save_doc bib
     end

@@ -89,7 +89,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(formattedref: :fref, docid: [:id]).and_return(:bibitem)
       expect(RelatonBib::DocumentRelation).to receive(:new).with(type: "updatedBy", bibitem: :bibitem).and_return(:relation)
       expect(subject).to receive(:save_doc).with(bib, check_duplicate: false)
-      subject.update_versions ["draft-collins-pfr-01"]
+      subject.update_versions ["draft-collins-pfr-01", "draft-collins-pfr1-02"]
     end
 
     it "create unversioned doc" do
@@ -110,7 +110,8 @@ RSpec.describe RelatonIetf::DataFetcher do
       hash = { title: :t, abstract: :a }
       expect(RelatonIetf::HashConverter).to receive(:hash_to_bib).with(:yaml).and_return(hash)
       expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(
-        title: :t, abstract: :a, formattedref: :sref, docid: [:id], relation: %i[rel1 rel2],
+        title: :t, abstract: :a, formattedref: :sref, fetched: Date.today.to_s,
+        docid: [:id], relation: %i[rel1 rel2]
       ).and_return(:sbib)
       expect(subject).to receive(:save_doc).with(:sbib)
       subject.create_series "draft-collins-pfr", ["draft-collins-pfr-00", "draft-collins-pfr-01"]
