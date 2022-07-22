@@ -86,6 +86,21 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(contr[0].entity.name.completename.content).to eq "R.A. Hagens"
     end
 
+    context "parse role" do
+      it "when role is not defined" do
+        contrib = double "contrib"
+        expect(contrib).to receive(:at).with("./xmlns:title").and_return nil
+        expect(subject.parse_role(contrib)).to eq [{ type: "author" }]
+      end
+
+      it "when role is defined" do
+        contrib = double "contrib"
+        title = double "title", text: "Editor"
+        expect(contrib).to receive(:at).with("./xmlns:title").and_return title
+        expect(subject.parse_role(contrib)).to eq [{ type: "editor" }]
+      end
+    end
+
     it "parse keyword" do
       kw = subject.parse_keyword
       expect(kw).to be_instance_of Array

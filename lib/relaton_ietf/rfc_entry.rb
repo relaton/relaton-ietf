@@ -151,8 +151,8 @@ module RelatonIetf
     # @return [Array<RelatonBib::ContributionInfo>] document contributors
     #
     def parse_contributor # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
-      @doc.xpath("./xmlns:author").map do |contributor| # rubocop:disable Metrics/BlockLength
-        n = contributor.at("./xmlns:name").text
+      @doc.xpath("./xmlns:author").map do |contrib| # rubocop:disable Metrics/BlockLength
+        n = contrib.at("./xmlns:name").text
         case n
         when "ISO"
           entity = RelatonBib::Organization.new(abbrev: n, name: "International Organization for Standardization")
@@ -186,15 +186,26 @@ module RelatonIetf
         when "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
           entity = RelatonBib::Organization.new(abbrev: "CCITT", name: n)
         else
-          # int, snm = n.split
           /^(?:(?<int>(?:\p{Lu}+(?:-\w|\(\w\))?\.{0,2}[-\s]?)+)\s)?(?<snm>[[:alnum:]\s'-.]+)$/ =~ n
           surname = RelatonBib::LocalizedString.new(snm, "en", "Latn")
           name = RelatonBib::LocalizedString.new(n, "en", "Latn")
           fname = RelatonBib::FullName.new(completename: name, initial: initials(int), surname: surname)
           entity = RelatonBib::Person.new(name: fname)
         end
-        RelatonBib::ContributionInfo.new(entity: entity, role: [{ type: "author" }])
+        RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
       end
+    end
+
+    #
+    # Parse contributors role
+    #
+    # @param [Nokogiri::XML::Node] contrib <description>
+    #
+    # @return [Array<Hash>] contributors role
+    #
+    def parse_role(contrib)
+      type = contrib.at("./xmlns:title")&.text&.downcase || "author"
+      [{ type: type }]
     end
 
     #
