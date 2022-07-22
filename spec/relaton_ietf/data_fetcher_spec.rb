@@ -79,6 +79,7 @@ RSpec.describe RelatonIetf::DataFetcher do
 
     it "update versions" do
       expect(Dir).to receive(:[]).with("dir/*.yaml").and_return(["dir/draft-collins-pfr-00.yaml"])
+      expect(subject).to receive(:create_series).with("draft-collins-pfr", ["draft-collins-pfr-01"])
       relation = double("relation")
       expect(relation).to receive(:<<).with(:relation)
       bib = double("bib", relation: relation)

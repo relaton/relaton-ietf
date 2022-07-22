@@ -67,7 +67,7 @@ module RelatonIetf
       versions = Dir["bibxml-ids/*.xml"].each_with_object([]) do |path, vers|
         file = File.basename path, ".xml"
         if file.include?("D.draft-")
-          vers << file.sub(/^reference\.I-D\./, "")
+          vers << file.sub(/^reference\.I-D\./, "").downcase
           /(?<ver>\d+)$/ =~ file
         end
         bib = BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
@@ -92,7 +92,7 @@ module RelatonIetf
         match = /(?<series>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
         if match
           if series != match[:series]
-            bib_versions = versions.grep(/^#{match[:series]}-\d{2}/)
+            bib_versions = versions.grep(/^#{Regexp.quote match[:series]}-\d{2}/)
             create_series match[:series], bib_versions
             series = match[:series]
           end
@@ -115,8 +115,6 @@ module RelatonIetf
     # @param [Array<String>] versions list of versions
     #
     def create_series(ref, versions) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-      return if versions.size < 2
-
       vs = versions.sort_by { |v| v.match(/\d+$/).to_s.to_i }
       fref = RelatonBib::FormattedRef.new content: ref
       docid = RelatonBib::DocumentIdentifier.new type: "Internet-Draft", id: ref, primary: true
