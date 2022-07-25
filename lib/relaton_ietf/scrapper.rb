@@ -31,7 +31,7 @@ module RelatonIetf
               when /^RFC/ then RFC
               when /^(?:BCP|FYI|STD)/ then RSS
               when /^I-D/
-                ref.sub!(/^I-D\./, "")
+                ref.sub!(/^I-D[.\s]/, "")
                 IDS
               else return
               end

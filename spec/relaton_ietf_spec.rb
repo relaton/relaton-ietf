@@ -51,7 +51,7 @@ RSpec.describe RelatonIetf do
 
   it "get internet draft document with version" do
     VCR.use_cassette "i_d_abarth_cake_01" do
-      item = RelatonIetf::IetfBibliography.get "I-D.draft-abarth-cake-01"
+      item = RelatonIetf::IetfBibliography.get "I-D draft-abarth-cake-01"
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
         .to eq "draft-abarth-cake-01"
       expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq(
