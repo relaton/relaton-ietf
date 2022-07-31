@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"29ec1cd4ec8eeb83dbb0a3af1820971ac8e675a7cadbba74b2e324f97d67ba5b"
+      - W/"7e5004d607cbee4055ed774c1162bb180a15f96ec98709f03dd94760e1200316"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 8304:16A9:1919575:1AE7743:62D68895
+      - B878:866D:3DB12B:46A1FA:62E660D0
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 19 Jul 2022 10:33:57 GMT
+      - Sun, 31 Jul 2022 11:00:32 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510053-SOF
+      - cache-sof1510026-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1658226838.707895,VS0,VE245
+      - S1659265232.077770,VS0,VE271
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - b15b59ffebdfb8f53e14227786e3d691a85c597d
+      - 94d108abbf1dfd06066256408ccdede766f35f14
       Expires:
-      - Tue, 19 Jul 2022 10:38:57 GMT
+      - Sun, 31 Jul 2022 11:05:32 GMT
       Source-Age:
       - '0'
     body:
@@ -163,7 +163,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-ietf-calext-eventpub-extensions-15
-        fetched: '2022-07-18'
+        fetched: '2022-07-30'
         doctype: internet-draft
-  recorded_at: Tue, 19 Jul 2022 10:33:57 GMT
+  recorded_at: Sun, 31 Jul 2022 11:00:32 GMT
 recorded_with: VCR 6.1.0

@@ -218,7 +218,7 @@ module RelatonIetf
     def initials(int)
       return [] unless int
 
-      int.split(/\.-?\s?|\s/).map { |i| RelatonBib::LocalizedString.new i, "en", "Latn" }
+      int.split(/(?<=\.)-?\s?|\s/).map { |i| RelatonBib::LocalizedString.new i, "en", "Latn" }
     end
 
     #

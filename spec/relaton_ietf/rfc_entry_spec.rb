@@ -148,6 +148,38 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(eg).to be_instance_of RelatonBib::EditorialGroup
       expect(eg.technical_committee[0].workgroup.name).to eq "osigen"
     end
+
+    context "parse initials" do
+      it "with periods" do
+        inits = subject.initials "A.B."
+        expect(inits).to be_instance_of Array
+        expect(inits.size).to be 2
+        expect(inits[0]).to be_instance_of RelatonBib::LocalizedString
+        expect(inits[0].content).to eq "A."
+        expect(inits[1].content).to eq "B."
+      end
+
+      it "with space" do
+        inits = subject.initials "A B"
+        expect(inits.size).to be 2
+        expect(inits[0].content).to eq "A"
+        expect(inits[1].content).to eq "B"
+      end
+
+      it "with periods and space" do
+        inits = subject.initials "A. B."
+        expect(inits.size).to be 2
+        expect(inits[0].content).to eq "A."
+        expect(inits[1].content).to eq "B."
+      end
+
+      it "with space and period" do
+        inits = subject.initials "A B."
+        expect(inits.size).to be 2
+        expect(inits[0].content).to eq "A"
+        expect(inits[1].content).to eq "B."
+      end
+    end
   end
 
   it "skip NON WORKING GROUP" do

@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '787'
+      - '786'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"8bb29085a34b2a06813e5ef48d2dffbd4059db42a4b6e9df5f02a50c7c732486"
+      - W/"16411a6f31cd6cb36b4992bac1ddcc9270b17c466d95e4b1ca1e867d5879c3af"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 2BEC:892F:17D9B1F:19A395C:62D68898
+      - 9782:0BF3:6157E7:696516:62E660D2
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 19 Jul 2022 10:34:01 GMT
+      - Sun, 31 Jul 2022 11:00:35 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510028-SOF
+      - cache-sof1510064-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1658226841.882077,VS0,VE223
+      - S1659265235.825973,VS0,VE188
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - b4f2bad0959879f06961ac379c088f4afff624cf
+      - 240d719087df9642e84b23ce33624cee6c43dfe2
       Expires:
-      - Tue, 19 Jul 2022 10:39:01 GMT
+      - Sun, 31 Jul 2022 11:05:35 GMT
       Source-Age:
       - '0'
     body:
@@ -164,12 +164,12 @@ http_interactions:
             content: RFC
             format: text/plain
           number: '8341'
-        fetched: '2022-07-18'
+        fetched: '2022-07-30'
         keyword:
         - NETCONF RESTCONF
         - YANG
         - XML
         editorialgroup:
         - name: netconf
-  recorded_at: Tue, 19 Jul 2022 10:34:01 GMT
+  recorded_at: Sun, 31 Jul 2022 11:00:34 GMT
 recorded_with: VCR 6.1.0

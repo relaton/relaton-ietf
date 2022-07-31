@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"3b1e9a2b4e16f04bcc32f74a4334ec58de9abd39ac2991bf341594254f30737b"
+      - W/"638a45a0743266b878893126bef02181617a710a5a26e561d86bf1947ee08157"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - B788:3D95:1030586:1167B70:62D68895
+      - F46A:0E80:547144:5BDABB:62E660CF
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 19 Jul 2022 10:33:57 GMT
+      - Sun, 31 Jul 2022 11:00:31 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510024-SOF
+      - cache-sof1510069-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1658226837.010217,VS0,VE255
+      - S1659265232.566298,VS0,VE260
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - d3c9e14e273e1bf689e7899bcfe1eb7e0983db53
+      - bf3cc254d9c8f473574281f984bd66408919d672
       Expires:
-      - Tue, 19 Jul 2022 10:38:57 GMT
+      - Sun, 31 Jul 2022 11:05:31 GMT
       Source-Age:
       - '0'
     body:
@@ -132,7 +132,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-abarth-cake-01
-        fetched: '2022-07-18'
+        fetched: '2022-07-30'
         doctype: internet-draft
-  recorded_at: Tue, 19 Jul 2022 10:33:57 GMT
+  recorded_at: Sun, 31 Jul 2022 11:00:31 GMT
 recorded_with: VCR 6.1.0
