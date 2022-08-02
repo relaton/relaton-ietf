@@ -126,7 +126,8 @@ module RelatonIetf
     def parse_relation
       @is_also.map do |ref|
         fref = RelatonBib::FormattedRef.new content: ref
-        docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: ref, primary: true)
+        id = ref.sub(/^([A-Z]+)0*(\d+)$/, '\1 \2')
+        docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: id, primary: true)
         bib = IetfBibliographicItem.new formattedref: fref, docid: [docid]
         { type: "includes", bibitem: bib }
       end

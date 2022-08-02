@@ -122,6 +122,7 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(rels.size).to eq 1
       expect(rels.first).to be_instance_of Hash
       expect(rels.first[:bibitem]).to be_instance_of RelatonIetf::IetfBibliographicItem
+      expect(rels.first[:bibitem].docidentifier.first.id).to eq "RFC 2"
     end
   end
 end
