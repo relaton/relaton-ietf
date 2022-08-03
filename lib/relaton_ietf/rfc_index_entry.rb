@@ -76,7 +76,7 @@ module RelatonIetf
     def parse_docid
       [
         RelatonBib::DocumentIdentifier.new(type: "IETF", id: pub_id, primary: true),
-        RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "anchor", id: anchor),
+        # RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "anchor", id: anchor),
       ]
     end
 
