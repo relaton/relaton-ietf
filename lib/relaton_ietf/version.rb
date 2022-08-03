@@ -1,3 +1,3 @@
 module RelatonIetf
-  VERSION = "1.12.9".freeze
+  VERSION = "1.12.10".freeze
 end
