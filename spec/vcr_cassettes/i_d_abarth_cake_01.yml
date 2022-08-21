@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '722'
+      - '726'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"638a45a0743266b878893126bef02181617a710a5a26e561d86bf1947ee08157"
+      - W/"8730a5b147cddf4f0882019a1b74af522165e1b6abf0ae9d6c988cd181d98653"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - F46A:0E80:547144:5BDABB:62E660CF
+      - C7D6:DC11:E27796:EFFA67:62FFC32D
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 31 Jul 2022 11:00:31 GMT
+      - Fri, 19 Aug 2022 17:06:54 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510069-SOF
+      - cache-vie6366-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1659265232.566298,VS0,VE260
+      - S1660928814.870422,VS0,VE266
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - bf3cc254d9c8f473574281f984bd66408919d672
+      - 0cfbc2dc2d60d2c4a9342edc2dd5733c5d57aa5b
       Expires:
-      - Sun, 31 Jul 2022 11:05:31 GMT
+      - Fri, 19 Aug 2022 17:11:54 GMT
       Source-Age:
       - '0'
     body:
@@ -92,7 +92,7 @@ http_interactions:
         docnumber: I-D.abarth-cake
         date:
         - type: published
-          value: 2011-03
+          value: '2011-03-05'
         contributor:
         - person:
             name:
@@ -104,7 +104,7 @@ http_interactions:
           - author
         version:
         - draft: '01'
-        revdate: 2011-03
+        revdate: '2011-03-05'
         language:
         - en
         script:
@@ -132,7 +132,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-abarth-cake-01
-        fetched: '2022-07-30'
+        fetched: '2022-08-19'
         doctype: internet-draft
-  recorded_at: Sun, 31 Jul 2022 11:00:31 GMT
+  recorded_at: Fri, 19 Aug 2022 17:06:53 GMT
 recorded_with: VCR 6.1.0

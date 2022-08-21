@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '325'
+      - '316'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"3823ac3c47b3c5711ed4ef40d009a5716cdc2df23bd3840f82a915eb743eb964"
+      - W/"41634185ae9e185be3596a431e4afb27a6396391f9cfd7b547909bd28d77977b"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - AD9E:4E79:6B75BD:7948FF:62E660D0
+      - DD5A:131E4:11047F:128A1D:62FFC330
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 31 Jul 2022 11:00:33 GMT
+      - Fri, 19 Aug 2022 17:06:57 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510071-SOF
+      - cache-vie6347-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1659265233.899144,VS0,VE185
+      - S1660928817.860526,VS0,VE173
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 473f7a5735e988ab5c85eedb3f5548d7d8fb342f
+      - daa683f120052141ab57b59ab1982191da3b0440
       Expires:
-      - Sun, 31 Jul 2022 11:05:33 GMT
+      - Fri, 19 Aug 2022 17:11:57 GMT
       Source-Age:
       - '0'
     body:
@@ -86,9 +86,6 @@ http_interactions:
         - id: BCP 47
           type: IETF
           primary: true
-        - id: BCP47
-          type: IETF
-          scope: anchor
         docnumber: BCP0047
         language:
         - en
@@ -99,7 +96,7 @@ http_interactions:
           bibitem:
             id: RFC4647
             docid:
-            - id: RFC4647
+            - id: RFC 4647
               type: IETF
               primary: true
             formattedref:
@@ -109,12 +106,12 @@ http_interactions:
           bibitem:
             id: RFC5646
             docid:
-            - id: RFC5646
+            - id: RFC 5646
               type: IETF
               primary: true
             formattedref:
               content: RFC5646
               format: text/plain
-        fetched: '2022-07-30'
-  recorded_at: Sun, 31 Jul 2022 11:00:32 GMT
+        fetched: '2022-08-19'
+  recorded_at: Fri, 19 Aug 2022 17:06:56 GMT
 recorded_with: VCR 6.1.0

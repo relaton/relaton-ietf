@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '326'
+      - '317'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"283a43ea434809c1afbb097fa1eccc700d85cda098be09884198548e7aebff11"
+      - W/"4ed958fc40aba99742c096b63fe80073aa1b4c01e930f2df8779ee62d46a0953"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - B40A:BFA1:79D3F3:837D9E:62E660D1
+      - 5A62:6623:95107C:A521BE:62FFC333
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 31 Jul 2022 11:00:34 GMT
+      - Fri, 19 Aug 2022 17:06:59 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510036-SOF
+      - cache-vie6374-VIE
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1659265234.855662,VS0,VE232
+      - S1660928819.182362,VS0,VE178
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - e736a3184e6ce78ce2e6223de418840d83066343
+      - 7ea394b9df89796682ab688365f04239ce110329
       Expires:
-      - Sun, 31 Jul 2022 11:05:34 GMT
+      - Fri, 19 Aug 2022 17:11:59 GMT
       Source-Age:
       - '0'
     body:
@@ -86,9 +86,6 @@ http_interactions:
         - id: STD 3
           type: IETF
           primary: true
-        - id: STD3
-          type: IETF
-          scope: anchor
         docnumber: STD0003
         language:
         - en
@@ -99,7 +96,7 @@ http_interactions:
           bibitem:
             id: RFC1122
             docid:
-            - id: RFC1122
+            - id: RFC 1122
               type: IETF
               primary: true
             formattedref:
@@ -109,12 +106,12 @@ http_interactions:
           bibitem:
             id: RFC1123
             docid:
-            - id: RFC1123
+            - id: RFC 1123
               type: IETF
               primary: true
             formattedref:
               content: RFC1123
               format: text/plain
-        fetched: '2022-07-30'
-  recorded_at: Sun, 31 Jul 2022 11:00:34 GMT
+        fetched: '2022-08-19'
+  recorded_at: Fri, 19 Aug 2022 17:06:59 GMT
 recorded_with: VCR 6.1.0
