@@ -149,33 +149,33 @@ RSpec.describe RelatonIetf::RfcEntry do
 
     context "parse initials" do
       it "with periods" do
-        inits = subject.initials "A.B."
+        inits = subject.forename "A.B."
         expect(inits).to be_instance_of Array
         expect(inits.size).to be 2
-        expect(inits[0]).to be_instance_of RelatonBib::LocalizedString
-        expect(inits[0].content).to eq "A."
-        expect(inits[1].content).to eq "B."
+        expect(inits[0]).to be_instance_of RelatonBib::Forename
+        expect(inits[0].initial).to eq "A"
+        expect(inits[1].initial).to eq "B"
       end
 
       it "with space" do
-        inits = subject.initials "A B"
+        inits = subject.forename "A B"
         expect(inits.size).to be 2
-        expect(inits[0].content).to eq "A"
-        expect(inits[1].content).to eq "B"
+        expect(inits[0].initial).to eq "A"
+        expect(inits[1].initial).to eq "B"
       end
 
       it "with periods and space" do
-        inits = subject.initials "A. B."
+        inits = subject.forename "A. B."
         expect(inits.size).to be 2
-        expect(inits[0].content).to eq "A."
-        expect(inits[1].content).to eq "B."
+        expect(inits[0].initial).to eq "A"
+        expect(inits[1].initial).to eq "B"
       end
 
       it "with space and period" do
-        inits = subject.initials "A B."
+        inits = subject.forename "A B."
         expect(inits.size).to be 2
-        expect(inits[0].content).to eq "A"
-        expect(inits[1].content).to eq "B."
+        expect(inits[0].initial).to eq "A"
+        expect(inits[1].initial).to eq "B"
       end
     end
   end

@@ -189,7 +189,9 @@ module RelatonIetf
           /^(?:(?<int>(?:\p{Lu}+(?:-\w|\(\w\))?\.{0,2}[-\s]?)+)\s)?(?<snm>[[:alnum:]\s'-.]+)$/ =~ n
           surname = RelatonBib::LocalizedString.new(snm, "en", "Latn")
           name = RelatonBib::LocalizedString.new(n, "en", "Latn")
-          fname = RelatonBib::FullName.new(completename: name, initial: initials(int), surname: surname)
+          fname = RelatonBib::FullName.new(
+            completename: name, initials: int, forename: forename(int), surname: surname,
+          )
           entity = RelatonBib::Person.new(name: fname)
         end
         RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
@@ -213,12 +215,14 @@ module RelatonIetf
     #
     # @param [String] int
     #
-    # @return [Array<RelatonBib::LocalizedString>]
+    # @return [Array<RelatonBib::Forename>]
     #
-    def initials(int)
+    def forename(int)
       return [] unless int
 
-      int.split(/(?<=\.)-?\s?|\s/).map { |i| RelatonBib::LocalizedString.new i, "en", "Latn" }
+      int.split(/\.-?\s?|\s/).map do |i|
+        RelatonBib::Forename.new initial: i, language: "en", script: "Latn"
+      end
     end
 
     #
