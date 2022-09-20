@@ -22,7 +22,6 @@ RSpec.describe RelatonIetf do
         expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
         file = "spec/examples/bib_item.xml"
         xml = item.to_xml(bibdata: true)
-          .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
         File.write file, xml, encoding: "utf-8" unless File.exist? file
         expect(xml).to be_equivalent_to File.read(file, encoding: "utf-8")
           .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
@@ -39,7 +38,6 @@ RSpec.describe RelatonIetf do
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
       file = "spec/examples/i_d_bib_item.xml"
       xml = item.to_xml(bibdata: true)
-        .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file)
         .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
@@ -76,7 +74,6 @@ RSpec.describe RelatonIetf do
       expect(item).to be_instance_of RelatonIetf::IetfBibliographicItem
       file = "spec/examples/bcp_47.xml"
       xml = item.to_xml(bibdata: true)
-        .sub(%r{(?<+<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file)
         .sub(%r{(?<+<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)

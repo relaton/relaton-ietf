@@ -74,14 +74,36 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(date[0].on).to eq "1990-01"
     end
 
-    it "parse contributor" do
-      contr = subject.parse_contributor
-      expect(contr).to be_instance_of Array
-      expect(contr.size).to be 1
-      expect(contr[0]).to be_instance_of RelatonBib::ContributionInfo
-      expect(contr[0].role[0].type).to eq "author"
-      expect(contr[0].entity).to be_instance_of RelatonBib::Person
-      expect(contr[0].entity.name.completename.content).to eq "R.A. Hagens"
+    context "parse contributor" do
+      it do
+        contr = subject.parse_contributor
+        expect(contr).to be_instance_of Array
+        expect(contr.size).to be 1
+        expect(contr[0]).to be_instance_of RelatonBib::ContributionInfo
+        expect(contr[0].role[0].type).to eq "author"
+        expect(contr[0].entity).to be_instance_of RelatonBib::Person
+        expect(contr[0].entity.name.completename.content).to eq "R.A. Hagens"
+      end
+
+      it "with organization as author" do
+        idx = Nokogiri::XML <<~XML
+          <rfc-index xmlns="http://www.rfc-editor.org/rfc-index">
+            <rfc-entry>
+              <author><name>IAB</name></author>
+            </rfc-entry>
+          </rfc-index>
+        XML
+        rfcdoc = idx.at "/xmlns:rfc-index/xmlns:rfc-entry"
+        subj = RelatonIetf::RfcEntry.new rfcdoc
+        contr = subj.parse_contributor
+        expect(contr).to be_instance_of Array
+        expect(contr.size).to be 1
+        expect(contr[0]).to be_instance_of RelatonBib::ContributionInfo
+        expect(contr[0].role[0].type).to eq "author"
+        expect(contr[0].role[0].description[0].content).to eq "BibXML author"
+        expect(contr[0].entity).to be_instance_of RelatonBib::Organization
+        expect(contr[0].entity.name[0].content).to eq "IAB"
+      end
     end
 
     context "parse role" do
@@ -95,7 +117,7 @@ RSpec.describe RelatonIetf::RfcEntry do
         contrib = double "contrib"
         title = double "title", text: "Editor"
         expect(contrib).to receive(:at).with("./xmlns:title").and_return title
-        expect(subject.parse_role(contrib)).to eq [{ type: "editor" }]
+        expect(subject.parse_role(contrib, "description")).to eq [{ description: ["description"], type: "editor" }]
       end
     end
 

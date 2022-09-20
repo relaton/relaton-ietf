@@ -39,7 +39,11 @@ module RelatonIetf
       uri = "#{ghurl}#{ref.sub(/\s|\u00a0/, '.')}.yaml"
       # BibXMLParser.parse get_page(uri), is_relation: is_relation, ver: ver
       resp = get_page uri
-      IetfBibliographicItem.from_hash YAML.safe_load(resp) if resp
+      return unless resp
+
+      hash = YAML.safe_load resp
+      hash["fetched"] = Date.today.to_s
+      IetfBibliographicItem.from_hash hash
     end
 
     # @param uri [String]

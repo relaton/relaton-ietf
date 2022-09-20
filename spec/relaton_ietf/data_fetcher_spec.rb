@@ -111,8 +111,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       hash = { title: :t, abstract: :a }
       expect(RelatonIetf::HashConverter).to receive(:hash_to_bib).with(:yaml).and_return(hash)
       expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(
-        title: :t, abstract: :a, formattedref: :sref, fetched: Date.today.to_s,
-        docid: [:id], relation: %i[rel1 rel2]
+        title: :t, abstract: :a, formattedref: :sref, docid: [:id], relation: %i[rel1 rel2]
       ).and_return(:sbib)
       expect(subject).to receive(:save_doc).with(:sbib)
       subject.create_series "draft-collins-pfr", ["draft-collins-pfr-00", "draft-collins-pfr-01"]

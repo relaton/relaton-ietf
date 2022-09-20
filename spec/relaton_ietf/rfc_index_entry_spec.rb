@@ -56,9 +56,6 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
     subject { RelatonIetf::RfcIndexEntry.new doc, "BCP0001", ["RFC0002"] }
 
     it "parse" do
-      date = double "date"
-      expect(date).to receive(:to_s).and_return("2018-01-01")
-      expect(Date).to receive(:today).and_return(date)
       expect(subject).to receive(:make_title)
       expect(subject).to receive(:docnumber)
       expect(subject).to receive(:parse_docid)

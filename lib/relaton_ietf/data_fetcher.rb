@@ -122,7 +122,7 @@ module RelatonIetf
       last_v = HashConverter.hash_to_bib YAML.load_file("#{@output}/#{vs.last}.#{@ext}")
       bib = IetfBibliographicItem.new(
         title: last_v[:title], abstract: last_v[:abstract], formattedref: fref,
-        fetched: Date.today.to_s, docid: [docid], relation: rel
+        docid: [docid], relation: rel
       )
       save_doc bib
     end

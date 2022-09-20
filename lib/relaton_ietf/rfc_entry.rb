@@ -30,7 +30,6 @@ module RelatonIetf
         type: "standard",
         language: ["en"],
         script: ["Latn"],
-        fetched: Date.today.to_s,
         docid: parse_docid,
         docnumber: code,
         title: parse_title,
@@ -150,7 +149,7 @@ module RelatonIetf
     #
     # @return [Array<RelatonBib::ContributionInfo>] document contributors
     #
-    def parse_contributor # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
+    def parse_contributor # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       @doc.xpath("./xmlns:author").map do |contrib| # rubocop:disable Metrics/BlockLength
         n = contrib.at("./xmlns:name").text
         case n
@@ -158,12 +157,16 @@ module RelatonIetf
           entity = RelatonBib::Organization.new(abbrev: n, name: "International Organization for Standardization")
         when "International Organization for Standardization"
           entity = RelatonBib::Organization.new(abbrev: "ISO", name: n)
-        when "IAB"
-          entity = RelatonBib::Organization.new(abbrev: n, name: "Internet Architecture Board")
-        when "IESG"
-          entity = RelatonBib::Organization.new(abbrev: n, name: "Internet Engineering Steering Group")
-        when "Internet Engineering Steering Group", "Federal Networking Council", "Internet Architecture Board",
-          "Internet Activities Board", "Defense Advanced Research Projects Agency", "National Science Foundation",
+        # when "IAB", "IESG", "Internet Architecture Board", "IAB and IESG",
+        #   "IAB Advisory Committee", "Internet Engineering Steering Group"
+        when /#{RelatonBib::BibXMLParser::FULLNAMEORG.join("|")}/
+          abbr = n.upcase == n ? n : n.split.reduce([]) { |a, w| w == w.upcase ? break : a << w[0] }&.join
+          entity = RelatonBib::Organization.new(abbrev: abbr, name: n)
+          desc = "BibXML author"
+        # when "IESG"
+        #   entity = RelatonBib::Organization.new(abbrev: n, name: "Internet Engineering Steering Group")
+        when "Federal Networking Council", "Internet Activities Board",
+          "Defense Advanced Research Projects Agency", "National Science Foundation",
           "National Research Council", "National Bureau of Standards"
           abbr = n.split.map { |w| w[0] if w[0] == w[0].upcase }.join
           entity = RelatonBib::Organization.new(abbrev: abbr, name: n)
@@ -194,20 +197,23 @@ module RelatonIetf
           )
           entity = RelatonBib::Person.new(name: fname)
         end
-        RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
+        RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib, desc))
       end
     end
 
     #
     # Parse contributors role
     #
-    # @param [Nokogiri::XML::Node] contrib <description>
+    # @param [Nokogiri::XML::Node] contrib contributor
+    # @param [String, nil] desc contributor description
     #
-    # @return [Array<Hash>] contributors role
+    # @return [Array<Hash>] contributor's role
     #
-    def parse_role(contrib)
+    def parse_role(contrib, desc = nil)
       type = contrib.at("./xmlns:title")&.text&.downcase || "author"
-      [{ type: type }]
+      role = { type: type }
+      role[:description] = [desc] if desc
+      [role]
     end
 
     #

@@ -37,7 +37,6 @@ module RelatonIetf
     #
     def parse # rubocop:disable Metrics/MethodLength
       IetfBibliographicItem.new(
-        fetched: Date.today.to_s,
         title: make_title,
         docnumber: docnumber,
         type: "standard",

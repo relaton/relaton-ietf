@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '654'
+      - '685'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"3a14917023cce4b8fe6caf1dfe5b670b42c677cb2cb0ccf9ed1482d89d5e2b92"
+      - W/"6cc62ce4c931f2ec4328a3e317dce0fdb91de5a65c4de2511180f99279282aa0"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 5A62:6623:950FA8:A520D0:62FFC32C
+      - 2B98:CDD9:2ABEF5:2DBBBF:63230EE2
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 19 Aug 2022 17:06:53 GMT
+      - Thu, 15 Sep 2022 11:39:14 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6363-VIE
+      - cache-sof1510077-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1660928813.952340,VS0,VE319
+      - S1663241954.030734,VS0,VE270
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - be7cb49d92179895725d0e4a3a76cd8d1b0912ff
+      - c370a6bb5dc0e4534abda417200cd6065016d69c
       Expires:
-      - Fri, 19 Aug 2022 17:11:53 GMT
+      - Thu, 15 Sep 2022 11:44:14 GMT
       Source-Age:
       - '0'
     body:
@@ -96,10 +96,15 @@ http_interactions:
         contributor:
         - person:
             name:
-              initial:
-              - content: E.
-                language:
-                - en
+              given:
+                forename:
+                - language:
+                  - en
+                  initial: E
+                formatted_initials:
+                  content: E.
+                  language:
+                  - en
               surname:
                 content: Burger
                 language:
@@ -111,7 +116,7 @@ http_interactions:
             affiliation:
             - organization:
                 name:
-                - SnowShore Networks
+                - content: SnowShore Networks
           role:
           - author
         version:
@@ -141,7 +146,7 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-burger-xcon-mmodels-00
-        fetched: '2022-08-19'
+        fetched: '2022-09-14'
         doctype: internet-draft
-  recorded_at: Fri, 19 Aug 2022 17:06:53 GMT
+  recorded_at: Thu, 15 Sep 2022 11:39:14 GMT
 recorded_with: VCR 6.1.0

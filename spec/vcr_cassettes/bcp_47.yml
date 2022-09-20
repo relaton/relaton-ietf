@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"41634185ae9e185be3596a431e4afb27a6396391f9cfd7b547909bd28d77977b"
+      - W/"d478073adcda56eb9a3802df542619ed71eb9dffcb295caa9872713b2795b0c4"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - DD5A:131E4:11047F:128A1D:62FFC330
+      - 312A:11115:2A43E9:2D39B0:63230EE3
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 19 Aug 2022 17:06:57 GMT
+      - Thu, 15 Sep 2022 11:39:15 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-vie6347-VIE
+      - cache-sof1510073-SOF
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1660928817.860526,VS0,VE173
+      - S1663241956.689885,VS0,VE271
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - daa683f120052141ab57b59ab1982191da3b0440
+      - '009922bc7a4951594f2bac419ece28f7cea938e0'
       Expires:
-      - Fri, 19 Aug 2022 17:11:57 GMT
+      - Thu, 15 Sep 2022 11:44:15 GMT
       Source-Age:
       - '0'
     body:
@@ -112,6 +112,6 @@ http_interactions:
             formattedref:
               content: RFC5646
               format: text/plain
-        fetched: '2022-08-19'
-  recorded_at: Fri, 19 Aug 2022 17:06:56 GMT
+        fetched: '2022-09-14'
+  recorded_at: Thu, 15 Sep 2022 11:39:15 GMT
 recorded_with: VCR 6.1.0
