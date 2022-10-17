@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '316'
+      - '297'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"d478073adcda56eb9a3802df542619ed71eb9dffcb295caa9872713b2795b0c4"
+      - W/"a2a37c8ad54c63fcfa1ebce7403c1944ac81b11da10d65745b6f1521f1b32901"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 312A:11115:2A43E9:2D39B0:63230EE3
+      - '0809:6DD4:1CF3D5:27D382:6349EECF'
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 15 Sep 2022 11:39:15 GMT
+      - Fri, 14 Oct 2022 23:20:47 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510073-SOF
+      - cache-iad-kjyo7100108-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1663241956.689885,VS0,VE271
+      - S1665789647.143433,VS0,VE75
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - '009922bc7a4951594f2bac419ece28f7cea938e0'
+      - f4ff4888df180ea810d39f963aabfb6eeb11428d
       Expires:
-      - Thu, 15 Sep 2022 11:44:15 GMT
+      - Fri, 14 Oct 2022 23:25:47 GMT
       Source-Age:
       - '0'
     body:
@@ -112,6 +112,5 @@ http_interactions:
             formattedref:
               content: RFC5646
               format: text/plain
-        fetched: '2022-09-14'
-  recorded_at: Thu, 15 Sep 2022 11:39:15 GMT
+  recorded_at: Fri, 14 Oct 2022 23:20:47 GMT
 recorded_with: VCR 6.1.0

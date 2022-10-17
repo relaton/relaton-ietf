@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '725'
+      - '709'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"0d6cfffacd19261c196840af60c836071b7ee009316c69a64f67a7f84a0648fa"
+      - W/"840b25425bbb3631b5d331bf497f4902518c6b00aaaff19cc3846779d9b28cb5"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - '0801:11114:14F167:1792E6:63230EE2'
+      - '0803:78AE:6F984:B3A87:6349EECE'
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 15 Sep 2022 11:39:15 GMT
+      - Fri, 14 Oct 2022 23:20:46 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-sof1510031-SOF
+      - cache-iad-kcgs7200041-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1663241955.754274,VS0,VE273
+      - S1665789647.618303,VS0,VE165
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 812c299de0454f38f409ff7042f9b84398cced3a
+      - a1149ade5d03b283bb65269cac9943d830c73616
       Expires:
-      - Thu, 15 Sep 2022 11:44:15 GMT
+      - Fri, 14 Oct 2022 23:25:46 GMT
       Source-Age:
       - '0'
     body:
@@ -132,7 +132,6 @@ http_interactions:
             - Latn
             format: text/plain
           number: draft-abarth-cake-01
-        fetched: '2022-09-14'
         doctype: internet-draft
-  recorded_at: Thu, 15 Sep 2022 11:39:14 GMT
+  recorded_at: Fri, 14 Oct 2022 23:20:46 GMT
 recorded_with: VCR 6.1.0
