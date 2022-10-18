@@ -157,14 +157,9 @@ module RelatonIetf
           entity = RelatonBib::Organization.new(abbrev: n, name: "International Organization for Standardization")
         when "International Organization for Standardization"
           entity = RelatonBib::Organization.new(abbrev: "ISO", name: n)
-        # when "IAB", "IESG", "Internet Architecture Board", "IAB and IESG",
-        #   "IAB Advisory Committee", "Internet Engineering Steering Group"
         when /#{RelatonBib::BibXMLParser::FULLNAMEORG.join("|")}/
           abbr = n.upcase == n ? n : n.split.reduce([]) { |a, w| w == w.upcase ? break : a << w[0] }&.join
           entity = RelatonBib::Organization.new(abbrev: abbr, name: n)
-          desc = "BibXML author"
-        # when "IESG"
-        #   entity = RelatonBib::Organization.new(abbrev: n, name: "Internet Engineering Steering Group")
         when "Federal Networking Council", "Internet Activities Board",
           "Defense Advanced Research Projects Agency", "National Science Foundation",
           "National Research Council", "National Bureau of Standards"
@@ -178,14 +173,15 @@ module RelatonIetf
           "End-to-End Services Task Force", "Network Technical Advisory Group", "Bolt Beranek",
           "Newman Laboratories", "Gateway Algorithms and Data Structures Task Force",
           "Network Information Center. Stanford Research Institute", "RFC Editor",
-          "Information Sciences Institute University of Southern California"
+          "Information Sciences Institute University of Southern California",
+          "RARE WG-MSG Task Force 88", "KOI8-U Working Group", "The Internet Society"
           entity = RelatonBib::Organization.new(name: n)
         when "Internet Assigned Numbers Authority (IANA)"
-          entity = RelatonBib::Organization.new(abbrev: "IANA", name: "Internet Assigned Numbers Authority")
+          entity = RelatonBib::Organization.new(abbrev: "IANA", name: "Internet Assigned Numbers Authority (IANA)")
         when "ESnet Site Coordinating Comittee (ESCC)"
-          entity = RelatonBib::Organization.new(abbrev: "ESCC", name: "ESnet Site Coordinating Comittee")
+          entity = RelatonBib::Organization.new(abbrev: "ESCC", name: "ESnet Site Coordinating Comittee (ESCC)")
         when "Energy Sciences Network (ESnet)"
-          entity = RelatonBib::Organization.new(abbrev: "ESnet", name: "Energy Sciences Network")
+          entity = RelatonBib::Organization.new(abbrev: "ESnet", name: "Energy Sciences Network (ESnet)")
         when "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
           entity = RelatonBib::Organization.new(abbrev: "CCITT", name: n)
         else
@@ -197,7 +193,7 @@ module RelatonIetf
           )
           entity = RelatonBib::Person.new(name: fname)
         end
-        RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib, desc))
+        RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
       end
     end
 
@@ -205,14 +201,12 @@ module RelatonIetf
     # Parse contributors role
     #
     # @param [Nokogiri::XML::Node] contrib contributor
-    # @param [String, nil] desc contributor description
     #
     # @return [Array<Hash>] contributor's role
     #
-    def parse_role(contrib, desc = nil)
+    def parse_role(contrib)
       type = contrib.at("./xmlns:title")&.text&.downcase || "author"
       role = { type: type }
-      role[:description] = [desc] if desc
       [role]
     end
 

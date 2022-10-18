@@ -43,7 +43,8 @@ module RelatonIetf
       type = super
       case type
       when "BCP", "FYI", "STD", "RFC" then "RFC"
-      when "Internet-Draft" then type
+      # when "Internet-Draft" then type
+      when "I-D" then "Internet-Draft"
       else "IETF"
       end
     end
@@ -91,14 +92,6 @@ module RelatonIetf
       surname = author[:surname] || author[:fullname].sub(regex, "").strip
       inits = author[:initials] || regex.match(author[:fullname])&.to_s&.strip
       [surname, inits]
-    end
-
-    def parse_surname(fullname)
-      fullname.sub(/(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+/, "").strip
-    end
-
-    def parse_initials(fullname)
-      fullname.match(/(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+/).to_s.strip
     end
   end
 end

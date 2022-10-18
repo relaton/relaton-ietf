@@ -1,4 +1,17 @@
 describe RelatonIetf::BibXMLParser do
+  context "pubid_type" do
+    context "returns RFC" do
+      it { expect(described_class.pubid_type("RFC 1234")).to eq "RFC" }
+      it { expect(described_class.pubid_type("BCP 1234")).to eq "RFC" }
+      it { expect(described_class.pubid_type("FYI 1234")).to eq "RFC" }
+      it { expect(described_class.pubid_type("STD 1234")).to eq "RFC" }
+    end
+
+    it "internet-draft" do
+      expect(described_class.pubid_type("I-D 1234")).to eq "Internet-Draft"
+    end
+  end
+
   shared_examples "parse_org" do |name|
     let(:ref) do
       doc = Nokogiri::XML <<~XML
@@ -18,7 +31,7 @@ describe RelatonIetf::BibXMLParser do
     end
   end
 
-  shared_examples "parse_person" do |fullname, *names|
+  shared_examples "parse_person" do |fullname, inits, sname|
     let(:ref) do
       doc = Nokogiri::XML <<~XML
         <reference anchor="RFC1234" target="https://www.rfc-editor.org/info/rfc1234">
@@ -32,12 +45,10 @@ describe RelatonIetf::BibXMLParser do
 
     it "parse person #{fullname}" do
       contrib = described_class.contributors ref
-      names.combination(2).each_with_index do |(inits, sname), i|
-        expect(contrib[i + 1][:entity]).to be_instance_of RelatonBib::Person
-        expect(contrib[i + 1][:entity].name.completename.content).to eq fullname
-        expect(contrib[i + 1][:entity].name.initials.content).to eq inits
-        expect(contrib[i + 1][:entity].name.surname.content).to eq sname
-      end
+      expect(contrib[1][:entity]).to be_instance_of RelatonBib::Person
+      expect(contrib[1][:entity].name.completename.content).to eq fullname
+      expect(contrib[1][:entity].name.initials.content).to eq inits
+      expect(contrib[1][:entity].name.surname.content).to eq sname
     end
   end
 
