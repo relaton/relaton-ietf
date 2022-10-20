@@ -149,48 +149,12 @@ module RelatonIetf
     #
     # @return [Array<RelatonBib::ContributionInfo>] document contributors
     #
-    def parse_contributor # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      @doc.xpath("./xmlns:author").map do |contrib| # rubocop:disable Metrics/BlockLength
-        n = contrib.at("./xmlns:name").text
-        case n
-        when "ISO"
-          entity = RelatonBib::Organization.new(abbrev: n, name: "International Organization for Standardization")
-        when "International Organization for Standardization"
-          entity = RelatonBib::Organization.new(abbrev: "ISO", name: n)
-        when /#{RelatonBib::BibXMLParser::FULLNAMEORG.join("|")}/
-          abbr = n.upcase == n ? n : n.split.reduce([]) { |a, w| w == w.upcase ? break : a << w[0] }&.join
-          entity = RelatonBib::Organization.new(abbrev: abbr, name: n)
-        when "Federal Networking Council", "Internet Activities Board",
-          "Defense Advanced Research Projects Agency", "National Science Foundation",
-          "National Research Council", "National Bureau of Standards"
-          abbr = n.split.map { |w| w[0] if w[0] == w[0].upcase }.join
-          entity = RelatonBib::Organization.new(abbrev: abbr, name: n)
-        when "IETF Secretariat"
-          entity = RelatonBib::Organization.new(abbrev: "IETF", name: n)
-        when "Audio-Video Transport Working Group", /North American Directory Forum/, "EARN Staff",
-          "Vietnamese Standardization Working Group", "ACM SIGUCCS", "ESCC X.500/X.400 Task Force",
-          "Sun Microsystems", "NetBIOS Working Group in the Defense Advanced Research Projects Agency",
-          "End-to-End Services Task Force", "Network Technical Advisory Group", "Bolt Beranek",
-          "Newman Laboratories", "Gateway Algorithms and Data Structures Task Force",
-          "Network Information Center. Stanford Research Institute", "RFC Editor",
-          "Information Sciences Institute University of Southern California",
-          "RARE WG-MSG Task Force 88", "KOI8-U Working Group", "The Internet Society"
-          entity = RelatonBib::Organization.new(name: n)
-        when "Internet Assigned Numbers Authority (IANA)"
-          entity = RelatonBib::Organization.new(abbrev: "IANA", name: "Internet Assigned Numbers Authority (IANA)")
-        when "ESnet Site Coordinating Comittee (ESCC)"
-          entity = RelatonBib::Organization.new(abbrev: "ESCC", name: "ESnet Site Coordinating Comittee (ESCC)")
-        when "Energy Sciences Network (ESnet)"
-          entity = RelatonBib::Organization.new(abbrev: "ESnet", name: "Energy Sciences Network (ESnet)")
-        when "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
-          entity = RelatonBib::Organization.new(abbrev: "CCITT", name: n)
-        else
-          /^(?:(?<int>(?:\p{Lu}+(?:-\w|\(\w\))?\.{0,2}[-\s]?)+)\s)?(?<snm>[[:alnum:]\s'-.]+)$/ =~ n
-          surname = RelatonBib::LocalizedString.new(snm, "en", "Latn")
-          name = RelatonBib::LocalizedString.new(n, "en", "Latn")
-          fname = RelatonBib::FullName.new(
-            completename: name, initials: int, forename: forename(int), surname: surname,
-          )
+    def parse_contributor
+      @doc.xpath("./xmlns:author").map do |contrib|
+        name = contrib.at("./xmlns:name").text
+        entity = BibXMLParser.full_name_org name
+        unless entity
+          fname = BibXMLParser.full_name name, nil, nil, "en", "Latn"
           entity = RelatonBib::Person.new(name: fname)
         end
         RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))

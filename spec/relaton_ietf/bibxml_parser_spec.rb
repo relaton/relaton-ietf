@@ -12,22 +12,24 @@ describe RelatonIetf::BibXMLParser do
     end
   end
 
-  shared_examples "parse_org" do |name|
+  shared_examples "parse_org" do |source, name, abbrev|
     let(:ref) do
       doc = Nokogiri::XML <<~XML
         <reference anchor="RFC1234" target="https://www.rfc-editor.org/info/rfc1234">
           <front>
-            <author fullname="#{name}"/>
+            <author fullname="#{source}"/>
           </front>
         </reference>
       XML
       doc.at "/reference"
     end
 
-    it "parse organization #{name}" do
+    it "parse organization #{source}" do
       contrib = described_class.contributors ref
+      orgname = name || source
       expect(contrib[1][:entity]).to be_instance_of RelatonBib::Organization
-      expect(contrib[1][:entity].name[0].content).to eq name
+      expect(contrib[1][:entity].abbreviation.content).to eq abbrev if abbrev
+      expect(contrib[1][:entity].name[0].content).to eq orgname
     end
   end
 
@@ -52,31 +54,49 @@ describe RelatonIetf::BibXMLParser do
     end
   end
 
+  it_behaves_like "parse_org", "ISO", "International Organization for Standardization", "ISO"
   it_behaves_like "parse_org", "Network Information Center. Stanford Research Institute"
   it_behaves_like "parse_org", "Information Sciences Institute University of Southern California"
-  it_behaves_like "parse_org", "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
-  it_behaves_like "parse_org", "National Bureau of Standards"
-  it_behaves_like "parse_org", "International Organization for Standardization"
-  it_behaves_like "parse_org", "National Research Council"
+  it_behaves_like "parse_org", "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union",
+                  "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union", "CCITT"
+  it_behaves_like "parse_org", "National Bureau of Standards", "National Bureau of Standards", "NBS"
+  it_behaves_like "parse_org", "International Organization for Standardization", "International Organization for Standardization", "ISO"
+  it_behaves_like "parse_org", "National Research Council", "National Research Council", "NRC"
   it_behaves_like "parse_org", "Gateway Algorithms and Data Structures Task Force"
-  it_behaves_like "parse_org", "National Science Foundation"
+  it_behaves_like "parse_org", "National Science Foundation", "National Science Foundation", "NSF"
   it_behaves_like "parse_org", "Network Technical Advisory Group"
   it_behaves_like "parse_org", "NetBIOS Working Group in the Defense Advanced Research Projects Agency"
-  it_behaves_like "parse_org", "Internet Activities Board"
+  it_behaves_like "parse_org", "Internet Activities Board", "Internet Activities Board", "IAB"
+  it_behaves_like "parse_org", "Internet Architecture Board", "Internet Architecture Board", "IAB"
   it_behaves_like "parse_org", "End-to-End Services Task Force"
-  it_behaves_like "parse_org", "Defense Advanced Research Projects Agency"
+  it_behaves_like "parse_org", "Defense Advanced Research Projects Agency", "Defense Advanced Research Projects Agency", "DARPA"
   it_behaves_like "parse_org", "The North American Directory Forum"
+  it_behaves_like "parse_org", "North American Directory Forum"
   it_behaves_like "parse_org", "ESCC X.500/X.400 Task Force"
-  it_behaves_like "parse_org", "ESnet Site Coordinating Comittee (ESCC)"
-  it_behaves_like "parse_org", "Energy Sciences Network (ESnet)"
-  it_behaves_like "parse_org", "Internet Engineering Steering Group"
+  it_behaves_like "parse_org", "ESnet Site Coordinating Comittee (ESCC)", "ESnet Site Coordinating Comittee (ESCC)", "ESCC"
+  it_behaves_like "parse_org", "Energy Sciences Network (ESnet)", "Energy Sciences Network (ESnet)", "ESnet"
+  it_behaves_like "parse_org", "Internet Engineering Steering Group", "Internet Engineering Steering Group", "IESG"
   it_behaves_like "parse_org", "RARE WG-MSG Task Force 88"
-  it_behaves_like "parse_org", "Internet Assigned Numbers Authority (IANA)"
-  it_behaves_like "parse_org", "Federal Networking Council"
+  it_behaves_like "parse_org", "Internet Assigned Numbers Authority (IANA)", "Internet Assigned Numbers Authority (IANA)", "IANA"
+  it_behaves_like "parse_org", "Federal Networking Council", "Federal Networking Council", "FNC"
   it_behaves_like "parse_org", "Audio-Video Transport Working Group"
   it_behaves_like "parse_org", "KOI8-U Working Group"
   it_behaves_like "parse_org", "The Internet Society"
   it_behaves_like "parse_org", "Sun Microsystems"
+  it_behaves_like "parse_org", "ACM SIGUCCS"
+  it_behaves_like "parse_org", "Bolt Beranek"
+  it_behaves_like "parse_org", "EARN Staff"
+  it_behaves_like "parse_org", "IAB Advisory Committee"
+  it_behaves_like "parse_org", "IAB and IESG"
+  it_behaves_like "parse_org", "IAB", "Internet Architecture Board", "IAB"
+  it_behaves_like "parse_org", "IANA", "Internet Assigned Numbers Authority", "IANA"
+  it_behaves_like "parse_org", "IESG", "Internet Engineering Steering Group", "IESG"
+  it_behaves_like "parse_org", "IETF Secretariat", "IETF Secretariat", "IETF"
+  it_behaves_like "parse_org", "ISOC Board of Trustees"
+  it_behaves_like "parse_org", "Mitra"
+  it_behaves_like "parse_org", "Newman Laboratories"
+  it_behaves_like "parse_org", "Vietnamese Standardization Working Group"
+  it_behaves_like "parse_org", "RFC Editor, et al."
 
   it_behaves_like "parse_person", "M. St. Johns", "M.", "St. Johns"
   it_behaves_like "parse_person", "T. LaQuey Parker", "T.", "LaQuey Parker"

@@ -3,25 +3,6 @@ module RelatonIetf
     include RelatonBib::BibXMLParser
     extend BibXMLParser
 
-    FULLNAMEORG = [
-      "IAB", "Internet Architecture Board", "IAB and IESG", "IESG",
-      "IAB Advisory Committee", "Internet Engineering Steering Group",
-      "Network Information Center. Stanford Research Institute",
-      "Information Sciences Institute University of Southern California",
-      "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union",
-      "National Bureau of Standards", "International Organization for Standardization",
-      "National Research Council", "Gateway Algorithms and Data Structures Task Force",
-      "National Science Foundation", "Network Technical Advisory Group",
-      "NetBIOS Working Group in the Defense Advanced Research Projects Agency",
-      "Internet Activities Board", "End-to-End Services Task Force",
-      "Defense Advanced Research Projects Agency", "The North American Directory Forum",
-      "ESCC X.500/X.400 Task Force", "ESnet Site Coordinating Comittee (ESCC)",
-      "Energy Sciences Network (ESnet)", "RARE WG-MSG Task Force 88",
-      "Internet Assigned Numbers Authority (IANA)", "Federal Networking Council",
-      "Audio-Video Transport Working Group", "KOI8-U Working Group",
-      "The Internet Society", "Sun Microsystems"
-    ].freeze
-
     # @param attrs [Hash]
     # @return [RelatonIetf::IetfBibliographicItem]
     def bib_item(**attrs)
@@ -68,30 +49,77 @@ module RelatonIetf
       contribs + super
     end
 
+    def person(author, reference)
+      full_name_org(author[:fullname]) || super
+    end
+
+    def full_name_org(name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+      case name
+      when "ISO"
+        RelatonBib::Organization.new(abbreviation: name, name: "International Organization for Standardization")
+      when "IAB"
+        RelatonBib::Organization.new(abbreviation: name, name: "Internet Architecture Board")
+      when "IESG"
+        RelatonBib::Organization.new(abbreviation: name, name: "Internet Engineering Steering Group")
+      when "IANA"
+        RelatonBib::Organization.new(abbreviation: name, name: "Internet Assigned Numbers Authority")
+      when "International Organization for Standardization"
+        RelatonBib::Organization.new(abbreviation: "ISO", name: name)
+      when "Federal Networking Council", "Internet Architecture Board", "Internet Activities Board",
+        "Defense Advanced Research Projects Agency", "National Science Foundation",
+        "National Research Council", "National Bureau of Standards",
+        "Internet Engineering Steering Group"
+        abbr = name.split.map { |w| w[0] if w[0] == w[0].upcase }.join
+        RelatonBib::Organization.new(abbreviation: abbr, name: name)
+      when "IETF Secretariat"
+        RelatonBib::Organization.new(abbreviation: "IETF", name: name)
+      when "Audio-Video Transport Working Group", /North American Directory Forum/, "EARN Staff",
+        "Vietnamese Standardization Working Group", "ACM SIGUCCS", "ESCC X.500/X.400 Task Force",
+        "Sun Microsystems", "NetBIOS Working Group in the Defense Advanced Research Projects Agency",
+        "End-to-End Services Task Force", "Network Technical Advisory Group", "Bolt Beranek",
+        "Newman Laboratories", "Gateway Algorithms and Data Structures Task Force",
+        "Network Information Center. Stanford Research Institute", "RFC Editor",
+        "Information Sciences Institute University of Southern California", "IAB and IESG",
+        "RARE WG-MSG Task Force 88", "KOI8-U Working Group", "The Internet Society",
+        "IAB Advisory Committee", "ISOC Board of Trustees", "Mitra", "RFC Editor, et al."
+        RelatonBib::Organization.new(name: name)
+      when "Internet Assigned Numbers Authority (IANA)"
+        RelatonBib::Organization.new(abbreviation: "IANA", name: "Internet Assigned Numbers Authority (IANA)")
+      when "ESnet Site Coordinating Comittee (ESCC)"
+        RelatonBib::Organization.new(abbreviation: "ESCC", name: "ESnet Site Coordinating Comittee (ESCC)")
+      when "Energy Sciences Network (ESnet)"
+        RelatonBib::Organization.new(abbreviation: "ESnet", name: "Energy Sciences Network (ESnet)")
+      when "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
+        RelatonBib::Organization.new(abbreviation: "CCITT", name: name)
+      end
+    end
+
     #
     # Overrade RelatonBib::BibXMLParser#full_name method
     #
-    # @param author [Nokogiri::XML::Element]
-    # @param reference [Nokogiri::XML::Element]
+    # @param fname [String] full name
+    # @param sname [String, nil] surname
+    # @param fname [String, nil] first name
+    # @param lang [String, nil] language
+    # @param script [String, nil] script
     #
     # @return [RelatonBib::FullName]
     #
-    def full_name(author, reference)
-      lang = language reference
-      sname, inits = parse_surname_initials author
-      initials = localized_string(inits, lang)
+    def full_name(fname, sname, inits, lang, script = nil)
+      surname, ints = parse_surname_initials fname, sname, inits
+      initials = localized_string(ints, lang, script)
       RelatonBib::FullName.new(
-        completename: localized_string(author[:fullname], lang),
-        initials: initials, forename: forename(inits, lang),
-        surname: localized_string(sname, lang)
+        completename: localized_string(fname, lang, script),
+        initials: initials, forename: forename(ints, lang, script),
+        surname: localized_string(surname, lang, script)
       )
     end
 
-    def parse_surname_initials(author)
+    def parse_surname_initials(fname, sname, inits)
       regex = /(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+/
-      surname = author[:surname] || author[:fullname].sub(regex, "").strip
-      inits = author[:initials] || regex.match(author[:fullname])&.to_s&.strip
-      [surname, inits]
+      surname = sname || fname.sub(regex, "").strip
+      initials = inits || regex.match(fname)&.to_s&.strip
+      [surname, initials]
     end
   end
 end
