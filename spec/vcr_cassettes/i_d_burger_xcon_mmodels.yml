@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '670'
+      - '672'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"5dee39c81b38d9529c46129d403ba240298df3541c147bf05f566c623f76d7c3"
+      - W/"62bdecfcaddbbf6c56a8b6cce510503f9fb11f66607b4584992ecaa353aabcbe"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - '0800:4208:11DAAD:1C0AC2:6349EECE'
+      - '0802:2A3B:2E3B6C:4CD992:635C7ECE'
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 14 Oct 2022 23:20:46 GMT
+      - Sat, 29 Oct 2022 01:15:58 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100086-IAD
+      - cache-iad-kjyo7100165-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1665789646.064530,VS0,VE169
+      - S1667006158.007164,VS0,VE165
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - c1b4f59e2fefb7a68b4990e32489ee53aea69325
+      - 2e9760b4705ae021260989f00a820924bcabc904
       Expires:
-      - Fri, 14 Oct 2022 23:25:46 GMT
+      - Sat, 29 Oct 2022 01:20:58 GMT
       Source-Age:
       - '0'
     body:
@@ -118,7 +118,7 @@ http_interactions:
                 name:
                 - content: SnowShore Networks
           role:
-          - author
+          - type: author
         version:
         - draft: '00'
         revdate: '2004-02-10'
@@ -147,5 +147,5 @@ http_interactions:
             format: text/plain
           number: draft-burger-xcon-mmodels-00
         doctype: internet-draft
-  recorded_at: Fri, 14 Oct 2022 23:20:46 GMT
+  recorded_at: Sat, 29 Oct 2022 01:15:58 GMT
 recorded_with: VCR 6.1.0

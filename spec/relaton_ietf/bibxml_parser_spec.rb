@@ -33,7 +33,7 @@ describe RelatonIetf::BibXMLParser do
     end
   end
 
-  shared_examples "parse_person" do |fullname, inits, sname|
+  shared_examples "parse_person" do |fullname, inits, surname, forename|
     let(:ref) do
       doc = Nokogiri::XML <<~XML
         <reference anchor="RFC1234" target="https://www.rfc-editor.org/info/rfc1234">
@@ -49,8 +49,9 @@ describe RelatonIetf::BibXMLParser do
       contrib = described_class.contributors ref
       expect(contrib[1][:entity]).to be_instance_of RelatonBib::Person
       expect(contrib[1][:entity].name.completename.content).to eq fullname
-      expect(contrib[1][:entity].name.initials.content).to eq inits
-      expect(contrib[1][:entity].name.surname.content).to eq sname
+      expect(contrib[1][:entity].name.initials.content).to eq inits if inits
+      expect(contrib[1][:entity].name.surname.content).to eq surname
+      expect(contrib[1][:entity].name.forename[0].content).to eq forename if forename
     end
   end
 
@@ -169,4 +170,6 @@ describe RelatonIetf::BibXMLParser do
   it_behaves_like "parse_person", "JC. Zúñiga", "JC.", "Zúñiga"
   it_behaves_like "parse_person", "D.C. Medway Gash", "D.C.", "Medway Gash"
   it_behaves_like "parse_person", "D. von Hugo", "D.", "von Hugo"
+  it_behaves_like "parse_person", "Julian F. Reschke", "F.", "Reschke", "Julian"
+  it_behaves_like "parse_person", "Henrik Levkowetz", nil, "Levkowetz", "Henrik"
 end

@@ -106,20 +106,50 @@ module RelatonIetf
     # @return [RelatonBib::FullName]
     #
     def full_name(fname, sname, inits, lang, script = nil)
-      surname, ints = parse_surname_initials fname, sname, inits
+      surname, ints, name = parse_surname_initials fname, sname, inits
       initials = localized_string(ints, lang, script)
       RelatonBib::FullName.new(
         completename: localized_string(fname, lang, script),
-        initials: initials, forename: forename(ints, lang, script),
+        initials: initials, forename: forename(ints, name, lang, script),
         surname: localized_string(surname, lang, script)
       )
     end
 
+    #
+    # Create forenames with initials
+    #
+    # @param [String] initials initials
+    # @param [String] lang language
+    #
+    # @return [Array<RelatonBib::Forename>] forenames
+    #
+    def forename(initials, name, lang = nil, script = nil)
+      fnames = []
+      if name
+        fnames << RelatonBib::Forename.new(content: name, language: lang, script: script)
+      end
+      return fnames unless initials
+
+      initials.split(/\.-?\s?|\s/).each_with_object(fnames) do |i, a|
+        a << RelatonBib::Forename.new(initial: i, language: lang, script: script)
+      end
+    end
+
+    #
+    # Parse name, surname, and initials from full name
+    #
+    # @param [String] fname full name
+    # @param [String, nil] sname surname
+    # @param [String, nil] inits
+    #
+    # @return [Array<String, nil>] surname, initials, forename
+    #
     def parse_surname_initials(fname, sname, inits)
-      regex = /(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+/
+      regex = /(?:(?<name>\w{3,})\s)?(?<inits>(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+)?/
+      match = fname.match(regex)
       surname = sname || fname.sub(regex, "").strip
-      initials = inits || regex.match(fname)&.to_s&.strip
-      [surname, initials]
+      initials = inits || match[:inits]&.strip
+      [surname, initials, match[:name]]
     end
   end
 end

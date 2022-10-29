@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '709'
+      - '718'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"840b25425bbb3631b5d331bf497f4902518c6b00aaaff19cc3846779d9b28cb5"
+      - W/"11a300ae671cdfa51a7ac97dd5e1503169d9f706380a13dece8b64d0c0851791"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - '0803:78AE:6F984:B3A87:6349EECE'
+      - '080A:6944:2BAC75:4A2CF2:635C7ECE'
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 14 Oct 2022 23:20:46 GMT
+      - Sat, 29 Oct 2022 01:15:58 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kcgs7200041-IAD
+      - cache-iad-kcgs7200139-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1665789647.618303,VS0,VE165
+      - S1667006159.550878,VS0,VE195
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - a1149ade5d03b283bb65269cac9943d830c73616
+      - 49e0f57e7036b8a8618fe2bd383360d1673771b2
       Expires:
-      - Fri, 14 Oct 2022 23:25:46 GMT
+      - Sat, 29 Oct 2022 01:20:58 GMT
       Source-Age:
       - '0'
     body:
@@ -96,12 +96,16 @@ http_interactions:
         contributor:
         - person:
             name:
+              surname:
+                content: Adam Barth
+                language:
+                - en
               completename:
                 content: Adam Barth
                 language:
                 - en
           role:
-          - author
+          - type: author
         version:
         - draft: '01'
         revdate: '2011-03-05'
@@ -133,5 +137,5 @@ http_interactions:
             format: text/plain
           number: draft-abarth-cake-01
         doctype: internet-draft
-  recorded_at: Fri, 14 Oct 2022 23:20:46 GMT
+  recorded_at: Sat, 29 Oct 2022 01:15:58 GMT
 recorded_with: VCR 6.1.0
