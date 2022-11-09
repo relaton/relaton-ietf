@@ -34,5 +34,16 @@ module RelatonIetf
       opts[:date_format] ||= :short
       super(**opts)
     end
+
+    #
+    # Render date as BibXML
+    #
+    # @param [Nokogiri::XML::Builder] builder xml builder
+    #
+    # def render_date(builder)
+    #   return if doidentifier.detect { |i| i.type == "IANA" }
+
+    #   super
+    # end
   end
 end

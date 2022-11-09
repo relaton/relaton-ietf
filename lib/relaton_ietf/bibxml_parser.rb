@@ -144,12 +144,12 @@ module RelatonIetf
     #
     # @return [Array<String, nil>] surname, initials, forename
     #
-    def parse_surname_initials(fname, sname, inits)
+    def parse_surname_initials(fname, sname, inits) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       regex = /(?:(?<name>\w{3,})\s)?(?<inits>(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+)?/
-      match = fname.match(regex)
-      surname = sname || fname.sub(regex, "").strip
-      initials = inits || match[:inits]&.strip
-      [surname, initials, match[:name]]
+      match = fname&.match(regex)
+      surname = sname || fname&.sub(regex, "")&.strip
+      initials = inits || (match && match[:inits]&.strip)
+      [surname, initials, (match && match[:name])]
     end
   end
 end

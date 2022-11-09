@@ -12,6 +12,13 @@ describe RelatonIetf::BibXMLParser do
     end
   end
 
+  context "parse surname, initials, and forenam" do
+    it "without fullname" do
+      result = described_class.parse_surname_initials nil, "Smith", "J."
+      expect(result).to eq ["Smith", "J.", nil]
+    end
+  end
+
   shared_examples "parse_org" do |source, name, abbrev|
     let(:ref) do
       doc = Nokogiri::XML <<~XML
