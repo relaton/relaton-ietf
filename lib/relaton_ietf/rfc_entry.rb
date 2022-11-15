@@ -149,8 +149,8 @@ module RelatonIetf
     #
     # @return [Array<RelatonBib::ContributionInfo>] document contributors
     #
-    def parse_contributor
-      @doc.xpath("./xmlns:author").map do |contrib|
+    def parse_contributor # rubocop:disable Metrics/MethodLength
+      contribs = @doc.xpath("./xmlns:author").map do |contrib|
         name = contrib.at("./xmlns:name").text
         entity = BibXMLParser.full_name_org name
         unless entity
@@ -159,6 +159,13 @@ module RelatonIetf
         end
         RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
       end
+      contribs << create_org_contrib("RFC Publisher", "publisher")
+      contribs << create_org_contrib("RFC Series", "authorizer")
+    end
+
+    def create_org_contrib(org_name, role_type)
+      org = RelatonBib::Organization.new name: org_name
+      RelatonBib::ContributionInfo.new entity: org, role: [{ type: role_type }]
     end
 
     #
