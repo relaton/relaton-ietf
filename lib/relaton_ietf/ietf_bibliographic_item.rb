@@ -40,10 +40,10 @@ module RelatonIetf
     #
     # @param [Nokogiri::XML::Builder] builder xml builder
     #
-    # def render_date(builder)
-    #   return if doidentifier.detect { |i| i.type == "IANA" }
+    def render_date(builder)
+      return if docidentifier.detect { |i| i.type == "IANA" }
 
-    #   super
-    # end
+      super
+    end
   end
 end
