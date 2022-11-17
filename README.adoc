@@ -96,7 +96,7 @@ item.to_xml bibdata: true
 
 IETF documents may have `src`, `xml`, and `doi` link type.
 
-* `src` - web pulication
+* `src` - web publication
 * `xml` - BibXML publication
 * `doi` - DOI reference
 
