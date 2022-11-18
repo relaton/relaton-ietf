@@ -159,7 +159,7 @@ module RelatonIetf
         end
         RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
       end
-      contribs << create_org_contrib("RFC Publisher", "publisher")
+      # contribs << create_org_contrib("RFC Publisher", "publisher")
       contribs << create_org_contrib("RFC Series", "authorizer")
     end
 

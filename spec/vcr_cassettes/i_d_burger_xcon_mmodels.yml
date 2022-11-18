@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 5286:71B8:3B2B93:4DC8AC:636BB2D2
+      - 81E2:3816:3AF02:5FB3A:6376F671
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 09 Nov 2022 14:01:54 GMT
+      - Fri, 18 Nov 2022 03:05:22 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18435-ATL
+      - cache-atl18456-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1668002515.577543,VS0,VE195
+      - S1668740722.846158,VS0,VE194
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 92b8822969fdff0db069762c34c835f89f5d2fdb
+      - 0ae7c617862e0e9d9cb024e0503f4d4b99ee6a31
       Expires:
-      - Wed, 09 Nov 2022 14:06:54 GMT
+      - Fri, 18 Nov 2022 03:10:22 GMT
       Source-Age:
       - '0'
     body:
@@ -150,5 +150,5 @@ http_interactions:
             format: text/plain
           number: draft-burger-xcon-mmodels-00
         doctype: internet-draft
-  recorded_at: Wed, 09 Nov 2022 14:01:54 GMT
+  recorded_at: Fri, 18 Nov 2022 03:05:21 GMT
 recorded_with: VCR 6.1.0

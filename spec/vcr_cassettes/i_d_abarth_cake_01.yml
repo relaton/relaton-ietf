@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 3774:2921:3D7382:4FF372:636BB2D3
+      - 303E:8220:75669:9F58D:6376F672
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 09 Nov 2022 14:01:55 GMT
+      - Fri, 18 Nov 2022 03:05:22 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18433-ATL
+      - cache-atl18470-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1668002515.153271,VS0,VE192
+      - S1668740722.125471,VS0,VE171
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - d1fb4dc9ee2cc8af8638a57ae62c1aeadb1b6eb6
+      - 4179bd347387763208a53c0d3797b227b1a1dae7
       Expires:
-      - Wed, 09 Nov 2022 14:06:55 GMT
+      - Fri, 18 Nov 2022 03:10:22 GMT
       Source-Age:
       - '0'
     body:
@@ -142,5 +142,5 @@ http_interactions:
             format: text/plain
           number: draft-abarth-cake-01
         doctype: internet-draft
-  recorded_at: Wed, 09 Nov 2022 14:01:55 GMT
+  recorded_at: Fri, 18 Nov 2022 03:05:22 GMT
 recorded_with: VCR 6.1.0

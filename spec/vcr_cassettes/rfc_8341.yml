@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '802'
+      - '837'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"335efcaed1f17ab8d769db0ecaad1edb78c95f8c8362e37b4624a5a3666c60d2"
+      - W/"e50ebb3f766a45d8d3d38007facacd2a71bfded0cc13d04cb6a013a02d1d38e0"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - B9EC:48AB:391B6C:4BA7F4:636BB2D5
+      - 5FDE:5CF8:354A8:5A1DD:6376F673
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 09 Nov 2022 14:01:57 GMT
+      - Fri, 18 Nov 2022 03:05:23 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18457-ATL
+      - cache-atl18439-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1668002517.022414,VS0,VE108
+      - S1668740723.414313,VS0,VE108
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 73fc5d35ba40cb9d243f151ae0cdf1e10d1c6863
+      - '0459040ba0b626f68e21aa19fc3a9501f8baa0fc'
       Expires:
-      - Wed, 09 Nov 2022 14:06:57 GMT
+      - Fri, 18 Nov 2022 03:10:23 GMT
       Source-Age:
       - '0'
     body:
@@ -148,6 +148,16 @@ http_interactions:
                 - Latn
           role:
           - type: author
+        - organization:
+            name:
+            - content: RFC Publisher
+          role:
+          - type: publisher
+        - organization:
+            name:
+            - content: RFC Series
+          role:
+          - type: authorizer
         revdate: 2018-03
         language:
         - en
@@ -181,5 +191,5 @@ http_interactions:
         - content: XML
         editorialgroup:
         - name: netconf
-  recorded_at: Wed, 09 Nov 2022 14:01:57 GMT
+  recorded_at: Fri, 18 Nov 2022 03:05:23 GMT
 recorded_with: VCR 6.1.0
