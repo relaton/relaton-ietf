@@ -1,5 +1,5 @@
-<bibdata type="standard">
-  <fetched>2022-06-30</fetched>
+<bibdata type="standard" schema-version="v1.2.1">
+  <fetched>2022-11-26</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="TXT">https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt</uri>
   <docidentifier type="Internet-Draft" primary="true">draft-burger-xcon-mmodels-00</docidentifier>
@@ -33,7 +33,7 @@
     <title format="text/plain" language="en" script="Latn">Internet-Draft</title>
     <number>draft-burger-xcon-mmodels-00</number>
   </series>
-  <ext>
+  <ext schema-version="v1.0.0">
     <doctype>internet-draft</doctype>
   </ext>
 </bibdata>

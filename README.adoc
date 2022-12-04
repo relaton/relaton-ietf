@@ -10,7 +10,7 @@ image:https://img.shields.io/github/commits-since/relaton/relaton-ietf/latest.sv
 
 _Formerly known as_ `rfcbib`.
 
-RelatonIetf is a Ruby gem that search and fetch standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
+RelatonIetf is a Ruby gem that searches and fetches standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
 
 The standards scrape form https://www.rfc-editor.org/search/rfc_search.php
 
@@ -38,6 +38,7 @@ Or install it yourself as:
 [source,ruby]
 ----
 require 'relaton_ietf'
+=> true
 
 # Fetch RFC document
 item = RelatonIetf::IetfBibliography.get 'IETF RFC 8341'
@@ -53,7 +54,7 @@ RelatonIetf::IetfBibliography.get 'IETF I-D.draft-abarth-cake-01'
 => #<RelatonIetf::IetfBibliographicItem:0x00007fdd129bbeb8
 ...
 
-# Return nil if document doesn't exist.
+# Return nil if a document doesn't exist.
 RelatonIetf::IetfBibliography.get 'IETF 1111'
 [relaton-ietf] ("IETF 1111") fetching...
 [relaton-ietf] ("IETF 1111") not found
@@ -65,36 +66,36 @@ RelatonIetf::IetfBibliography.get 'IETF 1111'
 [source,ruby]
 ----
 item.to_xml
-=>"<bibitem id="RFC8341" type="standard">
-  <fetched>2022-06-10</fetched>
-  <title type="main" format="text/plain">Network Configuration Access Control Model</title>
-  <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
-  <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
-  <docidentifier type="IETF" scope="anchor">RFC8341</docidentifier>
-  <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
-  ....
-</bibitem>"
+=> "<bibitem id="RFC8341" type="standard" schema-version="v1.2.1">
+      <fetched>2022-12-03</fetched>
+      <title type="main" format="text/plain">Network Configuration Access Control Model</title>
+      <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
+      <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
+      ....
+    </bibitem>"
 ----
-With `bibdata: true` option XML output wrapped with `bibdata` element and `ext` element added.
+With `bibdata: true` option XML output is wrapped with `bibdata` element and `ext` element added.
 [source,ruby]
 ----
 item.to_xml bibdata: true
-=>"<bibdata type="standard">
-  <fetched>2022-06-10</fetched>
-  <title type="main" format="text/plain">Network Configuration Access Control Model</title>
-  <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
-  ...
-  <ext>
-    <editorialgroup>
-      <committee>netconf</committee>
-    </editorialgroup>
-  </ext>
-</bibdata>"
+=> "<bibdata type="standard" schema-version="v1.2.1">
+      <fetched>2022-12-03</fetched>
+      <title type="main" format="text/plain">Network Configuration Access Control Model</title>
+      <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
+      <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
+      <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
+      ...
+      <ext schema-version="v1.0.0">
+        <editorialgroup>
+          <committee>netconf</committee>
+        </editorialgroup>
+      </ext>
+    </bibdata>"
 ----
 
 === Typed links
 
-IETF documents may have `src`, `xml`, and `doi` link type.
+IETF documents may have `src`, `xml`, and `doi` link types.
 
 * `src` - web publication
 * `xml` - BibXML publication
@@ -114,16 +115,9 @@ item.link
 item = Relaton::Provider::Ietf.from_rfcxml File.read("spec/examples/rfc.xml")
 => #<RelatonIetf::IetfBibliographicItem:0x007fa8cda79ab8
 ...
-
-item.to_xml bibdata: true
-=>"<bibdata>
-  <fetched>2020-09-15</fetched>
-  <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
-  ...
-</bibdata>"
 ----
 
-=== Create bibliographic item form YAML
+=== Create bibliographic item from YAML
 [source,ruby]
 ----
 hash = YAML.load_file 'spec/examples/ietf_bib_item.yml'
@@ -137,19 +131,19 @@ RelatonIetf::IetfBibliographicItem.from_hash hash
 
 === Fetch data
 
-There are IETF datasets what can be converted into RelatonXML/BibXML/BibYAML formats:
+There are IETF datasets that can be converted into RelatonXML/BibXML/BibYAML formats:
 
 - `ietf-rfcsubseries` - https://www.rfc-editor.org/rfc-index.xml (`<bcp-entry>`, `<fyi-entry>`, `<std-entry>`)
-- `ietf-internet-drafts` - converts files from local directory `./bibxml-ids`. Use `rsync -avcizxL rsync.ietf.org::bibxml-ids ./bibxml-ids` command to fetch the files.
+- `ietf-internet-drafts` - convert files from local directory `./bibxml-ids`. Use `rsync -avcizxL rsync.ietf.org::bibxml-ids ./bibxml-ids` command to fetch the files.
 - `ietf-rfc-entries` - https://www.rfc-editor.org/rfc-index.xml (`<rfc-entry>`)
 
-The method `RelatonIetf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and save them to the `./data` folder in YAML format.
+The method `RelatonIetf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and saves them to the `./data` folder in YAML format.
 
 Arguments:
 
 - `source` - dataset name (`ietf-rfcsubseries` or `ietf-internet-drafts`)
 - `output` - folder to save documents (default './data').
-- `format` - format in which the documents are saved. Possimle formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
+- `format` - the format in which the documents are saved. Possible formats are: `yaml`, `xml`, `bibxml` (default `yaml`).
 
 [source,ruby]
 ----

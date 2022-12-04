@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '837'
+      - '826'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"e50ebb3f766a45d8d3d38007facacd2a71bfded0cc13d04cb6a013a02d1d38e0"
+      - W/"3915cee27f8f92130f95fe9f98a7ae6f9647b8f528c765eb14bf38a58b9cc13a"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 5FDE:5CF8:354A8:5A1DD:6376F673
+      - 9EF8:6FF2:3DFFA6:67BBCD:638C2589
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 18 Nov 2022 03:05:23 GMT
+      - Sun, 04 Dec 2022 04:43:53 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18439-ATL
+      - cache-atl18475-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1668740723.414313,VS0,VE108
+      - S1670129033.242635,VS0,VE122
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - '0459040ba0b626f68e21aa19fc3a9501f8baa0fc'
+      - e33671e57f4ff737a6c326ad604a21bf1a3c1b64
       Expires:
-      - Fri, 18 Nov 2022 03:10:23 GMT
+      - Sun, 04 Dec 2022 04:48:53 GMT
       Source-Age:
       - '0'
     body:
@@ -150,11 +150,6 @@ http_interactions:
           - type: author
         - organization:
             name:
-            - content: RFC Publisher
-          role:
-          - type: publisher
-        - organization:
-            name:
             - content: RFC Series
           role:
           - type: authorizer
@@ -191,5 +186,5 @@ http_interactions:
         - content: XML
         editorialgroup:
         - name: netconf
-  recorded_at: Fri, 18 Nov 2022 03:05:23 GMT
+  recorded_at: Sun, 04 Dec 2022 04:43:53 GMT
 recorded_with: VCR 6.1.0

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require "relaton_ietf"
-require "date"
-require "jing"
-
 RSpec.describe RelatonIetf do
   it "has a version number" do
     expect(RelatonIetf::VERSION).not_to be nil
@@ -23,9 +19,9 @@ RSpec.describe RelatonIetf do
         file = "spec/examples/bib_item.xml"
         xml = item.to_xml(bibdata: true)
         File.write file, xml, encoding: "utf-8" unless File.exist? file
-        # expect(xml).to be_equivalent_to File.read(file, encoding: "utf-8")
-        #   .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
-        schema = Jing.new "spec/examples/isobib.rng"
+        expect(xml).to be_equivalent_to File.read(file, encoding: "utf-8")
+          .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
+        schema = Jing.new "grammars/relaton-ietf-compile.rng"
         errors = schema.validate file
         expect(errors).to eq []
       end
@@ -41,7 +37,7 @@ RSpec.describe RelatonIetf do
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file)
         .sub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
-      schema = Jing.new "spec/examples/isobib.rng"
+      schema = Jing.new "grammars/relaton-ietf-compile.rng"
       errors = schema.validate file
       expect(errors).to eq []
     end
@@ -77,7 +73,7 @@ RSpec.describe RelatonIetf do
       File.write file, xml unless File.exist? file
       expect(xml).to be_equivalent_to File.read(file)
         .sub(%r{(?<+<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
-      schema = Jing.new "spec/examples/isobib.rng"
+      schema = Jing.new "grammars/relaton-ietf-compile.rng"
       errors = schema.validate file
       expect(errors).to eq []
     end

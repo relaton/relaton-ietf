@@ -1,5 +1,5 @@
-<bibdata type="standard">
-  <fetched>2022-08-11</fetched>
+<bibdata type="standard" schema-version="v1.2.1">
+  <fetched>2022-11-26</fetched>
   <title format="text/plain" language="en" script="Latn">Best Current Practice 47</title>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
   <docidentifier type="IETF" primary="true">BCP 47</docidentifier>

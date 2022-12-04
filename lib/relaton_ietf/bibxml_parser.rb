@@ -1,3 +1,6 @@
+require "relaton_ietf/ietf_bibliographic_item"
+require "relaton_ietf/committee"
+
 module RelatonIetf
   module BibXMLParser
     include RelatonBib::BibXMLParser

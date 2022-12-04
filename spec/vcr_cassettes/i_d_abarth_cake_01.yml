@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '740'
+      - '800'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"82273eae42f0bac2e875ec363aa710e1038c1a6cfac1cd088a5f9078ced84631"
+      - W/"8d099be6064cf5810b79535f0f8fb32e2d8424a366641e076f18fedc4ac636c9"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 303E:8220:75669:9F58D:6376F672
+      - 8452:4296:8B22B0:BC2CE4:638C2587
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 18 Nov 2022 03:05:22 GMT
+      - Sun, 04 Dec 2022 04:43:51 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18470-ATL
+      - cache-atl18473-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1668740722.125471,VS0,VE171
+      - S1670129032.724817,VS0,VE167
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 4179bd347387763208a53c0d3797b227b1a1dae7
+      - 3f70f0a7ffa07df6cceeac41578efab348b5f7e7
       Expires:
-      - Fri, 18 Nov 2022 03:10:22 GMT
+      - Sun, 04 Dec 2022 04:48:51 GMT
       Source-Age:
       - '0'
     body:
@@ -101,6 +101,13 @@ http_interactions:
                 - content: Adam
                   language:
                   - en
+                - language:
+                  - en
+                  initial: A
+                formatted_initials:
+                  content: A.
+                  language:
+                  - en
               surname:
                 content: Barth
                 language:
@@ -109,6 +116,10 @@ http_interactions:
                 content: Adam Barth
                 language:
                 - en
+            affiliation:
+            - organization:
+                name:
+                - content: Google, Inc.
           role:
           - type: author
         version:
@@ -142,5 +153,5 @@ http_interactions:
             format: text/plain
           number: draft-abarth-cake-01
         doctype: internet-draft
-  recorded_at: Fri, 18 Nov 2022 03:05:22 GMT
+  recorded_at: Sun, 04 Dec 2022 04:43:51 GMT
 recorded_with: VCR 6.1.0

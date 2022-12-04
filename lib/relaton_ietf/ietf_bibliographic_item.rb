@@ -17,6 +17,15 @@ module RelatonIetf
       super
     end
 
+    #
+    # Fetch flavor schema version
+    #
+    # @return [String] schema version
+    #
+    def ext_schema
+      @ext_schema ||= schema_versions["relaton-model-ietf"]
+    end
+
     # @param hash [Hash]
     # @return [RelatonIetf::IetfBibliographicItem]
     def self.from_hash(hash)

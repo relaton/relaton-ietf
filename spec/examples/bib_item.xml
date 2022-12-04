@@ -1,5 +1,5 @@
-<bibdata type="standard">
-  <fetched>2022-08-11</fetched>
+<bibdata type="standard" schema-version="v1.2.1">
+  <fetched>2022-11-26</fetched>
   <title type="main" format="text/plain">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
@@ -24,6 +24,12 @@
       </name>
     </person>
   </contributor>
+  <contributor>
+    <role type="authorizer"/>
+    <organization>
+      <name>RFC Series</name>
+    </organization>
+  </contributor>
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/html" language="en" script="Latn">
@@ -41,7 +47,7 @@
   <keyword>NETCONF RESTCONF</keyword>
   <keyword>YANG</keyword>
   <keyword>XML</keyword>
-  <ext>
+  <ext schema-version="v1.0.0">
     <editorialgroup>
       <committee>netconf</committee>
     </editorialgroup>

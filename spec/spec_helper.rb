@@ -4,6 +4,8 @@ require "bundler/setup"
 require "rspec/matchers"
 require "equivalent-xml"
 require "simplecov"
+require "yaml"
+require "jing"
 
 SimpleCov.start do
   add_filter "/spec/"
