@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '813'
+      - '840'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"0714661e13a736d5a73bca8dce86d54ea8a5091812572c374b4bbb98c73033a1"
+      - W/"4eac0f67827fbcdda9e1a56c77caa9378d5e347b60f688da5819c570c6abc906"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,35 +41,36 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - EFD0:3820:8A084D:BA98C6:638C2587
+      - BCD6:5CC1:621C84:840FAF:639BE083
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 04 Dec 2022 04:43:52 GMT
+      - Fri, 16 Dec 2022 03:05:39 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18432-ATL
+      - cache-atl18454-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1670129032.976910,VS0,VE180
+      - S1671159939.268334,VS0,VE211
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 895ea6b1e412a3526ab85b9e4ed89418fb479c68
+      - 9d29bec588f368829f0f5419d81c5b3c22068321
       Expires:
-      - Sun, 04 Dec 2022 04:48:52 GMT
+      - Fri, 16 Dec 2022 03:10:39 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
+        schema-version: v1.2.1
         id: draft-ietf-calext-eventpub-extensions-15
         title:
         - content: Event Publishing Extensions to iCalendar
@@ -172,5 +173,7 @@ http_interactions:
             format: text/plain
           number: draft-ietf-calext-eventpub-extensions-15
         doctype: internet-draft
-  recorded_at: Sun, 04 Dec 2022 04:43:52 GMT
+        ext:
+          schema-version: v1.0.0
+  recorded_at: Fri, 16 Dec 2022 03:05:39 GMT
 recorded_with: VCR 6.1.0

@@ -32,6 +32,24 @@ describe RelatonIetf::BibXMLParser do
     end
   end
 
+  context "skip empty person" do
+    let(:doc) do
+      doc = Nokogiri::XML <<~XML
+        <reference anchor="RFC1234" target="https://www.rfc-editor.org/info/rfc1234">
+          <front>
+            <author initials="" surname="None" fullname="None"/>
+          </front>
+        </reference>
+      XML
+      doc.at "/reference"
+    end
+
+    it do
+      author = doc.at("./front/author")
+      expect(described_class.person(author, doc)).to be_nil
+    end
+  end
+
   shared_examples "parse_org" do |source, name, abbrev|
     let(:ref) do
       doc = Nokogiri::XML <<~XML

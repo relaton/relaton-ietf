@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '677'
+      - '704'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"9e6aae8f0b396cf42378d7d6b7b2469d8a15f4635d33b52a584b2a55122e7b38"
+      - W/"e8cc8fa2576877debf61729690bb2a2468ed12fd041b21748c304dbe2ac0a828"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,35 +41,36 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - DA5E:6C01:39C193:62FAA7:638C2587
+      - 4A04:1D11:33F737:523AF6:639BE082
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 04 Dec 2022 04:43:51 GMT
+      - Fri, 16 Dec 2022 03:05:38 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18435-ATL
+      - cache-atl18424-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1670129031.195390,VS0,VE180
+      - S1671159938.429379,VS0,VE205
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 010d096fb9660652fbcca15b4f5d6db388a524ff
+      - 0ccbe5d7f453769f5a3db93929bb66dbffb9fedc
       Expires:
-      - Sun, 04 Dec 2022 04:48:51 GMT
+      - Fri, 16 Dec 2022 03:10:38 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
+        schema-version: v1.2.1
         id: draft-burger-xcon-mmodels-00
         title:
         - content: Centralized Conferencing (XCON) Media Models
@@ -150,5 +151,7 @@ http_interactions:
             format: text/plain
           number: draft-burger-xcon-mmodels-00
         doctype: internet-draft
-  recorded_at: Sun, 04 Dec 2022 04:43:51 GMT
+        ext:
+          schema-version: v1.0.0
+  recorded_at: Fri, 16 Dec 2022 03:05:38 GMT
 recorded_with: VCR 6.1.0

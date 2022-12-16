@@ -53,6 +53,8 @@ module RelatonIetf
     end
 
     def person(author, reference)
+      return unless author[:fullname] && author[:fullname] != "None"
+
       full_name_org(author[:fullname]) || super
     end
 

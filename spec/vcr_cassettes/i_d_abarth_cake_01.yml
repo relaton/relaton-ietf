@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '800'
+      - '826'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"8d099be6064cf5810b79535f0f8fb32e2d8424a366641e076f18fedc4ac636c9"
+      - W/"d8ce64210ecd8b86f2efd9160dcea62a6d0c392e6a68e1abdca3b6676d716088"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,35 +41,36 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 8452:4296:8B22B0:BC2CE4:638C2587
+      - 251E:5EA7:366786:54C8BD:639BE082
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 04 Dec 2022 04:43:51 GMT
+      - Fri, 16 Dec 2022 03:05:39 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18473-ATL
+      - cache-atl18466-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1670129032.724817,VS0,VE167
+      - S1671159939.984698,VS0,VE197
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 3f70f0a7ffa07df6cceeac41578efab348b5f7e7
+      - 456d94bdf9c86a71e347d68b51820fbc23a6d5c2
       Expires:
-      - Sun, 04 Dec 2022 04:48:51 GMT
+      - Fri, 16 Dec 2022 03:10:39 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
+        schema-version: v1.2.1
         id: draft-abarth-cake-01
         title:
         - content: Origin Cookies
@@ -153,5 +154,7 @@ http_interactions:
             format: text/plain
           number: draft-abarth-cake-01
         doctype: internet-draft
-  recorded_at: Sun, 04 Dec 2022 04:43:51 GMT
+        ext:
+          schema-version: v1.0.0
+  recorded_at: Fri, 16 Dec 2022 03:05:39 GMT
 recorded_with: VCR 6.1.0
