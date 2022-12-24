@@ -78,17 +78,17 @@ RSpec.describe RelatonIetf::RfcEntry do
       it do
         contr = subject.parse_contributor
         expect(contr).to be_instance_of Array
-        expect(contr.size).to be 2
+        expect(contr.size).to be 3
         expect(contr[0]).to be_instance_of RelatonBib::ContributionInfo
         expect(contr[0].role[0].type).to eq "author"
         expect(contr[0].entity).to be_instance_of RelatonBib::Person
         expect(contr[0].entity.name.completename.content).to eq "R.A. Hagens"
-        expect(contr[1].role[0].type).to eq "authorizer"
+        expect(contr[1].role[0].type).to eq "publisher"
         expect(contr[1].entity).to be_instance_of RelatonBib::Organization
-        expect(contr[1].entity.name[0].content).to eq "RFC Series"
-        # expect(contr[2].role[0].type).to eq "authorizer"
-        # expect(contr[2].entity).to be_instance_of RelatonBib::Organization
-        # expect(contr[2].entity.name[0].content).to eq "RFC Series"
+        expect(contr[1].entity.name[0].content).to eq "RFC Publisher"
+        expect(contr[2].role[0].type).to eq "authorizer"
+        expect(contr[2].entity).to be_instance_of RelatonBib::Organization
+        expect(contr[2].entity.name[0].content).to eq "RFC Series"
       end
     end
 
