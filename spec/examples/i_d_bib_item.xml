@@ -1,7 +1,7 @@
 <bibdata type="standard" schema-version="v1.2.1">
-  <fetched>2022-11-26</fetched>
+  <fetched>2023-03-08</fetched>
   <title format="text/plain" language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
-  <uri type="TXT">https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt</uri>
+  <uri type="src">https://datatracker.ietf.org/doc/html/draft-burger-xcon-mmodels-00</uri>
   <docidentifier type="Internet-Draft" primary="true">draft-burger-xcon-mmodels-00</docidentifier>
   <docidentifier type="IETF" scope="anchor">I-D.burger-xcon-mmodels</docidentifier>
   <docnumber>I-D.burger-xcon-mmodels</docnumber>

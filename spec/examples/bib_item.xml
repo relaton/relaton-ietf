@@ -1,5 +1,5 @@
 <bibdata type="standard" schema-version="v1.2.1">
-  <fetched>2022-11-26</fetched>
+  <fetched>2023-03-08</fetched>
   <title type="main" format="text/plain">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
@@ -23,6 +23,12 @@
         <completename language="en" script="Latn">M. Bjorklund</completename>
       </name>
     </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>RFC Publisher</name>
+    </organization>
   </contributor>
   <contributor>
     <role type="authorizer"/>

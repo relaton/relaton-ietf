@@ -51,7 +51,18 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
   end
 
   context "instance methods" do
-    let(:doc) { double "doc", name: "bcp-entry" }
+    let(:doc) do
+      # double "doc", name: "bcp-entry"
+      xml = Nokogiri::XML <<-XML
+        <rfc-index xmlns="http://www.rfc-editor.org/rfc-index">
+          <bcp-entry>
+            <doc-id>BCP0001</doc-id>
+            <stream>IETF</stream>
+          </bcp-entry>
+        </rfc-index>
+      XML
+      xml.at "/xmlns:rfc-index/xmlns:bcp-entry"
+    end
 
     subject { RelatonIetf::RfcIndexEntry.new doc, "BCP0001", ["RFC0002"] }
 
@@ -62,6 +73,7 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(subject).to receive(:parse_link)
       expect(subject).to receive(:formattedref)
       expect(subject).to receive(:parse_relation)
+      expect(subject).to receive(:parse_series)
       expect(RelatonIetf::IetfBibliographicItem).to receive(:new).and_return(:bibitem)
       expect(subject.parse).to be :bibitem
     end
@@ -118,6 +130,15 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(rels.first).to be_instance_of Hash
       expect(rels.first[:bibitem]).to be_instance_of RelatonIetf::IetfBibliographicItem
       expect(rels.first[:bibitem].docidentifier.first.id).to eq "RFC 2"
+    end
+
+    it "parse series" do
+      series = subject.parse_series
+      expect(series).to be_instance_of Array
+      expect(series.size).to eq 1
+      expect(series.first).to be_instance_of RelatonBib::Series
+      expect(series.first.type).to eq "stream"
+      expect(series.first.title.title.content).to eq "IETF"
     end
   end
 end

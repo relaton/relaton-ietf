@@ -141,12 +141,14 @@ RSpec.describe RelatonIetf::RfcEntry do
     it "parse series" do
       ser = subject.parse_series
       expect(ser).to be_instance_of Array
-      expect(ser.size).to be 2
+      expect(ser.size).to be 3
       expect(ser[0]).to be_instance_of RelatonBib::Series
       expect(ser[0].title.title.content).to eq "BCP"
       expect(ser[0].number).to eq "26"
-      expect(ser[1].title.title.content).to eq "RFC"
-      expect(ser[1].number).to eq "139"
+      expect(ser[1].title.title.content).to eq "IETF"
+      expect(ser[1].type).to eq "stream"
+      expect(ser[2].title.title.content).to eq "RFC"
+      expect(ser[2].number).to eq "139"
     end
 
     it "parse editorialgroup" do

@@ -52,11 +52,22 @@ module RelatonIetf
     #
     def parse_series
       title = RelatonBib::TypedTitleString.new(content: "RFC")
+      series_is_also + seires_stream + [RelatonBib::Series.new(title: title, number: docnum)]
+    end
+
+    def series_is_also
       @doc.xpath("./xmlns:is-also/xmlns:doc-id").map do |s|
         /^(?<name>\D+)(?<num>\d+)/ =~ s.text
         t = RelatonBib::TypedTitleString.new(content: name)
         RelatonBib::Series.new title: t, number: num.gsub(/^0+/, "")
-      end + [RelatonBib::Series.new(title: title, number: docnum)]
+      end
+    end
+
+    def seires_stream
+      @doc.xpath("./xmlns:stream").map do |s|
+        t = RelatonBib::TypedTitleString.new content: s.text
+        RelatonBib::Series.new type: "stream", title: t
+      end
     end
 
     #

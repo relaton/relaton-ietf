@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '826'
+      - '822'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"d8ce64210ecd8b86f2efd9160dcea62a6d0c392e6a68e1abdca3b6676d716088"
+      - W/"5fec2cfa63b924be2e090cda035933939319a4407ff6a92c855e28d23b7058f5"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 5862:5900:5935B8:78530D:63A65D2E
+      - F476:5238:2916D1:3BA99C:64091A82
       Accept-Ranges:
       - bytes
       Date:
-      - Sat, 24 Dec 2022 02:00:14 GMT
+      - Wed, 08 Mar 2023 23:30:10 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18476-ATL
+      - cache-iad-kcgs7200153-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1671847215.728637,VS0,VE172
+      - S1678318210.171620,VS0,VE240
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 51f77763cbd568519bfe7c488c9af65761e36cdb
+      - 03fce271be21bc3a6f1f6f19c3ed0795e67a3a53
       Expires:
-      - Sat, 24 Dec 2022 02:05:14 GMT
+      - Wed, 08 Mar 2023 23:35:10 GMT
       Source-Age:
       - '0'
     body:
@@ -80,8 +80,8 @@ http_interactions:
           - Latn
           format: text/plain
         link:
-        - content: https://www.ietf.org/archive/id/draft-abarth-cake-01.txt
-          type: TXT
+        - content: https://datatracker.ietf.org/doc/html/draft-abarth-cake-01
+          type: src
         type: standard
         docid:
         - id: draft-abarth-cake-01
@@ -156,5 +156,5 @@ http_interactions:
         doctype: internet-draft
         ext:
           schema-version: v1.0.0
-  recorded_at: Sat, 24 Dec 2022 02:00:14 GMT
+  recorded_at: Wed, 08 Mar 2023 23:30:10 GMT
 recorded_with: VCR 6.1.0

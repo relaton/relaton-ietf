@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '704'
+      - '700'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"e8cc8fa2576877debf61729690bb2a2468ed12fd041b21748c304dbe2ac0a828"
+      - W/"ce29523d338f80bb1aca0f37a238b687f9057521a9a8c837dd268f1139076129"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - A110:039E:22C42D:3CC249:63A65D2E
+      - E0A4:23C9:17DEB:2375E:64091A81
       Accept-Ranges:
       - bytes
       Date:
-      - Sat, 24 Dec 2022 02:00:14 GMT
+      - Wed, 08 Mar 2023 23:30:10 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18463-ATL
+      - cache-iad-kjyo7100105-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1671847214.148106,VS0,VE198
+      - S1678318210.805193,VS0,VE204
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 862bd6eb50a8096f4be7c5736b5fc07673a3e49a
+      - f2cbe67075e92e7529b33b635a1042402893c9e6
       Expires:
-      - Sat, 24 Dec 2022 02:05:14 GMT
+      - Wed, 08 Mar 2023 23:35:10 GMT
       Source-Age:
       - '0'
     body:
@@ -80,8 +80,8 @@ http_interactions:
           - Latn
           format: text/plain
         link:
-        - content: https://www.ietf.org/archive/id/draft-burger-xcon-mmodels-00.txt
-          type: TXT
+        - content: https://datatracker.ietf.org/doc/html/draft-burger-xcon-mmodels-00
+          type: src
         type: standard
         docid:
         - id: draft-burger-xcon-mmodels-00
@@ -153,5 +153,5 @@ http_interactions:
         doctype: internet-draft
         ext:
           schema-version: v1.0.0
-  recorded_at: Sat, 24 Dec 2022 02:00:14 GMT
+  recorded_at: Wed, 08 Mar 2023 23:30:09 GMT
 recorded_with: VCR 6.1.0

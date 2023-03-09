@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '840'
+      - '835'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"4eac0f67827fbcdda9e1a56c77caa9378d5e347b60f688da5819c570c6abc906"
+      - W/"af8c26c394345ad7fddbc29a146bfc2954a2d1387dd3abe59881dc05d4703d24"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - B964:2A25:5149EA:7023E4:63A65D2F
+      - DB6A:9C7A:24DF9:31F5A:64091A82
       Accept-Ranges:
       - bytes
       Date:
-      - Sat, 24 Dec 2022 02:00:15 GMT
+      - Wed, 08 Mar 2023 23:30:10 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18455-ATL
+      - cache-iad-kcgs7200074-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1671847215.006196,VS0,VE180
+      - S1678318211.555876,VS0,VE195
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - c594b82e7535e60aca30e6ede78a0de180b83ae5
+      - 8629bb4a89241f4ea220574ae61adf1ae68a528f
       Expires:
-      - Sat, 24 Dec 2022 02:05:15 GMT
+      - Wed, 08 Mar 2023 23:35:10 GMT
       Source-Age:
       - '0'
     body:
@@ -80,8 +80,8 @@ http_interactions:
           - Latn
           format: text/plain
         link:
-        - content: https://www.ietf.org/archive/id/draft-ietf-calext-eventpub-extensions-15.txt
-          type: TXT
+        - content: https://datatracker.ietf.org/doc/html/draft-ietf-calext-eventpub-extensions-15
+          type: src
         type: standard
         docid:
         - id: draft-ietf-calext-eventpub-extensions-15
@@ -175,5 +175,5 @@ http_interactions:
         doctype: internet-draft
         ext:
           schema-version: v1.0.0
-  recorded_at: Sat, 24 Dec 2022 02:00:15 GMT
+  recorded_at: Wed, 08 Mar 2023 23:30:10 GMT
 recorded_with: VCR 6.1.0

@@ -8,6 +8,7 @@ require "relaton_ietf/ietf_bibliography"
 require "relaton_ietf/xml_parser"
 require "relaton_ietf/hash_converter"
 require "relaton_ietf/data_fetcher"
+require "relaton_ietf/renderer/bibxml"
 require "relaton/provider_ietf"
 
 module RelatonIetf

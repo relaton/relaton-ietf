@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '853'
+      - '864'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"cfd58a2eaa2892b3c6cc6bb240f4e3a1e0ffd450cf6a2b5b9819bf44fcac8b6b"
+      - W/"3b45956ff3457c0a23080cf0804113ece4941987c29ff90011f7bee294cd99b1"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,29 +41,29 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - D6AC:235D:4B2EE6:69D5DD:63A65D30
+      - 3610:4135:47A047:5C41D4:64091A84
       Accept-Ranges:
       - bytes
       Date:
-      - Sat, 24 Dec 2022 02:00:16 GMT
+      - Wed, 08 Mar 2023 23:30:12 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18457-ATL
+      - cache-iad-kcgs7200149-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1671847216.338648,VS0,VE105
+      - S1678318212.998771,VS0,VE111
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 772358cb6b34aa4f2b950e2119cf785e59f91141
+      - d3b08f4b602b674700045f31cda95d40752d7db6
       Expires:
-      - Sat, 24 Dec 2022 02:05:16 GMT
+      - Wed, 08 Mar 2023 23:35:12 GMT
       Source-Age:
       - '0'
     body:
@@ -151,6 +151,11 @@ http_interactions:
           - type: author
         - organization:
             name:
+            - content: RFC Publisher
+          role:
+          - type: publisher
+        - organization:
+            name:
             - content: RFC Series
           role:
           - type: authorizer
@@ -189,5 +194,5 @@ http_interactions:
         - name: netconf
         ext:
           schema-version: v1.0.0
-  recorded_at: Sat, 24 Dec 2022 02:00:16 GMT
+  recorded_at: Wed, 08 Mar 2023 23:30:11 GMT
 recorded_with: VCR 6.1.0

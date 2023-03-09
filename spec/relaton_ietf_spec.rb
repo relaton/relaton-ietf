@@ -48,8 +48,8 @@ RSpec.describe RelatonIetf do
       item = RelatonIetf::IetfBibliography.get "I-D draft-abarth-cake-01"
       expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.id)
         .to eq "draft-abarth-cake-01"
-      expect(item.link.detect { |l| l.type == "TXT" }.content.to_s).to eq(
-        "https://www.ietf.org/archive/id/draft-abarth-cake-01.txt",
+      expect(item.link.detect { |l| l.type == "src" }.content.to_s).to eq(
+        "https://datatracker.ietf.org/doc/html/draft-abarth-cake-01",
       )
     end
   end

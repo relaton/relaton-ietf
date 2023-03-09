@@ -46,6 +46,7 @@ module RelatonIetf
         link: parse_link,
         formattedref: formattedref,
         relation: parse_relation,
+        series: parse_series,
       )
     end
 
@@ -73,10 +74,7 @@ module RelatonIetf
     # @return [Array<RelatonBib::DocumentIdentifier>] docidentifiers
     #
     def parse_docid
-      [
-        RelatonBib::DocumentIdentifier.new(type: "IETF", id: pub_id, primary: true),
-        # RelatonBib::DocumentIdentifier.new(type: "IETF", scope: "anchor", id: anchor),
-      ]
+      [RelatonBib::DocumentIdentifier.new(type: "IETF", id: pub_id, primary: true)]
     end
 
     #
@@ -100,7 +98,7 @@ module RelatonIetf
     #
     # Create link
     #
-    # @return [Array<RelatonBib::TypedUri>] 
+    # @return [Array<RelatonBib::TypedUri>]
     #
     def parse_link
       [RelatonBib::TypedUri.new(type: "src", content: "https://www.rfc-editor.org/info/#{@name}#{@shortnum}")]
@@ -109,7 +107,7 @@ module RelatonIetf
     #
     # Create formatted reference
     #
-    # @return [RelatonBib::FormattedRef] 
+    # @return [RelatonBib::FormattedRef]
     #
     def formattedref
       RelatonBib::FormattedRef.new(
@@ -129,6 +127,13 @@ module RelatonIetf
         docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: id, primary: true)
         bib = IetfBibliographicItem.new formattedref: fref, docid: [docid]
         { type: "includes", bibitem: bib }
+      end
+    end
+
+    def parse_series
+      @doc.xpath("./xmlns:stream").map do |s|
+        title = RelatonBib::TypedTitleString.new content: s.text
+        RelatonBib::Series.new type: "stream", title: title
       end
     end
   end
