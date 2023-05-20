@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '835'
+      - '2466'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"af8c26c394345ad7fddbc29a146bfc2954a2d1387dd3abe59881dc05d4703d24"
+      - W/"b400b29f4fcd8371d109dc5813769a90afa8704fca6b3f5223173e120a766058"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,36 +41,36 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - DB6A:9C7A:24DF9:31F5A:64091A82
+      - E5C8:0ACE:3CDDA6:487851:6467E3B6
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 08 Mar 2023 23:30:10 GMT
+      - Fri, 19 May 2023 21:01:42 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kcgs7200074-IAD
+      - cache-atl18491-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1678318211.555876,VS0,VE195
+      - S1684530103.591561,VS0,VE195
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 8629bb4a89241f4ea220574ae61adf1ae68a528f
+      - 65838797242c8194e0a4f89b94e5b3fc0c77689b
       Expires:
-      - Wed, 08 Mar 2023 23:35:10 GMT
+      - Fri, 19 May 2023 21:06:42 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
-        schema-version: v1.2.1
+        schema-version: v1.2.3
         id: draft-ietf-calext-eventpub-extensions-15
         title:
         - content: Event Publishing Extensions to iCalendar
@@ -144,23 +144,23 @@ http_interactions:
         relation:
         - type: updates
           bibitem:
-            id: draft-ietf-calext-eventpub-extensions-14
+            id: draft-ietf-calext-eventpub-extensions-04
             docid:
-            - id: draft-ietf-calext-eventpub-extensions-14
+            - id: draft-ietf-calext-eventpub-extensions-04
               type: Internet-Draft
               primary: true
             formattedref:
-              content: draft-ietf-calext-eventpub-extensions-14
+              content: draft-ietf-calext-eventpub-extensions-04
               format: text/plain
         - type: updatedBy
           bibitem:
-            id: draft-ietf-calext-eventpub-extensions-16
+            id: draft-ietf-calext-eventpub-extensions-18
             docid:
-            - id: draft-ietf-calext-eventpub-extensions-16
+            - id: draft-ietf-calext-eventpub-extensions-18
               type: Internet-Draft
               primary: true
             formattedref:
-              content: draft-ietf-calext-eventpub-extensions-16
+              content: draft-ietf-calext-eventpub-extensions-18
               format: text/plain
         series:
         - type: main
@@ -175,5 +175,5 @@ http_interactions:
         doctype: internet-draft
         ext:
           schema-version: v1.0.0
-  recorded_at: Wed, 08 Mar 2023 23:30:10 GMT
+  recorded_at: Fri, 19 May 2023 21:01:42 GMT
 recorded_with: VCR 6.1.0

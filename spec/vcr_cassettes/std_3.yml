@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '326'
+      - '729'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"7cd8e29ca2ffdb404ac9b6407fc576debcbac9c631480f7e8ed14b8f8b1c1e02"
+      - W/"0c1aa35f4de1b42d6103baa4789d09acd9211178ce59755453004f8ee893dc49"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,36 +41,36 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 540A:5189:43C998:581D2F:64091A83
+      - 89D8:5818:2332D39:29B262D:6467E3B7
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 08 Mar 2023 23:30:11 GMT
+      - Fri, 19 May 2023 21:01:43 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kcgs7200125-IAD
+      - cache-atl18437-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1678318212.602865,VS0,VE74
+      - S1684530104.544080,VS0,VE87
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - 2f0e45f1a13d236303bcfac4f8ea68e7e8bed0a2
+      - c439f6c9094696700fc07ec2cdd8604b2170ba64
       Expires:
-      - Wed, 08 Mar 2023 23:35:11 GMT
+      - Fri, 19 May 2023 21:06:43 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
-        schema-version: v1.2.1
+        schema-version: v1.2.3
         id: STD3
         title:
         - content: Internet Standard technical specification 3
@@ -115,5 +115,5 @@ http_interactions:
               format: text/plain
         ext:
           schema-version: v1.0.0
-  recorded_at: Wed, 08 Mar 2023 23:30:11 GMT
+  recorded_at: Fri, 19 May 2023 21:01:43 GMT
 recorded_with: VCR 6.1.0

@@ -16,6 +16,16 @@ module RelatonIetf
       RelatonIetf::IetfBibliographicItem.new(**attrs)
     end
 
+    # def docids(reference, ver)
+    #   ids = super
+    #   si = reference.at("./seriesInfo[@name='Internet-Draft']",
+    #     "./front/seriesInfo[@name='Internet-Draft']")
+    #   if si
+    #     id = si[:value]
+    #   end
+    #   ids
+    # end
+
     #
     # Extract document identifier type form identifier
     #
@@ -27,7 +37,6 @@ module RelatonIetf
       type = super
       case type
       when "BCP", "FYI", "STD", "RFC" then "RFC"
-      # when "Internet-Draft" then type
       when "I-D" then "Internet-Draft"
       else "IETF"
       end

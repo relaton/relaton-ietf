@@ -6,6 +6,7 @@ require "relaton_ietf/rfc_entry"
 
 module RelatonIetf
   class DataFetcher
+    INDEX1 = "index-v1".freeze
     #
     # Data fetcher initializer
     #
@@ -20,6 +21,7 @@ module RelatonIetf
       @format = format
       @ext = @format.sub(/^bib|^rfc/, "")
       @files = []
+      @index = Relaton::Index.find_or_create :IETF, file: "#{INDEX1}.yaml"
     end
 
     #
@@ -49,6 +51,7 @@ module RelatonIetf
       when "ietf-internet-drafts" then fetch_ieft_internet_drafts
       when "ietf-rfc-entries" then fetch_ieft_rfcs
       end
+      @index.save
     end
 
     #
@@ -201,6 +204,13 @@ module RelatonIetf
         @files << file
       end
       File.write file, c, encoding: "UTF-8"
+      add_to_index entry, file
+    end
+
+    def add_to_index(entry, file)
+      docid = entry.docidentifier.detect(&:primary)
+      docid ||= entry.docidentifier.first
+      @index.add_or_update docid.id, file
     end
 
     #

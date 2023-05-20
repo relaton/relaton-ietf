@@ -23,7 +23,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '700'
+      - '1678'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"ce29523d338f80bb1aca0f37a238b687f9057521a9a8c837dd268f1139076129"
+      - W/"3daa018c60fe07285da2ced478527f549c7265345c674dde01e5601198ea2037"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,36 +41,36 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - E0A4:23C9:17DEB:2375E:64091A81
+      - AE36:21E9:246FE5F:2B200C4:6467E3B5
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 08 Mar 2023 23:30:10 GMT
+      - Fri, 19 May 2023 21:01:41 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100105-IAD
+      - cache-atl18482-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1678318210.805193,VS0,VE204
+      - S1684530101.374309,VS0,VE199
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
       X-Fastly-Request-Id:
-      - f2cbe67075e92e7529b33b635a1042402893c9e6
+      - a9b69f1df6b94d0c7c2b5bfdf1d117a62320271d
       Expires:
-      - Wed, 08 Mar 2023 23:35:10 GMT
+      - Fri, 19 May 2023 21:06:41 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       string: |
         ---
-        schema-version: v1.2.1
+        schema-version: v1.2.3
         id: draft-burger-xcon-mmodels-00
         title:
         - content: Centralized Conferencing (XCON) Media Models
@@ -153,5 +153,5 @@ http_interactions:
         doctype: internet-draft
         ext:
           schema-version: v1.0.0
-  recorded_at: Wed, 08 Mar 2023 23:30:09 GMT
+  recorded_at: Fri, 19 May 2023 21:01:41 GMT
 recorded_with: VCR 6.1.0

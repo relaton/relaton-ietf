@@ -1,5 +1,5 @@
-<bibdata type="standard" schema-version="v1.2.1">
-  <fetched>2023-03-08</fetched>
+<bibdata type="standard" schema-version="v1.2.3">
+  <fetched>2023-04-07</fetched>
   <title type="main" format="text/plain">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
@@ -45,6 +45,9 @@
   <series>
     <title format="text/plain">STD</title>
     <number>91</number>
+  </series>
+  <series type="stream">
+    <title format="text/plain">IETF</title>
   </series>
   <series>
     <title format="text/plain">RFC</title>

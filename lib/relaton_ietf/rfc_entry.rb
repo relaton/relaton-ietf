@@ -127,9 +127,9 @@ module RelatonIetf
     #
     # @return [String] anchor
     #
-    def anchor
-      "RFC#{docnum}"
-    end
+    # def anchor
+    #   "RFC#{docnum}"
+    # end
 
     #
     # Create link

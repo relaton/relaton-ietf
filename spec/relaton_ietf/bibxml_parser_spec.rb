@@ -1,4 +1,14 @@
 describe RelatonIetf::BibXMLParser do
+  it "parse document" do
+    source = "spec/examples/reference.I-D.draft--pale-email-00.xml"
+    bib = RelatonIetf::BibXMLParser.parse File.read(source, encoding: "UTF-8")
+    xml = bib.to_xml bibdata: true
+    file = "spec/examples/from-bibxm-ids.xml"
+    File.write file, xml, encoding: "UTF-8" unless File.exist? file
+    expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
+      .gsub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
+  end
+
   context "pubid_type" do
     context "returns RFC" do
       it { expect(described_class.pubid_type("RFC 1234")).to eq "RFC" }

@@ -10,10 +10,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ribose Inc."]
   spec.email         = ["open.source@ribose.com"]
 
-  spec.summary       = "RelatonIetf: retrieve IETF Standards for bibliographic use "\
-                       "using the BibliographicItem model"
+  spec.summary       = "RelatonIetf: retrieve IETF Standards for " \
+                       "bibliographic use using the BibliographicItem model"
   spec.description   = <<~DESCRIPTION
-    RelatonIetf: retrieve IETF Standards for bibliographic use 
+    RelatonIetf: retrieve IETF Standards for bibliographic use
     using the BibliographicItem model.
 
     Formerly known as rfcbib.
@@ -27,16 +27,12 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.7.0")
 
   spec.add_development_dependency "equivalent-xml", "~> 0.6"
-  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "ruby-jing"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "vcr"
-  spec.add_development_dependency "webmock"
 
   spec.add_dependency "relaton-bib", "~> 1.14.0"
+  spec.add_dependency "relaton-index", "~> 0.2.0"
 end

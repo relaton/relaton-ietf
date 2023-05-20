@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reference anchor="I-D.-pale-email" target="https://datatracker.ietf.org/doc/html/draft--pale-email-00">
+   <front>
+      <title>Forming Intuitive Email Addresses</title>
+      <author initials="P." surname="Pale" fullname="Predrag Pale">
+         </author>
+      <author initials="K." surname="Cerovski" fullname="Kristijan Cerovski">
+         </author>
+      <date month="March" day="2" year="2004" />
+      <abstract>
+	 <t>   This memo presents a proposal for an efficient and simple way of 
+   forming email addresses.  The goal is to achieve easier, more 
+   productive communication between email users, in particular by aking 
+   addresses intuitive and thus easy to remember, or guess-enabled on 
+   material-world data about the correspondent, as well as independent 
+   from technical or organizational specifics of email services. 
+
+	 </t>
+      </abstract>
+   </front>
+   <seriesInfo name="Internet-Draft" value="draft--pale-email-00" />
+   
+</reference>

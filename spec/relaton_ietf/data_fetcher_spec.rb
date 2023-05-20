@@ -1,4 +1,6 @@
 RSpec.describe RelatonIetf::DataFetcher do
+  let(:index) { subject.instance_variable_get(:@index) }
+
   # it "fetch rfc index" do
   #   VCR.use_cassette "ietf_rfc_index" do
   #     RelatonIetf::DataFetcher.fetch "ietf-rfcsubseries", format: "bibxml"
@@ -41,6 +43,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(subject.instance_variable_get(:@output)).to eq "dir"
       expect(subject.instance_variable_get(:@format)).to eq "yaml"
       expect(subject.instance_variable_get(:@source)).to eq "ietf-rfcsubseries"
+      expect(subject.instance_variable_get(:@index)).to be_instance_of(Relaton::Index::Type)
       expect(subject).to be_instance_of(RelatonIetf::DataFetcher)
     end
 
@@ -49,6 +52,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(RelatonIetf::RfcIndexEntry).to receive(:parse)
         .with(kind_of(Nokogiri::XML::Element))
         .and_return(:bib).exactly(11).times
+      expect(index).to receive(:save)
       subject.fetch
     end
   end
@@ -74,6 +78,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(RelatonIetf::BibXMLParser).to receive(:parse).with(:xml).and_return(bib)
       expect(subject).to receive(:save_doc).with(bib)
       expect(subject).to receive(:update_versions).with ["draft-collins-pfr-00"]
+      expect(index).to receive(:save)
       subject.fetch
     end
 
@@ -111,7 +116,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       hash = { title: :t, abstract: :a }
       expect(RelatonIetf::HashConverter).to receive(:hash_to_bib).with(:yaml).and_return(hash)
       expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(
-        title: :t, abstract: :a, formattedref: :sref, docid: [:id], relation: %i[rel1 rel2]
+        title: :t, abstract: :a, formattedref: :sref, docid: [:id], relation: %i[rel1 rel2],
       ).and_return(:sbib)
       expect(subject).to receive(:save_doc).with(:sbib)
       subject.create_series "draft-collins-pfr", ["draft-collins-pfr-00", "draft-collins-pfr-01"]
@@ -172,13 +177,18 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(RelatonIetf::RfcEntry).to receive(:parse)
         .with(kind_of(Nokogiri::XML::Element))
         .and_return(:bib).exactly(1).times
+      expect(index).to receive(:save)
       subject.fetch
     end
   end
 
   context "save doc" do
     subject { RelatonIetf::DataFetcher.new("source", "dir", "bibxml") }
-    let(:entry) { double("entry", docnumber: "RFC0001", docidentifier: []) }
+
+    let(:entry) do
+      did = double("docid", type: "RFC", id: "RFC 1", primary: true)
+      double("entry", docnumber: "RFC0001", docidentifier: [did])
+    end
 
     it "skip" do
       expect(File).not_to receive(:write)
@@ -188,6 +198,7 @@ RSpec.describe RelatonIetf::DataFetcher do
     it "bibxml" do
       expect(entry).to receive(:to_bibxml).and_return("<xml/>")
       expect(File).to receive(:write).with("dir/RFC0001.xml", "<xml/>", encoding: "UTF-8")
+      expect(index).to receive(:add_or_update).with("RFC 1", "dir/RFC0001.xml")
       subject.save_doc entry
     end
 

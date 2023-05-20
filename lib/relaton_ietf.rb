@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "net/http"
+require "relaton/index"
 require "relaton_bib"
 require "relaton_ietf/version"
 require "relaton_ietf/bibxml_parser"
