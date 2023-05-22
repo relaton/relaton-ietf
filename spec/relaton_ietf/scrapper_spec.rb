@@ -1,14 +1,14 @@
 RSpec.describe RelatonIetf::Scrapper do
   context "raise network error" do
     it "Timeout::Error" do
-      expect(Net::HTTP).to receive(:get_response).and_raise Timeout::Error
+      expect(described_class).to receive(:rfc_item).and_raise Timeout::Error
       expect do
         RelatonIetf::Scrapper.scrape_page "RFC.001"
       end.to raise_error RelatonBib::RequestError
     end
 
     it "SocketError" do
-      expect(Net::HTTP).to receive(:get_response).and_raise SocketError
+      expect(described_class).to receive(:rfc_item).and_raise SocketError
       expect do
         RelatonIetf::Scrapper.scrape_page "RFC.001"
       end.to raise_error RelatonBib::RequestError

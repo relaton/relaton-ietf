@@ -5,16 +5,17 @@ module RelatonIetf
   module Scrapper
     extend Scrapper
 
-    IDS = "https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/"
-    RFC = "https://raw.githubusercontent.com/relaton/relaton-data-rfcs/main/data/"
-    RSS = "https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/"
+    IDS = "https://raw.githubusercontent.com/relaton/relaton-data-ids/main/"
+    RFC = "https://raw.githubusercontent.com/relaton/relaton-data-rfcs/main/"
+    RSS = "https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/"
+    INDEX_FILE = "index-v1.yaml"
 
     # @param text [String]
     # @return [RelatonIetf::IetfBibliographicItem]
     def scrape_page(text)
       # Remove initial "IETF " string if specified
       ref = text.gsub(/^IETF /, "")
-      ref.sub!(/(?<=^(?:RFC|BCP|FYI|STD))\s(\d+)/) { $1.rjust 4, "0" }
+      # ref.sub!(/(?<=^(?:RFC|BCP|FYI|STD))\s(\d+)/) { $1.rjust 4, "0" }
       rfc_item ref
     rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
            Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
@@ -27,32 +28,42 @@ module RelatonIetf
     # @param ref [String]
     # @return [RelatonIetf::IetfBibliographicItem]
     def rfc_item(ref) # rubocop:disable Metrics/MethodLength
-      ghurl = case ref
-              when /^RFC/ then RFC
-              when /^(?:BCP|FYI|STD)/ then RSS
-              when /^I-D/
-                ref.sub!(/^I-D[.\s]/, "")
-                IDS
-              else return
-              end
+      case ref
+      when /^RFC/ then get_rfcs ref
+      when /^(?:BCP|FYI|STD)/ then get_rfcsubseries ref
+      when /^I-D/
+        ref.sub!(/^I-D[.\s]/, "")
+        get_ids ref
+      end
+    end
 
-      uri = "#{ghurl}#{ref.sub(/\s|\u00a0/, '.')}.yaml"
-      # BibXMLParser.parse get_page(uri), is_relation: is_relation, ver: ver
-      resp = get_page uri
-      return unless resp
+    def get_rfcs(ref)
+      index = Relaton::Index.find_or_create :RFC, url: "#{RFC}index-v1.zip", file: INDEX_FILE
+      row = index.search(ref).first
+      get_page "#{RFC}#{row[:file]}" if row
+    end
 
-      hash = YAML.safe_load resp
-      hash["fetched"] = Date.today.to_s
-      IetfBibliographicItem.from_hash hash
+    def get_rfcsubseries(ref)
+      index = Relaton::Index.find_or_create :RSS, url: "#{RSS}index-v1.zip", file: INDEX_FILE
+      row = index.search(ref).first
+      get_page "#{RSS}#{row[:file]}" if row
+    end
+
+    def get_ids(ref)
+      index = Relaton::Index.find_or_create :IDS, url: "#{IDS}index-v1.zip", file: INDEX_FILE
+      row = index.search(ref).first
+      get_page "#{IDS}#{row[:file]}" if row
     end
 
     # @param uri [String]
-    # @return [String] HTTP response body
+    # @return [RelatonIetf::IetfBibliographicItem, nil] HTTP response body
     def get_page(uri)
       res = Net::HTTP.get_response(URI(uri))
       return unless res.code == "200"
 
-      res.body
+      hash = YAML.safe_load res.body
+      hash["fetched"] = Date.today.to_s
+      IetfBibliographicItem.from_hash hash
     end
   end
 end

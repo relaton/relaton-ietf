@@ -48,5 +48,14 @@ module RelatonIetf
     def grammar_hash
       @grammar_hash ||= ::RelatonIetf.grammar_hash
     end
+
+    #
+    # Remove index file
+    #
+    def remove_index_file
+      Relaton::Index.find_or_create(:RFC, url: true, file: Scrapper::INDEX_FILE).remove_file
+      Relaton::Index.find_or_create(:RSS, url: true, file: Scrapper::INDEX_FILE).remove_file
+      Relaton::Index.find_or_create(:IDS, url: true, file: Scrapper::INDEX_FILE).remove_file
+    end
   end
 end
