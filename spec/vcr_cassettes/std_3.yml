@@ -5,7 +5,7 @@ http_interactions:
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/STD0003.yaml
     body:
       encoding: US-ASCII
-      string: ''
+      base64_string: ''
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -41,79 +41,52 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 89D8:5818:2332D39:29B262D:6467E3B7
+      - FEB4:67F3:8DFDA3:A75950:64A0C2AF
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 19 May 2023 21:01:43 GMT
+      - Sun, 02 Jul 2023 00:19:59 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18437-ATL
+      - cache-atl18451-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1684530104.544080,VS0,VE87
+      - S1688257200.556099,VS0,VE113
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       X-Fastly-Request-Id:
-      - c439f6c9094696700fc07ec2cdd8604b2170ba64
+      - d23a0bf3c8ebdf5101696d2305066209891879f0
       Expires:
-      - Fri, 19 May 2023 21:06:43 GMT
+      - Sun, 02 Jul 2023 00:24:59 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
-      string: |
-        ---
-        schema-version: v1.2.3
-        id: STD3
-        title:
-        - content: Internet Standard technical specification 3
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
-        link:
-        - content: https://www.rfc-editor.org/info/std3
-          type: src
-        type: standard
-        docid:
-        - id: STD 3
-          type: IETF
-          primary: true
-        docnumber: STD0003
-        language:
-        - en
-        script:
-        - Latn
-        relation:
-        - type: includes
-          bibitem:
-            id: RFC1122
-            docid:
-            - id: RFC 1122
-              type: IETF
-              primary: true
-            formattedref:
-              content: RFC1122
-              format: text/plain
-        - type: includes
-          bibitem:
-            id: RFC1123
-            docid:
-            - id: RFC 1123
-              type: IETF
-              primary: true
-            formattedref:
-              content: RFC1123
-              format: text/plain
-        ext:
-          schema-version: v1.0.0
-  recorded_at: Fri, 19 May 2023 21:01:43 GMT
-recorded_with: VCR 6.1.0
+      base64_string: |
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IFNURDMKdGl0bGU6Ci0g
+        Y29udGVudDogSW50ZXJuZXQgU3RhbmRhcmQgdGVjaG5pY2FsIHNwZWNpZmlj
+        YXRpb24gMwogIGxhbmd1YWdlOgogIC0gZW4KICBzY3JpcHQ6CiAgLSBMYXRu
+        CiAgZm9ybWF0OiB0ZXh0L3BsYWluCmxpbms6Ci0gY29udGVudDogaHR0cHM6
+        Ly93d3cucmZjLWVkaXRvci5vcmcvaW5mby9zdGQzCiAgdHlwZTogc3JjCnR5
+        cGU6IHN0YW5kYXJkCmRvY2lkOgotIGlkOiBTVEQgMwogIHR5cGU6IElFVEYK
+        ICBwcmltYXJ5OiB0cnVlCmRvY251bWJlcjogU1REMDAwMwpsYW5ndWFnZToK
+        LSBlbgpzY3JpcHQ6Ci0gTGF0bgpyZWxhdGlvbjoKLSB0eXBlOiBpbmNsdWRl
+        cwogIGJpYml0ZW06CiAgICBpZDogUkZDMTEyMgogICAgZG9jaWQ6CiAgICAt
+        IGlkOiBSRkMgMTEyMgogICAgICB0eXBlOiBJRVRGCiAgICAgIHByaW1hcnk6
+        IHRydWUKICAgIGZvcm1hdHRlZHJlZjoKICAgICAgY29udGVudDogUkZDMTEy
+        MgogICAgICBmb3JtYXQ6IHRleHQvcGxhaW4KLSB0eXBlOiBpbmNsdWRlcwog
+        IGJpYml0ZW06CiAgICBpZDogUkZDMTEyMwogICAgZG9jaWQ6CiAgICAtIGlk
+        OiBSRkMgMTEyMwogICAgICB0eXBlOiBJRVRGCiAgICAgIHByaW1hcnk6IHRy
+        dWUKICAgIGZvcm1hdHRlZHJlZjoKICAgICAgY29udGVudDogUkZDMTEyMwog
+        ICAgICBmb3JtYXQ6IHRleHQvcGxhaW4KZXh0OgogIHNjaGVtYS12ZXJzaW9u
+        OiB2MS4wLjAK
+  recorded_at: Sun, 02 Jul 2023 00:19:59 GMT
+recorded_with: VCR 6.2.0

@@ -29,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/zip
       Etag:
-      - W/"f0fd546f32c4e4c1c0dbfdb838abdc2e01a93bd8f79b3573b70d3f83639eef30"
+      - W/"957b10246c472a9dac09c2a2b1bb72448a6f519a98cc8488c35319d15eceeb40"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -39,36 +39,38 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - D98A:862D:A329E:CDC80:646AC32E
+      - BE08:99AB:82760B:9BCFF9:64A0C2AE
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 22 May 2023 01:19:43 GMT
+      - Sun, 02 Jul 2023 00:19:58 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18455-ATL
+      - cache-atl18494-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1684718383.952530,VS0,VE232
+      - S1688257199.607403,VS0,VE113
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       X-Fastly-Request-Id:
-      - cefecf6c26501c60de119fd9399f7c30cfc0c44f
+      - 18d9a6da0f547b768b4306309e0626bd6f66c87f
       Expires:
-      - Mon, 22 May 2023 01:24:43 GMT
+      - Sun, 02 Jul 2023 00:24:58 GMT
       Source-Age:
       - '0'
     body:
       encoding: UTF-8
       base64_string: |
-        UEsDBBQAAAAIAPpxtVYpWChxOwcAACg5AAANABwAaW5kZXgtdjEueWFtbFVU
-        CQADlydqZJcnamR1eAsAAQTpAwAABHsAAABtmrGO5FQQRfP9iv6Bgb71np/t
+        UEsDBBQAAAAIADBy4VYpWChxOwcAACg5AAANABwAaW5kZXgtdjEueWFtbFVU
+        CQADezWgZHs1oGR1eAsAAQTpAwAABHsAAABtmrGO5FQQRfP9iv6Bgb71np/t
         CQEhkSFBQrjSgrTSkpHw9/S6hAQ+J23dxPe4a/pUzdvb24e3x/vnT++P777/
         +TE+PB7vf3z+8vv749PHvz5++/rs+XyOb/7++OeX/+am5iZym+Y25JbmFnK7
         5nbkDs0dyJ2aO5HL04J5MhgNhkGtOqw62nXYdbTssOxo22Hb0brDuqN9h31H
@@ -109,11 +111,11 @@ http_interactions:
         6iDJ4EzUQZLBlegK7iSDI1EHSQY3og6SDE5EHSQZXIg6SDI4EHWQZHAf6qD8
         JlQyO8ngOtRBksFxqIMkg9vQFTxIBqehDpIMLkMdJBkchjpIMrgLdZBkcBbq
         IMngKtRBksFRqIPyc13JHCSDk1AHSQYXoSt4kgwOQh0kGfzPZwdJBoejDpIM
-        7kYdJBmcjTpIMrgadZBkcDTqIMngZtRBMSkl8+/J6B9QSwECHgMUAAAACAD6
-        cbVWKVgocTsHAAAoOQAADQAYAAAAAAABAAAApIEAAAAAaW5kZXgtdjEueWFt
-        bFVUBQADlydqZHV4CwABBOkDAAAEewAAAFBLBQYAAAAAAQABAFMAAACCBwAA
+        7kYdJBmcjTpIMrgadZBkcDTqIMngZtRBMSkl8+/J6B9QSwECHgMUAAAACAAw
+        cuFWKVgocTsHAAAoOQAADQAYAAAAAAABAAAApIEAAAAAaW5kZXgtdjEueWFt
+        bFVUBQADezWgZHV4CwABBOkDAAAEewAAAFBLBQYAAAAAAQABAFMAAACCBwAA
         AAA=
-  recorded_at: Mon, 22 May 2023 01:19:43 GMT
+  recorded_at: Sun, 02 Jul 2023 00:19:58 GMT
 - request:
     method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/BCP0047.yaml
@@ -155,29 +157,31 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - F32E:862D:A32B2:CDC9C:646AC32F
+      - E2D4:728D:7C859C:95E0CC:64A0C2AE
       Accept-Ranges:
       - bytes
       Date:
-      - Mon, 22 May 2023 01:19:43 GMT
+      - Sun, 02 Jul 2023 00:19:58 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18428-ATL
+      - cache-atl18433-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1684718383.422021,VS0,VE87
+      - S1688257199.819734,VS0,VE109
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       X-Fastly-Request-Id:
-      - fe6ab29e4c6501222e1e93aa1b50c05b562c85d3
+      - 832b9c9826a9855e85e7a0cfd632670b8a0c254b
       Expires:
-      - Mon, 22 May 2023 01:24:43 GMT
+      - Sun, 02 Jul 2023 00:24:58 GMT
       Source-Age:
       - '0'
     body:
@@ -199,5 +203,5 @@ http_interactions:
         IHR5cGU6IElFVEYKICAgICAgcHJpbWFyeTogdHJ1ZQogICAgZm9ybWF0dGVk
         cmVmOgogICAgICBjb250ZW50OiBSRkM1NjQ2CiAgICAgIGZvcm1hdDogdGV4
         dC9wbGFpbgpleHQ6CiAgc2NoZW1hLXZlcnNpb246IHYxLjAuMAo=
-  recorded_at: Mon, 22 May 2023 01:19:43 GMT
-recorded_with: VCR 6.1.0
+  recorded_at: Sun, 02 Jul 2023 00:19:58 GMT
+recorded_with: VCR 6.2.0

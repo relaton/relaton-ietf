@@ -5,6 +5,12 @@ module RelatonIetf
     class << self
       private
 
+      def item_data(doc)
+        data = super
+        data[:stream] = doc.at("/bibitem/ext/stream")&.text
+        data
+      end
+
       # override RelatonBib::BibliographicItem.bib_item method
       # @param item_hash [Hash]
       # @return [RelatonIetf::IetfBibliographicItem]

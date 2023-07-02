@@ -41,6 +41,7 @@ module RelatonIetf
         relation: parse_relation,
         status: parse_status,
         series: parse_series,
+        stream: @doc.at("./xmlns:stream")&.text,
         editorialgroup: parse_editorialgroup,
       )
     end
@@ -134,7 +135,7 @@ module RelatonIetf
     #
     # Create link
     #
-    # @return [Array<RelatonBib::TypedUri>] 
+    # @return [Array<RelatonBib::TypedUri>]
     #
     def parse_link
       url = "https://www.rfc-editor.org/info/rfc#{docnum}"

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/draft-ietf-calext-eventpub-extensions-15.yaml
     body:
       encoding: US-ASCII
-      string: ''
+      base64_string: ''
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -31,7 +31,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"b400b29f4fcd8371d109dc5813769a90afa8704fca6b3f5223173e120a766058"
+      - W/"e8d44f6c7e3ecde6a5d717c14440fd3a3882f82fe2a3c9b3c06a3c19355a28f7"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -41,139 +41,90 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - E5C8:0ACE:3CDDA6:487851:6467E3B6
+      - 39FC:3912:862608:9F7FD6:64A0C2AE
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 19 May 2023 21:01:42 GMT
+      - Sun, 02 Jul 2023 00:19:58 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18491-ATL
+      - cache-atl18446-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1684530103.591561,VS0,VE195
+      - S1688257198.311273,VS0,VE192
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       X-Fastly-Request-Id:
-      - 65838797242c8194e0a4f89b94e5b3fc0c77689b
+      - 7f035bb3adddb2ca3a2831d765fd5e374e673fe5
       Expires:
-      - Fri, 19 May 2023 21:06:42 GMT
+      - Sun, 02 Jul 2023 00:24:58 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
-      string: |
-        ---
-        schema-version: v1.2.3
-        id: draft-ietf-calext-eventpub-extensions-15
-        title:
-        - content: Event Publishing Extensions to iCalendar
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
-        link:
-        - content: https://datatracker.ietf.org/doc/html/draft-ietf-calext-eventpub-extensions-15
-          type: src
-        type: standard
-        docid:
-        - id: draft-ietf-calext-eventpub-extensions-15
-          type: Internet-Draft
-          primary: true
-        - id: I-D.ietf-calext-eventpub-extensions
-          type: IETF
-          scope: anchor
-        docnumber: I-D.ietf-calext-eventpub-extensions
-        date:
-        - type: published
-          value: '2019-10-08'
-        contributor:
-        - person:
-            name:
-              given:
-                forename:
-                - content: Michael
-                  language:
-                  - en
-                - language:
-                  - en
-                  initial: M
-                formatted_initials:
-                  content: M.
-                  language:
-                  - en
-              surname:
-                content: Douglass
-                language:
-                - en
-              completename:
-                content: Michael Douglass
-                language:
-                - en
-            affiliation:
-            - organization:
-                name:
-                - content: Spherical Cow Group
-          role:
-          - type: author
-        version:
-        - draft: '15'
-        revdate: '2019-10-08'
-        language:
-        - en
-        script:
-        - Latn
-        abstract:
-        - content: "<p>This specification updates RFC5545 by introducing a number of new iCalendar
-            properties and components which are of particular use for event publishers and
-            in social networking. This specification also defines a new STRUCTURED-DATA property
-            for iCalendar RFC5545 to allow for data that is directly pertinent to an event
-            or task to be included with the calendar data.</p>"
-          language:
-          - en
-          script:
-          - Latn
-          format: text/html
-        relation:
-        - type: updates
-          bibitem:
-            id: draft-ietf-calext-eventpub-extensions-04
-            docid:
-            - id: draft-ietf-calext-eventpub-extensions-04
-              type: Internet-Draft
-              primary: true
-            formattedref:
-              content: draft-ietf-calext-eventpub-extensions-04
-              format: text/plain
-        - type: updatedBy
-          bibitem:
-            id: draft-ietf-calext-eventpub-extensions-18
-            docid:
-            - id: draft-ietf-calext-eventpub-extensions-18
-              type: Internet-Draft
-              primary: true
-            formattedref:
-              content: draft-ietf-calext-eventpub-extensions-18
-              format: text/plain
-        series:
-        - type: main
-          title:
-            content: Internet-Draft
-            language:
-            - en
-            script:
-            - Latn
-            format: text/plain
-          number: draft-ietf-calext-eventpub-extensions-15
-        doctype: internet-draft
-        ext:
-          schema-version: v1.0.0
-  recorded_at: Fri, 19 May 2023 21:01:42 GMT
-recorded_with: VCR 6.1.0
+      base64_string: |
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IGRyYWZ0LWlldGYtY2Fs
+        ZXh0LWV2ZW50cHViLWV4dGVuc2lvbnMtMTUKdGl0bGU6Ci0gY29udGVudDog
+        RXZlbnQgUHVibGlzaGluZyBFeHRlbnNpb25zIHRvIGlDYWxlbmRhcgogIGxh
+        bmd1YWdlOgogIC0gZW4KICBzY3JpcHQ6CiAgLSBMYXRuCiAgZm9ybWF0OiB0
+        ZXh0L3BsYWluCmxpbms6Ci0gY29udGVudDogaHR0cHM6Ly9kYXRhdHJhY2tl
+        ci5pZXRmLm9yZy9kb2MvaHRtbC9kcmFmdC1pZXRmLWNhbGV4dC1ldmVudHB1
+        Yi1leHRlbnNpb25zLTE1CiAgdHlwZTogc3JjCnR5cGU6IHN0YW5kYXJkCmRv
+        Y2lkOgotIGlkOiBkcmFmdC1pZXRmLWNhbGV4dC1ldmVudHB1Yi1leHRlbnNp
+        b25zLTE1CiAgdHlwZTogSW50ZXJuZXQtRHJhZnQKICBwcmltYXJ5OiB0cnVl
+        Ci0gaWQ6IEktRC5pZXRmLWNhbGV4dC1ldmVudHB1Yi1leHRlbnNpb25zCiAg
+        dHlwZTogSUVURgogIHNjb3BlOiBhbmNob3IKZG9jbnVtYmVyOiBJLUQuaWV0
+        Zi1jYWxleHQtZXZlbnRwdWItZXh0ZW5zaW9ucwpkYXRlOgotIHR5cGU6IHB1
+        Ymxpc2hlZAogIHZhbHVlOiAnMjAxOS0xMC0wOCcKY29udHJpYnV0b3I6Ci0g
+        cGVyc29uOgogICAgbmFtZToKICAgICAgZ2l2ZW46CiAgICAgICAgZm9yZW5h
+        bWU6CiAgICAgICAgLSBjb250ZW50OiBNaWNoYWVsCiAgICAgICAgICBsYW5n
+        dWFnZToKICAgICAgICAgIC0gZW4KICAgICAgICAtIGxhbmd1YWdlOgogICAg
+        ICAgICAgLSBlbgogICAgICAgICAgaW5pdGlhbDogTQogICAgICAgIGZvcm1h
+        dHRlZF9pbml0aWFsczoKICAgICAgICAgIGNvbnRlbnQ6IE0uCiAgICAgICAg
+        ICBsYW5ndWFnZToKICAgICAgICAgIC0gZW4KICAgICAgc3VybmFtZToKICAg
+        ICAgICBjb250ZW50OiBEb3VnbGFzcwogICAgICAgIGxhbmd1YWdlOgogICAg
+        ICAgIC0gZW4KICAgICAgY29tcGxldGVuYW1lOgogICAgICAgIGNvbnRlbnQ6
+        IE1pY2hhZWwgRG91Z2xhc3MKICAgICAgICBsYW5ndWFnZToKICAgICAgICAt
+        IGVuCiAgICBhZmZpbGlhdGlvbjoKICAgIC0gb3JnYW5pemF0aW9uOgogICAg
+        ICAgIG5hbWU6CiAgICAgICAgLSBjb250ZW50OiBTcGhlcmljYWwgQ293IEdy
+        b3VwCiAgcm9sZToKICAtIHR5cGU6IGF1dGhvcgp2ZXJzaW9uOgotIGRyYWZ0
+        OiAnMTUnCnJldmRhdGU6ICcyMDE5LTEwLTA4JwpsYW5ndWFnZToKLSBlbgpz
+        Y3JpcHQ6Ci0gTGF0bgphYnN0cmFjdDoKLSBjb250ZW50OiAiPHA+VGhpcyBz
+        cGVjaWZpY2F0aW9uIHVwZGF0ZXMgUkZDNTU0NSBieSBpbnRyb2R1Y2luZyBh
+        IG51bWJlciBvZiBuZXcgaUNhbGVuZGFyCiAgICBwcm9wZXJ0aWVzIGFuZCBj
+        b21wb25lbnRzIHdoaWNoIGFyZSBvZiBwYXJ0aWN1bGFyIHVzZSBmb3IgZXZl
+        bnQgcHVibGlzaGVycyBhbmQKICAgIGluIHNvY2lhbCBuZXR3b3JraW5nLiBU
+        aGlzIHNwZWNpZmljYXRpb24gYWxzbyBkZWZpbmVzIGEgbmV3IFNUUlVDVFVS
+        RUQtREFUQSBwcm9wZXJ0eQogICAgZm9yIGlDYWxlbmRhciBSRkM1NTQ1IHRv
+        IGFsbG93IGZvciBkYXRhIHRoYXQgaXMgZGlyZWN0bHkgcGVydGluZW50IHRv
+        IGFuIGV2ZW50CiAgICBvciB0YXNrIHRvIGJlIGluY2x1ZGVkIHdpdGggdGhl
+        IGNhbGVuZGFyIGRhdGEuPC9wPiIKICBsYW5ndWFnZToKICAtIGVuCiAgc2Ny
+        aXB0OgogIC0gTGF0bgogIGZvcm1hdDogdGV4dC9odG1sCnJlbGF0aW9uOgot
+        IHR5cGU6IHVwZGF0ZXMKICBiaWJpdGVtOgogICAgaWQ6IGRyYWZ0LWlldGYt
+        Y2FsZXh0LWV2ZW50cHViLWV4dGVuc2lvbnMtMDgKICAgIGRvY2lkOgogICAg
+        LSBpZDogZHJhZnQtaWV0Zi1jYWxleHQtZXZlbnRwdWItZXh0ZW5zaW9ucy0w
+        OAogICAgICB0eXBlOiBJbnRlcm5ldC1EcmFmdAogICAgICBwcmltYXJ5OiB0
+        cnVlCiAgICBmb3JtYXR0ZWRyZWY6CiAgICAgIGNvbnRlbnQ6IGRyYWZ0LWll
+        dGYtY2FsZXh0LWV2ZW50cHViLWV4dGVuc2lvbnMtMDgKICAgICAgZm9ybWF0
+        OiB0ZXh0L3BsYWluCi0gdHlwZTogdXBkYXRlZEJ5CiAgYmliaXRlbToKICAg
+        IGlkOiBkcmFmdC1pZXRmLWNhbGV4dC1ldmVudHB1Yi1leHRlbnNpb25zLTE2
+        CiAgICBkb2NpZDoKICAgIC0gaWQ6IGRyYWZ0LWlldGYtY2FsZXh0LWV2ZW50
+        cHViLWV4dGVuc2lvbnMtMTYKICAgICAgdHlwZTogSW50ZXJuZXQtRHJhZnQK
+        ICAgICAgcHJpbWFyeTogdHJ1ZQogICAgZm9ybWF0dGVkcmVmOgogICAgICBj
+        b250ZW50OiBkcmFmdC1pZXRmLWNhbGV4dC1ldmVudHB1Yi1leHRlbnNpb25z
+        LTE2CiAgICAgIGZvcm1hdDogdGV4dC9wbGFpbgpzZXJpZXM6Ci0gdHlwZTog
+        bWFpbgogIHRpdGxlOgogICAgY29udGVudDogSW50ZXJuZXQtRHJhZnQKICAg
+        IGxhbmd1YWdlOgogICAgLSBlbgogICAgc2NyaXB0OgogICAgLSBMYXRuCiAg
+        ICBmb3JtYXQ6IHRleHQvcGxhaW4KICBudW1iZXI6IGRyYWZ0LWlldGYtY2Fs
+        ZXh0LWV2ZW50cHViLWV4dGVuc2lvbnMtMTUKZG9jdHlwZTogaW50ZXJuZXQt
+        ZHJhZnQKZXh0OgogIHNjaGVtYS12ZXJzaW9uOiB2MS4wLjAK
+  recorded_at: Sun, 02 Jul 2023 00:19:58 GMT
+recorded_with: VCR 6.2.0

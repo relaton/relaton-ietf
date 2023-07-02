@@ -5,7 +5,7 @@ http_interactions:
     uri: https://raw.githubusercontent.com/relaton/relaton-data-ids/main/data/draft-abarth-cake-01.yaml
     body:
       encoding: US-ASCII
-      string: ''
+      base64_string: ''
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -41,120 +41,78 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - E3DA:25E4:236462D:2A146D4:6467E3B5
+      - 3CE0:0667:8F952E:A8F031:64A0C2AD
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 19 May 2023 21:01:42 GMT
+      - Sun, 02 Jul 2023 00:19:57 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18499-ATL
+      - cache-atl18444-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1684530102.914429,VS0,VE184
+      - S1688257197.991677,VS0,VE186
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       X-Fastly-Request-Id:
-      - 5469bbda549a6db23906185ebca281f3680e8c0a
+      - 4cd5ed2c4427d881fc5ac78d5e3b8d07d5dbf08f
       Expires:
-      - Fri, 19 May 2023 21:06:42 GMT
+      - Sun, 02 Jul 2023 00:24:57 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
-      string: |
-        ---
-        schema-version: v1.2.3
-        id: draft-abarth-cake-01
-        title:
-        - content: Origin Cookies
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
-        link:
-        - content: https://datatracker.ietf.org/doc/html/draft-abarth-cake-01
-          type: src
-        type: standard
-        docid:
-        - id: draft-abarth-cake-01
-          type: Internet-Draft
-          primary: true
-        - id: I-D.abarth-cake
-          type: IETF
-          scope: anchor
-        docnumber: I-D.abarth-cake
-        date:
-        - type: published
-          value: '2011-03-05'
-        contributor:
-        - person:
-            name:
-              given:
-                forename:
-                - content: Adam
-                  language:
-                  - en
-                - language:
-                  - en
-                  initial: A
-                formatted_initials:
-                  content: A.
-                  language:
-                  - en
-              surname:
-                content: Barth
-                language:
-                - en
-              completename:
-                content: Adam Barth
-                language:
-                - en
-            affiliation:
-            - organization:
-                name:
-                - content: Google, Inc.
-          role:
-          - type: author
-        version:
-        - draft: '01'
-        revdate: '2011-03-05'
-        language:
-        - en
-        script:
-        - Latn
-        abstract:
-        - content: "<p>This document defines the Origin attribute for cookies, which lets
-            servers harmonize the security policy of their cookies with the widely used same-origin
-            policy. Origin cookies provide both confidentiality and integrity, unlike the
-            Secure attribute, which provides only confidentiality.Editorial Note (To be removed
-            by RFC Editor) If you have suggestions for improving this document, please send
-            email to &lt;mailto:http-state@ietf.org&gt;. Further Working Group information
-            is available from &lt;https://tools.ietf.org/wg/httpstate/&gt;.</p>"
-          language:
-          - en
-          script:
-          - Latn
-          format: text/html
-        series:
-        - type: main
-          title:
-            content: Internet-Draft
-            language:
-            - en
-            script:
-            - Latn
-            format: text/plain
-          number: draft-abarth-cake-01
-        doctype: internet-draft
-        ext:
-          schema-version: v1.0.0
-  recorded_at: Fri, 19 May 2023 21:01:42 GMT
-recorded_with: VCR 6.1.0
+      base64_string: |
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IGRyYWZ0LWFiYXJ0aC1j
+        YWtlLTAxCnRpdGxlOgotIGNvbnRlbnQ6IE9yaWdpbiBDb29raWVzCiAgbGFu
+        Z3VhZ2U6CiAgLSBlbgogIHNjcmlwdDoKICAtIExhdG4KICBmb3JtYXQ6IHRl
+        eHQvcGxhaW4KbGluazoKLSBjb250ZW50OiBodHRwczovL2RhdGF0cmFja2Vy
+        LmlldGYub3JnL2RvYy9odG1sL2RyYWZ0LWFiYXJ0aC1jYWtlLTAxCiAgdHlw
+        ZTogc3JjCnR5cGU6IHN0YW5kYXJkCmRvY2lkOgotIGlkOiBkcmFmdC1hYmFy
+        dGgtY2FrZS0wMQogIHR5cGU6IEludGVybmV0LURyYWZ0CiAgcHJpbWFyeTog
+        dHJ1ZQotIGlkOiBJLUQuYWJhcnRoLWNha2UKICB0eXBlOiBJRVRGCiAgc2Nv
+        cGU6IGFuY2hvcgpkb2NudW1iZXI6IEktRC5hYmFydGgtY2FrZQpkYXRlOgot
+        IHR5cGU6IHB1Ymxpc2hlZAogIHZhbHVlOiAnMjAxMS0wMy0wNScKY29udHJp
+        YnV0b3I6Ci0gcGVyc29uOgogICAgbmFtZToKICAgICAgZ2l2ZW46CiAgICAg
+        ICAgZm9yZW5hbWU6CiAgICAgICAgLSBjb250ZW50OiBBZGFtCiAgICAgICAg
+        ICBsYW5ndWFnZToKICAgICAgICAgIC0gZW4KICAgICAgICAtIGxhbmd1YWdl
+        OgogICAgICAgICAgLSBlbgogICAgICAgICAgaW5pdGlhbDogQQogICAgICAg
+        IGZvcm1hdHRlZF9pbml0aWFsczoKICAgICAgICAgIGNvbnRlbnQ6IEEuCiAg
+        ICAgICAgICBsYW5ndWFnZToKICAgICAgICAgIC0gZW4KICAgICAgc3VybmFt
+        ZToKICAgICAgICBjb250ZW50OiBCYXJ0aAogICAgICAgIGxhbmd1YWdlOgog
+        ICAgICAgIC0gZW4KICAgICAgY29tcGxldGVuYW1lOgogICAgICAgIGNvbnRl
+        bnQ6IEFkYW0gQmFydGgKICAgICAgICBsYW5ndWFnZToKICAgICAgICAtIGVu
+        CiAgICBhZmZpbGlhdGlvbjoKICAgIC0gb3JnYW5pemF0aW9uOgogICAgICAg
+        IG5hbWU6CiAgICAgICAgLSBjb250ZW50OiBHb29nbGUsIEluYy4KICByb2xl
+        OgogIC0gdHlwZTogYXV0aG9yCnZlcnNpb246Ci0gZHJhZnQ6ICcwMScKcmV2
+        ZGF0ZTogJzIwMTEtMDMtMDUnCmxhbmd1YWdlOgotIGVuCnNjcmlwdDoKLSBM
+        YXRuCmFic3RyYWN0OgotIGNvbnRlbnQ6ICI8cD5UaGlzIGRvY3VtZW50IGRl
+        ZmluZXMgdGhlIE9yaWdpbiBhdHRyaWJ1dGUgZm9yIGNvb2tpZXMsIHdoaWNo
+        IGxldHMKICAgIHNlcnZlcnMgaGFybW9uaXplIHRoZSBzZWN1cml0eSBwb2xp
+        Y3kgb2YgdGhlaXIgY29va2llcyB3aXRoIHRoZSB3aWRlbHkgdXNlZCBzYW1l
+        LW9yaWdpbgogICAgcG9saWN5LiBPcmlnaW4gY29va2llcyBwcm92aWRlIGJv
+        dGggY29uZmlkZW50aWFsaXR5IGFuZCBpbnRlZ3JpdHksIHVubGlrZSB0aGUK
+        ICAgIFNlY3VyZSBhdHRyaWJ1dGUsIHdoaWNoIHByb3ZpZGVzIG9ubHkgY29u
+        ZmlkZW50aWFsaXR5LkVkaXRvcmlhbCBOb3RlIChUbyBiZSByZW1vdmVkCiAg
+        ICBieSBSRkMgRWRpdG9yKSBJZiB5b3UgaGF2ZSBzdWdnZXN0aW9ucyBmb3Ig
+        aW1wcm92aW5nIHRoaXMgZG9jdW1lbnQsIHBsZWFzZSBzZW5kCiAgICBlbWFp
+        bCB0byAmbHQ7bWFpbHRvOmh0dHAtc3RhdGVAaWV0Zi5vcmcmZ3Q7LiBGdXJ0
+        aGVyIFdvcmtpbmcgR3JvdXAgaW5mb3JtYXRpb24KICAgIGlzIGF2YWlsYWJs
+        ZSBmcm9tICZsdDtodHRwczovL3Rvb2xzLmlldGYub3JnL3dnL2h0dHBzdGF0
+        ZS8mZ3Q7LjwvcD4iCiAgbGFuZ3VhZ2U6CiAgLSBlbgogIHNjcmlwdDoKICAt
+        IExhdG4KICBmb3JtYXQ6IHRleHQvaHRtbApzZXJpZXM6Ci0gdHlwZTogbWFp
+        bgogIHRpdGxlOgogICAgY29udGVudDogSW50ZXJuZXQtRHJhZnQKICAgIGxh
+        bmd1YWdlOgogICAgLSBlbgogICAgc2NyaXB0OgogICAgLSBMYXRuCiAgICBm
+        b3JtYXQ6IHRleHQvcGxhaW4KICBudW1iZXI6IGRyYWZ0LWFiYXJ0aC1jYWtl
+        LTAxCmRvY3R5cGU6IGludGVybmV0LWRyYWZ0CmV4dDoKICBzY2hlbWEtdmVy
+        c2lvbjogdjEuMC4wCg==
+  recorded_at: Sun, 02 Jul 2023 00:19:57 GMT
+recorded_with: VCR 6.2.0

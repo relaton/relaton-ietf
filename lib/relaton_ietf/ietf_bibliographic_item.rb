@@ -2,18 +2,20 @@ module RelatonIetf
   class IetfBibliographicItem < RelatonBib::BibliographicItem
     DOCTYPES = %w[rfc internet-draft].freeze
 
-    # @return [String, NilClass]
-    attr_reader :doctype
+    # @return [String, nil]
+    attr_reader :doctype, :stream
 
     # @return [Array<String>]
     attr_reader :keyword
 
     # @param doctype [String]
     # @param keyword [Array<String>]
+    # @param stream [String, nil]
     def initialize(**args)
       if args[:doctype] && !DOCTYPES.include?(args[:doctype])
         warn "[relaton-ietf] WARNING: invalid doctype #{args[:doctype]}"
       end
+      @stream = args.delete(:stream)
       super
     end
 
@@ -36,12 +38,39 @@ module RelatonIetf
     # @param opts [Hash]
     # @option opts [Nokogiri::XML::Builder] :builder XML builder
     # @option opts [Boolean] :bibdata
-    # @option opts [Symbol, NilClass] :date_format (:short), :full
+    # @option opts [Symbol, nil] :date_format (:short), :full
     # @option opts [String, Symbol] :lang language
     # @return [String] XML
-    def to_xml(**opts)
+    def to_xml(**opts) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
       opts[:date_format] ||= :short
-      super(**opts)
+      super(**opts) do |builder|
+        if opts[:bibdata] && (doctype || editorialgroup || ics&.any? ||
+          structuredidentifier&.presence? || stream)
+          ext = builder.ext do |b|
+            b.doctype doctype if doctype
+            b.subdoctype subdoctype if subdoctype
+            editorialgroup&.to_xml b
+            ics.each { |i| i.to_xml b }
+            b.stream stream if stream
+            structuredidentifier&.to_xml b
+          end
+          ext["schema-version"] = ext_schema if !opts[:embedded] && respond_to?(:ext_schema)
+        end
+      end
+    end
+
+    #
+    # Render hash
+    #
+    # @return [Hash] docunent hash representation
+    #
+    def to_hash
+      hash = super
+      return hash unless stream
+
+      hash["ext"] ||= {}
+      hash["ext"]["stream"] = stream
+      hash
     end
 
     #

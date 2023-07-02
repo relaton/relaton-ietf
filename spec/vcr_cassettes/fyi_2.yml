@@ -5,7 +5,7 @@ http_interactions:
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/FYI0002.yaml
     body:
       encoding: US-ASCII
-      string: ''
+      base64_string: ''
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -41,69 +41,47 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - CF60:093A:259D349:2C4D738:6467E3B7
+      - 1AD4:6071:866EB3:9FC973:64A0C2AF
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 19 May 2023 21:01:43 GMT
+      - Sun, 02 Jul 2023 00:19:59 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18436-ATL
+      - cache-atl18465-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1684530103.338591,VS0,VE98
+      - S1688257199.328242,VS0,VE112
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
       - "*"
+      Cross-Origin-Resource-Policy:
+      - cross-origin
       X-Fastly-Request-Id:
-      - 2044b8becab0c941de4bad110875410203e3e5a1
+      - 4e9cd1f843d27a9335711c6f1a3723fbb7fa6981
       Expires:
-      - Fri, 19 May 2023 21:06:43 GMT
+      - Sun, 02 Jul 2023 00:24:59 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
-      string: |
-        ---
-        schema-version: v1.2.3
-        id: FYI2
-        title:
-        - content: For Your Information 2
-          language:
-          - en
-          script:
-          - Latn
-          format: text/plain
-        link:
-        - content: https://www.rfc-editor.org/info/fyi2
-          type: src
-        type: standard
-        docid:
-        - id: FYI 2
-          type: IETF
-          primary: true
-        docnumber: FYI0002
-        language:
-        - en
-        script:
-        - Latn
-        relation:
-        - type: includes
-          bibitem:
-            id: RFC1470
-            docid:
-            - id: RFC 1470
-              type: IETF
-              primary: true
-            formattedref:
-              content: RFC1470
-              format: text/plain
-        ext:
-          schema-version: v1.0.0
-  recorded_at: Fri, 19 May 2023 21:01:43 GMT
-recorded_with: VCR 6.1.0
+      base64_string: |
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjMKaWQ6IEZZSTIKdGl0bGU6Ci0g
+        Y29udGVudDogRm9yIFlvdXIgSW5mb3JtYXRpb24gMgogIGxhbmd1YWdlOgog
+        IC0gZW4KICBzY3JpcHQ6CiAgLSBMYXRuCiAgZm9ybWF0OiB0ZXh0L3BsYWlu
+        Cmxpbms6Ci0gY29udGVudDogaHR0cHM6Ly93d3cucmZjLWVkaXRvci5vcmcv
+        aW5mby9meWkyCiAgdHlwZTogc3JjCnR5cGU6IHN0YW5kYXJkCmRvY2lkOgot
+        IGlkOiBGWUkgMgogIHR5cGU6IElFVEYKICBwcmltYXJ5OiB0cnVlCmRvY251
+        bWJlcjogRllJMDAwMgpsYW5ndWFnZToKLSBlbgpzY3JpcHQ6Ci0gTGF0bgpy
+        ZWxhdGlvbjoKLSB0eXBlOiBpbmNsdWRlcwogIGJpYml0ZW06CiAgICBpZDog
+        UkZDMTQ3MAogICAgZG9jaWQ6CiAgICAtIGlkOiBSRkMgMTQ3MAogICAgICB0
+        eXBlOiBJRVRGCiAgICAgIHByaW1hcnk6IHRydWUKICAgIGZvcm1hdHRlZHJl
+        ZjoKICAgICAgY29udGVudDogUkZDMTQ3MAogICAgICBmb3JtYXQ6IHRleHQv
+        cGxhaW4KZXh0OgogIHNjaGVtYS12ZXJzaW9uOiB2MS4wLjAK
+  recorded_at: Sun, 02 Jul 2023 00:19:59 GMT
+recorded_with: VCR 6.2.0

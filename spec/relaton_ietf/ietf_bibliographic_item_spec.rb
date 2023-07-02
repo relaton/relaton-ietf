@@ -42,4 +42,30 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
       expect(bibxml).to include "author"
     end
   end
+
+  context "render" do
+    subject do
+      docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: "RFC 123")
+      described_class.new(doctype: "RFC", stream: "IETF", docid: [docid])
+    end
+
+    it "to_hash" do
+      expect(subject.to_hash).to eq(
+        "docid" => [{ "id" => "RFC 123", "type" => "IETF" }], "doctype" => "RFC",
+        "ext" => { "schema-version" => "v1.0.0", "stream" => "IETF" },
+        "id" => "RFC123", "schema-version" => "v1.2.3")
+    end
+
+    it "to_xml" do
+      expect(subject.to_xml(bibdata: true)).to be_equivalent_to <<~XML
+        <bibdata schema-version="v1.2.3">
+          <docidentifier type="IETF">RFC 123</docidentifier>
+          <ext schema-version="v1.0.0">
+            <doctype>RFC</doctype>
+            <stream>IETF</stream>
+          </ext>
+        </bibdata>
+      XML
+    end
+  end
 end

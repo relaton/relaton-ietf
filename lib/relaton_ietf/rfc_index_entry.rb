@@ -10,7 +10,7 @@ module RelatonIetf
     def initialize(doc, doc_id, is_also)
       @doc = doc
       @name = doc.name.split("-").first
-      @shortnum = doc_id[-4..-1].sub(/^0+/, "")
+      @shortnum = doc_id[-4..].sub(/^0+/, "")
       @doc_id = doc_id
       @is_also = is_also
     end
@@ -47,6 +47,7 @@ module RelatonIetf
         formattedref: formattedref,
         relation: parse_relation,
         series: parse_series,
+        stream: @doc.at("./xmlns:stream")&.text,
       )
     end
 

@@ -20,18 +20,26 @@ RSpec.describe RelatonIetf::RfcEntry do
     end
 
     it "parse doc" do
-      expect(subject).to receive(:parse_docid)
-      expect(subject).to receive(:code).twice
-      expect(subject).to receive(:parse_title)
-      expect(subject).to receive(:parse_link)
-      expect(subject).to receive(:parse_date)
-      expect(subject).to receive(:parse_contributor)
-      expect(subject).to receive(:parse_keyword)
-      expect(subject).to receive(:parse_abstract)
-      expect(subject).to receive(:parse_relation)
-      expect(subject).to receive(:parse_status)
-      expect(subject).to receive(:parse_editorialgroup)
-      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).and_return :bib
+      expect(subject).to receive(:parse_docid).and_return :docid
+      expect(subject).to receive(:code).and_return :code
+      expect(subject).to receive(:parse_title).and_return :title
+      expect(subject).to receive(:parse_link).and_return :link
+      expect(subject).to receive(:parse_date).and_return :date
+      expect(subject).to receive(:parse_contributor).and_return :contributor
+      expect(subject).to receive(:parse_keyword).and_return :keyword
+      expect(subject).to receive(:parse_abstract).and_return :abstract
+      expect(subject).to receive(:parse_relation).and_return :relation
+      expect(subject).to receive(:parse_status).and_return :status
+      expect(subject).to receive(:parse_series).and_return :series
+      expect(subject).to receive(:parse_editorialgroup).and_return :editorialgroup
+      args = {
+        type: "standard", language: ["en"], script: ["Latn"], docid: :docid,
+        docnumber: :code, title: :title, link: :link, date: :date,
+        contributor: :contributor, keyword: :keyword, abstract: :abstract,
+        relation: :relation, status: :status, series: :series, stream: "IETF",
+        editorialgroup: :editorialgroup
+      }
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(args).and_return :bib
       expect(subject.parse).to be :bib
     end
 

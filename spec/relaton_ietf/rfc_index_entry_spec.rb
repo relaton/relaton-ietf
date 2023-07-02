@@ -67,14 +67,18 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
     subject { RelatonIetf::RfcIndexEntry.new doc, "BCP0001", ["RFC0002"] }
 
     it "parse" do
-      expect(subject).to receive(:make_title)
-      expect(subject).to receive(:docnumber)
-      expect(subject).to receive(:parse_docid)
-      expect(subject).to receive(:parse_link)
-      expect(subject).to receive(:formattedref)
-      expect(subject).to receive(:parse_relation)
-      expect(subject).to receive(:parse_series)
-      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).and_return(:bibitem)
+      expect(subject).to receive(:make_title).and_return :title
+      expect(subject).to receive(:docnumber).and_return :docnumber
+      expect(subject).to receive(:parse_docid).and_return :docid
+      expect(subject).to receive(:parse_link).and_return :link
+      expect(subject).to receive(:formattedref).and_return :formattedref
+      expect(subject).to receive(:parse_relation).and_return :relation
+      expect(subject).to receive(:parse_series).and_return :series
+      args = { title: :title, docnumber: :docnumber, type: "standard",
+               docid: :docid, language: ["en"], script: ["Latn"], link: :link,
+               formattedref: :formattedref, relation: :relation,
+               series: :series, stream: "IETF" }
+      expect(RelatonIetf::IetfBibliographicItem).to receive(:new).with(args).and_return(:bibitem)
       expect(subject.parse).to be :bibitem
     end
 
