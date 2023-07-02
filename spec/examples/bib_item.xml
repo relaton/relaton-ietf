@@ -46,12 +46,12 @@
     <title format="text/plain">STD</title>
     <number>91</number>
   </series>
-  <series type="stream">
-    <title format="text/plain">IETF</title>
-  </series>
   <series>
     <title format="text/plain">RFC</title>
     <number>8341</number>
+  </series>
+  <series type="stream">
+    <title format="text/plain">IETF</title>
   </series>
   <keyword>NETCONF RESTCONF</keyword>
   <keyword>YANG</keyword>
