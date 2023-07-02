@@ -64,7 +64,7 @@ module RelatonIetf
     #
     # @return [Hash] docunent hash representation
     #
-    def to_hash
+    def to_hash(embedded: false)
       hash = super
       return hash unless stream
 
