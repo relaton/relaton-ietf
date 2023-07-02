@@ -2,122 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/index-v1.zip
-    body:
-      encoding: US-ASCII
-      base64_string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2027'
-      Cache-Control:
-      - max-age=300
-      Content-Security-Policy:
-      - default-src 'none'; style-src 'unsafe-inline'; sandbox
-      Content-Type:
-      - application/zip
-      Etag:
-      - W/"957b10246c472a9dac09c2a2b1bb72448a6f519a98cc8488c35319d15eceeb40"
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Github-Request-Id:
-      - BE08:99AB:82760B:9BCFF9:64A0C2AE
-      Accept-Ranges:
-      - bytes
-      Date:
-      - Sun, 02 Jul 2023 00:19:58 GMT
-      Via:
-      - 1.1 varnish
-      X-Served-By:
-      - cache-atl18494-ATL
-      X-Cache:
-      - MISS
-      X-Cache-Hits:
-      - '0'
-      X-Timer:
-      - S1688257199.607403,VS0,VE113
-      Vary:
-      - Authorization,Accept-Encoding,Origin
-      Access-Control-Allow-Origin:
-      - "*"
-      Cross-Origin-Resource-Policy:
-      - cross-origin
-      X-Fastly-Request-Id:
-      - 18d9a6da0f547b768b4306309e0626bd6f66c87f
-      Expires:
-      - Sun, 02 Jul 2023 00:24:58 GMT
-      Source-Age:
-      - '0'
-    body:
-      encoding: UTF-8
-      base64_string: |
-        UEsDBBQAAAAIADBy4VYpWChxOwcAACg5AAANABwAaW5kZXgtdjEueWFtbFVU
-        CQADezWgZHs1oGR1eAsAAQTpAwAABHsAAABtmrGO5FQQRfP9iv6Bgb71np/t
-        CQEhkSFBQrjSgrTSkpHw9/S6hAQ+J23dxPe4a/pUzdvb24e3x/vnT++P777/
-        +TE+PB7vf3z+8vv749PHvz5++/rs+XyOb/7++OeX/+am5iZym+Y25JbmFnK7
-        5nbkDs0dyJ2aO5HL04J5MhgNhkGtOqw62nXYdbTssOxo22Hb0brDuqN9h31H
-        Cw8LLy28WHhp4cXCqzRYDCqZIplSMkUypWSKZErJFMmUkimSKSVTJFNKpkhm
-        KJlBMkPJDJIZSmaQzFAyg2SGkhkkM5TMIJmhZAbJDCUzSGYomUEyQ8kMkplK
-        ZpLMVDKTZKaSmSQzlcyUPxxKZpLMVDKTZKaSmSQzlcwkmalkJslMJTNJZlMy
-        G8lsSmYjmU3JbCSzKZmNZDYls8nfdCWzkcymZDaS2ZTMRjKbktlIZlMyG8ks
-        JbNIZimZRTJLySySWUpmkcxSMotklpJZ8nNLC18sfGnhi4UvLXyx8F0L31n4
-        roXvLHzXwncWvmvhOwvftfCdhe9a+M7Cd/0q7PIDV8nsJLMrmZ1kdiWzk8yh
-        ZA6SOZTMQTKHkjlI5lAyB8kcSuYgmUPJHCRzKJmDZA4lc4h7KJmDZA4lc5DM
-        qWROkjmVzEkyp5I5SeZUMifJnFr4ycJPLfxk4acWfrLwUws/xfa08NN0zxp/
-        fSpJq/z1qSSt89enkrTSIxqep30fIiKep/GJqHieBigi43kaoYiO52mIIkKe
-        pzGKKbk6edTJlZFJeZRRhJFqeUzLVbdjuq2+HfNtFe6YcKtxR4w7qtwR5Y46
-        d8S5o9Idke6odUesO6rdEe2OenfEu6PiHRHvqHlHzDuq3hH1jrp3xL2j8h2R
-        76h9R+w7qt8R/Y76d8S/owIeEfCogUcMPKrgEQWPOnjEwaMSHpHwqIVHLDyq
-        4RENj3p4xMOjIh4R8aiJR0w8quIRFY+6eMTFozIekfGojUdsPKrjER2P+njE
-        x6NCHhHyqJFHjDyq5BEljzp5xMmjUh6R8qiVR6w8quURLY96ecTLo2IeEfOo
-        mUfMPKrmETWPunnEzaNyHpHzqJ1H7Dyq5xE9j/p5xM+zlNESRqryEZWPunzE
-        5aMyH5H5qM1HbD6q8xGdj/p8xOejQh8R+qjRR4w+qvQRpY86fcTpo1Ifkfqo
-        1UesPqr1Ea2Pen3E66NiHxH7qNlHzD6q9hG1j7p9xO2jch+R+6jdR+w+qvcR
-        vY/6fcTvo4IfEfyo4UcMP6r4EcWPqntE3XNq86c0r5Yfsfyo5kc0P+r5Ec+P
-        in5E9KOmHzH9UtMvMf1S0y8x/VLTLzH9UtMvMf1S0y8x/VLTLzH9UtMvMf1S
-        0y8x/VLTLzH9UtMvMf1S0y8x/VLTLzH9UtMvMf3SS33Jpb50J1CyEyi91Zfc
-        6ku3ByXbg9LtQcn2oHR7ULI9KN0elN3rdXtQdrDX7UHpxV4Z2cletwdlN3vd
-        HpQd7XV7UHa11+1B2dletwdld3vdHpQd7nV7ULI9KN0elGwPSrcHJduD0u1B
-        yfagdHtQsj0o3R6UbA9Ktwcl24PS7UHJ9qB0e1C37cGPv/30uD/567Pn8zbl
-        v+buz925gdz9qTs3kbs/c+c25O5P3LmF3P15O8fnvb+RnTuQu7+PnTuRw1i/
-        grexfgXvb2MHw6AiCZFgpneQTDDSO0gomOgdJBUM9A4SC6Z0B9k3hnQHWThm
-        9BUsFo4R3UEWjgndQRaOAd1BFo753EEWjvHcQRaO6dxBFo7h3EH54iuZIhmM
-        5g6SDCbzFRwkg8HcQZLBXO6gTCclM0gGU7mDJIOh3EGSwUzuIMlgJHeQZLDP
-        7eD/yfzy6w+Yya/PMJO/5u6P0rkNufuTdG4hd3+Qzu3I3Z+jc3yO+wvWuRM5
-        zNoreJu1V/D+gnUwDGqFYYUYeB1kN/gB20GWg4HXQT41Bt4VLD41Bl4H+dQY
-        eB0sBrWeYj0YeB2cDOq7WHwXMfA6yMIx8DrIwjHwOsjXEQOvgySDgXcFB8lg
-        4HWQZDDwOkgyGHgdJBnMsQ6ycMyxDrJwzLEOsnDMsQ6ycBybruBkj7g1dZA9
-        4tTUQfaIS1MH2SMOTR3kG447UwdZOM5MHWThuDJ1kIXjyNRBKVzf8Mk3HIej
-        K7ixcNyNOsjCcTbqoPzR0sI3Fo6jUQdZOG5GHWThOBl1kIXjYtRBFo6DUQdZ
-        OO5FV3Dxq4BzUQdJBteiDpIMjkUdJBncijpIMjgVdVB+eCiZRTI4FHWQZHAn
-        6iDJ4EzUQZLBlegK7iSDI1EHSQY3og6SDE5EHSQZXIg6SDI4EHWQZHAf6qD8
-        JlQyO8ngOtRBksFxqIMkg9vQFTxIBqehDpIMLkMdJBkchjpIMrgLdZBkcBbq
-        IMngKtRBksFRqIPyc13JHCSDk1AHSQYXoSt4kgwOQh0kGfzPZwdJBoejDpIM
-        7kYdJBmcjTpIMrgadZBkcDTqIMngZtRBMSkl8+/J6B9QSwECHgMUAAAACAAw
-        cuFWKVgocTsHAAAoOQAADQAYAAAAAAABAAAApIEAAAAAaW5kZXgtdjEueWFt
-        bFVUBQADezWgZHV4CwABBOkDAAAEewAAAFBLBQYAAAAAAQABAFMAAACCBwAA
-        AAA=
-  recorded_at: Sun, 02 Jul 2023 00:19:58 GMT
-- request:
-    method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/BCP0047.yaml
     body:
       encoding: US-ASCII
@@ -157,21 +41,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - E2D4:728D:7C859C:95E0CC:64A0C2AE
+      - 4EEA:63A0:4639D5:56689C:64A181CC
       Accept-Ranges:
       - bytes
       Date:
-      - Sun, 02 Jul 2023 00:19:58 GMT
+      - Sun, 02 Jul 2023 13:55:24 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-atl18433-ATL
+      - cache-atl18468-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1688257199.819734,VS0,VE109
+      - S1688306124.313498,VS0,VE107
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -179,9 +63,9 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 832b9c9826a9855e85e7a0cfd632670b8a0c254b
+      - 8ad6506afc33dc5175eec99ca685946447d64d8a
       Expires:
-      - Sun, 02 Jul 2023 00:24:58 GMT
+      - Sun, 02 Jul 2023 14:00:24 GMT
       Source-Age:
       - '0'
     body:
@@ -203,5 +87,5 @@ http_interactions:
         IHR5cGU6IElFVEYKICAgICAgcHJpbWFyeTogdHJ1ZQogICAgZm9ybWF0dGVk
         cmVmOgogICAgICBjb250ZW50OiBSRkM1NjQ2CiAgICAgIGZvcm1hdDogdGV4
         dC9wbGFpbgpleHQ6CiAgc2NoZW1hLXZlcnNpb246IHYxLjAuMAo=
-  recorded_at: Sun, 02 Jul 2023 00:19:58 GMT
+  recorded_at: Sun, 02 Jul 2023 13:55:24 GMT
 recorded_with: VCR 6.2.0

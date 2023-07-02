@@ -7,7 +7,7 @@ module RelatonIetf
 
       def item_data(doc)
         data = super
-        data[:stream] = doc.at("/bibitem/ext/stream")&.text
+        data[:stream] = doc.at("ext/stream")&.text
         data
       end
 

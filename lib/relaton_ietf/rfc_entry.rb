@@ -53,7 +53,7 @@ module RelatonIetf
     #
     def parse_series
       title = RelatonBib::TypedTitleString.new(content: "RFC")
-      series_is_also + seires_stream + [RelatonBib::Series.new(title: title, number: docnum)]
+      series_is_also + [RelatonBib::Series.new(title: title, number: docnum)] + seires_stream
     end
 
     def series_is_also

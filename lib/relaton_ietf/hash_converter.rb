@@ -1,6 +1,14 @@
 module RelatonIetf
   class HashConverter < RelatonBib::HashConverter
     class << self
+      def hash_to_bib(hash)
+        ret = super
+        return unless ret
+
+        stream_hash_to_bib ret
+        ret
+      end
+
       #
       # Ovverides superclass's method
       #
@@ -18,6 +26,10 @@ module RelatonIetf
           Committee.new RelatonBib::WorkGroup.new(**wg)
         end
         ret[:editorialgroup] = RelatonBib::EditorialGroup.new technical_committee
+      end
+
+      def stream_hash_to_bib(ret)
+        ret[:stream] = ret[:ext][:stream] if ret[:ext]&.key? :stream
       end
     end
   end

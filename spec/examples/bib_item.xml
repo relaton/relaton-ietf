@@ -1,5 +1,5 @@
 <bibdata type="standard" schema-version="v1.2.3">
-  <fetched>2023-04-07</fetched>
+  <fetched>2023-07-02</fetched>
   <title type="main" format="text/plain">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
@@ -60,5 +60,6 @@
     <editorialgroup>
       <committee>netconf</committee>
     </editorialgroup>
+    <stream>IETF</stream>
   </ext>
 </bibdata>
