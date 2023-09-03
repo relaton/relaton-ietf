@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="v1.2.3">
+<bibdata type="standard" schema-version="v1.2.4">
   <fetched>2023-07-02</fetched>
   <title type="main" format="text/plain">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
@@ -56,7 +56,7 @@
   <keyword>NETCONF RESTCONF</keyword>
   <keyword>YANG</keyword>
   <keyword>XML</keyword>
-  <ext schema-version="v1.0.0">
+  <ext schema-version="v1.0.1">
     <editorialgroup>
       <committee>netconf</committee>
     </editorialgroup>

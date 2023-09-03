@@ -85,7 +85,7 @@ item.to_xml bibdata: true
       <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
       <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
       ...
-      <ext schema-version="v1.0.0">
+      <ext schema-version="v1.0.1">
         <editorialgroup>
           <committee>netconf</committee>
         </editorialgroup>

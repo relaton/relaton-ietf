@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="v1.2.3">
+<bibdata type="standard" schema-version="v1.2.4">
   <title format="text/plain" language="en" script="Latn">Forming Intuitive Email Addresses</title>
   <uri type="src">https://datatracker.ietf.org/doc/html/draft--pale-email-00</uri>
   <docidentifier type="Internet-Draft" primary="true">draft--pale-email-00</docidentifier>
@@ -32,7 +32,7 @@
     <title format="text/plain" language="en" script="Latn">Internet-Draft</title>
     <number>draft--pale-email-00</number>
   </series>
-  <ext schema-version="v1.0.0">
+  <ext schema-version="v1.0.1">
     <doctype>internet-draft</doctype>
   </ext>
 </bibdata>
