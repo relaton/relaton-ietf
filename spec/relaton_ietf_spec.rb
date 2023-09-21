@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe RelatonIetf do
+  before { RelatonIetf.instance_variable_set :@configuration, nil }
+
   it "has a version number" do
     expect(RelatonIetf::VERSION).not_to be nil
   end

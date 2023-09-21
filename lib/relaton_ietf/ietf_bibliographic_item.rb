@@ -13,7 +13,7 @@ module RelatonIetf
     # @param stream [String, nil]
     def initialize(**args)
       if args[:doctype] && !DOCTYPES.include?(args[:doctype])
-        warn "[relaton-ietf] WARNING: invalid doctype #{args[:doctype]}"
+        Util.warn "WARNING: invalid doctype `#{args[:doctype]}`"
       end
       @stream = args.delete(:stream)
       super

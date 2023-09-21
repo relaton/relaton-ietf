@@ -2,7 +2,7 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
   it "warn if doctype is invalid" do
     expect do
       described_class.new doctype: "type"
-    end.to output(/invalid doctype type/).to_stderr
+    end.to output(/\[relaton-ietf\] WARNING: invalid doctype `type`/).to_stderr
   end
 
   context "render BibXML" do
