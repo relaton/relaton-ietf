@@ -33,31 +33,42 @@ Or install it yourself as:
 
 == Usage
 
-=== Fetching documents
+=== Configuration
+
+Configuration is optional. The available option is `logger` which is a `Logger` instance. By default, the logger is `Logger.new($stderr)` with `Logger::WARN` level. To change the logger level, use `RelatonIetf.configure` block.
 
 [source,ruby]
 ----
 require 'relaton_ietf'
 => true
 
+RelatonIetf.configure do |config|
+  config.logger.level = Logger::DEBUG
+end
+----
+
+=== Fetching documents
+
+[source,ruby]
+----
 # Fetch RFC document
 item = RelatonIetf::IetfBibliography.get 'IETF RFC 8341'
-[relaton-ietf] ("IETF RFC 8341") fetching...
-[relaton-ietf] ("IETF RFC 8341") found RFC 8341
+[relaton-ietf] (IETF RFC 8341) fetching...
+[relaton-ietf] (IETF RFC 8341) found `RFC 8341`
 => #<RelatonIetf::IetfBibliographicItem:0x007fd1875e7f58
 ...
 
 # Fetch Internet-Draft document
 RelatonIetf::IetfBibliography.get 'IETF I-D.draft-abarth-cake-01'
-[relaton-ietf] ("IETF I-D.draft-abarth-cake-01") fetching...
-[relaton-ietf] ("IETF I-D.draft-abarth-cake-01") found draft-abarth-cake-01
+[relaton-ietf] (IETF I-D.draft-abarth-cake-01) fetching...
+[relaton-ietf] (IETF I-D.draft-abarth-cake-01) found `draft-abarth-cake-01`
 => #<RelatonIetf::IetfBibliographicItem:0x00007fdd129bbeb8
 ...
 
 # Return nil if a document doesn't exist.
 RelatonIetf::IetfBibliography.get 'IETF 1111'
-[relaton-ietf] ("IETF 1111") fetching...
-[relaton-ietf] ("IETF 1111") not found
+[relaton-ietf] (IETF 1111) fetching...
+[relaton-ietf] (IETF 1111) not found
 => nil
 ----
 
