@@ -29,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/zip
       Etag:
-      - W/"50f61b1fd0d25cf923c622d01a3349d2d4ab03ebf3f821d8ee579e9fd574f63b"
+      - W/"8a633da167dedaebcde7efe250596c5f25a4b0e9673014b8e6ec479b19708d1e"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -39,21 +39,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 7C38:3CDD:CB6B:F96F:6509FCDE
+      - 97C2:684D:6FB506:8913F5:652A0780
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 19 Sep 2023 19:56:14 GMT
+      - Sat, 14 Oct 2023 03:14:11 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-pdk-kpdk1780093-PDK
+      - cache-atl18469-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1695153375.538639,VS0,VE160
+      - S1697253251.207100,VS0,VE95
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -61,16 +61,16 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - b2d333069c9d8d05b014bbb9e055eb7e9504fcde
+      - af6aa4ce957a5131259d4da540b0714cb076182b
       Expires:
-      - Tue, 19 Sep 2023 20:01:14 GMT
+      - Sat, 14 Oct 2023 03:19:11 GMT
       Source-Age:
       - '0'
     body:
       encoding: UTF-8
       base64_string: |
-        UEsDBBQAAAAIAEhyM1cfv8UcQAcAAFI5AAANABwAaW5kZXgtdjEueWFtbFVU
-        CQADqK0JZaitCWV1eAsAAQTpAwAABH8AAABtmrGO5FQQRfP9iv6Bgb71/Pzs
+        UEsDBBQAAAAIADhyTVcfv8UcQAcAAFI5AAANABwAaW5kZXgtdjEueWFtbFVU
+        CQADjFEpZYxRKWV1eAsAAQTpAwAABH8AAABtmrGO5FQQRfP9iv6Bgb71/Pzs
         CQEhkSFBQrjSgrTSkpHw9/S6hAQ+J23dxPd4qvtUzdvb24e3x/vnT++P777/
         +TE+PB7vf3z+8vv749PHvz5++/rs+XyOb/7++OeX/+Y2zW3ITc1N5HbN7cgt
         zS3kDs0dyJ2aO5HL04J5MhgNhkGtOqw62nXYdbTssOxo22Hb0brDuqN9h31H
@@ -112,10 +112,10 @@ http_interactions:
         4JLUQflNqGQWyeCO1EGSwRmpgySDK9IVPEgGR6QOkgxuSB0kGZyQOkgyuCB1
         kGRwQOogyeB+1EGSwfmog/JzXckcJIPjUQdJBrejK3iSDE5HHSQZ/HdoB0kG
         J6YOkgwuTB0kGRyYOkgyuC91kGRwXuogyeC61EExKSXz73HpH1BLAQIeAxQA
-        AAAIAEhyM1cfv8UcQAcAAFI5AAANABgAAAAAAAEAAACkgQAAAABpbmRleC12
-        MS55YW1sVVQFAAOorQlldXgLAAEE6QMAAAR/AAAAUEsFBgAAAAABAAEAUwAA
+        AAAIADhyTVcfv8UcQAcAAFI5AAANABgAAAAAAAEAAACkgQAAAABpbmRleC12
+        MS55YW1sVVQFAAOMUSlldXgLAAEE6QMAAAR/AAAAUEsFBgAAAAABAAEAUwAA
         AIcHAAAAAA==
-  recorded_at: Tue, 19 Sep 2023 19:56:14 GMT
+  recorded_at: Sat, 14 Oct 2023 03:14:11 GMT
 - request:
     method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/BCP0047.yaml
@@ -157,21 +157,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 8B62:4634:ECB6:118E7:6509FCDE
+      - 5EB6:74CB:695ABB:82DFAB:652A0781
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 19 Sep 2023 19:56:15 GMT
+      - Sat, 14 Oct 2023 03:14:11 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-pdk-kpdk1780094-PDK
+      - cache-atl18458-ATL
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1695153375.905177,VS0,VE146
+      - S1697253251.366628,VS0,VE87
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -179,9 +179,9 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - b184729474d5ebb509a29c0c75832c2738f78360
+      - 52c1c84ff2fc000096e3bb6fd3e904c52e340bc1
       Expires:
-      - Tue, 19 Sep 2023 20:01:15 GMT
+      - Sat, 14 Oct 2023 03:19:11 GMT
       Source-Age:
       - '0'
     body:
@@ -203,5 +203,5 @@ http_interactions:
         IHR5cGU6IElFVEYKICAgICAgcHJpbWFyeTogdHJ1ZQogICAgZm9ybWF0dGVk
         cmVmOgogICAgICBjb250ZW50OiBSRkM1NjQ2CiAgICAgIGZvcm1hdDogdGV4
         dC9wbGFpbgpleHQ6CiAgc2NoZW1hLXZlcnNpb246IHYxLjAuMQo=
-  recorded_at: Tue, 19 Sep 2023 19:56:14 GMT
+  recorded_at: Sat, 14 Oct 2023 03:14:11 GMT
 recorded_with: VCR 6.2.0

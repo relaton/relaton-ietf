@@ -81,11 +81,11 @@ RSpec.describe RelatonIetf do
     end
   end
 
-  it "get FYI" do
-    VCR.use_cassette "fyi_2" do
+  it "get FYI", vcr: "fyi_2" do
+    expect do
       item = RelatonIetf::IetfBibliography.get "FYI 2"
       expect(item.docidentifier[0].id).to eq "FYI 2"
-    end
+    end.to output(/\[relaton-ietf\] \(FYI 2\) Fetching from Relaton repository \.\.\./).to_stderr
   end
 
   it "get STD" do
@@ -99,7 +99,7 @@ RSpec.describe RelatonIetf do
     VCR.use_cassette "error" do
       expect do
         RelatonIetf::IetfBibliography.get "CN 8341"
-      end.to output(/not found/).to_stderr
+      end.to output(/Not found\./).to_stderr
     end
   end
 

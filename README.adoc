@@ -53,22 +53,22 @@ end
 ----
 # Fetch RFC document
 item = RelatonIetf::IetfBibliography.get 'IETF RFC 8341'
-[relaton-ietf] (IETF RFC 8341) fetching...
-[relaton-ietf] (IETF RFC 8341) found `RFC 8341`
+[relaton-ietf] (IETF RFC 8341) Fetching from Relaton repository ...
+[relaton-ietf] (IETF RFC 8341) Found: `RFC 8341`
 => #<RelatonIetf::IetfBibliographicItem:0x007fd1875e7f58
 ...
 
 # Fetch Internet-Draft document
 RelatonIetf::IetfBibliography.get 'IETF I-D.draft-abarth-cake-01'
-[relaton-ietf] (IETF I-D.draft-abarth-cake-01) fetching...
-[relaton-ietf] (IETF I-D.draft-abarth-cake-01) found `draft-abarth-cake-01`
+[relaton-ietf] (IETF I-D.draft-abarth-cake-01) Fetching from Relaton repository ...
+[relaton-ietf] (IETF I-D.draft-abarth-cake-01) Found: `draft-abarth-cake-01`
 => #<RelatonIetf::IetfBibliographicItem:0x00007fdd129bbeb8
 ...
 
 # Return nil if a document doesn't exist.
 RelatonIetf::IetfBibliography.get 'IETF 1111'
-[relaton-ietf] (IETF 1111) fetching...
-[relaton-ietf] (IETF 1111) not found
+[relaton-ietf] (IETF 1111) Fetching from Relaton repository ...
+[relaton-ietf] (IETF 1111) Not found.
 => nil
 ----
 

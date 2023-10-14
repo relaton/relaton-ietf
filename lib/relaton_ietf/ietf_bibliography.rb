@@ -18,13 +18,13 @@ module RelatonIetf
       #   reference is required
       # @return [RelatonIetf::IetfBibliographicItem] Relaton of reference
       def get(code, _year = nil, _opts = {})
-        Util.warn "(#{code}) fetching..."
+        Util.warn "(#{code}) Fetching from Relaton repository ..."
         result = search code
         if result
           docid = result.docidentifier.detect(&:primary) || result.docidentifier.first
-          Util.warn "(#{code}) found `#{docid.id}`"
+          Util.warn "(#{code}) Found: `#{docid.id}`"
         else
-          Util.warn "(#{code}) not found"
+          Util.warn "(#{code}) Not found."
         end
         result
       end

@@ -9,4 +9,5 @@ VCR.configure do |config|
     preserve_exact_body_bytes: true,
   }
   config.hook_into :webmock
+  config.configure_rspec_metadata!
 end
