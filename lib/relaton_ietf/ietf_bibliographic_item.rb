@@ -1,20 +1,14 @@
 module RelatonIetf
   class IetfBibliographicItem < RelatonBib::BibliographicItem
-    DOCTYPES = %w[rfc internet-draft].freeze
-
     # @return [String, nil]
-    attr_reader :doctype, :stream
+    attr_reader :stream
 
     # @return [Array<String>]
     attr_reader :keyword
 
-    # @param doctype [String]
     # @param keyword [Array<String>]
     # @param stream [String, nil]
     def initialize(**args)
-      if args[:doctype] && !DOCTYPES.include?(args[:doctype])
-        Util.warn "WARNING: Invalid doctype: `#{args[:doctype]}`"
-      end
       @stream = args.delete(:stream)
       super
     end
@@ -47,7 +41,7 @@ module RelatonIetf
         if opts[:bibdata] && (doctype || editorialgroup || ics&.any? ||
           structuredidentifier&.presence? || stream)
           ext = builder.ext do |b|
-            b.doctype doctype if doctype
+            doctype&.to_xml b
             b.subdoctype subdoctype if subdoctype
             editorialgroup&.to_xml b
             ics.each { |i| i.to_xml b }
