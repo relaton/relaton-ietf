@@ -21,7 +21,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '2032'
+      - '2038'
       Cache-Control:
       - max-age=300
       Content-Security-Policy:
@@ -29,7 +29,7 @@ http_interactions:
       Content-Type:
       - application/zip
       Etag:
-      - W/"7eb2b2abdc008b0bc930050724e432aaef469f6987a8a999f79a0f596eb0aadf"
+      - W/"28dce4b6c1f03361be68332fed9c96880b458d30d7af9a916368f13c00a76dde"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -39,21 +39,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 50EC:427B:1C7F96:22CD52:655F8BAD
+      - EAEE:79A7:15238BF:1A65B09:6594E8EB
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Nov 2023 17:28:13 GMT
+      - Wed, 03 Jan 2024 04:56:11 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-pdk-kpdk1780038-PDK
+      - cache-pdk-kpdk1780030-PDK
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1700760494.682048,VS0,VE164
+      - S1704257772.732522,VS0,VE144
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -61,25 +61,25 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 228c4c98b8241710a32e8b001a89e0bc233ce8ef
+      - 7bf16c4f965a751672da14f8ebb8707f58cd5f9e
       Expires:
-      - Thu, 23 Nov 2023 17:33:13 GMT
+      - Wed, 03 Jan 2024 05:01:11 GMT
       Source-Age:
       - '0'
     body:
       encoding: UTF-8
       base64_string: |
-        UEsDBBQAAAAIAEZyd1cfv8UcQAcAAFI5AAANABwAaW5kZXgtdjEueWFtbFVU
-        CQADI19fZSNfX2V1eAsAAQTpAwAABH8AAABtmrGO5FQQRfP9iv6Bgb71/Pzs
-        CQEhkSFBQrjSgrTSkpHw9/S6hAQ+J23dxPd4qvtUzdvb24e3x/vnT++P777/
-        +TE+PB7vf3z+8vv749PHvz5++/rs+XyOb/7++OeX/+Y2zW3ITc1N5HbN7cgt
-        zS3kDs0dyJ2aO5HL04J5MhgNhkGtOqw62nXYdbTssOxo22Hb0brDuqN9h31H
+        UEsDBBQAAAAIAEtyIlgAywohRgcAAHw5AAANABwAaW5kZXgtdjEueWFtbFVU
+        CQADLhuUZS4blGV1eAsAAQTpAwAABH8AAABtmrGO5FQQRfP9iv6Bgb71np/t
+        CQEhkSFBQrjSgrTSkpHw9/S6hAQ+J23dpO/xlPtUzdvb24e3x/vnT++P777/
+        +TE+PB7vf3z+8vv749PHvz5++/rs+XyOb/7++OeX/+am5iZym+Y25JbmFnK7
+        5nbkDs0dyJ2aO5HL04J5MhgNhkGtOqw62nXYdbTssOxo22Hb0brDuqN9h31H
         Cw8LLy28WHhp4cXCqzRYDCqZIplSMkUypWSKZErJFMmUkimSKSVTJFNKpkhm
-        KJlBMkPJDJIZSmaQzFAyg2SGkhkkM5TMIJmhZAbJDCUzSGYomUEyQ8kMktmU
-        zEYym5LZSGZTMhvJbEpmky8OJbORzKZkNpLZlMxGMpuS2UhmUzIbyWxKZiOZ
-        qWQmyUwlM0lmKplJMlPJTJKZSmbKd7qSmSQzlcwkmalkJslMJTNJZiqZSTK7
-        ktlJZlcyO8nsSmYnmV3J7CSzK5mdZHYls8vPLS18Z+G7Fr6z8F0L31n40sIX
-        C19a+GLhSwtfLHxp4YuFLy18sfClhS8WvvRPYckPXCWzSGYpmUUyS8kskjmU
+        KJlBMkPJDJIZSmaQzFAyg2SGkhkkM5TMIJmhZAbJDCUzSGYomUEyQ8kMkplK
+        ZpLMVDKTZKaSmSQzlcyUF4eSmSQzlcwkmalkJslMJTNJZiqZSTJTyUyS2ZTM
+        RjKbktlIZlMyG8lsSmYjmU3JbPJOVzIbyWxKZiOZTclsJLMpmY1kNiWzkcxS
+        MotklpJZJLOUzCKZpWQWySwls0hmKZklP7e08MXClxa+WPjSwhcL37XwnYXv
+        WvjOwnctfGfhuxa+s/BdC99Z+K6F7yx81z+FXX7gKpmdZHYls5PMrmR2kjmU
         zEEyh5I5SOZQMgfJHErmIJlDyRwkcyiZg2QOJXOQzKFkDnEPJXOQzKFkDpI5
         lcxJMqeSOUnmVDInyZxK5iSZUws/WfiphZ8s/NTCTxZ+auGn2J4WfpruWeOv
         TyVplb8+laR1/vpUklZ6RMPztL+HiIjnaXwiKp6nAYrIeJ5GKKLjeRqiiJDn
@@ -88,34 +88,34 @@ http_interactions:
         O2rfEfuO6ndEv6P+HfHvqIBHBDxq4BEDjyp4RMGjDh5x8KiERyQ8auERC49q
         eETDox4e8fCoiEdEPGriEROPqnhExaMuHnHxqIxHZDxq4xEbj+p4RMejPh7x
         8aiQR4Q8auQRI48qeUTJo04ecfKolEekPGrlESuPanlEy6NeHvHyqJhHxDxq
-        5hEzj6p5RM2jbh5x86icR+Q8aucRO4/qeUTPo34e8fPsymgXRqryEZWPunzE
-        5aMyH5H5qM1HbD6q8xGdj/p8xOejQh8R+qjRR4w+qvQRpY86fcTpo1Ifkfqo
-        1UesPqr1Ea2Pen3E66NiHxH7qNlHzD6q9hG1j7p9xO2jch+R+6jdR+w+qvcR
-        vY/6fcTvo4IfEfyo4UcMP6r4EcWPqntE3XNq86c0r5Yfsfyo5kc0P+r5Ec+P
-        in5E9KOmHzH9UtMvMf1S0y8x/VLTLzH9UtMvMf1S0y8x/VLTLzH9UtMvMf1S
-        0y8x/VLTLzH9UtMvMf1S0y8x/VLTLzH9UtMvMf3SS33Jpb50J1CyEyi91Zfc
-        6ku3ByXbg9LtQcn2oHR7ULI9KN0elN3rdXtQdrDX7UHpxV4Z2cletwdlN3vd
-        HpQd7XV7UHa11+1B2dletwdld3vdHpQd7nV7ULI9KN0elGwPSrcHJduD0u1B
-        yfagdHtQsj0o3R6UbA9Ktwcl24PS7UHJ9qB0e1CyPSjdHtRte/Djbz897h29
-        Pns+b98HX3P3hjo3kLv307kNuXs7nZvI3bvp3I7cvZnOLeTuvXSOvdzf3M6d
-        yOEL4ArevgCu4P297WAYVCQhEkz/DpIJhn8HCQWzv4OkgtHfQWLBPO8g+8Y4
-        7yALxzS/gsXCMcw7yMIxyzvIwjHKO8jCMck7yMIxyDvIwjHHO8jCMcY7yD8E
-        TPEOyoRQMkUymOFXcJAMRngHSQYTvIMynZTMIBnM7w6SDMZ3B0kG07uDJIPh
-        3UGSwezu4P/J/PLrD5jJr88wk7/m7o/SuYnc/Uk6tyN3f5DOLeTuz9E5Psf9
-        BevciRxm7RW8zdoreH/BOhgGtcKwQgy8DrIb/NTtIMvBwOsgnxoD7woWnxoD
-        r4N8agy8DhaDWk+xHgy8Dm4M6rtYfBcx8DrIwjHwOsjCMfA6yNcRA6+DJIOB
-        dwUHyWDgdZBkMPA6SDIYeB0kGcyxDrJwzLEOsnDMsQ6ycMyxDrJwnKWu4MYe
-        cZXqIHvEUaqD7BE3qQ6yR5ykOsg3HBepDrJwHKQ6yMJxj+ogC8c5qoNSuL7h
-        G99wnJiu4GThuDB1kIXjwNRB+dLSwicLx3mpgywc16UOsnAclzrIwnFb6iAL
-        x2mpgywcl6UruPNPAYelDpIM7kodJBmclTpIMrgqdZBkcFTqoPzwUDI7yeCk
-        1EGSwUWpgySDg1IHSQb3pCu4SAbnpA6SDK5JHSQZHJM6SDK4JXWQZHBK6iDJ
-        4JLUQflNqGQWyeCO1EGSwRmpgySDK9IVPEgGR6QOkgxuSB0kGZyQOkgyuCB1
-        kGRwQOogyeB+1EGSwfmog/JzXckcJIPjUQdJBrejK3iSDE5HHSQZ/HdoB0kG
-        J6YOkgwuTB0kGRyYOkgyuC91kGRwXuogyeC61EExKSXz73HpH1BLAQIeAxQA
-        AAAIAEZyd1cfv8UcQAcAAFI5AAANABgAAAAAAAEAAACkgQAAAABpbmRleC12
-        MS55YW1sVVQFAAMjX19ldXgLAAEE6QMAAAR/AAAAUEsFBgAAAAABAAEAUwAA
-        AIcHAAAAAA==
-  recorded_at: Thu, 23 Nov 2023 17:28:13 GMT
+        5hEzj6p5RM2jbh5x86icR+Q8aucRO4/qeUTPo34e8fMsZbSEkap8ROWjLh9x
+        +ajMR2Q+avMRm4/qfETnoz4f8fmo0EeEPmr0EaOPKn1E6aNOH3H6qNRHpD5q
+        9RGrj2p9ROujXh/x+qjYR8Q+avYRs4+qfUTto24fcfuo3EfkPmr3EbuP6n1E
+        76N+H/H7qOBHBD9q+BHDjyp+RPGj6h5R95za/CnNq+VHLD+q+RHNj3p+xPOj
+        oh8R/ajpR0y/1PRLTL/U9EtMv9T0S0y/1PRLTL/U9EtMv9T0S0y/1PRLTL/U
+        9EtMv9T0S0y/1PRLTL/U9EtMv9T0S0y/1PRLTL/0Ul9yqS/dCZTsBEpv9SW3
+        +tLtQcn2oHR7ULI9KN0elGwPSrcHZfd63R6UHex1e1B6sVdGdrLX7UHZzV63
+        B2VHe90elF3tdXtQdrbX7UHZ3V63B2WHe90elGwPSrcHJduD0u1ByfagdHtQ
+        sj0o3R6UbA9Ktwcl24PS7UHJ9qB0e1CyPSjdHpRsD0q3ByXbg9LtQd22Bz/+
+        9tPj3ubrs+fz9ub4mrt32bmB3L3Jzk3k7j12bkPu3mLnFnL3Dju3I3dvsHMH
+        cvf+Osf+8Kq4grdXxRW8P+EdDIOKJESC90QHyQSviQ4SCt4SHSQVvCQ6SCyY
+        /B1k3xj8HZQHVgsvFo6x30EWjqnfQRaOod9BFo6Z30EWjpHfQRaOid9BFo6B
+        30H+IWDed5BkMO47SDKY9ldwkAyGfQdJBrO+gzKdlMwgGUz6DpIMBn0HSQZz
+        voMkgzHfQZLBlO/g/8n88usPmMmvzzCTv+buX6VzG3L3b9K5hdz9i3RuR+7+
+        PTrH73F/wDp3IodZewVvs/YK3h+wDoZBrTCsEAOvg+wGP4o7yHIw8DrIb42B
+        dwWL3xoDr4P81hh4HSwGtZ5iPRh4HZwM6rNYfBYx8DrIwjHwOsjCMfA6yMcR
+        A6+DJIOBdwUHyWDgdZBkMPA6SDIYeB0kGcyxDrJwzLEOsnDMsQ6ycMyxDrJw
+        HLCu4GSPuF91kD3ifNVB9ojrVQfZI45XHeQTjttVB1k4TlcdZOG4XHWQheNw
+        1UEpXJ/wySccx6gruLFw3KI6yMJxiuqgvLS08I2F4xDVQRaOO1QHWTjOUB1k
+        4bhCdZCF4wjVQRaOG9QVXPxTwAmqgySDC1QHSQYHqA6SDO5PHSQZnJ86KD88
+        lMwiGRyfOkgyuD11kGRweuogyeDydAV3ksHhqYMkg7tTB0kGZ6cOkgyuTh0k
+        GRydOkgyuDl1UH4TKpmdZHBx6iDJ4ODUQZLBvekKHiSDc1MHSQbXpg6SDI5N
+        HSQZ3Jo6SDI4NXWQZHBp6iDJ4NDUQfm5rmQOksGZqYMkgyvTFTxJBkemDpIM
+        /o+0gySDY1QHSQa3qA6SDE5RHSQZXKI6SDI4RHWQZHCH6qCYlJL59wz1D1BL
+        AQIeAxQAAAAIAEtyIlgAywohRgcAAHw5AAANABgAAAAAAAEAAACkgQAAAABp
+        bmRleC12MS55YW1sVVQFAAMuG5RldXgLAAEE6QMAAAR/AAAAUEsFBgAAAAAB
+        AAEAUwAAAI0HAAAAAA==
+  recorded_at: Wed, 03 Jan 2024 04:56:11 GMT
 - request:
     method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/data/BCP0047.yaml
@@ -147,7 +147,7 @@ http_interactions:
       Content-Type:
       - text/plain; charset=utf-8
       Etag:
-      - W/"8b3fba3f68dc5e8bd1a4dbd7ff889dd6c8491bd50b8e5eae964dcff97215b98f"
+      - W/"98713ce126c2db40868c910f75dfe3bb84ed4006afb3d71d954d08b4d2dea4b7"
       Strict-Transport-Security:
       - max-age=31536000
       X-Content-Type-Options:
@@ -157,21 +157,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - EF2A:12DC:CD5162:FA9044:655F8BAD
+      - 51E8:5CF0:172E535:1C6F4C3:6594E8E9
       Accept-Ranges:
       - bytes
       Date:
-      - Thu, 23 Nov 2023 17:28:14 GMT
+      - Wed, 03 Jan 2024 04:56:12 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-pdk-kpdk1780031-PDK
+      - cache-pdk-kpdk1780121-PDK
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1700760494.908669,VS0,VE132
+      - S1704257772.019676,VS0,VE86
       Vary:
       - Authorization,Accept-Encoding,Origin
       Access-Control-Allow-Origin:
@@ -179,15 +179,15 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 3679f12edff32ebce0559783b6d5089af3cfafa3
+      - 97adeb616ed9ab0dec428fd0aab8a550ce4c65cc
       Expires:
-      - Thu, 23 Nov 2023 17:33:14 GMT
+      - Wed, 03 Jan 2024 05:01:12 GMT
       Source-Age:
       - '0'
     body:
       encoding: ASCII-8BIT
       base64_string: |
-        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjUKaWQ6IEJDUDQ3CnRpdGxlOgot
+        LS0tCnNjaGVtYS12ZXJzaW9uOiB2MS4yLjcKaWQ6IEJDUDQ3CnRpdGxlOgot
         IGNvbnRlbnQ6IEJlc3QgQ3VycmVudCBQcmFjdGljZSA0NwogIGxhbmd1YWdl
         OgogIC0gZW4KICBzY3JpcHQ6CiAgLSBMYXRuCiAgZm9ybWF0OiB0ZXh0L3Bs
         YWluCmxpbms6Ci0gY29udGVudDogaHR0cHM6Ly93d3cucmZjLWVkaXRvci5v
@@ -203,5 +203,5 @@ http_interactions:
         IHR5cGU6IElFVEYKICAgICAgcHJpbWFyeTogdHJ1ZQogICAgZm9ybWF0dGVk
         cmVmOgogICAgICBjb250ZW50OiBSRkM1NjQ2CiAgICAgIGZvcm1hdDogdGV4
         dC9wbGFpbgpleHQ6CiAgc2NoZW1hLXZlcnNpb246IHYxLjAuMQo=
-  recorded_at: Thu, 23 Nov 2023 17:28:13 GMT
+  recorded_at: Wed, 03 Jan 2024 04:56:12 GMT
 recorded_with: VCR 6.2.0

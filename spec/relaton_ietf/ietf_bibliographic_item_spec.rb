@@ -48,13 +48,13 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
       expect(subject.to_hash).to eq(
         "docid" => [{ "id" => "RFC 123", "type" => "IETF" }], "doctype" => { "type" => "RFC" },
         "ext" => { "schema-version" => "v1.0.1", "stream" => "IETF" },
-        "id" => "RFC123", "schema-version" => "v1.2.5"
+        "id" => "RFC123", "schema-version" => "v1.2.8"
       )
     end
 
     it "to_xml" do
       expect(subject.to_xml(bibdata: true)).to be_equivalent_to <<~XML
-        <bibdata schema-version="v1.2.5">
+        <bibdata schema-version="v1.2.8">
           <docidentifier type="IETF">RFC 123</docidentifier>
           <ext schema-version="v1.0.1">
             <doctype>RFC</doctype>
