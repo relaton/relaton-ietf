@@ -58,7 +58,19 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
           <bcp-entry>
             <doc-id>BCP0001</doc-id>
             <stream>IETF</stream>
+            <is-also>
+              <doc-id>RFC0002</doc-id>
+            </is-also>
           </bcp-entry>
+          <rfc-entry>
+            <doc-id>RFC0002</doc-id>
+            <title>Test</title>
+            <author>
+              <name>Author</name>
+            </author>
+            <current-status>PROPOSED STANDARD</current-status>
+            <doi>10.17487/RFC0002</doi>
+          </rfc-entry>
         </rfc-index>
       XML
       xml.at "/xmlns:rfc-index/xmlns:bcp-entry"
@@ -134,6 +146,9 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(rels.first).to be_instance_of Hash
       expect(rels.first[:bibitem]).to be_instance_of RelatonIetf::IetfBibliographicItem
       expect(rels.first[:bibitem].docidentifier.first.id).to eq "RFC 2"
+      expect(rels.first[:bibitem].title.first.title.content).to eq "Test"
+      expect(rels.first[:bibitem].contributor.first.entity.name.completename.content).to eq "Author"
+      expect(rels.first[:type]).to eq "includes"
     end
 
     it "parse series" do
