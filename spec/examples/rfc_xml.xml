@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="v1.2.8">
+<bibdata type="standard" schema-version="v1.2.9">
   <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
   <docidentifier type="Internet-Draft" primary="true">draft-ietf-acvp-subsha-1.0</docidentifier>
   <docidentifier type="IETF" scope="docName">draft-ietf-acvp-subsha-1.0</docidentifier>
