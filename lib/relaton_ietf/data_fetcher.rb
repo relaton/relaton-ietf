@@ -168,8 +168,8 @@ module RelatonIetf
       rfc_index.xpath("xmlns:rfc-entry").each do |doc|
         save_doc RfcEntry.parse(doc)
       rescue StandardError => e
-        warn "Error parsing #{doc.at('./xmlns:doc-id').text}: #{e.message}"
-        warn e.backtrace[0..5].join("\n")
+        Util.error "Error parsing #{doc.at('./xmlns:doc-id').text}: #{e.message}\n" \
+          "#{e.backtrace[0..5].join("\n")}"
       end
     end
 
@@ -199,7 +199,7 @@ module RelatonIetf
           end
       file = file_name entry
       if check_duplicate && @files.include?(file)
-        warn "File #{file} already exists. Document: #{entry.docnumber}"
+        Util.warn "File #{file} already exists. Document: #{entry.docnumber}"
       elsif check_duplicate
         @files << file
       end

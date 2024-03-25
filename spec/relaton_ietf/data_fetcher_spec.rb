@@ -223,7 +223,7 @@ RSpec.describe RelatonIetf::DataFetcher do
       expect(File).to receive(:write)
         .with("dir/RFC0001.xml", "<xml/>", encoding: "UTF-8")
       expect { subject.save_doc entry }
-        .to output(/File dir\/RFC0001.xml already exists/).to_stderr
+        .to output(/File dir\/RFC0001.xml already exists/).to_stderr_from_any_process
     end
 
     it "downcase file name for ID" do
