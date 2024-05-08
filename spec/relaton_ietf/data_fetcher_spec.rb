@@ -212,7 +212,7 @@ RSpec.describe RelatonIetf::DataFetcher do
     it "yaml" do
       subject.instance_variable_set(:@format, "yaml")
       subject.instance_variable_set(:@ext, "yaml")
-      expect(entry).to receive(:to_hash).and_return({ id: 123 })
+      expect(entry).to receive(:to_h).and_return({ id: 123 })
       expect(File).to receive(:write).with("dir/RFC0001.yaml", /id: 123/, encoding: "UTF-8")
       subject.save_doc entry
     end

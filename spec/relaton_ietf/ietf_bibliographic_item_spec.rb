@@ -19,7 +19,7 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
     it "don't render contributor RFC Publisher" do
       org = RelatonBib::Organization.new(name: "RFC Publisher")
       role = { type: "publisher" }
-      rfc_publisher = RelatonBib::ContributionInfo.new entity: org, role: [role]
+      rfc_publisher = RelatonBib::Contributor.new entity: org, role: [role]
       docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: "RFC 123")
       item = described_class.new docid: [docid], contributor: [rfc_publisher]
       bibxml = item.to_bibxml
@@ -29,7 +29,7 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
     it "render not RFC Publisher contributor" do
       org = RelatonBib::Organization.new(name: "RFC Series")
       role = { type: "publisher" }
-      rfc_publisher = RelatonBib::ContributionInfo.new entity: org, role: [role]
+      rfc_publisher = RelatonBib::Contributor.new entity: org, role: [role]
       docid = RelatonBib::DocumentIdentifier.new(type: "IETF", id: "RFC 123")
       item = described_class.new docid: [docid], contributor: [rfc_publisher]
       bibxml = item.to_bibxml
@@ -44,17 +44,17 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
       described_class.new(doctype: doctype, stream: "IETF", docid: [docid])
     end
 
-    it "to_hash" do
-      expect(subject.to_hash).to eq(
+    it "to_h" do
+      expect(subject.to_h).to eq(
         "docid" => [{ "id" => "RFC 123", "type" => "IETF" }], "doctype" => { "type" => "RFC" },
         "ext" => { "schema-version" => "v1.0.1", "stream" => "IETF" },
-        "id" => "RFC123", "schema-version" => "v1.2.8"
+        "id" => "RFC123", "schema-version" => "v1.3.0"
       )
     end
 
     it "to_xml" do
       expect(subject.to_xml(bibdata: true)).to be_equivalent_to <<~XML
-        <bibdata schema-version="v1.2.8">
+        <bibdata schema-version="v1.3.0">
           <docidentifier type="IETF">RFC 123</docidentifier>
           <ext schema-version="v1.0.1">
             <doctype>RFC</doctype>
