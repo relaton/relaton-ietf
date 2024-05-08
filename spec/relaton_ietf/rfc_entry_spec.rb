@@ -61,7 +61,7 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(title.size).to be 1
       expect(title[0]).to be_instance_of RelatonBib::TypedTitleString
       expect(title[0].type).to eq "main"
-      expect(title[0].title.content).to eq "Echo function for ISO 8473"
+      expect(title[0].to_s).to eq "Echo function for ISO 8473"
     end
 
     it "parse link" do
@@ -87,7 +87,7 @@ RSpec.describe RelatonIetf::RfcEntry do
         contr = subject.parse_contributor
         expect(contr).to be_instance_of Array
         expect(contr.size).to be 3
-        expect(contr[0]).to be_instance_of RelatonBib::ContributionInfo
+        expect(contr[0]).to be_instance_of RelatonBib::Contributor
         expect(contr[0].role[0].type).to eq "author"
         expect(contr[0].entity).to be_instance_of RelatonBib::Person
         expect(contr[0].entity.name.completename.content).to eq "R.A. Hagens"
@@ -136,7 +136,7 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(rel.size).to be 2
       expect(rel[0]).to be_instance_of RelatonBib::DocumentRelation
       expect(rel[0].type).to eq "obsoletedBy"
-      expect(rel[0].bibitem.formattedref.content).to eq "RFC1574"
+      expect(rel[0].bibitem.formattedref.to_s).to eq "RFC1574"
       expect(rel[0].bibitem.docidentifier[0].id).to eq "RFC1574"
       expect(rel[0].bibitem.docidentifier[0].type).to eq "IETF"
       expect(rel[0].bibitem.docidentifier[0].primary).to be true
@@ -151,11 +151,11 @@ RSpec.describe RelatonIetf::RfcEntry do
       expect(ser).to be_instance_of Array
       expect(ser.size).to be 3
       expect(ser[0]).to be_instance_of RelatonBib::Series
-      expect(ser[0].title.title.content).to eq "BCP"
+      expect(ser[0].title.to_s).to eq "BCP"
       expect(ser[0].number).to eq "26"
-      expect(ser[1].title.title.content).to eq "RFC"
+      expect(ser[1].title.to_s).to eq "RFC"
       expect(ser[1].number).to eq "139"
-      expect(ser[2].title.title.content).to eq "IETF"
+      expect(ser[2].title.to_s).to eq "IETF"
       expect(ser[2].type).to eq "stream"
     end
 

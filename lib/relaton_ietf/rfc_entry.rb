@@ -169,7 +169,7 @@ module RelatonIetf
           fname = BibXMLParser.full_name name, nil, nil, "en", "Latn"
           entity = RelatonBib::Person.new(name: fname)
         end
-        RelatonBib::ContributionInfo.new(entity: entity, role: parse_role(contrib))
+        RelatonBib::Contributor.new(entity: entity, role: parse_role(contrib))
       end
       contribs << create_org_contrib("RFC Publisher", "publisher")
       contribs << create_org_contrib("RFC Series", "authorizer")
@@ -177,7 +177,7 @@ module RelatonIetf
 
     def create_org_contrib(org_name, role_type)
       org = RelatonBib::Organization.new name: org_name
-      RelatonBib::ContributionInfo.new entity: org, role: [{ type: role_type }]
+      RelatonBib::Contributor.new entity: org, role: [{ type: role_type }]
     end
 
     #
@@ -240,7 +240,7 @@ module RelatonIetf
     def parse_relation
       types = { "updates" => "updates", "obsoleted-by" => "obsoletedBy"}
       @doc.xpath("./xmlns:updates/xmlns:doc-id|./xmlns:obsoleted-by/xmlns:doc-id").map do |r|
-        fref = RelatonBib::FormattedRef.new(content: r.text)
+        fref = RelatonBib::FormattedRef.new(r.text)
         docid = RelatonBib::DocumentIdentifier.new type: "IETF", id: r.text, primary: true
         bib = IetfBibliographicItem.new(formattedref: fref, docid: [docid])
         RelatonBib::DocumentRelation.new(type: types[r.parent.name], bibitem: bib)

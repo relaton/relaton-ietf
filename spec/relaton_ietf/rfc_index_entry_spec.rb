@@ -100,19 +100,19 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
         expect(title).to be_instance_of Array
         expect(title.length).to eq 1
         expect(title.first).to be_instance_of RelatonBib::TypedTitleString
-        expect(title.first.title.content).to eq "Best Current Practice 1"
+        expect(title.first.to_s).to eq "Best Current Practice 1"
       end
 
       it "FYI" do
         subject.instance_variable_set :@name, "fyi"
         title = subject.make_title
-        expect(title.first.title.content).to eq "For Your Information 1"
+        expect(title.first.to_s).to eq "For Your Information 1"
       end
 
       it "STD" do
         subject.instance_variable_set :@name, "std"
         title = subject.make_title
-        expect(title.first.title.content).to eq "Internet Standard technical specification 1"
+        expect(title.first.to_s).to eq "Internet Standard technical specification 1"
       end
     end
 
@@ -146,7 +146,7 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(rels.first).to be_instance_of Hash
       expect(rels.first[:bibitem]).to be_instance_of RelatonIetf::IetfBibliographicItem
       expect(rels.first[:bibitem].docidentifier.first.id).to eq "RFC 2"
-      expect(rels.first[:bibitem].title.first.title.content).to eq "Test"
+      expect(rels.first[:bibitem].title.first.to_s).to eq "Test"
       expect(rels.first[:bibitem].contributor.first.entity.name.completename.content).to eq "Author"
       expect(rels.first[:type]).to eq "includes"
     end
@@ -157,7 +157,7 @@ RSpec.describe RelatonIetf::RfcIndexEntry do
       expect(series.size).to eq 1
       expect(series.first).to be_instance_of RelatonBib::Series
       expect(series.first.type).to eq "stream"
-      expect(series.first.title.title.content).to eq "IETF"
+      expect(series.first.title.to_s).to eq "IETF"
     end
   end
 end

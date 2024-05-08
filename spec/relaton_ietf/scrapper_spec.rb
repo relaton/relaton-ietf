@@ -20,6 +20,6 @@ RSpec.describe RelatonIetf::Scrapper do
   #   hash = RelatonIetf::HashConverter.hash_to_bib yaml
   #   item = RelatonIetf::IetfBibliographicItem.new(**hash)
   #   yaml["fetched"] = Date.today.to_s
-  #   expect(item.to_hash).to eq yaml
+  #   expect(item.to_h).to eq yaml
   # end
 end
