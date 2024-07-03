@@ -1,9 +1,6 @@
 module RelatonIetf
   module Util
     extend RelatonBib::Util
-
-    def self.logger
-      RelatonIetf.configuration.logger
-    end
+    PROGNAME = "relaton-ietf".freeze
   end
 end
