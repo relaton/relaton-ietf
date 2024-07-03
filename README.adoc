@@ -33,24 +33,13 @@ Or install it yourself as:
 
 == Usage
 
-=== Configuration
-
-Configuration is optional. The available option is `logger` which is a `Logger` instance. By default, the logger is `Logger.new($stderr)` with `Logger::WARN` level. To change the logger level, use `RelatonIetf.configure` block.
+=== Fetching documents
 
 [source,ruby]
 ----
 require 'relaton_ietf'
 => true
 
-RelatonIetf.configure do |config|
-  config.logger.level = Logger::DEBUG
-end
-----
-
-=== Fetching documents
-
-[source,ruby]
-----
 # Fetch RFC document
 item = RelatonIetf::IetfBibliography.get 'IETF RFC 8341'
 [relaton-ietf] (IETF RFC 8341) Fetching from Relaton repository ...
@@ -164,6 +153,10 @@ Stopped at: 2021-12-17 10:29:19 +0100
 Done in: 360 sec.
 => nil
 ----
+
+=== Logging
+
+RelatonIetf uses the relaton-logger gem for logging. By default, it logs to STDOUT. To change the log levels and add other loggers, read the https://github.com/relaton/relaton-logger#usage[relaton-logger] documentation.
 
 == Contributing
 
