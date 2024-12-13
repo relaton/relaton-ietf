@@ -67,6 +67,10 @@ module RelatonIetf
       hash
     end
 
+    def has_ext?
+      super || stream
+    end
+
     #
     # Render BibXML (RFC)
     #

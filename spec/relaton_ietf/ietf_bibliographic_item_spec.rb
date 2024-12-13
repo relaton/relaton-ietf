@@ -46,8 +46,8 @@ RSpec.describe RelatonIetf::IetfBibliographicItem do
 
     it "to_hash" do
       expect(subject.to_hash).to eq(
-        "docid" => [{ "id" => "RFC 123", "type" => "IETF" }], "doctype" => { "type" => "RFC" },
-        "ext" => { "schema-version" => "v1.0.1", "stream" => "IETF" },
+        "docid" => [{ "id" => "RFC 123", "type" => "IETF" }],
+        "ext" => { "doctype" => { "type" => "RFC" }, "schema-version" => "v1.0.1", "stream" => "IETF" },
         "id" => "RFC123", "schema-version" => "v1.2.9"
       )
     end
