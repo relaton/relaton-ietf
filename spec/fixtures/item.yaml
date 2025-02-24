@@ -1,0 +1,136 @@
+schema_version: 1.2.0
+
+id: RFC8341
+
+fetched: '2022-06-22'
+
+title:
+- content: Network Configuration Access Control Model
+  language: en
+  script: Latn
+
+type: standard
+
+docidentifier:
+- content: RFC 8341
+  type: IETF
+  primary: true
+
+language:
+- en
+
+script:
+- Latn
+
+date:
+  type: published
+  at: "2018-03-01"
+
+abstract:
+  content: The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.This document obsoletes RFC 6536.
+  language: en
+  script: Latn
+
+contributor:
+- person:
+    name:
+      completename:
+        content: M. Bjorklund
+        language: en
+    affiliation:
+      organization:
+        name:
+        - content: IETF
+        abbreviation:
+          content: IETF
+  role:
+  - type: author
+
+relation:
+- type: includes
+  bibitem:
+    formattedref: RFC 5636
+
+source:
+- type: "src"
+  content: https://www.rfc-editor.org/info/rfc8341
+
+series:
+  type: main
+  title:
+  - content: STD
+    language: en
+    script: Latn
+    format: text/plain
+  number: serie1234
+  partnumber: "91"
+
+keyword:
+  taxon:
+  - content: acvp
+  - content: crypto
+
+ext:
+  schema_version: 1.0.1
+  doctype:
+    content: rfc
+  subdoctype: std
+  flavor: ietf
+
+  editorialgroup:
+  - committee:
+    - content: netconf
+
+  ics:
+  - code: 35.240.60
+    text: IT applications in information, documentation and publishing
+
+  area:
+  - art
+
+  stream: IAB
+  ipr: full
+  consensus: Consensus
+  index_include: Index-include
+  ipr_extract: IPR-extract
+  sort_refs: Sort-ref
+  sym_refs: Sym-ref
+  toc_include: TOC-include
+  toc_depth: TOC-depth
+  show_on_front_page: Show-on-front-page
+  pi:
+    artworkdelimiter: Artwork-delimiter
+    artworklines: Artwork-lines
+    authorship: Authorship
+    autobreaks: Auto-breaks
+    background: Background
+    colonspace: Colon-space
+    comments: Comments
+    docmapping: Doc-mapping
+    editing: Editing
+    emoticonic: Emoticonic
+    footer: Footer
+    header: Header
+    inline: Inline
+    iprnotified: IPR-notified
+    linkmailto: Link-mailto
+    linefile: Line-file
+    notedraftinprogress: Note-draft-in-progress
+    private: Private
+    refparent: Ref-parent
+    rfcedstyle: RFC-ED-Style
+    slides: Slides
+    text_list_symbols: Text-list-symbols
+    tocappendix: TOC-appendix
+    tocindent: TOC-indent
+    tocnarrow: TOC-narrow
+    tocompact: TOC-compact
+    topblock: Top-block
+    useobject: Use-object
+    strict: Strict
+    compact: Compact
+    subcompact: Sub-compact
+    tocinclude: TOC-include
+    tocdepth: TOC-depth
+    symrefs: Sym-refs
+    sortrefs: Sort-refs

@@ -1,0 +1,100 @@
+<bibdata type="standard" schema-version="1.2.0">
+  <fetched>2022-06-22</fetched>
+  <title language="en" script="Latn">Network Configuration Access Control Model</title>
+  <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
+  <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
+  <date type="published">
+    <on>2018-03-01</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename language="en">M. Bjorklund</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>IETF</name>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract language="en" script="Latn">The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.This document obsoletes RFC 6536.</abstract>
+  <relation type="includes">
+    <bibitem>
+      <formattedref>RFC 5636</formattedref>
+    </bibitem>
+  </relation>
+  <series type="main">
+    <title language="en" script="Latn" format="text/plain">STD</title>
+    <number>serie1234</number>
+    <partnumber>91</partnumber>
+  </series>
+  <keyword>
+    <taxon>acvp</taxon>
+    <taxon>crypto</taxon>
+  </keyword>
+  <ext schema-version="1.0.1">
+    <doctype>rfc</doctype>
+    <subdoctype>std</subdoctype>
+    <flavor>ietf</flavor>
+    <editorialgroup>
+      <committee>netconf</committee>
+    </editorialgroup>
+    <ics>
+      <code>35.240.60</code>
+      <text>IT applications in information, documentation and publishing</text>
+    </ics>
+    <area>art</area>
+    <stream>IAB</stream>
+    <ipr>full</ipr>
+    <consensus>Consensus</consensus>
+    <indexInclude>Index-include</indexInclude>
+    <iprExtract>IPR-extract</iprExtract>
+    <sortRefs>Sort-ref</sortRefs>
+    <symRefs>Sym-ref</symRefs>
+    <tocInclude>TOC-include</tocInclude>
+    <tocDepth>TOC-depth</tocDepth>
+    <showOnFrontPage>Show-on-front-page</showOnFrontPage>
+    <pi>
+      <artworkdelimiter>Artwork-delimiter</artworkdelimiter>
+      <artworklines>Artwork-lines</artworklines>
+      <authorship>Authorship</authorship>
+      <autobreaks>Auto-breaks</autobreaks>
+      <background>Background</background>
+      <colonspace>Colon-space</colonspace>
+      <comments>Comments</comments>
+      <docmapping>Doc-mapping</docmapping>
+      <editing>Editing</editing>
+      <emoticonic>Emoticonic</emoticonic>
+      <footer>Footer</footer>
+      <header>Header</header>
+      <inline>Inline</inline>
+      <iprnotified>IPR-notified</iprnotified>
+      <linkmailto>Link-mailto</linkmailto>
+      <linefile>Line-file</linefile>
+      <notedraftinprogress>Note-draft-in-progress</notedraftinprogress>
+      <private>Private</private>
+      <refparent>Ref-parent</refparent>
+      <rfcedstyle>RFC-ED-Style</rfcedstyle>
+      <slides>Slides</slides>
+      <text-list-symbols>Text-list-symbols</text-list-symbols>
+      <tocappendix>TOC-appendix</tocappendix>
+      <tocindent>TOC-indent</tocindent>
+      <tocnarrow>TOC-narrow</tocnarrow>
+      <tocompact>TOC-compact</tocompact>
+      <topblock>Top-block</topblock>
+      <useobject>Use-object</useobject>
+      <strict>Strict</strict>
+      <compact>Compact</compact>
+      <subcompact>Sub-compact</subcompact>
+      <tocinclude>TOC-include</tocinclude>
+      <tocdepth>TOC-depth</tocdepth>
+      <symrefs>Sym-refs</symrefs>
+      <sortrefs>Sort-refs</sortrefs>
+    </pi>
+  </ext>
+</bibdata>

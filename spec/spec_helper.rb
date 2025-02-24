@@ -11,7 +11,7 @@ SimpleCov.start do
   add_filter "/spec/"
 end
 
-require "relaton_ietf"
+require "relaton/ietf"
 
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
