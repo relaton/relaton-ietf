@@ -1,4 +1,4 @@
-schema_version: 1.2.0
+schema_version: v1.4.1
 
 id: RFC8341
 
@@ -83,7 +83,7 @@ ext:
 
   ics:
   - code: 35.240.60
-    text: IT applications in information, documentation and publishing
+    text: IT applications in transport
 
   area:
   - art

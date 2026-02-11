@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="1.2.0">
+<bibdata type="standard" schema-version="v1.4.1">
   <fetched>2022-06-22</fetched>
   <title language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
@@ -41,24 +41,13 @@
     <doctype>rfc</doctype>
     <subdoctype>std</subdoctype>
     <flavor>ietf</flavor>
-    <editorialgroup>
-      <committee>netconf</committee>
-    </editorialgroup>
     <ics>
       <code>35.240.60</code>
-      <text>IT applications in information, documentation and publishing</text>
+      <text>IT applications in transport</text>
     </ics>
     <area>art</area>
     <stream>IAB</stream>
     <ipr>full</ipr>
-    <consensus>Consensus</consensus>
-    <indexInclude>Index-include</indexInclude>
-    <iprExtract>IPR-extract</iprExtract>
-    <sortRefs>Sort-ref</sortRefs>
-    <symRefs>Sym-ref</symRefs>
-    <tocInclude>TOC-include</tocInclude>
-    <tocDepth>TOC-depth</tocDepth>
-    <showOnFrontPage>Show-on-front-page</showOnFrontPage>
     <pi>
       <artworkdelimiter>Artwork-delimiter</artworkdelimiter>
       <artworklines>Artwork-lines</artworklines>
@@ -96,5 +85,13 @@
       <symrefs>Sym-refs</symrefs>
       <sortrefs>Sort-refs</sortrefs>
     </pi>
+    <consensus>Consensus</consensus>
+    <indexInclude>Index-include</indexInclude>
+    <iprExtract>IPR-extract</iprExtract>
+    <sortRefs>Sort-ref</sortRefs>
+    <symRefs>Sym-ref</symRefs>
+    <tocInclude>TOC-include</tocInclude>
+    <tocDepth>TOC-depth</tocDepth>
+    <showOnFrontPage>Show-on-front-page</showOnFrontPage>
   </ext>
 </bibdata>

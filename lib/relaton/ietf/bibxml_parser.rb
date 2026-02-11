@@ -1,0 +1,166 @@
+module Relaton
+  module Ietf
+    module BibXMLParser # rubocop:disable Metrics/ModuleLength
+      extend self
+
+      def parse(xml)
+        reference = Rfcxml::V3::Reference.from_xml(xml)
+        FromRfcxml.new(reference).transform
+      end
+
+      def pubid_type(id)
+        pref = id.match(/^(\S+)/)[1]
+        case pref
+        when "BCP", "FYI", "STD", "RFC" then "RFC"
+        when "I-D" then "Internet-Draft"
+        else "IETF"
+        end
+      end
+
+      def full_name_org(name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+        case name
+        when "ISO"
+          build_org(name, "International Organization for Standardization")
+        when "IAB"
+          build_org(name, "Internet Architecture Board")
+        when "IESG"
+          build_org(name, "Internet Engineering Steering Group")
+        when "IANA"
+          build_org(name, "Internet Assigned Numbers Authority")
+        when "International Organization for Standardization"
+          build_org("ISO", name)
+        when "Federal Networking Council", "Internet Architecture Board", "Internet Activities Board",
+          "Defense Advanced Research Projects Agency", "National Science Foundation",
+          "National Research Council", "National Bureau of Standards",
+          "Internet Engineering Steering Group"
+          abbr = name.split.map { |w| w[0] if w[0] == w[0].upcase }.join
+          build_org(abbr, name)
+        when "IETF Secretariat"
+          build_org("IETF", name)
+        when "Audio-Video Transport Working Group", /North American Directory Forum/, "EARN Staff",
+          "Vietnamese Standardization Working Group", "ACM SIGUCCS", "ESCC X.500/X.400 Task Force",
+          "Sun Microsystems", "NetBIOS Working Group in the Defense Advanced Research Projects Agency",
+          "End-to-End Services Task Force", "Network Technical Advisory Group", "Bolt Beranek",
+          "Newman Laboratories", "Gateway Algorithms and Data Structures Task Force",
+          "Network Information Center. Stanford Research Institute", "RFC Editor",
+          "Information Sciences Institute University of Southern California", "IAB and IESG",
+          "RARE WG-MSG Task Force 88", "KOI8-U Working Group", "The Internet Society",
+          "IAB Advisory Committee", "ISOC Board of Trustees", "Mitra", "RFC Editor, et al."
+          build_org(nil, name)
+        when "Internet Assigned Numbers Authority (IANA)"
+          build_org("IANA", "Internet Assigned Numbers Authority (IANA)")
+        when "ESnet Site Coordinating Comittee (ESCC)"
+          build_org("ESCC", "ESnet Site Coordinating Comittee (ESCC)")
+        when "Energy Sciences Network (ESnet)"
+          build_org("ESnet", "Energy Sciences Network (ESnet)")
+        when "International Telegraph and Telephone Consultative Committee of the International Telecommunication Union"
+          build_org("CCITT", name)
+        end
+      end
+
+      def build_org(abbr, name)
+        args = { name: [Bib::TypedLocalizedString.new(content: name, language: "en")] }
+        args[:abbreviation] = Bib::LocalizedString.new(content: abbr, language: "en") if abbr
+        Bib::Organization.new(**args)
+      end
+
+      #
+      # Parse name, surname, and initials from full name
+      #
+      # @param [String] fname full name
+      # @param [String, nil] sname surname
+      # @param [String, nil] inits
+      #
+      # @return [Array<String, nil>] surname, initials, forename
+      #
+      def parse_surname_initials(fname, sname, inits) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+        regex = /(?:(?<name>\w{3,})\s)?(?<inits>(?:[A-Z]{1,2}(?:\.[\s-]?|\s))+)?/
+        match = fname&.match(regex)
+        surname = sname || fname&.sub(regex, "")&.strip
+        initials = inits || (match && match[:inits]&.strip)
+        [surname, initials, (match && match[:name])]
+      end
+
+      class FromRfcxml < Bib::Converter::BibXml::FromRfcxml # rubocop:disable Metrics/ClassLength
+        private
+
+        def pubid_type(id)
+          BibXMLParser.pubid_type(id)
+        end
+
+        def contributor # rubocop:disable Metrics/MethodLength
+          contribs = []
+          unless @reference.anchor&.match?(/^I-D/)
+            org = BibXMLParser.build_org("IETF", "Internet Engineering Task Force")
+            contribs << Bib::Contributor.new(
+              organization: org,
+              role: [Bib::Contributor::Role.new(type: "publisher")],
+            )
+          end
+          contribs + super
+        end
+
+        def person(author)
+          return unless author.fullname && author.fullname != "None"
+          return if BibXMLParser.full_name_org(author.fullname)
+
+          super
+        end
+
+        def organization(author)
+          if author.fullname
+            org = BibXMLParser.full_name_org(author.fullname)
+            return org if org
+          end
+          super
+        end
+
+        def person_name(author) # rubocop:disable Metrics/MethodLength
+          fname = author.fullname
+          surname, inits, forename = BibXMLParser.parse_surname_initials(
+            fname, author.surname, author.initials
+          )
+          fnames = []
+          if forename
+            fnames << Bib::FullNameType::Forename.new(
+              content: forename, language: "en", script: "Latn",
+            )
+          end
+          if inits
+            inits.split(/\.-?\s?|\s/).each do |i|
+              fnames << Bib::FullNameType::Forename.new(
+                initial: i, language: "en", script: "Latn",
+              )
+            end
+          end
+          Bib::FullName.new(
+            completename: Bib::LocalizedString.new(content: fname, language: "en"),
+            formatted_initials: inits ? Bib::LocalizedString.new(content: inits, language: "en") : nil,
+            surname: Bib::LocalizedString.new(content: surname, language: "en"),
+            forename: fnames,
+          )
+        end
+
+        def ext
+          eg = editorialgroup
+          dt = doctype
+          return unless eg || dt
+
+          Ietf::Ext.new(editorialgroup: eg ? [eg] : [], doctype: dt)
+        end
+
+        def editorialgroup
+          return unless @reference.front.workgroup
+
+          tc = @reference.front.workgroup.map { |wg| Bib::WorkGroup.new(content: wg.content) }
+          Ietf::EditorialGroup.new(committee: tc) if tc.any?
+        end
+
+        def doctype
+          type = @reference.anchor&.match?(/I-D/) ? "internet-draft" : "rfc"
+          Ietf::Doctype.new(content: type)
+        end
+      end
+    end
+  end
+end

@@ -1,4 +1,4 @@
-<rfc-index xmlns="http://www.rfc-editor.org/rfc-index" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rfc-editor.org/rfc-index http://www.rfc-editor.org/rfc-index.xsd">
+<rfc-index xmlns="https://www.rfc-editor.org/rfc-index" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.rfc-editor.org/rfc-index https://www.rfc-editor.org/rfc-index.xsd">
   <bcp-entry>
     <doc-id>BCP0001</doc-id>
   </bcp-entry>
@@ -61,6 +61,40 @@
       <doc-id>RFC1123</doc-id>
     </is-also>
   </std-entry>
+  <rfc-entry>
+    <doc-id>RFC1918</doc-id>
+    <title>Address Allocation for Private Internets</title>
+    <author>
+      <name>Y. Rekhter</name>
+    </author>
+    <author>
+      <name>B. Moskowitz</name>
+    </author>
+    <author>
+      <name>D. Karrenberg</name>
+    </author>
+    <author>
+      <name>G. J. de Groot</name>
+    </author>
+    <author>
+      <name>E. Lear</name>
+    </author>
+    <date>
+      <month>February</month>
+      <year>1996</year>
+    </date>
+    <keywords>
+      <kw>private</kw>
+      <kw>address</kw>
+    </keywords>
+    <abstract>
+      <p>This document describes address allocation for private internets.</p>
+    </abstract>
+    <current-status>BEST CURRENT PRACTICE</current-status>
+    <publication-status>BEST CURRENT PRACTICE</publication-status>
+    <stream>IETF</stream>
+    <doi>10.17487/RFC1918</doi>
+  </rfc-entry>
   <rfc-entry>
     <doc-id>RFC0139</doc-id>
     <title>Echo function for ISO 8473</title>

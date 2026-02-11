@@ -11,12 +11,14 @@ module Relaton
       attribute :flavor, :string
       attribute :editorialgroup, EditorialGroup, collection: true
       attribute :ics, Bib::ICS, collection: true
+      attribute :structuredidentifier, Bib::StructuredIdentifier, collection: true
       attribute :area, :string, collection: true, values: %W[
         apt gen int ops rtg sec tsv Applications\sand\sReal-Time General
         Internet Operations\sand\sManagement Routing Security Transport
       ]
       attribute :stream, :string, values: %w[IAB IETF Independent IRTF Legacy Editorial]
       attribute :ipr, :string
+      attribute :pi, ProcessingInstructions
       attribute :consensus, :string
       attribute :index_include, :string
       attribute :ipr_extract, :string
@@ -25,7 +27,6 @@ module Relaton
       attribute :toc_include, :string
       attribute :toc_depth, :string
       attribute :show_on_front_page, :string
-      attribute :pi, ProcessingInstructions
 
       xml do
         map_attribute "schema-version", to: :schema_version
@@ -34,9 +35,11 @@ module Relaton
         map_element "flavor", to: :flavor
         map_element "editorialgroup", to: :editorialgroup
         map_element "ics", to: :ics
+        map_element "structuredidentifier", to: :structuredidentifier
         map_element "area", to: :area
         map_element "stream", to: :stream
         map_element "ipr", to: :ipr
+        map_element "pi", to: :pi
         map_element "consensus", to: :consensus
         map_element "indexInclude", to: :index_include
         map_element "iprExtract", to: :ipr_extract
@@ -45,7 +48,6 @@ module Relaton
         map_element "tocInclude", to: :toc_include
         map_element "tocDepth", to: :toc_depth
         map_element "showOnFrontPage", to: :show_on_front_page
-        map_element "pi", to: :pi
       end
     end
   end

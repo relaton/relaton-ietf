@@ -5,20 +5,18 @@ require "relaton/index"
 require "relaton/bib"
 require_relative "ietf/version"
 require_relative "ietf/util"
+require_relative "ietf/item_data"
 require_relative "ietf/item"
+require_relative "ietf/item_base"
 require_relative "ietf/bibitem"
 require_relative "ietf/bibdata"
-# require "relaton_ietf/document_type"
-# require "relaton_ietf/bibxml_parser"
-# require "relaton_ietf/ietf_bibliography"
-# require "relaton_ietf/xml_parser"
-# require "relaton_ietf/hash_converter"
-# require "relaton_ietf/data_fetcher"
-# require "relaton_ietf/renderer/bibxml"
+require_relative "ietf/rfc/index"
 require_relative "provider_ietf"
+require_relative "ietf/bibliography"
 
 module Relaton
   module Ietf
+    INDEXFILE = "index-v1".freeze
     # Returns hash of XML reammar
     # @return [String]
     def self.grammar_hash

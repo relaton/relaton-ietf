@@ -7,7 +7,7 @@ module Relaton
         def from_rfcxml(xml)
           doc = Nokogiri::XML xml
           reference = doc.at "/rfc"
-          RelatonIetf::BibXMLParser.fetch_rfc reference
+          Relaton::Ietf::Item.fetch_rfc reference
         end
       end
     end
