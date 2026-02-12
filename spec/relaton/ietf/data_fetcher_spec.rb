@@ -105,7 +105,8 @@ RSpec.describe Relaton::Ietf::DataFetcher do
       expect(Relaton::Bib::Relation).to receive(:new).with(type: "includes", bibitem: :bibitem1).and_return(:rel1)
       expect(Relaton::Bib::Relation).to receive(:new).with(type: "includes", bibitem: :bibitem2).and_return(:rel2)
       last_v = double("last_v", title: :t, abstract: :a)
-      expect(File).to receive(:read).with("dir/draft-collins-pfr-01.yaml").and_return(:yaml_str)
+      expect(File).to receive(:exist?).with("dir/draft-collins-pfr-01.yaml").and_return(true)
+      expect(File).to receive(:read).with("dir/draft-collins-pfr-01.yaml", encoding: "UTF-8").and_return(:yaml_str)
       expect(Relaton::Ietf::Item).to receive(:from_yaml).with(:yaml_str).and_return(last_v)
       expect(Relaton::Ietf::ItemData).to receive(:new).with(
         title: :t, abstract: :a, formattedref: "draft-collins-pfr", docidentifier: [:id], relation: %i[rel1 rel2],

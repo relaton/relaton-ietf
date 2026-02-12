@@ -33,19 +33,19 @@
   </contributor>
   <language>en</language>
   <script>Latn</script>
-  <abstract language="en" script="Latn">   This memo presents a proposal for an efficient and simple way of 
-   forming email addresses.  The goal is to achieve easier, more 
-   productive communication between email users, in particular by aking 
-   addresses intuitive and thus easy to remember, or guess-enabled on 
-   material-world data about the correspondent, as well as independent 
-   from technical or organizational specifics of email services. 
+  <abstract language="en" script="Latn">   This memo presents a proposal for an efficient and simple way of
+   forming email addresses.  The goal is to achieve easier, more
+   productive communication between email users, in particular by aking
+   addresses intuitive and thus easy to remember, or guess-enabled on
+   material-world data about the correspondent, as well as independent
+   from technical or organizational specifics of email services.
 
 	 </abstract>
   <series type="main">
     <title language="en" script="Latn">Internet-Draft</title>
     <number>draft--pale-email-00</number>
   </series>
-  <ext>
+  <ext schema-version="v1.0.1">
     <doctype>internet-draft</doctype>
   </ext>
 </bibdata>

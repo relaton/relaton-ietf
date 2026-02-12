@@ -42,8 +42,5 @@
   <keyword>crypto</keyword>
   <ext schema-version="v1.0.1">
     <doctype>rfc</doctype>
-    <editorialgroup>
-      <committee>TBD</committee>
-    </editorialgroup>
   </ext>
 </bibdata>

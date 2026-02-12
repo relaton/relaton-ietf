@@ -140,26 +140,6 @@ module Relaton
             forename: fnames,
           )
         end
-
-        def ext
-          eg = editorialgroup
-          dt = doctype
-          return unless eg || dt
-
-          Ietf::Ext.new(editorialgroup: eg ? [eg] : [], doctype: dt)
-        end
-
-        def editorialgroup
-          return unless @reference.front.workgroup
-
-          tc = @reference.front.workgroup.map { |wg| Bib::WorkGroup.new(content: wg.content) }
-          Ietf::EditorialGroup.new(committee: tc) if tc.any?
-        end
-
-        def doctype
-          type = @reference.anchor&.match?(/I-D/) ? "internet-draft" : "rfc"
-          Ietf::Doctype.new(content: type)
-        end
       end
     end
   end

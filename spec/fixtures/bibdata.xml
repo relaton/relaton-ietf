@@ -29,7 +29,7 @@
     </bibitem>
   </relation>
   <series type="main">
-    <title language="en" script="Latn" format="text/plain">STD</title>
+    <title language="en" script="Latn">STD</title>
     <number>serie1234</number>
     <partnumber>91</partnumber>
   </series>
@@ -37,7 +37,7 @@
     <taxon>acvp</taxon>
     <taxon>crypto</taxon>
   </keyword>
-  <ext schema-version="1.0.1">
+  <ext schema-version="v1.0.1">
     <doctype>rfc</doctype>
     <subdoctype>std</subdoctype>
     <flavor>ietf</flavor>

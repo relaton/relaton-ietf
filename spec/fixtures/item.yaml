@@ -45,6 +45,21 @@ contributor:
           content: IETF
   role:
   - type: author
+- organization:
+    name:
+    - content: Internet Architecture Board
+      language: en
+    abbreviation:
+      content: IAB
+      language: en
+    subdivision:
+    - type: workgroup
+      identifier:
+      - content: netconf
+  role:
+  - type: author
+    description:
+    - content: committee
 
 relation:
 - type: includes
@@ -61,7 +76,6 @@ series:
   - content: STD
     language: en
     script: Latn
-    format: text/plain
   number: serie1234
   partnumber: "91"
 
@@ -71,15 +85,11 @@ keyword:
   - content: crypto
 
 ext:
-  schema_version: 1.0.1
+  schema_version: v1.0.1
   doctype:
     content: rfc
   subdoctype: std
   flavor: ietf
-
-  editorialgroup:
-  - committee:
-    - content: netconf
 
   ics:
   - code: 35.240.60

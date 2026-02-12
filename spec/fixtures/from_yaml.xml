@@ -20,6 +20,16 @@
       </affiliation>
     </person>
   </contributor>
+  <contributor>
+    <role type="author"><description>committee</description></role>
+    <organization>
+      <name language="en">Internet Architecture Board</name>
+      <subdivision type="workgroup">
+        <identifier>netconf</identifier>
+      </subdivision>
+      <abbreviation language="en">IAB</abbreviation>
+    </organization>
+  </contributor>
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/plain" language="en" script="Latn">The standardization of network configuration interfaces for use with the Network Configuration Protocol (NETCONF) or the RESTCONF protocol requires a structured and secure operating environment that promotes human usability and multi-vendor interoperability.  There is a need for standard mechanisms to restrict NETCONF or RESTCONF protocol access for particular users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.  This document defines such an access control model.This document obsoletes RFC 6536.</abstract>
@@ -37,8 +47,5 @@
   <keyword>crypto</keyword>
   <ext schema-version="v1.0.1">
     <doctype>rfc</doctype>
-    <editorialgroup>
-      <committee>netconf</committee>
-    </editorialgroup>
   </ext>
 </bibdata>

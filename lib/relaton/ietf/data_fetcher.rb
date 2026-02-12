@@ -95,9 +95,12 @@ module Relaton
       #
       def create_series(ref, versions) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         vs = versions.sort_by { |v| v.match(/\d+$/).to_s.to_i }
+        file = "#{@output}/#{vs.last}.#{@ext}"
+        return unless File.exist?(file)
+
         docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ref, primary: true)
         rel = vs.map { |v| version_relation v, "includes" }
-        last_v = Item.from_yaml(File.read("#{@output}/#{vs.last}.#{@ext}"))
+        last_v = Item.from_yaml(File.read(file, encoding: "UTF-8"))
         bib = ItemData.new(
           title: last_v.title, abstract: last_v.abstract, formattedref: ref,
           docidentifier: [docid], relation: rel

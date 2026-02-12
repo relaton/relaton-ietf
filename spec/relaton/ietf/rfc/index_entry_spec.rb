@@ -360,9 +360,9 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       expect(item.date.first.at.to_s).to include("1990")
     end
 
-    it "creates correct contributors" do
-      # Author + RFC Publisher + RFC Series = 3
-      expect(item.contributor.size).to eq 3
+    it "creates correct contributors" do # rubocop:disable RSpec/ExampleLength
+      # Author + RFC Publisher + RFC Series + committee = 4
+      expect(item.contributor.size).to eq 4
 
       author = item.contributor.first
       expect(author.role.first.type).to eq "author"
@@ -375,6 +375,14 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
 
       authorizer = item.contributor[2]
       expect(authorizer.role.first.type).to eq "authorizer"
+
+      committee = item.contributor[3]
+      expect(committee.role.first.type).to eq "author"
+      expect(committee.role.first.description.first.content).to eq "committee"
+      expect(committee.organization.abbreviation.content).to eq "IETF"
+      expect(committee.organization.name[0].content).to eq "Internet Engineering Task Force"
+      expect(committee.organization.subdivision.first.type).to eq "workgroup"
+      expect(committee.organization.subdivision.first.identifier.first.content).to eq "osigen"
     end
 
     it "creates correct keywords" do
@@ -413,9 +421,12 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       expect(stream_series.title.content).to eq "IETF"
     end
 
-    it "creates correct editorial group" do
-      eg = item.ext.editorialgroup.first
-      expect(eg.committee.first.content).to eq "osigen"
+    it "creates committee contributor from wg_acronym" do
+      committee = item.contributor.find do |c|
+        c.role.any? { |r| r.description.any? { |d| d.content == "committee" } }
+      end
+      expect(committee).not_to be_nil
+      expect(committee.organization.subdivision.first.identifier.first.content).to eq "osigen"
     end
 
     it "creates correct stream in ext" do
@@ -463,7 +474,10 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
     end
 
     it "handles missing wg_acronym" do
-      expect(item.ext.editorialgroup).to eq []
+      committee = item.contributor.find do |c|
+        c.role.any? { |r| r.description.any? { |d| d.content == "committee" } }
+      end
+      expect(committee).to be_nil
     end
 
     it "handles NON WORKING GROUP wg_acronym" do
@@ -479,7 +493,10 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
         </rfc-entry>
       XML
       e = described_class.from_xml(xml)
-      expect(e.to_item.ext.editorialgroup).to eq []
+      committee = e.to_item.contributor.find do |c|
+        c.role.any? { |r| r.description.any? { |d| d.content == "committee" } }
+      end
+      expect(committee).to be_nil
     end
   end
 

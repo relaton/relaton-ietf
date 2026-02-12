@@ -36,6 +36,16 @@
       <name>RFC Series</name>
     </organization>
   </contributor>
+  <contributor>
+    <role type="author"><description>committee</description></role>
+    <organization>
+      <name language="en">Internet Engineering Task Force</name>
+      <subdivision type="workgroup">
+        <identifier>netconf</identifier>
+      </subdivision>
+      <abbreviation language="en">IETF</abbreviation>
+    </organization>
+  </contributor>
   <language>en</language>
   <script>Latn</script>
   <abstract format="text/html" language="en" script="Latn">
@@ -57,9 +67,6 @@
   <keyword>YANG</keyword>
   <keyword>XML</keyword>
   <ext schema-version="v1.0.1">
-    <editorialgroup>
-      <committee>netconf</committee>
-    </editorialgroup>
     <stream>IETF</stream>
   </ext>
 </bibdata>

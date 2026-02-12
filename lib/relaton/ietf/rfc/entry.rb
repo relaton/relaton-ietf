@@ -265,6 +265,9 @@ module Relaton
           end
           contribs << org_contributor("RFC Publisher", "publisher")
           contribs << org_contributor("RFC Series", "authorizer")
+          committee = build_committee_contributor
+          contribs << committee if committee
+          contribs
         end
 
         def entity_from(entity)
@@ -368,16 +371,35 @@ module Relaton
           [Bib::Series.new(type: "stream", title: t)]
         end
 
+        STREAM_ORGS = {
+          "IETF" => ["IETF", "Internet Engineering Task Force"],
+          "IRTF" => ["IRTF", "Internet Research Task Force"],
+          "IAB" => ["IAB", "Internet Architecture Board"],
+        }.freeze
+
         def build_rfc_ext
-          eg = build_rfc_editorialgroup
-          Ext.new(stream: stream, editorialgroup: eg ? [eg] : [])
+          Ext.new(stream: stream)
         end
 
-        def build_rfc_editorialgroup
+        def build_committee_contributor
           return if wg_acronym.nil? || wg_acronym == "NON WORKING GROUP"
 
-          wg = Bib::WorkGroup.new(content: wg_acronym)
-          EditorialGroup.new(committee: [wg])
+          abbr, name = STREAM_ORGS[stream]
+          org = if abbr
+                  Ietf::BibXMLParser.build_org(abbr, name)
+                else
+                  Ietf::BibXMLParser.build_org(nil, stream || "IETF")
+                end
+          subdivision = Bib::Subdivision.new(
+            type: "workgroup",
+            identifier: [Bib::OrganizationType::Identifier.new(content: wg_acronym)],
+          )
+          org.subdivision = [subdivision]
+          role = Bib::Contributor::Role.new(
+            type: "author",
+            description: [Bib::LocalizedMarkedUpString.new(content: "committee")],
+          )
+          Bib::Contributor.new(organization: org, role: [role])
         end
       end
     end
