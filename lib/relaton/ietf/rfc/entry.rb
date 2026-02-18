@@ -131,15 +131,15 @@ module Relaton
         # @param rfc_index [Hash{String => Entry}, nil] lookup of RFC entries by doc-id
         # @return [Relaton::Ietf::ItemData, nil]
         #
-        def to_item(rfc_index = nil)
+        def to_item(rfc_index = nil, wg_names: {})
           if rfc_entry?
-            to_rfc_item
+            to_rfc_item(wg_names: wg_names)
           else
-            to_subseries_item(rfc_index)
+            to_subseries_item(rfc_index, wg_names: wg_names)
           end
         end
 
-        def to_rfc_item # rubocop:disable Metrics/MethodLength
+        def to_rfc_item(wg_names: {}) # rubocop:disable Metrics/MethodLength
           args = {
             type: "standard",
             language: ["en"],
@@ -149,7 +149,7 @@ module Relaton
             title: build_rfc_title,
             source: build_rfc_link,
             date: build_rfc_date,
-            contributor: build_rfc_contributor,
+            contributor: build_rfc_contributor(wg_names),
             status: build_rfc_status,
             keyword: build_rfc_keyword,
             abstract: build_rfc_abstract,
@@ -162,7 +162,7 @@ module Relaton
 
         private
 
-        def to_subseries_item(rfc_index = nil)
+        def to_subseries_item(rfc_index = nil, wg_names: {})
           return unless doc_id && has_is_also?
 
           ItemData.new(
@@ -174,7 +174,7 @@ module Relaton
             script: ["Latn"],
             source: build_link,
             formattedref: build_formattedref,
-            relation: build_relations(rfc_index),
+            relation: build_relations(rfc_index, wg_names: wg_names),
             series: build_series,
             ext: Ext.new(flavor: "ietf"),
           )
@@ -207,12 +207,12 @@ module Relaton
           anchor
         end
 
-        def build_relations(rfc_index = nil)
+        def build_relations(rfc_index = nil, wg_names: {})
           return [] unless is_also&.doc_id
 
           is_also.doc_id.map do |ref|
             rfc_entry = rfc_index&.[](ref)
-            bibitem = rfc_entry ? rfc_entry.to_rfc_item : build_minimal_bibitem(ref)
+            bibitem = rfc_entry ? rfc_entry.to_rfc_item(wg_names: wg_names) : build_minimal_bibitem(ref)
             Bib::Relation.new(type: "includes", bibitem: bibitem)
           end.compact
         end
@@ -254,7 +254,7 @@ module Relaton
           end
         end
 
-        def build_rfc_contributor # rubocop:disable Metrics/MethodLength
+        def build_rfc_contributor(wg_names = {}) # rubocop:disable Metrics/MethodLength
           contribs = (author || []).map do |a|
             entity = full_name_org(a.name)
             unless entity
@@ -266,7 +266,7 @@ module Relaton
           end
           contribs << org_contributor("RFC Publisher", "publisher")
           contribs << org_contributor("RFC Series", "authorizer")
-          committee = build_committee_contributor
+          committee = build_committee_contributor(wg_names)
           contribs << committee if committee
           contribs
         end
@@ -382,7 +382,7 @@ module Relaton
           Ext.new(stream: stream, flavor: "ietf")
         end
 
-        def build_committee_contributor
+        def build_committee_contributor(wg_names = {})
           return if wg_acronym.nil? || wg_acronym == "NON WORKING GROUP"
 
           abbr, name = STREAM_ORGS[stream]
@@ -391,9 +391,10 @@ module Relaton
                 else
                   Ietf::BibXMLParser.build_org(nil, stream || "IETF")
                 end
+          full_name = wg_names[wg_acronym] || wg_acronym
           subdivision = Bib::Subdivision.new(
             type: "workgroup",
-            name: [Bib::TypedLocalizedString.new(content: wg_acronym)],
+            name: [Bib::TypedLocalizedString.new(content: full_name)],
             identifier: [Bib::OrganizationType::Identifier.new(content: wg_acronym)],
           )
           org.subdivision = [subdivision]

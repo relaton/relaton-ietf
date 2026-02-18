@@ -45,6 +45,7 @@ RSpec.describe Relaton::Ietf::DataFetcher do
     before do
       xml = File.read "spec/fixtures/ietf_rfcsubseries.xml"
       allow(Net::HTTP).to receive(:get).and_return(xml)
+      allow(Relaton::Ietf::WgNameResolver).to receive(:fetch).and_return({})
     end
 
     it "fetch data" do
@@ -155,6 +156,7 @@ RSpec.describe Relaton::Ietf::DataFetcher do
     before do
       xml = File.read "spec/fixtures/ietf_rfcsubseries.xml"
       allow(Net::HTTP).to receive(:get).and_return(xml)
+      allow(Relaton::Ietf::WgNameResolver).to receive(:fetch).and_return({})
     end
 
     it "initialize fetcher" do

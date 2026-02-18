@@ -427,6 +427,16 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       end
       expect(committee).not_to be_nil
       expect(committee.organization.subdivision.first.identifier.first.content).to eq "osigen"
+      expect(committee.organization.subdivision.first.name.first.content).to eq "osigen"
+    end
+
+    it "resolves wg_acronym to full name when wg_names provided" do
+      resolved = rfc_entry.to_item(nil, wg_names: { "osigen" => "Open Systems Interconnection General" })
+      committee = resolved.contributor.find do |c|
+        c.role.any? { |r| r.description.any? { |d| d.content == "committee" } }
+      end
+      expect(committee.organization.subdivision.first.name.first.content).to eq "Open Systems Interconnection General"
+      expect(committee.organization.subdivision.first.identifier.first.content).to eq "osigen"
     end
 
     it "creates correct stream in ext" do

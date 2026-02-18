@@ -3,6 +3,7 @@ require_relative "../ietf"
 require_relative "bibxml_parser"
 require_relative "rfc/index"
 require_relative "rfc/entry"
+require_relative "wg_name_resolver"
 
 module Relaton
   module Ietf
@@ -35,7 +36,7 @@ module Relaton
           h[entry.doc_id] = entry
         end
         idx.subseries_entries.each do |entry|
-          save_doc entry.to_item(rfc_map)
+          save_doc entry.to_item(rfc_map, wg_names: wg_names)
         end
       end
 
@@ -143,7 +144,7 @@ module Relaton
       def fetch_ieft_rfcs
         idx = Rfc::Index.from_xml(rfc_index)
         idx.rfc_entries.each do |entry|
-          save_doc entry.to_item
+          save_doc entry.to_item(nil, wg_names: wg_names)
         rescue StandardError => e
           Util.error "Error parsing #{entry.doc_id}: #{e.message}\n" \
             "#{e.backtrace[0..5].join("\n")}"
@@ -158,6 +159,10 @@ module Relaton
       def rfc_index
         uri = URI "https://www.rfc-editor.org/rfc-index.xml"
         Net::HTTP.get(uri)
+      end
+
+      def wg_names
+        @wg_names ||= WgNameResolver.fetch
       end
 
       #
