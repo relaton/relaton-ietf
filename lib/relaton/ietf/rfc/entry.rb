@@ -176,6 +176,7 @@ module Relaton
             formattedref: build_formattedref,
             relation: build_relations(rfc_index),
             series: build_series,
+            ext: Ext.new(flavor: "ietf"),
           )
         end
 
@@ -392,6 +393,7 @@ module Relaton
                 end
           subdivision = Bib::Subdivision.new(
             type: "workgroup",
+            name: [Bib::TypedLocalizedString.new(content: wg_acronym)],
             identifier: [Bib::OrganizationType::Identifier.new(content: wg_acronym)],
           )
           org.subdivision = [subdivision]
