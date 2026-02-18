@@ -252,7 +252,7 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       item = subject.to_item
       series = item.series.first
       expect(series.type).to eq "stream"
-      expect(series.title.content).to eq "IETF"
+      expect(series.title[0].content).to eq "IETF"
     end
 
     it "handles entry without stream" do
@@ -411,14 +411,14 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       # is-also (BCP) + RFC + stream (IETF) = 3
       expect(item.series.size).to eq 3
 
-      bcp_series = item.series.find { |s| s.title.content == "BCP" }
+      bcp_series = item.series.find { |s| s.title[0].content == "BCP" }
       expect(bcp_series.number).to eq "26"
 
-      rfc_series = item.series.find { |s| s.title.content == "RFC" }
+      rfc_series = item.series.find { |s| s.title[0].content == "RFC" }
       expect(rfc_series.number).to eq "139"
 
       stream_series = item.series.find { |s| s.type == "stream" }
-      expect(stream_series.title.content).to eq "IETF"
+      expect(stream_series.title[0].content).to eq "IETF"
     end
 
     it "creates committee contributor from wg_acronym" do
@@ -431,6 +431,10 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
 
     it "creates correct stream in ext" do
       expect(item.ext.stream).to eq "IETF"
+    end
+
+    it "creates correct flavor in ext" do
+      expect(item.ext.flavor).to eq "ietf"
     end
   end
 

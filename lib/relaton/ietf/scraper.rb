@@ -6,10 +6,9 @@ module Relaton
     module Scraper
       extend Scraper
 
-      IDS = "https://raw.githubusercontent.com/relaton/relaton-data-ids/main/"
-      RFC = "https://raw.githubusercontent.com/relaton/relaton-data-rfcs/main/"
-      RSS = "https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/main/"
-      INDEX_FILE = "index-v1.yaml"
+      IDS = "https://raw.githubusercontent.com/relaton/relaton-data-ids/refs/heads/data-v2/"
+      RFC = "https://raw.githubusercontent.com/relaton/relaton-data-rfcs/refs/heads/data-v2/"
+      RSS = "https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/refs/heads/data-v2/"
 
       # @param text [String]
       # @return [RelatonIetf::IetfBibliographicItem]
@@ -21,7 +20,7 @@ module Relaton
       rescue Timeout::Error, Errno::EINVAL, Errno::ECONNRESET, EOFError,
             Net::HTTPBadResponse, Net::HTTPHeaderSyntaxError,
             Net::ProtocolError, SocketError
-        raise RelatonBib::RequestError, "No document found for #{ref} reference"
+        raise Relaton::RequestError, "No document found for #{ref} reference"
       end
 
       private
@@ -39,19 +38,19 @@ module Relaton
       end
 
       def get_rfcs(ref)
-        index = Relaton::Index.find_or_create :RFC, url: "#{RFC}index-v1.zip", file: INDEX_FILE
+        index = Relaton::Index.find_or_create :RFC, url: "#{RFC}#{INDEXFILE}.zip", file: "#{INDEXFILE}.yaml"
         row = index.search(ref).first
         get_page "#{RFC}#{row[:file]}" if row
       end
 
       def get_rfcsubseries(ref)
-        index = Relaton::Index.find_or_create :RSS, url: "#{RSS}index-v1.zip", file: INDEX_FILE
+        index = Relaton::Index.find_or_create :RSS, url: "#{RSS}#{INDEXFILE}.zip", file: "#{INDEXFILE}.yaml"
         row = index.search(ref).first
         get_page "#{RSS}#{row[:file]}" if row
       end
 
       def get_ids(ref)
-        index = Relaton::Index.find_or_create :IDS, url: "#{IDS}index-v1.zip", file: INDEX_FILE
+        index = Relaton::Index.find_or_create :IDS, url: "#{IDS}#{INDEXFILE}.zip", file: "#{INDEXFILE}.yaml"
         row = index.search(ref).first
         get_page "#{IDS}#{row[:file]}" if row
       end
@@ -62,9 +61,7 @@ module Relaton
         res = Net::HTTP.get_response(URI(uri))
         return unless res.code == "200"
 
-        hash = YAML.safe_load res.body
-        hash["fetched"] = Date.today.to_s
-        IetfBibliographicItem.from_hash hash
+        Item.from_yaml(res.body).tap { |item| item.fetched = Date.today.to_s }
       end
     end
   end

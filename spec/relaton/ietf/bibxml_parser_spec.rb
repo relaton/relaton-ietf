@@ -9,6 +9,248 @@ describe Relaton::Ietf::BibXMLParser do
       .gsub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
   end
 
+  context "docidentifiers" do
+    it "creates primary docid from RFC anchor" do
+      xml = <<~XML
+        <reference anchor="RFC8341">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 1
+      id = bib.docidentifier.first
+      expect(id.type).to eq "IETF"
+      expect(id.content).to eq "RFC 8341"
+      expect(id.primary).to be true
+    end
+
+    it "strips leading zeros from RFC anchor" do
+      xml = <<~XML
+        <reference anchor="RFC0821">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.first.content).to eq "RFC 821"
+    end
+
+    it "creates Internet-Draft docid from I-D anchor" do
+      xml = <<~XML
+        <reference anchor="I-D.foo-bar">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 1
+      id = bib.docidentifier.first
+      expect(id.type).to eq "Internet-Draft"
+      expect(id.content).to eq "draft-foo-bar"
+      expect(id.primary).to be true
+    end
+
+    it "adds versioned Internet-Draft from front seriesInfo" do
+      xml = <<~XML
+        <reference anchor="I-D.foo-bar">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+            <seriesInfo name="Internet-Draft" value="draft-foo-bar-01"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 2
+      primary = bib.docidentifier.find(&:primary)
+      expect(primary.content).to eq "draft-foo-bar-01"
+      unversioned = bib.docidentifier.reject(&:primary).first
+      expect(unversioned.type).to eq "Internet-Draft"
+      expect(unversioned.content).to eq "draft-foo-bar"
+    end
+
+    it "adds versioned Internet-Draft from reference-level seriesInfo" do
+      xml = <<~XML
+        <reference anchor="I-D.foo-bar">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+          <seriesInfo name="Internet-Draft" value="draft-foo-bar-02"/>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 2
+      primary = bib.docidentifier.find(&:primary)
+      expect(primary.content).to eq "draft-foo-bar-02"
+      unversioned = bib.docidentifier.reject(&:primary).first
+      expect(unversioned.type).to eq "Internet-Draft"
+      expect(unversioned.content).to eq "draft-foo-bar"
+    end
+
+    it "adds DOI docid from reference-level seriesInfo" do
+      xml = <<~XML
+        <reference anchor="RFC8341">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+          <seriesInfo name="DOI" value="10.17487/RFC8341"/>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 2
+      doi = bib.docidentifier.find { |id| id.type == "DOI" }
+      expect(doi.content).to eq "10.17487/RFC8341"
+    end
+
+    it "adds DOI docid from front seriesInfo" do
+      xml = <<~XML
+        <reference anchor="RFC8341">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+            <seriesInfo name="DOI" value="10.17487/RFC8341"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 2
+      doi = bib.docidentifier.find { |id| id.type == "DOI" }
+      expect(doi.content).to eq "10.17487/RFC8341"
+    end
+
+    it "creates IETF docid from BCP anchor" do
+      xml = <<~XML
+        <reference anchor="BCP0047">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      id = bib.docidentifier.first
+      expect(id.type).to eq "IETF"
+      expect(id.content).to eq "BCP 47"
+    end
+
+    it "creates IETF docid from FYI anchor" do
+      xml = <<~XML
+        <reference anchor="FYI0002">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      id = bib.docidentifier.first
+      expect(id.type).to eq "IETF"
+      expect(id.content).to eq "FYI 2"
+    end
+
+    it "creates IETF docid from STD anchor" do
+      xml = <<~XML
+        <reference anchor="STD0003">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      id = bib.docidentifier.first
+      expect(id.type).to eq "IETF"
+      expect(id.content).to eq "STD 3"
+    end
+
+    it "creates all three docids for I-D with seriesInfo and DOI" do
+      xml = <<~XML
+        <reference anchor="I-D.foo-bar">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+            <seriesInfo name="Internet-Draft" value="draft-foo-bar-01"/>
+            <seriesInfo name="DOI" value="10.1234/example"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 3
+      ids_by_type = bib.docidentifier.group_by(&:type)
+      expect(ids_by_type["Internet-Draft"].size).to eq 2
+      expect(ids_by_type["DOI"].size).to eq 1
+    end
+
+    it "returns exactly one primary docid when no seriesInfo" do
+      xml = <<~XML
+        <reference anchor="RFC8341">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 1
+      expect(bib.docidentifier.first.primary).to be true
+    end
+
+    it "collects DOIs from both front and reference-level seriesInfo" do
+      xml = <<~XML
+        <reference anchor="RFC8341">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+            <seriesInfo name="DOI" value="10.17487/RFC8341"/>
+          </front>
+          <seriesInfo name="DOI" value="10.5555/duplicate"/>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 3
+      dois = bib.docidentifier.select { |id| id.type == "DOI" }
+      expect(dois.size).to eq 2
+      expect(dois.map(&:content)).to contain_exactly("10.17487/RFC8341", "10.5555/duplicate")
+    end
+
+    it "ignores non-DOI, non-Internet-Draft seriesInfo for docids" do
+      xml = <<~XML
+        <reference anchor="RFC8341">
+          <front>
+            <title>Test</title>
+            <author initials="J." surname="Doe" fullname="John Doe"/>
+            <date year="2024"/>
+          </front>
+          <seriesInfo name="RFC" value="8341"/>
+        </reference>
+      XML
+      bib = described_class.parse(xml)
+      expect(bib.docidentifier.size).to eq 1
+    end
+  end
+
   context "pubid_type" do
     context "returns RFC" do
       it { expect(described_class.pubid_type("RFC 1234")).to eq "RFC" }

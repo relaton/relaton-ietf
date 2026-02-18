@@ -60,7 +60,7 @@ module Relaton
 
       def build_org(abbr, name)
         args = { name: [Bib::TypedLocalizedString.new(content: name, language: "en")] }
-        args[:abbreviation] = Bib::LocalizedString.new(content: abbr, language: "en") if abbr
+        args[:abbreviation] = Bib::LocalizedString.new(content: abbr, language: "en") if abbr && !abbr.empty?
         Bib::Organization.new(**args)
       end
 

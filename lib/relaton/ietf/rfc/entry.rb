@@ -226,7 +226,7 @@ module Relaton
           return [] unless stream
 
           t = Bib::Title.new(content: stream)
-          [Bib::Series.new(type: "stream", title: t)]
+          [Bib::Series.new(type: "stream", title: [t])]
         end
 
         # --- RFC entry builders ---
@@ -350,7 +350,7 @@ module Relaton
 
         def build_rfc_series
           series = build_rfc_is_also_series
-          series << Bib::Series.new(title: Bib::Title.new(content: "RFC"), number: shortnum)
+          series << Bib::Series.new(title: [Bib::Title.new(content: "RFC")], number: shortnum)
           series + build_rfc_stream_series
         end
 
@@ -360,7 +360,7 @@ module Relaton
           is_also.doc_id.map do |s|
             /^(?<name>\D+)(?<num>\d+)/ =~ s
             t = Bib::Title.new(content: name)
-            Bib::Series.new(title: t, number: num.gsub(/^0+/, ""))
+            Bib::Series.new(title: [t], number: num.gsub(/^0+/, ""))
           end
         end
 
@@ -368,7 +368,7 @@ module Relaton
           return [] unless stream
 
           t = Bib::Title.new(content: stream)
-          [Bib::Series.new(type: "stream", title: t)]
+          [Bib::Series.new(type: "stream", title: [t])]
         end
 
         STREAM_ORGS = {
@@ -378,7 +378,7 @@ module Relaton
         }.freeze
 
         def build_rfc_ext
-          Ext.new(stream: stream)
+          Ext.new(stream: stream, flavor: "ietf")
         end
 
         def build_committee_contributor

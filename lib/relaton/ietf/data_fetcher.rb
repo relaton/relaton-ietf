@@ -45,15 +45,14 @@ module Relaton
       def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         versions = Dir["bibxml-ids/*.xml"].each_with_object([]) do |path, vers|
           file = File.basename path, ".xml"
-          if file.include?("D.draft-")
-            vers << file.sub(/^reference\.I-D\./, "").downcase
-            /(?<ver>\d+)$/ =~ file
-          end
+          draft = file.include?("D.draft-")
+          /(?<ver>\d+)$/ =~ file if draft
           bib = BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
           if ver
             version = Bib::Version.new(draft: ver)
             bib.version = [version]
           end
+          vers << { ref: file.sub(/^reference\.I-D\./, "").downcase, source: bib.source } if draft
           save_doc bib
         end
         update_versions(versions) if versions.any? && @format != "bibxml"
@@ -71,12 +70,12 @@ module Relaton
           match = /(?<series>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
           if match
             if series != match[:series]
-              bib_versions = versions.grep(/^#{Regexp.quote match[:series]}-\d{2}/)
+              bib_versions = versions.select { |v| v[:ref].match?(/^#{Regexp.quote match[:series]}-\d{2}/) }
               create_series match[:series], bib_versions
               series = match[:series]
             end
-            lv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i < match[:ver].to_i }
-            hv = bib_versions.select { |ref| ref.match(/\d+$/).to_s.to_i > match[:ver].to_i }
+            lv = bib_versions.select { |v| v[:ref].match(/\d+$/).to_s.to_i < match[:ver].to_i }
+            hv = bib_versions.select { |v| v[:ref].match(/\d+$/).to_s.to_i > match[:ver].to_i }
             if lv.any? || hv.any?
               bib = read_doc(file)
               bib.relation << version_relation(lv.last, "updates") if lv.any?
@@ -94,9 +93,9 @@ module Relaton
       # @param [Array<String>] versions list of versions
       #
       def create_series(ref, versions) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-        vs = versions.sort_by { |v| v.match(/\d+$/).to_s.to_i }
-        file = "#{@output}/#{vs.last}.#{@ext}"
-        return unless File.exist?(file)
+        vs = versions.sort_by { |v| v[:ref].match(/\d+$/).to_s.to_i }
+        file = "#{@output}/#{vs.last[:ref]}.#{@ext}"
+        # return unless File.exist?(file)
 
         docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ref, primary: true)
         rel = vs.map { |v| version_relation v, "includes" }
@@ -114,11 +113,11 @@ module Relaton
       # @param [String] ref reference
       # @param [String] type relation type
       #
-      # @return [RelatonBib::DocumentRelation] relation
+      # @return [Relaton::Bib::Relation] relation
       #
-      def version_relation(ref, type)
-        docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ref, primary: true)
-        bibitem = ItemData.new(formattedref: ref, docidentifier: [docid])
+      def version_relation(ver, type)
+        docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ver[:ref], primary: true)
+        bibitem = ItemData.new(formattedref: ver[:ref], docidentifier: [docid], source: ver[:source])
         Bib::Relation.new(type: type, bibitem: bibitem)
       end
 
@@ -127,7 +126,7 @@ module Relaton
       #
       # @param [String] file path to file
       #
-      # @return [RelatonIetf::IetfBibliographicItem] bibliographic item
+      # @return [Relaton::Ietf::ItemData] bibliographic item
       #
       def read_doc(file)
         doc = File.read(file, encoding: "UTF-8")
@@ -201,13 +200,13 @@ module Relaton
       #
       def file_name(entry) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         id = if entry.respond_to? :docidentifier
-              entry.docidentifier.detect { |i| i.type == "Internet-Draft" }&.content
+              entry.docidentifier.detect { |i| i.type == "Internet-Draft" && i.primary }&.content
             end
         id ||= entry.docnumber || entry.formattedref.content
-        if @source == "ietf-internet-drafts" then id.downcase!
-        else id.upcase!
-        end
-        name = id.gsub(/[\s,:\/]/, "_").squeeze("_")
+        # if @source == "ietf-internet-drafts" then id.downcase!
+        # else id.upcase!
+        # end
+        name = id.downcase.gsub(/[\s,:\/]/, "_").squeeze("_")
         File.join @output, "#{name}.#{@ext}"
       end
     end

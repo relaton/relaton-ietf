@@ -1,5 +1,5 @@
 require "relaton/core/processor"
-require_relative "../iert"
+require_relative "../ietf"
 
 module Relaton
   module Ietf
