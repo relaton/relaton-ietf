@@ -180,7 +180,11 @@ module Relaton
             when "bibxml" then entry.to_rfcxml
             else entry.send("to_#{@format}")
             end
-        file = file_name entry
+        id = if entry.respond_to?(:docidentifier)
+               entry.docidentifier.detect { |i| i.type == "Internet-Draft" && i.primary }&.content
+             end
+        id ||= entry.docnumber || entry.formattedref.content
+        file = output_file(id)
         if check_duplicate && @files.include?(file)
           Util.warn "File #{file} already exists. Document: #{entry.docnumber}"
         elsif check_duplicate
@@ -196,24 +200,6 @@ module Relaton
         index.add_or_update docid.content, file
       end
 
-      #
-      # Generate file name
-      #
-      # @param [Relaton::Ietf::Rfc::Entry] entry
-      #
-      # @return [String] file name
-      #
-      def file_name(entry) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-        id = if entry.respond_to? :docidentifier
-              entry.docidentifier.detect { |i| i.type == "Internet-Draft" && i.primary }&.content
-            end
-        id ||= entry.docnumber || entry.formattedref.content
-        # if @source == "ietf-internet-drafts" then id.downcase!
-        # else id.upcase!
-        # end
-        name = id.downcase.gsub(/[\s,:\/]/, "_").squeeze("_")
-        File.join @output, "#{name}.#{@ext}"
-      end
     end
   end
 end

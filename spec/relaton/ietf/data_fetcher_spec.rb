@@ -225,7 +225,10 @@ RSpec.describe Relaton::Ietf::DataFetcher do
         Relaton::Bib::Docidentifier.new(type: "Internet-Draft", content: "I-D.3gpp-collaboration-00", primary: true),
       ]
       id_entry = Relaton::Ietf::ItemData.new(docidentifier: docid)
-      expect(subject.send(:file_name, id_entry)).to eq "dir/i-d.3gpp-collaboration-00.xml"
+      expect(id_entry).to receive(:to_rfcxml).and_return("<xml/>")
+      expect(File).to receive(:write).with("dir/i-d-3gpp-collaboration-00.xml", "<xml/>", encoding: "UTF-8")
+      expect(index).to receive(:add_or_update).with("I-D.3gpp-collaboration-00", "dir/i-d-3gpp-collaboration-00.xml")
+      subject.send(:save_doc, id_entry)
     end
   end
 end
