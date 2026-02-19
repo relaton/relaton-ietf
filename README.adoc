@@ -1,4 +1,4 @@
-= RelatonIetf
+= Relaton::Ietf
 
 image:https://img.shields.io/gem/v/relaton-ietf.svg["Gem Version", link="https://rubygems.org/gems/relaton-ietf"]
 image:https://github.com/relaton/relaton-ietf/workflows/macos/badge.svg["Build Status (macOS)", link="https://github.com/relaton/relaton-ietf/actions?workflow=macos"]
@@ -10,7 +10,7 @@ image:https://img.shields.io/github/commits-since/relaton/relaton-ietf/latest.sv
 
 _Formerly known as_ `rfcbib`.
 
-RelatonIetf is a Ruby gem that searches and fetches standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
+Relaton::Ietf is a Ruby gem that searches and fetches standards from the https://www.ietf.org[Internet Engineering Task Force (IETF)], including RFCs.
 
 The standards scrape form https://www.rfc-editor.org/search/rfc_search.php
 
@@ -37,27 +37,27 @@ Or install it yourself as:
 
 [source,ruby]
 ----
-require 'relaton_ietf'
+require 'relaton/ietf'
 => true
 
 # Fetch RFC document
-item = RelatonIetf::IetfBibliography.get 'IETF RFC 8341'
-[relaton-ietf] (IETF RFC 8341) Fetching from Relaton repository ...
-[relaton-ietf] (IETF RFC 8341) Found: `RFC 8341`
-=> #<RelatonIetf::IetfBibliographicItem:0x007fd1875e7f58
+item = Relaton::Ietf::Bibliography.get 'IETF RFC 8341'
+relaton-ietf] INFO: (IETF RFC 8341) Fetching from Relaton repository ...
+[relaton-ietf] INFO: (IETF RFC 8341) Found: `RFC 8341`
+=> #<Relaton::Ietf::ItemData:0x0000000125608cb0
 ...
 
 # Fetch Internet-Draft document
-RelatonIetf::IetfBibliography.get 'IETF I-D.draft-abarth-cake-01'
-[relaton-ietf] (IETF I-D.draft-abarth-cake-01) Fetching from Relaton repository ...
-[relaton-ietf] (IETF I-D.draft-abarth-cake-01) Found: `draft-abarth-cake-01`
-=> #<RelatonIetf::IetfBibliographicItem:0x00007fdd129bbeb8
+Relaton::Ietf::Bibliography.get 'IETF I-D.draft-abarth-cake-01'
+[relaton-ietf] INFO: (IETF I-D.draft-abarth-cake-01) Fetching from Relaton repository ...
+[relaton-ietf] INFO: (IETF I-D.draft-abarth-cake-01) Found: `draft-abarth-cake-01`
+=> #<Relaton::Ietf::ItemData:0x000000012141fdd0
 ...
 
 # Return nil if a document doesn't exist.
-RelatonIetf::IetfBibliography.get 'IETF 1111'
-[relaton-ietf] (IETF 1111) Fetching from Relaton repository ...
-[relaton-ietf] (IETF 1111) Not found.
+Relaton::Ietf::Bibliography.get 'IETF 1111'
+[relaton-ietf] INFO: (IETF 1111) Fetching from Relaton repository ...
+[relaton-ietf] INFO: (IETF 1111) Not found.
 => nil
 ----
 
@@ -66,9 +66,9 @@ RelatonIetf::IetfBibliography.get 'IETF 1111'
 [source,ruby]
 ----
 item.to_xml
-=> "<bibitem id="RFC8341" type="standard" schema-version="v1.2.1">
-      <fetched>2022-12-03</fetched>
-      <title type="main" format="text/plain">Network Configuration Access Control Model</title>
+=> "<bibitem id="RFC8341" type="standard" schema-version="v1.4.1">
+      <fetched>2026-02-18</fetched>
+      <title type="main">Network Configuration Access Control Model</title>
       <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
       <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
       ....
@@ -78,24 +78,23 @@ With `bibdata: true` option XML output is wrapped with `bibdata` element and `ex
 [source,ruby]
 ----
 item.to_xml bibdata: true
-=> "<bibdata type="standard" schema-version="v1.2.1">
-      <fetched>2022-12-03</fetched>
-      <title type="main" format="text/plain">Network Configuration Access Control Model</title>
+=> "<bibdata type="standard" schema-version="v1.4.1">
+      <fetched>2026-02-18</fetched>
+      <title type="main">Network Configuration Access Control Model</title>
       <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
       <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
-      <docidentifier type="DOI">10.17487/RFC8341</docidentifier>
       ...
       <ext schema-version="v1.0.1">
-        <editorialgroup>
-          <committee>netconf</committee>
-        </editorialgroup>
+        <doctype>rfc</doctype>
+        <flavor>ietf</flavor>
+        <stream>IETF</stream>
       </ext>
     </bibdata>"
 ----
 
-=== Typed links
+=== Typed source links
 
-IETF documents may have `src`, `xml`, and `doi` link types.
+IETF documents may have `src`, `xml`, and `doi` source link types.
 
 * `src` - web publication
 * `xml` - BibXML publication
@@ -103,29 +102,26 @@ IETF documents may have `src`, `xml`, and `doi` link types.
 
 [source,ruby]
 ----
-item.link
-=> [#<RelatonBib::TypedUri:0x00007fe8b287a120 @content=#<Addressable::URI:0x7e4 URI:https://raw.githubusercontent.com/relaton/relaton-data-rfcs/main/data/reference.RFC.8341.xml>, @type="xml">,
- #<RelatonBib::TypedUri:0x00007fe8b2237ec0 @content=#<Addressable::URI:0x7f8 URI:https://www.rfc-editor.org/info/rfc8341>, @type="src">]
+item.source.first.type
+=> "src"
+item.source.first.content
+=> "https://www.rfc-editor.org/info/rfc8341"
 ----
 
 === Parse a file locally
 
 [source,ruby]
 ----
-item = Relaton::Provider::Ietf.from_rfcxml File.read("spec/examples/rfc.xml")
-=> #<RelatonIetf::IetfBibliographicItem:0x007fa8cda79ab8
+item = Relaton::Ietf::BibXMLParser.parse_rfc File.read("spec/fixtures/rfc.xml")
+=> #<Relaton::Ietf::ItemData:0x000000012913e4d8
 ...
 ----
 
 === Create bibliographic item from YAML
 [source,ruby]
 ----
-hash = YAML.load_file 'spec/examples/ietf_bib_item.yml'
-=> {"id"=>"RFC 8341",
-...
-
-RelatonIetf::IetfBibliographicItem.from_hash hash
-=> #<RelatonIetf::IetfBibliographicItem:0x007f9a929dde40
+Relaton::Ietf::Item.from_yaml File.read('spec/fixtures/item.yaml')
+=> #<Relaton::Ietf::ItemData:0x0000000127edf508
 ...
 ----
 
@@ -137,7 +133,7 @@ There are IETF datasets that can be converted into RelatonXML/BibXML/BibYAML for
 - `ietf-internet-drafts` - convert files from local directory `./bibxml-ids`. Use `rsync -avcizxL rsync.ietf.org::bibxml-ids ./bibxml-ids` command to fetch the files.
 - `ietf-rfc-entries` - https://www.rfc-editor.org/rfc-index.xml (`<rfc-entry>`)
 
-The method `RelatonIetf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and saves them to the `./data` folder in YAML format.
+The method `Relaton::Ietf::DataFetcher.fetch(source, output: "data", format: "yaml")` converts all the documents from the dataset and saves them to the `./data` folder in YAML format.
 
 Arguments:
 
@@ -147,16 +143,16 @@ Arguments:
 
 [source,ruby]
 ----
-RelatonIetf::DataFetcher.fetch "ietf-internet-drafts"
+Relaton::Ietf::DataFetcher.fetch "ietf-internet-drafts"
 Started at: 2021-12-17 10:23:20 +0100
 Stopped at: 2021-12-17 10:29:19 +0100
-Done in: 360 sec.
+Done in: 1360 sec.
 => nil
 ----
 
 === Logging
 
-RelatonIetf uses the relaton-logger gem for logging. By default, it logs to STDOUT. To change the log levels and add other loggers, read the https://github.com/relaton/relaton-logger#usage[relaton-logger] documentation.
+Relaton::Ietf uses the relaton-logger gem for logging. By default, it logs to STDOUT. To change the log levels and add other loggers, read the https://github.com/relaton/relaton-logger#usage[relaton-logger] documentation.
 
 == Contributing
 
