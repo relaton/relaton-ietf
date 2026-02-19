@@ -11,7 +11,6 @@ require_relative "ietf/item_base"
 require_relative "ietf/bibitem"
 require_relative "ietf/bibdata"
 require_relative "ietf/rfc/index"
-require_relative "provider_ietf"
 require_relative "ietf/bibliography"
 
 module Relaton

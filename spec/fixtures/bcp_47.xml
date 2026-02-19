@@ -58,6 +58,7 @@
         <organization>
           <name language="en">Internet Engineering Task Force</name>
           <subdivision type="workgroup">
+            <name>Language Tag Registry Update</name>
             <identifier>ltru</identifier>
           </subdivision>
           <abbreviation language="en">IETF</abbreviation>
@@ -138,6 +139,7 @@
         <organization>
           <name language="en">Internet Engineering Task Force</name>
           <subdivision type="workgroup">
+            <name>Language Tag Registry Update</name>
             <identifier>ltru</identifier>
           </subdivision>
           <abbreviation language="en">IETF</abbreviation>
@@ -170,4 +172,8 @@
       </keyword>
     </bibitem>
   </relation>
+  <ext schema-version="v1.0.1">
+    <doctype>rfc</doctype>
+    <flavor>ietf</flavor>
+  </ext>
 </bibdata>

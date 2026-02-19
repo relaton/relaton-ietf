@@ -1,26 +1,40 @@
-<bibdata type="standard" schema-version="v1.2.9">
-  <title format="text/plain" language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
+<bibdata type="standard" schema-version="v1.4.1">
+  <title language="en" script="Latn">ACVP Secure Hash Algorithm (SHA) JSON Specification</title>
   <docidentifier type="Internet-Draft" primary="true">draft-ietf-acvp-subsha-1.0</docidentifier>
   <docidentifier type="IETF" scope="docName">draft-ietf-acvp-subsha-1.0</docidentifier>
+  <docnumber>draft-ietf-acvp-subsha-1.0</docnumber>
   <date type="published">
     <on>2018-11</on>
   </date>
   <contributor>
     <role type="publisher"/>
     <organization>
-      <name>Internet Engineering Task Force</name>
-      <abbreviation>IETF</abbreviation>
+      <name language="en">Internet Engineering Task Force</name>
+      <abbreviation language="en">IETF</abbreviation>
     </organization>
   </contributor>
   <contributor>
     <role type="editor"/>
     <person>
       <name>
+        <forename language="en" script="Latn">Christopher</forename>
+        <forename language="en" script="Latn" initial="C"></forename>
+        <forename language="en" script="Latn" initial="C"></forename>
+        <formatted-initials language="en">C.C.</formatted-initials>
+        <surname language="en">Celi</surname>
         <completename language="en">Christopher Celi</completename>
       </name>
       <affiliation>
         <organization>
-          <name>National Institute of Standards and Technology</name>
+          <name language="en">National Institute of Standards and Technology</name>
+          <address>
+            <street>100 Bureau Drive</street>
+            <city>Gaithersburg</city>
+            <state>MD</state>
+            <country>USA</country>
+            <postcode>20899</postcode>
+          </address>
+          <email>christopher.celi@nist.gov</email>
         </organization>
       </affiliation>
       <address>
@@ -33,14 +47,28 @@
       <email>christopher.celi@nist.gov</email>
     </person>
   </contributor>
+  <contributor>
+    <role type="author">
+      <description>committee</description>
+    </role>
+    <organization>
+      <subdivision type="workgroup">
+        <name>TBD</name>
+      </subdivision>
+    </organization>
+  </contributor>
   <language>en</language>
   <script>Latn</script>
-  <abstract format="text/html" language="en" script="Latn">
-    <p>This document defines the JSON schema for using SHA1 and SHA2 with the ACVP specification.</p>
-  </abstract>
-  <keyword>acvp</keyword>
-  <keyword>crypto</keyword>
+  <abstract language="en" script="Latn">This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
+				specification.</abstract>
+  <keyword>
+    <taxon language="en" script="Latn">acvp</taxon>
+  </keyword>
+  <keyword>
+    <taxon language="en" script="Latn">crypto</taxon>
+  </keyword>
   <ext schema-version="v1.0.1">
     <doctype>rfc</doctype>
+    <flavor>ietf</flavor>
   </ext>
 </bibdata>

@@ -1,4 +1,14 @@
 describe Relaton::Ietf::BibXMLParser do
+  it "parses full RFC xml2rfc document" do
+    source = "spec/fixtures/rfc.xml"
+    bib = described_class.parse_rfc File.read(source, encoding: "UTF-8")
+    xml = bib.to_xml bibdata: true
+    file = "spec/fixtures/rfc_xml.xml"
+    File.write file, xml, encoding: "UTF-8" unless File.exist? file
+    expect(xml).to be_equivalent_to File.read(file, encoding: "UTF-8")
+      .gsub(%r{(?<=<fetched>)\d{4}-\d{2}-\d{2}}, Date.today.to_s)
+  end
+
   it "parse document" do
     source = "spec/fixtures/reference.I-D.draft--pale-email-00.xml"
     bib = described_class.parse File.read(source, encoding: "UTF-8")

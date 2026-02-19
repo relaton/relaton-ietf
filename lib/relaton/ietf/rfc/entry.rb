@@ -176,7 +176,7 @@ module Relaton
             formattedref: build_formattedref,
             relation: build_relations(rfc_index, wg_names: wg_names),
             series: build_series,
-            ext: Ext.new(doctype: Doctype.new(content: "rfc"), flavor: "ietf"),
+            ext: Ext.new(doctype: Doctype.new(content: "rfc"), stream: stream, flavor: "ietf"),
           )
         end
 

@@ -8,6 +8,11 @@ module Relaton
         FromRfcxml.new(reference).transform
       end
 
+      def parse_rfc(xml)
+        rfc = Rfcxml::V3::Rfc.from_xml(xml)
+        FromRfc.new(rfc).transform
+      end
+
       def pubid_type(id)
         pref = id.match(/^(\S+)/)[1]
         case pref
@@ -139,6 +144,87 @@ module Relaton
             surname: Bib::LocalizedString.new(content: surname, language: "en"),
             forename: fnames,
           )
+        end
+      end
+
+      class FromRfc < FromRfcxml # rubocop:disable Metrics/ClassLength
+        def transform # rubocop:disable Metrics/MethodLength
+          namespace::ItemData.new(
+            docnumber: doc_name&.sub(/^\w+\./, ""),
+            type: "standard",
+            docidentifier: docidentifiers,
+            status: status,
+            language: ["en"],
+            script: ["Latn"],
+            source: source,
+            title: title,
+            abstract: abstract,
+            contributor: contributor + workgroup_contributors,
+            date: date,
+            series: series,
+            keyword: keyword,
+            ext: ext,
+          )
+        end
+
+        private
+
+        def doc_name = @reference.doc_name
+
+        def docidentifiers
+          ids = []
+          if doc_name
+            ids << Bib::Docidentifier.new(type: "Internet-Draft", content: doc_name, primary: true)
+            ids << Bib::Docidentifier.new(type: "IETF", content: doc_name, scope: "docName")
+          end
+          ids + docid_from_series_info
+        end
+
+        def source = []
+
+        def contributor # rubocop:disable Metrics/MethodLength
+          contribs = []
+          org = BibXMLParser.build_org("IETF", "Internet Engineering Task Force")
+          contribs << Bib::Contributor.new(
+            organization: org,
+            role: [Bib::Contributor::Role.new(type: "publisher")],
+          )
+          contribs + Bib::Converter::BibXml::FromRfcxml.instance_method(:contributor).bind_call(self)
+        end
+
+        def doctype
+          namespace::Doctype.new(content: "rfc")
+        end
+
+        def series
+          front_si = @reference.front.series_info || []
+          front_si.filter_map do |si|
+            next if si.name == "DOI" || si.stream || si.status
+
+            t = Bib::Title.new(content: si.name, language: "en", script: "Latn")
+            Bib::Series.new(title: [t], number: si.value, type: "main")
+          end
+        end
+
+        def status
+          si = @reference.front.series_info&.find(&:status)
+          return unless si
+
+          stage = Bib::Status::Stage.new(content: si.status)
+          Bib::Status.new(stage: stage)
+        end
+
+        def versioned_internet_draft_id
+          internet_draft_series_info(@reference.front)
+        end
+
+        def docid_from_series_info
+          front_si = @reference.front.series_info || []
+          front_si.each_with_object([]) do |s, acc|
+            next unless s.name.casecmp("doi").zero?
+
+            acc << Bib::Docidentifier.new(type: "DOI", content: s.value)
+          end
         end
       end
     end

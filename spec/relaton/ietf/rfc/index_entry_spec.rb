@@ -230,7 +230,7 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       expect(bibitem.status.stage.content).to eq "UNKNOWN"
     end
 
-    xit "serializes ext/stream in relation bibitem XML" do
+    it "serializes ext/stream in relation bibitem XML" do
       rfc_xml = <<~XML
         <rfc-entry xmlns="https://www.rfc-editor.org/rfc-index">
           <doc-id>RFC0002</doc-id>
@@ -243,8 +243,7 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
         </rfc-entry>
       XML
       rfc_entry = described_class.from_xml(rfc_xml)
-      rfc_map = { "RFC0002" => rfc_entry }
-      item = subject.to_item(rfc_map)
+      item = rfc_entry.to_item
       xml_out = item.to_xml(bibdata: true)
       expect(xml_out).to include("<stream>Legacy</stream>")
     end
