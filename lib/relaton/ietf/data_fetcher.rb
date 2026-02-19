@@ -53,7 +53,9 @@ module Relaton
             version = Bib::Version.new(draft: ver)
             bib.version = [version]
           end
-          vers << { ref: file.sub(/^reference\.I-D\./, "").downcase, source: bib.source } if draft
+          if draft
+            vers << { ref: file.sub(/^reference\.I-D\./, "").downcase.gsub(/[.\s\/:-]+/, "-"), source: bib.source }
+          end
           save_doc bib
         end
         update_versions(versions) if versions.any? && @format != "bibxml"
@@ -95,6 +97,10 @@ module Relaton
       #
       def create_series(ref, versions) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
         vs = versions.sort_by { |v| v[:ref].match(/\d+$/).to_s.to_i }
+        if vs.empty?
+          Util.warn "No versions found for #{ref}"
+          return
+        end
         file = "#{@output}/#{vs.last[:ref]}.#{@ext}"
         # return unless File.exist?(file)
 
