@@ -176,7 +176,7 @@ module Relaton
             formattedref: build_formattedref,
             relation: build_relations(rfc_index, wg_names: wg_names),
             series: build_series,
-            ext: Ext.new(flavor: "ietf"),
+            ext: Ext.new(doctype: Doctype.new(content: "rfc"), flavor: "ietf"),
           )
         end
 
@@ -379,7 +379,7 @@ module Relaton
         }.freeze
 
         def build_rfc_ext
-          Ext.new(stream: stream, flavor: "ietf")
+          Ext.new(doctype: Doctype.new(content: "rfc"), stream: stream, flavor: "ietf")
         end
 
         def build_committee_contributor(wg_names = {})

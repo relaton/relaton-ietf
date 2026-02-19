@@ -153,6 +153,7 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       expect(item).to be_instance_of Relaton::Ietf::ItemData
       expect(item.docnumber).to eq "BCP0001"
       expect(item.type).to eq "standard"
+      expect(item.ext.doctype.content).to eq "rfc"
       expect(item.language).to eq ["en"]
       expect(item.script).to eq ["Latn"]
     end
@@ -445,6 +446,10 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
 
     it "creates correct flavor in ext" do
       expect(item.ext.flavor).to eq "ietf"
+    end
+
+    it "creates correct doctype in ext" do
+      expect(item.ext.doctype.content).to eq "rfc"
     end
   end
 
