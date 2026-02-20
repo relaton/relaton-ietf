@@ -83,7 +83,7 @@ RSpec.describe Relaton::Ietf::Processor do
         idx = double("index_#{type}")
         expect(idx).to receive(:remove_file)
         expect(Relaton::Index).to receive(:find_or_create)
-          .with(type, url: true, file: "index-v1").and_return(idx)
+          .with(type, url: true, file: "index-v1.yaml").and_return(idx)
       end
       subject.remove_index_file
     end

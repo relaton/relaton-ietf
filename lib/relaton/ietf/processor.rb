@@ -55,9 +55,9 @@ module Relaton
       # Remove index file
       #
       def remove_index_file
-        Relaton::Index.find_or_create(:RFC, url: true, file: INDEXFILE).remove_file
-        Relaton::Index.find_or_create(:RSS, url: true, file: INDEXFILE).remove_file
-        Relaton::Index.find_or_create(:IDS, url: true, file: INDEXFILE).remove_file
+        Relaton::Index.find_or_create(:RFC, url: true, file: "#{INDEXFILE}.yaml").remove_file
+        Relaton::Index.find_or_create(:RSS, url: true, file: "#{INDEXFILE}.yaml").remove_file
+        Relaton::Index.find_or_create(:IDS, url: true, file: "#{INDEXFILE}.yaml").remove_file
       end
     end
   end
