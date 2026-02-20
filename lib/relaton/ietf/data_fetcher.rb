@@ -54,7 +54,7 @@ module Relaton
             bib.version = [version]
           end
           if draft
-            vers << { ref: file.sub(/^reference\.I-D\./, "").downcase.gsub(/[.\s\/:-]+/, "-"), source: bib.source }
+            vers << { ref: file.sub(/^reference\.I-D\./, "").downcase, source: bib.source }
           end
           save_doc bib
         end
@@ -73,7 +73,7 @@ module Relaton
           match = /(?<series>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
           if match
             if series != match[:series]
-              bib_versions = versions.select { |v| v[:ref].match?(/^#{Regexp.quote match[:series]}-\d{2}/) }
+              bib_versions = versions.select { |v| v[:ref].downcase.gsub(/[.\s\/:-]+/, "-").match?(/^#{Regexp.quote match[:series]}-\d{2}/) }
               create_series match[:series], bib_versions
               series = match[:series]
             end
@@ -101,7 +101,7 @@ module Relaton
           Util.warn "No versions found for #{ref}"
           return
         end
-        file = "#{@output}/#{vs.last[:ref]}.#{@ext}"
+        file = output_file(vs.last[:ref])
         # return unless File.exist?(file)
 
         docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ref, primary: true)
