@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe Relaton::Ietf do
+    before do |example|
+    next unless example.metadata[:vcr]
+
+    # Force to download index file
+    allow_any_instance_of(Relaton::Index::Type).to receive(:actual?).and_return(false)
+    allow_any_instance_of(Relaton::Index::FileIO).to receive(:check_file).and_return(nil)
+  end
+
   it "has a version number" do
     expect(Relaton::Ietf::VERSION).not_to be nil
   end
@@ -41,8 +49,7 @@ RSpec.describe Relaton::Ietf do
 
   it "get internet draft document with version", vcr: "i_d_abarth_cake_01" do
     item = Relaton::Ietf::Bibliography.get "I-D draft-abarth-cake-01"
-    expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.content)
-      .to eq "draft-abarth-cake-01"
+    expect(item.docidentifier.detect(&:primary).content).to eq "draft-abarth-cake-01"
     expect(item.source.detect { |l| l.type == "src" }.content.to_s).to eq(
       "https://datatracker.ietf.org/doc/html/draft-abarth-cake-01",
     )
@@ -52,8 +59,7 @@ RSpec.describe Relaton::Ietf do
     item = Relaton::Ietf::Bibliography.get(
       "I-D.draft-ietf-calext-eventpub-extensions-15",
     )
-    expect(item.docidentifier.detect { |di| di.type == "Internet-Draft" }.content)
-      .to eq("draft-ietf-calext-eventpub-extensions-15")
+    expect(item.docidentifier.detect(&:primary).content).to eq("draft-ietf-calext-eventpub-extensions-15")
   end
 
   it "get best current practise", vcr: "bcp_47" do
