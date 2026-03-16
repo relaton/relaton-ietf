@@ -1,5 +1,4 @@
 require "relaton/core/processor"
-require_relative "../ietf"
 
 module Relaton
   module Ietf
@@ -17,6 +16,7 @@ module Relaton
       # @param opts [Hash]
       # @return [Relaton::Ietf::ItemData, nil]
       def get(code, date, opts)
+        require_relative "../ietf"
         Bibliography.get(code, date, opts)
       end
 
@@ -29,25 +29,28 @@ module Relaton
       # @option opts [String] :format
       #
       def fetch_data(source, opts)
-        require_relative "../relaton_ietf/data_fetcher"
+        require_relative "data_fetcher"
         DataFetcher.fetch(source, **opts)
       end
 
       # @param xml [String]
       # @return [Relaton::Ietf::ItemData]
       def from_xml(xml)
+        require_relative "../ietf"
         Item.from_xml xml
       end
 
       # @param yaml [String]
       # @return [Relaton::Ietf::ItemData]
       def from_yaml(yaml)
+        require_relative "../ietf"
         Item.from_yaml yaml
       end
 
       # Returns hash of XML grammar
       # @return [String]
       def grammar_hash
+        require_relative "../ietf"
         @grammar_hash ||= ::Relaton::Ietf.grammar_hash
       end
 
@@ -55,6 +58,7 @@ module Relaton
       # Remove index file
       #
       def remove_index_file
+        require_relative "../ietf"
         Relaton::Index.find_or_create(:RFC, url: true, file: "#{INDEXFILE}.yaml").remove_file
         Relaton::Index.find_or_create(:RSS, url: true, file: "#{INDEXFILE}.yaml").remove_file
         Relaton::Index.find_or_create(:IDS, url: true, file: "#{INDEXFILE}.yaml").remove_file
