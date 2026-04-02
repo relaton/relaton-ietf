@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="v1.4.1">
+<bibdata type="standard" schema-version="v1.5.6">
   <fetched>2026-02-17</fetched>
   <title language="en" script="Latn">Centralized Conferencing (XCON) Media Models</title>
   <uri type="src">https://datatracker.ietf.org/doc/html/draft-burger-xcon-mmodels-00</uri>
@@ -39,7 +39,7 @@
     <title language="en" script="Latn">Internet-Draft</title>
     <number>draft-burger-xcon-mmodels-00</number>
   </series>
-  <ext schema-version="v1.0.1">
+  <ext schema-version="v1.1.2">
     <doctype>internet-draft</doctype>
     <flavor>ietf</flavor>
   </ext>

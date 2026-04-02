@@ -1,5 +1,5 @@
-<bibdata type="standard" schema-version="v1.4.1">
-  <fetched>2026-02-18</fetched>
+<bibdata type="standard" schema-version="v1.5.6">
+  <fetched>2026-04-03</fetched>
   <formattedref>BCP47</formattedref>
   <title language="en" script="Latn">Best Current Practice 47</title>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
@@ -172,7 +172,7 @@
       </keyword>
     </bibitem>
   </relation>
-  <ext schema-version="v1.0.1">
+  <ext schema-version="v1.1.2">
     <doctype>rfc</doctype>
     <flavor>ietf</flavor>
   </ext>

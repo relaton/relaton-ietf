@@ -89,7 +89,8 @@ RSpec.describe Relaton::Ietf::DataFetcher do
       expect(subject).to receive(:read_doc).with("dir/draft-collins-pfr-00.yaml").and_return(bib)
       expect(Relaton::Bib::Docidentifier).to receive(:new)
         .with(type: "Internet-Draft", content: "draft-collins-pfr-01", primary: true).and_return(:id)
-      expect(Relaton::Ietf::ItemData).to receive(:new).with(formattedref: "draft-collins-pfr-01", docidentifier: [:id], source: [:src]).and_return(:bibitem)
+      expect(Relaton::Bib::Formattedref).to receive(:new).with(content: "draft-collins-pfr-01").and_return(:fref)
+      expect(Relaton::Ietf::ItemData).to receive(:new).with(formattedref: :fref, docidentifier: [:id], source: [:src]).and_return(:bibitem)
       expect(Relaton::Bib::Relation).to receive(:new).with(type: "updatedBy", bibitem: :bibitem).and_return(:relation)
       expect(subject).to receive(:save_doc).with(bib, check_duplicate: false)
       subject.send(:update_versions, [{ ref: "draft-collins-pfr-01", source: [:src] }, { ref: "draft-collins-pfr1-02", source: [:src] }])
@@ -102,16 +103,19 @@ RSpec.describe Relaton::Ietf::DataFetcher do
         .with(type: "Internet-Draft", content: "draft-collins-pfr-00", primary: true).and_return(:id1)
       expect(Relaton::Bib::Docidentifier).to receive(:new)
         .with(type: "Internet-Draft", content: "draft-collins-pfr-01", primary: true).and_return(:id2)
-      expect(Relaton::Ietf::ItemData).to receive(:new).with(formattedref: "draft-collins-pfr-00", docidentifier: [:id1], source: [:src1]).and_return(:bibitem1)
-      expect(Relaton::Ietf::ItemData).to receive(:new).with(formattedref: "draft-collins-pfr-01", docidentifier: [:id2], source: [:src2]).and_return(:bibitem2)
+      expect(Relaton::Bib::Formattedref).to receive(:new).with(content: "draft-collins-pfr-00").and_return(:fref1)
+      expect(Relaton::Bib::Formattedref).to receive(:new).with(content: "draft-collins-pfr-01").and_return(:fref2)
+      expect(Relaton::Ietf::ItemData).to receive(:new).with(formattedref: :fref1, docidentifier: [:id1], source: [:src1]).and_return(:bibitem1)
+      expect(Relaton::Ietf::ItemData).to receive(:new).with(formattedref: :fref2, docidentifier: [:id2], source: [:src2]).and_return(:bibitem2)
       expect(Relaton::Bib::Relation).to receive(:new).with(type: "includes", bibitem: :bibitem1).and_return(:rel1)
       expect(Relaton::Bib::Relation).to receive(:new).with(type: "includes", bibitem: :bibitem2).and_return(:rel2)
       last_v = double("last_v", title: :t, abstract: :a)
       # expect(File).to receive(:exist?).with("dir/draft-collins-pfr-01.yaml").and_return(true)
       expect(File).to receive(:read).with("dir/draft-collins-pfr-01.yaml", encoding: "UTF-8").and_return(:yaml_str)
       expect(Relaton::Ietf::Item).to receive(:from_yaml).with(:yaml_str).and_return(last_v)
+      expect(Relaton::Bib::Formattedref).to receive(:new).with(content: "draft-collins-pfr").and_return(:fref3)
       expect(Relaton::Ietf::ItemData).to receive(:new).with(
-        title: :t, abstract: :a, formattedref: "draft-collins-pfr", docidentifier: [:id], relation: %i[rel1 rel2],
+        title: :t, abstract: :a, formattedref: :fref3, docidentifier: [:id], relation: %i[rel1 rel2],
       ).and_return(:sbib)
       expect(subject).to receive(:save_doc).with(:sbib)
       subject.send(:create_series, "draft-collins-pfr",

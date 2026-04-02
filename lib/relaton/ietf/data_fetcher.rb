@@ -108,7 +108,7 @@ module Relaton
         rel = vs.map { |v| version_relation v, "includes" }
         last_v = Item.from_yaml(File.read(file, encoding: "UTF-8"))
         bib = ItemData.new(
-          title: last_v.title, abstract: last_v.abstract, formattedref: ref,
+          title: last_v.title, abstract: last_v.abstract, formattedref: Bib::Formattedref.new(content: ref),
           docidentifier: [docid], relation: rel
         )
         save_doc bib
@@ -124,7 +124,7 @@ module Relaton
       #
       def version_relation(ver, type)
         docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ver[:ref], primary: true)
-        bibitem = ItemData.new(formattedref: ver[:ref], docidentifier: [docid], source: ver[:source])
+        bibitem = ItemData.new(formattedref: Bib::Formattedref.new(content: ver[:ref]), docidentifier: [docid], source: ver[:source])
         Bib::Relation.new(type: type, bibitem: bibitem)
       end
 

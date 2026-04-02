@@ -1,4 +1,4 @@
-schema_version: v1.4.1
+schema_version: v1.5.6
 
 id: RFC8341
 
@@ -80,12 +80,13 @@ series:
   partnumber: "91"
 
 keyword:
-  taxon:
-  - content: acvp
-  - content: crypto
+- vocab:
+    content: acvp
+- vocab:
+    content: crypto
 
 ext:
-  schema_version: v1.0.1
+  schema_version: v1.1.2
   doctype:
     content: rfc
   subdoctype: std

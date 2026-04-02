@@ -204,7 +204,7 @@ module Relaton
         end
 
         def build_formattedref
-          anchor
+          Bib::Formattedref.new(content: anchor)
         end
 
         def build_relations(rfc_index = nil, wg_names: {})
@@ -220,7 +220,7 @@ module Relaton
         def build_minimal_bibitem(ref)
           id = ref.sub(/^([A-Z]+)0*(\d+)$/, '\1 \2')
           docid = Bib::Docidentifier.new(type: "IETF", content: id, primary: true)
-          ItemData.new(formattedref: ref, docidentifier: [docid])
+          ItemData.new(formattedref: Bib::Formattedref.new(content: ref), docidentifier: [docid])
         end
 
         def build_series
@@ -310,8 +310,8 @@ module Relaton
 
         def build_rfc_keyword
           (keywords&.kw || []).map do |kw|
-            taxon = Bib::LocalizedString.new(content: kw)
-            Bib::Keyword.new(taxon: [taxon])
+            vocab = Bib::LocalizedString.new(content: kw)
+            Bib::Keyword.new(vocab: vocab)
           end
         end
 
@@ -319,7 +319,7 @@ module Relaton
           return [] unless abstract&.p&.any?
 
           content = abstract.p.map { |para| "<p>#{para.strip}</p>" }.join
-          [Bib::LocalizedMarkedUpString.new(content: content, language: "en", script: "Latn")]
+          [Bib::Abstract.new(content: content, language: "en", script: "Latn")]
         end
 
         def build_rfc_relation
@@ -339,7 +339,7 @@ module Relaton
 
         def build_rfc_doc_relation(ref, type)
           docid = Bib::Docidentifier.new(type: "IETF", content: ref, primary: true)
-          bibitem = ItemData.new(formattedref: ref, docidentifier: [docid])
+          bibitem = ItemData.new(formattedref: Bib::Formattedref.new(content: ref), docidentifier: [docid])
           Bib::Relation.new(type: type, bibitem: bibitem)
         end
 

@@ -1,4 +1,4 @@
-<bibitem id="RFC8341" type="standard" schema-version="v1.4.1">
+<bibitem id="RFC8341" type="standard" schema-version="v1.5.6">
   <fetched>2022-06-22</fetched>
   <title language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
@@ -34,7 +34,9 @@
     <partnumber>91</partnumber>
   </series>
   <keyword>
-    <taxon>acvp</taxon>
-    <taxon>crypto</taxon>
+    <vocab>acvp</vocab>
+  </keyword>
+  <keyword>
+    <vocab>crypto</vocab>
   </keyword>
 </bibitem>

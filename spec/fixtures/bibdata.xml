@@ -1,4 +1,4 @@
-<bibdata type="standard" schema-version="v1.4.1">
+<bibdata type="standard" schema-version="v1.5.6">
   <fetched>2022-06-22</fetched>
   <title language="en" script="Latn">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
@@ -34,10 +34,12 @@
     <partnumber>91</partnumber>
   </series>
   <keyword>
-    <taxon>acvp</taxon>
-    <taxon>crypto</taxon>
+    <vocab>acvp</vocab>
   </keyword>
-  <ext schema-version="v1.0.1">
+  <keyword>
+    <vocab>crypto</vocab>
+  </keyword>
+  <ext schema-version="v1.1.2">
     <doctype>rfc</doctype>
     <subdoctype>std</subdoctype>
     <flavor>ietf</flavor>
