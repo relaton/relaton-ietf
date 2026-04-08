@@ -41,21 +41,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 7C74:386B7E:2FD17F:352D65:69CD5EEC
+      - DE26:1871EB:A5231:BE599:69D6B0A7
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 01 Apr 2026 18:07:47 GMT
+      - Wed, 08 Apr 2026 19:46:53 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100053-IAD
+      - cache-iad-kjyo7100021-IAD
       X-Cache:
       - HIT
       X-Cache-Hits:
       - '1'
       X-Timer:
-      - S1775066868.712515,VS0,VE4
+      - S1775677614.522465,VS0,VE5
       Vary:
       - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
@@ -63,11 +63,11 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 57ac6a0c06e5eb678a364dd8bff272903582af8f
+      - 49a14583abddab3e3dd239a20dac5bd37f041350
       Expires:
-      - Wed, 01 Apr 2026 18:12:47 GMT
+      - Wed, 08 Apr 2026 19:51:53 GMT
       Source-Age:
-      - '6'
+      - '4'
     body:
       encoding: ASCII-8BIT
       base64_string: |
@@ -34243,7 +34243,7 @@ http_interactions:
         kipDeLFDKaC/vi03OUtPBvZs6asCaZ0Y7f0fUEsBAh4DFAAAAAgAypRTXJua
         ozsZdhcAJWLjAA0AGAAAAAAAAQAAAKSBAAAAAGluZGV4LXYxLnlhbWxVVAUA
         A+yel2l1eAsAAQT1AQAABBQAAABQSwUGAAAAAAEAAQBTAAAAYHYXAAAA
-  recorded_at: Wed, 01 Apr 2026 18:07:47 GMT
+  recorded_at: Wed, 08 Apr 2026 19:46:53 GMT
 - request:
     method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-ids/refs/heads/data-v2/data/draft-abarth-cake-01.yaml
@@ -34285,21 +34285,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 6688:227B2D:3C56AA:42E222:69CD5EF7
+      - DF80:38FD8F:EA59E:116928:69D6B0B0
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 01 Apr 2026 18:07:52 GMT
+      - Wed, 08 Apr 2026 19:46:56 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kcgs7200055-IAD
+      - cache-iad-kcgs7200148-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1775066872.234044,VS0,VE159
+      - S1775677616.053767,VS0,VE213
       Vary:
       - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
@@ -34307,9 +34307,9 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 93bb6047d96ac4188f30b09fe38811af00b6ffbe
+      - 630e2d80410b246cbbdf64d6572fee51bfa0c946
       Expires:
-      - Wed, 01 Apr 2026 18:12:52 GMT
+      - Wed, 08 Apr 2026 19:51:56 GMT
       Source-Age:
       - '0'
     body:
@@ -34356,5 +34356,5 @@ http_interactions:
         cnRoLWNha2UtMDEKZXh0OgogIHNjaGVtYV92ZXJzaW9uOiB2MS4wLjEKICBk
         b2N0eXBlOgogICAgY29udGVudDogaW50ZXJuZXQtZHJhZnQKICBmbGF2b3I6
         IGlldGYK
-  recorded_at: Wed, 01 Apr 2026 18:07:52 GMT
+  recorded_at: Wed, 08 Apr 2026 19:46:56 GMT
 recorded_with: VCR 6.4.0

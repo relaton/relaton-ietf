@@ -1,5 +1,5 @@
 <bibdata type="standard" schema-version="v1.5.6">
-  <fetched>2026-04-03</fetched>
+  <fetched>2026-04-08</fetched>
   <formattedref>BCP47</formattedref>
   <title language="en" script="Latn">Best Current Practice 47</title>
   <uri type="src">https://www.rfc-editor.org/info/bcp47</uri>
@@ -84,7 +84,7 @@
         <title>IETF</title>
       </series>
       <keyword>
-        <taxon>Lang-Tag</taxon>
+        <vocab>Lang-Tag</vocab>
       </keyword>
     </bibitem>
   </relation>
@@ -165,10 +165,10 @@
         <title>IETF</title>
       </series>
       <keyword>
-        <taxon>language tags</taxon>
+        <vocab>language tags</vocab>
       </keyword>
       <keyword>
-        <taxon>private interchange</taxon>
+        <vocab>private interchange</vocab>
       </keyword>
     </bibitem>
   </relation>

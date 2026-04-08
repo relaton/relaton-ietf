@@ -1,5 +1,5 @@
 <bibdata type="standard" schema-version="v1.5.6">
-  <fetched>2026-04-03</fetched>
+  <fetched>2026-04-08</fetched>
   <title type="main">Network Configuration Access Control Model</title>
   <uri type="src">https://www.rfc-editor.org/info/rfc8341</uri>
   <docidentifier type="IETF" primary="true">RFC 8341</docidentifier>
@@ -76,13 +76,13 @@
     <title>IETF</title>
   </series>
   <keyword>
-    <taxon>NETCONF RESTCONF</taxon>
+    <vocab>NETCONF RESTCONF</vocab>
   </keyword>
   <keyword>
-    <taxon>YANG</taxon>
+    <vocab>YANG</vocab>
   </keyword>
   <keyword>
-    <taxon>XML</taxon>
+    <vocab>XML</vocab>
   </keyword>
   <ext schema-version="v1.1.2">
     <doctype>rfc</doctype>
