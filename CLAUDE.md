@@ -60,6 +60,7 @@ Bib::Converter::BibXml::FromRfcxml    # base: handles <reference> generically
 
 ## Testing Patterns
 
+- **Index fixture:** `spec/fixtures/index-v1.zip` is pre-loaded into `Relaton::Index` pool in `before(:suite)` (configured in `spec/support/webmock.rb`). Run `rake spec:update_index` to refresh from relaton-data-rfcs/rfcsubseries/ids.
 - **VCR cassettes** in `spec/vcr_cassettes/` record HTTP interactions; tests use `vcr: "cassette_name"` metadata
 - **WebMock** disables net connections by default
 - **Fixtures** in `spec/fixtures/` — XML/YAML expected outputs; many tests auto-generate fixtures on first run (`File.write file, xml unless File.exist? file`)

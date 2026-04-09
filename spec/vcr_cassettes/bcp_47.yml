@@ -2,125 +2,6 @@
 http_interactions:
 - request:
     method: get
-    uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/refs/heads/data-v2/index-v1.zip
-    body:
-      encoding: US-ASCII
-      base64_string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      Host:
-      - raw.githubusercontent.com
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2108'
-      Cache-Control:
-      - max-age=300
-      Content-Security-Policy:
-      - default-src 'none'; style-src 'unsafe-inline'; sandbox
-      Content-Type:
-      - application/zip
-      Etag:
-      - W/"30bcf838ee8cd22ba18bcfbdac03b30147aebd05847b1c8c0088ac2b1f23eef4"
-      Strict-Transport-Security:
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Github-Request-Id:
-      - A6B2:61D99:1479D8:1749D8:69D6B0B4
-      Accept-Ranges:
-      - bytes
-      Date:
-      - Wed, 08 Apr 2026 19:47:00 GMT
-      Via:
-      - 1.1 varnish
-      X-Served-By:
-      - cache-iad-kcgs7200137-IAD
-      X-Cache:
-      - MISS
-      X-Cache-Hits:
-      - '0'
-      X-Timer:
-      - S1775677620.352733,VS0,VE79
-      Vary:
-      - Authorization,Accept-Encoding
-      Access-Control-Allow-Origin:
-      - "*"
-      Cross-Origin-Resource-Policy:
-      - cross-origin
-      X-Fastly-Request-Id:
-      - f21b6102e1683f2d28abcca3414a64919075b37c
-      Expires:
-      - Wed, 08 Apr 2026 19:52:00 GMT
-      Source-Age:
-      - '0'
-    body:
-      encoding: ASCII-8BIT
-      base64_string: |
-        UEsDBBQAAAAIAMpuhlyLWN1sjAcAAPc6AAANABwAaW5kZXgtdjEueWFtbFVU
-        CQADTPPTaU7z02l1eAsAAQT1AQAABBQAAABtms2qHGUURec+xX2BaO9d/xmq
-        CM4EnTiMxkAggmAmeXuTPiBaa00ve3B7r+rvq3VOv3r16qtXL6/fv3398u13
-        P70sX728vH73/sMfr1/evvn45pvffv/r8XgsX3968+eH/+ZWza3IbZrbkNs1
-        tyN3aO5A7tTcidyluQu5PCyYB4PRYBjUqsOqo12HXUfLDsuOth22Ha07rDva
-        d9h3tPCw8GrhZeHVwsvCWw2WQSVTkqmSKclUyZRkqmRKMlUyJZkqmZJMlUxJ
-        ZlEyC8ksSmYhmUXJLCSzKJmFZBYls5DMomQWklmUzEIyi5JZSGZRMgvJLEpm
-        IZlVyawksyqZlWRWJbOSzKpkVrk4lMxKMquSWUlmVTIryaxKZiWZVcmsJLMq
-        mZVkNiWzkcymZDaS2ZTMRjKbktlIZlMym9zpSmYjmU3JbCSzKZmNZDYls5HM
-        pmQ2ktmVzE4yu5LZSWZXMjvJ7EpmJ5ldyewksyuZXV63tPCdhe9a+M7Cdy18
-        Z+GHFn6w8EMLP1j4oYUfLPzQwg8WfmjhBws/tPCDhR/6VTjkBVfJHCRzKJmD
-        ZA4lc5DMqWROkjmVzEkyp5I5SebUwk8WfmrhJws/tfCThZ9a+ClKoYWfLPzU
-        wk8WfmnhFwu/tPCLhV9a+MXCL/0qXPwqXFr4xcIvLfxi4ZcWfrHwSwu/ROK0
-        8Msszhr//FdJWuWf/ypJ6/zzXyVppUfsOg/7PkT8Og/jEzHsPAxQxLHzMEIR
-        y87DEEU8Ow9jFDNtVe2oaisjc+0oowgjte2YbatFxyxaNTqm0erRMY9WkY6I
-        dNSkIyYdVemISkddOuLSUZmOyHTUpiM2HdXpiE5HfTri01Ghjgh11KgjRh1V
-        6ohSR5064tRRqY5IddSqI1Yd1eqIVke9OuLVUbGOiHXUrCNmHVXriFpH3Tri
-        1lG5jsh11K4jdh3V64heR/064tdRwY4IdtSwI4YdVeyIYkcdO+LYUcmOSHbU
-        siOWHdXsiGZHPTvi2VHRjoh21LQjph1V7YhqR1074tpR2Y7IdtS2I7Yd1e2I
-        bkd9O+LbUeGOCHfUuCPGHVXuiHJHnTvi3FHpjkh31Loj1h3V7oh2Z1dGuzBS
-        Q48YelTRI4oedfSIo0clPSLpUUuPWHpU0yOaHvX0iKdHRT0i6lFTj5h6VNUj
-        qh519YirR2U9IutRW4/YelTXI7oe9fWIr0eFPSLsOZXRKYzU7SNuH5X7iNxH
-        7T5i91G9j+h91O8jfh8V/IjgRw0/YvhRxY8oflTdI+qeS5u/pHm1/IjlRzU/
-        ovlRz494flT0I6IfNf2I6VdNv2L6VdOvmH7V9CumXzX9iulXTb9i+lXTr5h+
-        1fQrpl81/YrpV02/YvpV06+YftX0K6ZfNf2K6VdNv2L61QV8ZQFfnQlUZgLV
-        FXxlBV+dHlSmB9XpQWV6UJ0eVKYH1elBbQ2v04PaHl6nB9VFvDKyTbxOD2qr
-        eJ0e1HbxOj2oLeN1elDbxuv0oLaO1+lBbR+v04PK9KA6PahMD6rTg8r0oDo9
-        qEwPqtODyvSgOj2oTA+q04PK9KA6PahMD6rTg8r0oDo9qEwPqtODyvSgOj2o
-        TA+q04PK9KA6PahMD6rTg8r0oDo9qEwPqtOD3qYHP/z648v9v3z36f3jcbs1
-        v+Tu/+PkFuTu/+HkVuTu/9/k+P/dn6DJ7cjdn5/JHcjdn57Jncjdn53JXcjh
-        mnwGb9fkM3h/ciYYBhVJiAR35ATJBFfkBAkFN+QESQUX5ASJBbfeBNk3Lr0J
-        snDcec9gWTiuvAmycNx4E2ThuPAmyMJx302QheO6m6B8TbXwsnBcdhPkFwF3
-        3QRJBlfdBEkGN90zuJAMLroJkgzuuQnK6aRkFpLBLTdBksElN0GSwR03QZLB
-        FTdBksENN8H/k/n5l+9xJv/98S3O5C+5+0eZ3Ibc/ZNMbkfu/kEmdyB3/xyT
-        4+e4P2CTu5DDWfsM3s7aZ/D+gE0wDGqFYYU48CbIbiAEE2Q5OPAmyE+NA+8Z
-        LD81DrwJ8lPjwJtgGdR6ynpw4E1wZVCfxfJZxIE3QRaOA2+CLBwH3gT5OOLA
-        myDJ4MB7BheSwYE3QZLBgTdBksGBN0GSwTk2QRaOc2yCLBzn2ARZOM6xCbJw
-        vH4/gyt7xNv3BNkjXr4nyB7x7j1B9ohX7wnyCceb9wRZONZ2E2Th2NpNkIVj
-        aTdBKVyf8JVPOBZxz+DGwrGHmyALxxpugnJpaeEbC8cSboIsHDu4CbJwrOAm
-        yMKxgZsgC8cCboIsHPu3Z3DnVwHrtwmSDLZvEyQZLN8mSDLYvU2QZLB6m6C8
-        eCiZnWSweJsgyWDvNkGSwdptgiSDrdszeJAMlm4TJBns3CZIMli5TZBksHGb
-        IMlg4TZBksG+bYLyTqhkDpLBtm2CJINl2wRJBru2Z/AkGazaJkgy2LRNkGSw
-        aJsgyWDPNkGSwZptgiSDLdsESQZLtgnK67qSOUkGK7YJkgw2bM/gRTJYsE2Q
-        ZPAb2gmSDBZxEyQZ7OEmSDJYw02QZLCFmyDJYAk3QZLBDm6CYlJK5jKVMjT3
-        H9tO0tjcf2w7SYNz/7HtJI3Ovz+2/QdQSwECHgMUAAAACADKboZci1jdbIwH
-        AAD3OgAADQAYAAAAAAABAAAApIEAAAAAaW5kZXgtdjEueWFtbFVUBQADTPPT
-        aXV4CwABBPUBAAAEFAAAAFBLBQYAAAAAAQABAFMAAADTBwAAAAA=
-  recorded_at: Wed, 08 Apr 2026 19:47:00 GMT
-- request:
-    method: get
     uri: https://raw.githubusercontent.com/relaton/relaton-data-rfcsubseries/refs/heads/data-v2/data/bcp0047.yaml
     body:
       encoding: US-ASCII
@@ -160,21 +41,21 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Github-Request-Id:
-      - 59E0:1B89E4:130B9D:15D0CE:69D6B0B3
+      - 9016:2050E4:2F5F46:386F8A:69D82156
       Accept-Ranges:
       - bytes
       Date:
-      - Wed, 08 Apr 2026 19:47:00 GMT
+      - Thu, 09 Apr 2026 21:59:52 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-iad-kjyo7100026-IAD
+      - cache-iad-kcgs7200122-IAD
       X-Cache:
       - MISS
       X-Cache-Hits:
       - '0'
       X-Timer:
-      - S1775677621.699939,VS0,VE82
+      - S1775771992.965893,VS0,VE86
       Vary:
       - Authorization,Accept-Encoding
       Access-Control-Allow-Origin:
@@ -182,9 +63,9 @@ http_interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       X-Fastly-Request-Id:
-      - 7fca4681a51124fb2ae2268b9faf228005afa9b0
+      - 555483ac1ca8b7ce407343aa79ccfea3c0a272f9
       Expires:
-      - Wed, 08 Apr 2026 19:52:00 GMT
+      - Thu, 09 Apr 2026 22:04:52 GMT
       Source-Age:
       - '0'
     body:
@@ -337,5 +218,5 @@ http_interactions:
         Z3MKICAgIC0gdm9jYWI6CiAgICAgICAgY29udGVudDogcHJpdmF0ZSBpbnRl
         cmNoYW5nZQpleHQ6CiAgc2NoZW1hX3ZlcnNpb246IHYxLjEuMgogIGRvY3R5
         cGU6CiAgICBjb250ZW50OiByZmMKICBmbGF2b3I6IGlldGYK
-  recorded_at: Wed, 08 Apr 2026 19:47:00 GMT
+  recorded_at: Thu, 09 Apr 2026 21:59:52 GMT
 recorded_with: VCR 6.4.0

@@ -154,6 +154,10 @@ Done in: 1360 sec.
 
 Relaton::Ietf uses the relaton-logger gem for logging. By default, it logs to STDOUT. To change the log levels and add other loggers, read the https://github.com/relaton/relaton-logger#usage[relaton-logger] documentation.
 
+== Development
+
+To update the index test fixtures (used by tests), run `rake spec:update_index`. This downloads the latest index files from the https://github.com/relaton/relaton-data-rfcs[relaton-data-rfcs], https://github.com/relaton/relaton-data-rfcsubseries[relaton-data-rfcsubseries], and https://github.com/relaton/relaton-data-ids[relaton-data-ids] repositories.
+
 == Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/metanorma/relaton-ietf.
