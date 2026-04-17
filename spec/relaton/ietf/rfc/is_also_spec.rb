@@ -29,6 +29,6 @@ RSpec.describe Relaton::Ietf::Rfc::IsAlso do
       </is-also>
     XML
     is_also = described_class.from_xml(xml)
-    expect(is_also.doc_id).to be_nil
+    expect(is_also.doc_id).to eq []
   end
 end

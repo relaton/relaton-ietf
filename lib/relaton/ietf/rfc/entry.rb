@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "rfc_index_namespace"
 require_relative "is_also"
 require_relative "author"
 require_relative "entry_date"
@@ -13,8 +14,6 @@ module Relaton
     module Rfc
       # Model for index entries (bcp-entry, fyi-entry, std-entry, rfc-entry)
       class Entry < Lutaml::Model::Serializable # rubocop:disable Metrics/ClassLength
-        NAMESPACE = "https://www.rfc-editor.org/rfc-index"
-
         TITLE_PREFIXES = {
           "bcp" => "Best Current Practice",
           "fyi" => "For Your Information",
@@ -47,7 +46,7 @@ module Relaton
 
         xml do
           root "bcp-entry"
-          namespace NAMESPACE
+          namespace RfcIndexNamespace
 
           map_element "doc-id", to: :doc_id
           map_element "title", to: :title

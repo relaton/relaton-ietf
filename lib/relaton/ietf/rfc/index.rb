@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "rfc_index_namespace"
 require_relative "entry"
 
 module Relaton
@@ -7,8 +8,6 @@ module Relaton
     module Rfc
       # Model for the root <rfc-index> element
       class Index < Lutaml::Model::Serializable
-        NAMESPACE = "https://www.rfc-editor.org/rfc-index"
-
         attribute :bcp_entries, Entry, collection: true
         attribute :fyi_entries, Entry, collection: true
         attribute :std_entries, Entry, collection: true
@@ -16,7 +15,7 @@ module Relaton
 
         xml do
           root "rfc-index"
-          namespace NAMESPACE
+          namespace RfcIndexNamespace
 
           map_element "bcp-entry", to: :bcp_entries
           map_element "fyi-entry", to: :fyi_entries
