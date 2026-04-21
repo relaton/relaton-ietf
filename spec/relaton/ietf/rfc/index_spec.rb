@@ -100,10 +100,10 @@ RSpec.describe Relaton::Ietf::Rfc::Index do
         </rfc-index>
       XML
       index = described_class.from_xml(xml)
-      expect(index.bcp_entries).to be_nil
-      expect(index.fyi_entries).to be_nil
-      expect(index.std_entries).to be_nil
-      expect(index.rfc_entries).to be_nil
+      expect(index.bcp_entries).to eq []
+      expect(index.fyi_entries).to eq []
+      expect(index.std_entries).to eq []
+      expect(index.rfc_entries).to eq []
       expect(index.subseries_entries).to eq []
       expect(index.parseable_entries).to eq []
     end

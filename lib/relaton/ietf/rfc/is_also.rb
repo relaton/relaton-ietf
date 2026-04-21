@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "rfc_index_namespace"
+
 module Relaton
   module Ietf
     module Rfc
@@ -9,7 +11,7 @@ module Relaton
 
         xml do
           root "is-also"
-          namespace "https://www.rfc-editor.org/rfc-index"
+          namespace RfcIndexNamespace
 
           map_element "doc-id", to: :doc_id
         end

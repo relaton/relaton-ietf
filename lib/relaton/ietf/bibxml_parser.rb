@@ -1,15 +1,6 @@
 module Relaton
   module Ietf
     module BibXMLParser # rubocop:disable Metrics/ModuleLength
-      # Workaround for rfcxml v0.2.1 circular dependency:
-      # Sup inherits Sub before Sub finishes declaring attributes,
-      # leaving Sup.attributes empty. Copy them over.
-      if defined?(Rfcxml::V3::Sup) && Rfcxml::V3::Sup.attributes.empty?
-        Rfcxml::V3::Sub.attributes.each do |name, attr|
-          Rfcxml::V3::Sup.attributes[name] = attr
-        end
-      end
-
       extend self
 
       def parse(xml)

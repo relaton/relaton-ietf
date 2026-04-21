@@ -95,7 +95,7 @@ RSpec.describe Relaton::Ietf do
     end.to output(/Not found\./).to_stderr_from_any_process
   end
 
-  it "deals with non-existent document", vcr: "non_existed_doc" do
+  it "deals with non-existent document" do
     item = Relaton::Ietf::Bibliography.get "RFC 0"
     expect(item).to be_nil
   end
