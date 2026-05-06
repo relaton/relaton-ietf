@@ -12,7 +12,7 @@
     <person>
       <name>
         <forename language="en" script="Latn">Predrag</forename>
-        <forename language="en" script="Latn" initial="P"></forename>
+        <forename language="en" script="Latn" initial="P"/>
         <formatted-initials language="en">P.</formatted-initials>
         <surname language="en">Pale</surname>
         <completename language="en">Predrag Pale</completename>
@@ -24,7 +24,7 @@
     <person>
       <name>
         <forename language="en" script="Latn">Kristijan</forename>
-        <forename language="en" script="Latn" initial="K"></forename>
+        <forename language="en" script="Latn" initial="K"/>
         <formatted-initials language="en">K.</formatted-initials>
         <surname language="en">Cerovski</surname>
         <completename language="en">Kristijan Cerovski</completename>
@@ -33,14 +33,14 @@
   </contributor>
   <language>en</language>
   <script>Latn</script>
-  <abstract language="en" script="Latn">   This memo presents a proposal for an efficient and simple way of
-   forming email addresses.  The goal is to achieve easier, more
-   productive communication between email users, in particular by aking
-   addresses intuitive and thus easy to remember, or guess-enabled on
-   material-world data about the correspondent, as well as independent
-   from technical or organizational specifics of email services.
-
-	 </abstract>
+  <abstract language="en" script="Latn">
+    <p>This memo presents a proposal for an efficient and simple way of 
+   forming email addresses.  The goal is to achieve easier, more 
+   productive communication between email users, in particular by aking 
+   addresses intuitive and thus easy to remember, or guess-enabled on 
+   material-world data about the correspondent, as well as independent 
+   from technical or organizational specifics of email services.</p>
+  </abstract>
   <series type="main">
     <title language="en" script="Latn">Internet-Draft</title>
     <number>draft--pale-email-00</number>

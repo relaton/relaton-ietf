@@ -18,8 +18,8 @@
     <person>
       <name>
         <forename language="en" script="Latn">Christopher</forename>
-        <forename language="en" script="Latn" initial="C"></forename>
-        <forename language="en" script="Latn" initial="C"></forename>
+        <forename language="en" script="Latn" initial="C"/>
+        <forename language="en" script="Latn" initial="C"/>
         <formatted-initials language="en">C.C.</formatted-initials>
         <surname language="en">Celi</surname>
         <completename language="en">Christopher Celi</completename>
@@ -59,8 +59,10 @@
   </contributor>
   <language>en</language>
   <script>Latn</script>
-  <abstract language="en" script="Latn">This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
-				specification.</abstract>
+  <abstract language="en" script="Latn">
+    <p>This document defines the JSON schema for using SHA1 and SHA2 with the ACVP
+				specification.</p>
+  </abstract>
   <keyword>
     <vocab language="en" script="Latn">acvp</vocab>
   </keyword>

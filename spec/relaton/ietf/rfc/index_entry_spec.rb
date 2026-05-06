@@ -396,6 +396,23 @@ RSpec.describe Relaton::Ietf::Rfc::Entry do
       expect(item.abstract.first.language).to eq "en"
     end
 
+    it "escapes bare angle brackets inside paragraph text" do
+      xml = <<~XML
+        <rfc-entry xmlns="https://www.rfc-editor.org/rfc-index">
+          <doc-id>RFC0001</doc-id>
+          <title>Test</title>
+          <current-status>PROPOSED STANDARD</current-status>
+          <publication-status>PROPOSED STANDARD</publication-status>
+          <stream>IETF</stream>
+          <abstract><p>See &lt;mailto:x@y&gt; for details.</p></abstract>
+        </rfc-entry>
+      XML
+      entry = Relaton::Ietf::Rfc::Entry.from_xml(xml)
+      built = entry.to_item
+      expect(built.abstract.first.content).to eq("<p>See &lt;mailto:x@y&gt; for details.</p>")
+      expect { built.to_xml }.not_to raise_error
+    end
+
     it "creates correct relations" do
       obsoleted = item.relation.select { |r| r.type == "obsoletedBy" }
       expect(obsoleted.size).to eq 2

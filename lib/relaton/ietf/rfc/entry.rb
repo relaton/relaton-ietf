@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "cgi"
 require_relative "rfc_index_namespace"
 require_relative "is_also"
 require_relative "author"
@@ -317,7 +318,7 @@ module Relaton
         def build_rfc_abstract
           return [] unless abstract&.p&.any?
 
-          content = abstract.p.map { |para| "<p>#{para.strip}</p>" }.join
+          content = abstract.p.map { |para| "<p>#{CGI.escapeHTML(para.strip)}</p>" }.join
           [Bib::Abstract.new(content: content, language: "en", script: "Latn")]
         end
 
