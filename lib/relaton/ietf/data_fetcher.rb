@@ -41,74 +41,99 @@ module Relaton
       end
 
       #
-      # Fetches ietf-internet-drafts documents
+      # Fetches ietf-internet-drafts documents.
       #
-      def fetch_ieft_internet_drafts # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-        versions = Dir["bibxml-ids/*.xml"].each_with_object([]) do |path, vers|
-          file = File.basename path, ".xml"
-          draft = file.include?("D.draft-")
-          /(?<ver>\d+)$/ =~ file if draft
+      # Single-pass: parse every BibXML file once into memory, group versioned
+      # drafts by their normalized series stem, then emit each draft (with
+      # immediate-neighbor updates/updatedBy relations) and the un-versioned
+      # series aggregator doc exactly once.
+      #
+      def fetch_ieft_internet_drafts
+        series_map, singletons = parse_drafts
+        emit_series(series_map)
+        singletons.each { |bib| save_doc bib }
+      end
+
+      #
+      # Parse all bibxml-ids/*.xml files into memory.
+      #
+      # @return [Array(Hash, Array)] [series_map, singletons]
+      #   series_map: { normalized_series => [{file, ver, bib, ref, source}, ...] }
+      #   singletons: bibs that aren't versioned drafts (no `-NN` suffix or no `D.draft-`)
+      #
+      def parse_drafts # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+        series_map = {}
+        singletons = []
+        Dir["bibxml-ids/*.xml"].each do |path|
+          file = File.basename(path, ".xml")
+          is_draft = file.include?("D.draft-")
+          ver = is_draft ? file[/(\d+)$/, 1] : nil
           bib = BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
-          if ver
-            version = Bib::Version.new(draft: ver)
-            bib.version = [version]
+          bib.version = [Bib::Version.new(draft: ver)] if ver
+
+          ref = file.sub(/^reference\.I-D\./, "").downcase
+          stem_match = is_draft && ver ? /^(draft-.+)-(\d{2})$/.match(ref) : nil
+          if stem_match
+            series = stem_match[1].gsub(/[.\s\/:-]+/, "-")
+            (series_map[series] ||= []) << { file: file, ver: ver, bib: bib, ref: ref, source: bib.source }
+          else
+            singletons << bib
           end
-          if draft
-            vers << { ref: file.sub(/^reference\.I-D\./, "").downcase, source: bib.source }
-          end
-          save_doc bib
         end
-        update_versions(versions) if versions.any? && @format != "bibxml"
+        [series_map, singletons]
       end
 
       #
-      # Updates I-D's versions
+      # Emit each series: append cross-version relations, save each version doc
+      # once, then create the un-versioned aggregator doc. The relation linking
+      # and aggregator doc are skipped for bibxml format (matches the legacy
+      # `update_versions` skip).
       #
-      # @param [Array<String>] versions list of versions
-      #
-      def update_versions(versions) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-        series = ""
-        bib_versions = []
-        Dir["#{@output}/*.#{@ext}"].each do |file|
-          match = /(?<series>draft-.+)-(?<ver>\d{2})\.#{@ext}$/.match file
-          if match
-            if series != match[:series]
-              bib_versions = versions.select { |v| v[:ref].downcase.gsub(/[.\s\/:-]+/, "-").match?(/^#{Regexp.quote match[:series]}-\d{2}/) }
-              create_series match[:series], bib_versions
-              series = match[:series]
-            end
-            lv = bib_versions.select { |v| v[:ref].match(/\d+$/).to_s.to_i < match[:ver].to_i }
-            hv = bib_versions.select { |v| v[:ref].match(/\d+$/).to_s.to_i > match[:ver].to_i }
-            if lv.any? || hv.any?
-              bib = read_doc(file)
-              bib.relation << version_relation(lv.last, "updates") if lv.any?
-              bib.relation << version_relation(hv.first, "updatedBy") if hv.any?
-              save_doc bib, check_duplicate: false
-            end
-          end
+      def emit_series(series_map)
+        series_map.each do |series, entries|
+          sorted = entries.sort_by { |e| e[:ver].to_i }
+          link_neighbor_relations(sorted) if @format != "bibxml"
+          sorted.each { |entry| save_doc entry[:bib] }
+          create_series(series, sorted) if @format != "bibxml"
         end
       end
 
       #
-      # Create unversioned bibliographic item
+      # Append immediate-neighbor `updates` / `updatedBy` relations in memory.
+      # Single-version series get no relations (no neighbors).
       #
-      # @param [String] ref reference
-      # @param [Array<String>] versions list of versions
+      def link_neighbor_relations(sorted)
+        sorted.each_with_index do |entry, i|
+          if i.positive?
+            prev = sorted[i - 1]
+            entry[:bib].relation << version_relation({ ref: prev[:ref], source: prev[:source] }, "updates")
+          end
+          if i < sorted.size - 1
+            nxt = sorted[i + 1]
+            entry[:bib].relation << version_relation({ ref: nxt[:ref], source: nxt[:source] }, "updatedBy")
+          end
+        end
+      end
+
       #
-      def create_series(ref, versions) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-        vs = versions.sort_by { |v| v[:ref].match(/\d+$/).to_s.to_i }
-        if vs.empty?
-          Util.warn "No versions found for #{ref}"
+      # Create the un-versioned series aggregator doc with `includes` relations
+      # to every version. Uses the latest version's title/abstract directly
+      # from memory (no disk round-trip).
+      #
+      # @param [String] series normalized series name (e.g. "draft-collins-pfr")
+      # @param [Array<Hash>] sorted entries sorted ascending by version
+      #
+      def create_series(series, sorted)
+        if sorted.empty?
+          Util.warn "No versions found for #{series}"
           return
         end
-        file = output_file(vs.last[:ref])
-        # return unless File.exist?(file)
 
-        docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ref, primary: true)
-        rel = vs.map { |v| version_relation v, "includes" }
-        last_v = Item.from_yaml(File.read(file, encoding: "UTF-8"))
+        last_v = sorted.last[:bib]
+        docid = Bib::Docidentifier.new(type: "Internet-Draft", content: series, primary: true)
+        rel = sorted.map { |e| version_relation({ ref: e[:ref], source: e[:source] }, "includes") }
         bib = ItemData.new(
-          title: last_v.title, abstract: last_v.abstract, formattedref: Bib::Formattedref.new(content: ref),
+          title: last_v.title, abstract: last_v.abstract, formattedref: Bib::Formattedref.new(content: series),
           docidentifier: [docid], relation: rel
         )
         save_doc bib
@@ -117,7 +142,7 @@ module Relaton
       #
       # Create bibitem relation
       #
-      # @param [String] ref reference
+      # @param [Hash] ver version reference, { ref:, source: }
       # @param [String] type relation type
       #
       # @return [Relaton::Ietf::Relation] relation
@@ -126,22 +151,6 @@ module Relaton
         docid = Bib::Docidentifier.new(type: "Internet-Draft", content: ver[:ref], primary: true)
         bibitem = ItemData.new(formattedref: Bib::Formattedref.new(content: ver[:ref]), docidentifier: [docid], source: ver[:source])
         Relaton::Ietf::Relation.new(type: type, bibitem: bibitem)
-      end
-
-      #
-      # Redad saved documents
-      #
-      # @param [String] file path to file
-      #
-      # @return [Relaton::Ietf::ItemData] bibliographic item
-      #
-      def read_doc(file)
-        doc = File.read(file, encoding: "UTF-8")
-        case @format
-        when "xml" then Item.from_xml(doc)
-        when "yaml" then Item.from_yaml(doc)
-        else BibXMLParser.parse(doc)
-        end
       end
 
       #
