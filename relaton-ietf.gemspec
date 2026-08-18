@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
 
     Formerly known as rfcbib.
   DESCRIPTION
-  spec.homepage      = "https://github.com/metanorma/relaton-ietf"
+  spec.homepage      = "https://github.com/relaton/relaton-ietf"
   spec.license       = "BSD-2-Clause"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
