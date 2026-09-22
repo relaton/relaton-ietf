@@ -185,6 +185,32 @@ RSpec.describe Relaton::Ietf::DataFetcher do
         results = subject.send(:process_series, "draft-x", [{ path: "p", ver: "00", ref: "draft-x-00" }])
         expect(results).to eq [:r0]
       end
+
+      it "logs and skips an entry whose file fails to parse, still processing the rest" do
+        paths_info = [
+          { path: "p0", ver: "00", ref: "draft-x-00" },
+          { path: "p1", ver: "01", ref: "draft-x-01" },
+        ]
+        bib0 = double("bib0", source: [:s0])
+        allow(bib0).to receive(:version=)
+        allow(Relaton::Bib::Version).to receive(:new).and_return(:ver)
+        expect(File).to receive(:read).with("p0", encoding: "UTF-8").and_return("x0")
+        expect(File).to receive(:read).with("p1", encoding: "UTF-8").and_return("x1")
+        expect(Relaton::Ietf::BibXMLParser).to receive(:parse).with("x0")
+          .and_raise(ArgumentError, "string contains null byte")
+        expect(Relaton::Ietf::BibXMLParser).to receive(:parse).with("x1").and_return(bib0)
+        expect(Relaton::Ietf::Util).to receive(:error).with(/Error parsing p0: string contains null byte/)
+
+        allow(subject).to receive(:link_neighbor_relations) do |sorted|
+          expect(sorted.map { |e| e[:ver] }).to eq %w[01]
+        end
+        expect(subject).to receive(:serialize_and_write).with(bib0).and_return(:r1)
+        allow(subject).to receive(:build_unversioned_doc).and_return(nil)
+        expect(subject).to receive(:serialize_and_write).with(nil).and_return(nil)
+
+        results = subject.send(:process_series, "draft-x", paths_info)
+        expect(results).to eq [:r1]
+      end
     end
 
     describe "#process_singleton" do
@@ -209,6 +235,17 @@ RSpec.describe Relaton::Ietf::DataFetcher do
         expect(subject).to receive(:serialize_and_write).with(bib).and_return(:result)
 
         subject.send(:process_singleton, path)
+      end
+
+      it "logs and returns nil when the file fails to parse" do
+        path = "bibxml-ids/reference.I-D.draft-bad-00.xml"
+        expect(File).to receive(:read).with(path, encoding: "UTF-8").and_return("xml")
+        expect(Relaton::Ietf::BibXMLParser).to receive(:parse).with("xml")
+          .and_raise(ArgumentError, "string contains null byte")
+        expect(Relaton::Ietf::Util).to receive(:error).with(/Error parsing #{Regexp.escape(path)}: string contains null byte/)
+        expect(subject).not_to receive(:serialize_and_write)
+
+        expect(subject.send(:process_singleton, path)).to be_nil
       end
     end
 

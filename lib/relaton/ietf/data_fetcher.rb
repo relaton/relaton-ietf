@@ -114,10 +114,13 @@ module Relaton
       # for the parent.
       #
       def process_series(series, paths_info)
-        sorted = paths_info.sort_by { |p| p[:ver].to_i }.map do |p|
+        sorted = paths_info.sort_by { |p| p[:ver].to_i }.filter_map do |p|
           bib = BibXMLParser.parse(File.read(p[:path], encoding: "UTF-8"))
           bib.version = [Bib::Version.new(draft: p[:ver])]
           p.merge(bib: bib, source: bib.source)
+        rescue StandardError => e
+          Util.error "Error parsing #{p[:path]}: #{e.message}\n#{e.backtrace[0..5].join("\n")}"
+          nil
         end
         link_neighbor_relations(sorted) if @format != "bibxml"
 
@@ -136,6 +139,9 @@ module Relaton
         bib = BibXMLParser.parse(File.read(path, encoding: "UTF-8"))
         bib.version = [Bib::Version.new(draft: ver)] if ver
         serialize_and_write(bib)
+      rescue StandardError => e
+        Util.error "Error parsing #{path}: #{e.message}\n#{e.backtrace[0..5].join("\n")}"
+        nil
       end
 
       #
